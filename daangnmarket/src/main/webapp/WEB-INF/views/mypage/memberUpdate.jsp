@@ -13,7 +13,8 @@
 </head>
 <body>
 	<div class="section">
-		<div class="container" style="width:50%">
+		<br><br><br><br>
+		<div class="container" style="width:40%">
 			<table class="table table-condensed">
 			    <tbody>
 			      <tr>

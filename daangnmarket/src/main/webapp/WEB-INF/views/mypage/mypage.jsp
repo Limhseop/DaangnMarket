@@ -19,7 +19,7 @@
 			<div class="userImage"><img src="images/error.png" class="profileImage"></div>
 			<div class="userProfile">
 				<br><br>
-				<strong class="userName">이름 출력</strong><a href="http://localhost:9000/mycgv/memberUpdate.do"><input type="button" value="회원정보변경" class="memberUpdate"></a><br><br>
+				<strong class="userName">이름 출력</strong><a href="http://localhost:9000/daangn/memberUpdate.do"><input type="button" value="회원정보변경" class="memberUpdate"></a><br><br>
 				<span>상점오픈일</span><span>2021-06-29</span>
 				<span>상품판매</span><span>1회</span>
 				<span>상품구매</span><span>1회</span>

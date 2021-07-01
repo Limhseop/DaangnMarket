@@ -9,11 +9,11 @@ public class MypageController {
 	
 	@RequestMapping(value="/memberUpdate.do", method = RequestMethod.GET)
 	public String memberUpdate() {
-		return "memberUpdate";
+		return "/mypage/memberUpdate";
 	}
 			
 	@RequestMapping(value="/mypage.do" , method = RequestMethod.GET)
 	public String mypage() {
-		return "mypage";
+		return "/mypage/mypage";
 	}
 }
