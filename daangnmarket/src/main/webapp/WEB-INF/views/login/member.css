@@ -1,0 +1,71 @@
+/*공통*/
+
+div.content{
+	text-align: center;
+	margin: auto;
+}
+form input.input{
+	display: block;
+	margin: 10px auto;
+	width: 380px;
+	height: 45px;
+	padding-left: 5px;
+}
+button.carrot{
+	width: 100%;
+	background-color: rgb(255,138,61);
+	height: 43px;
+	margin: 2px 0;
+	color: white;
+}
+/*로그인*/
+form.login_form{
+	width: 400px;
+	margin: auto;
+}
+form.login_form div.besides{
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	width: 400px;
+	height: 30px;
+}
+form.login_form div.besides span a{
+	font-size: 12px;
+	text-decoration: none;
+}
+form.login_form div.besides span a:link, form.login_form div.besides span a:visited,
+form.login_form div.besides span a:hover, form.login_form div.besides span a:active{
+	color: black;
+}
+form.login_form div.besides span label{
+	font-size: 12px;
+}
+form.login_form span.first{
+	text-align: left;
+	position: absolute;
+	left: 0px;
+}
+form.login_form span.second{
+	position: absolute;
+	right: 0px;
+}
+form.login_form div.buttons{
+	position: static;
+	display: block;
+}
+
+
+/*회원가입*/
+form.join_form{
+	width: 400px;
+	border: 1px solid red;
+	margin: auto;
+}
+form.join_form input.input_phone{
+	display: block;
+	margin: 10px 5px;
+	width: 200px;
+	height: 45px;
+	padding-left: 5px;
+}
