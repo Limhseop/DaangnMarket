@@ -1,12 +1,23 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	    margin: 0;
+	    padding: 0;
+	    border: 0;
+	    font-size: 100%;
+	    vertical-align: baseline;
+	    background: transparent;
+	}
 .section {
-	width:100%;
+	width:1200px;
 	margin:auto;
 	height:auto;
 	margin-top:50px;
 }
 .section1,.section2 {
-	width:1000px;
+	width:1024px;
 	margin:auto;
+}
+.section1{
+	border:1px solid #F6F6F6;
 }
 .userImage{
 	display:inline-block;
@@ -14,6 +25,19 @@
 .profileImage {
 	width:310px;
 	height:310px;
+	cursor:pointer;
+}
+.profileImage:hover {
+	opacity:0.5;
+	background-color:gray;
+}
+.profileImageChange{
+	position:relative;
+	right:250px;
+	bottom:150px;
+	font-size:22px;
+	font-weight:bold;
+	display:none;
 }
 .memberUpdate {
 	font-size:11px;
@@ -22,6 +46,18 @@
 	margin-left:10px;
 	border:1px solid lightgray;
 	cursor:pointer;
+}
+.joinDate{
+	font-size:14px;
+	font-weight:bold;
+}
+.sale{
+	font-size:14px;
+	font-weight:bold;
+}
+.purchase{
+	font-size:14px;
+	font-weight:bold;
 }
 .userProfile {
 	width:50%;
@@ -57,7 +93,6 @@
 .section2_ul {
 	display:inline-block;
 	list-style:none;
-	padding-left:0px;
 }
 .section2_li {
 	float:left;
@@ -71,6 +106,7 @@
 }
 #li_2,#li_3,#li_4{
 	border-bottom:1px solid #333;
+	cursor:pointer;
 }
 .line{
 	background-color:lightgray;
