@@ -1,0 +1,152 @@
+/****************
+	°øÅë ºÎºÐ css
+***********************/
+
+div.content{
+	font-family:"¸¼Àº°íµñ";
+	width:1000px;
+	margin:auto;
+	margin-top:150px; 
+	
+}
+
+div.title{
+	border-bottom:2px solid rgb(255, 124, 152);
+	text-align:center;
+	font-size:19px;
+	font-weight:blod;
+	color:#333;
+	padding-bottom:35px;
+}
+
+.btn_cancle, .btn_confrim, .btn_cancle{
+	padding:5px 20px;
+	margin: 0 5px;
+	background-color:white;
+	border:1px solid rgb(128, 128, 161);
+	border-radius:5px;
+	color: gray;
+	font-size:15px;
+}
+.btn_confrim{
+	background-color: rgb(255, 138, 61);
+	border:1px solid white;
+	color:white;
+}
+.btn_cancle{
+	background-color:white;
+	color: 1px solid lightgray;
+	color: gray;
+}
+
+/***
+	product_list.css
+**/
+.plist , .p_register{
+	text-align:center;
+	background-color: rgb(248, 249, 250);
+}
+
+section.plist div.content{
+	background-color: white;
+	border:1px solid lightgray;
+	border-radius:5px;
+	width:70%;
+	text-align:center;
+	
+	margin-top:350px;
+	margin-bottom:350px;
+}
+
+section.plist div.content img.item{
+	border:1px solid white;
+	border-radius:10px;
+	width: 200px;
+	height:150px;
+}
+section.plist div.content ul{
+	width: 210px;
+	padding: 10px 20px ;
+	text-decoration:none;
+	list-style:none;
+	display:inline-block;
+	text-align:left;
+}
+section.plist div.content ul li:last-child{
+	text-align:right;
+	
+}
+section.plist div.content ul li:nth-child(3){
+	color: gray;
+	font-size:15px;
+	
+}
+section.plist div.content ul li:nth-child(4){
+	color:rgb(255, 138, 61);
+	font-size:15px;
+	margin-top:3px;
+	display:inline-block;
+	
+}
+section.plist div.content ul li:last-child{
+	display:inline-block;
+	float:right;
+}
+
+section.plist div.content ul li:last-child span{
+	position: relative;
+	top:-5px;
+}	
+section.plist div.content ul li:last-child span, section.plist div.content ul li:last-child img{
+	display:inline-block;
+	margin: 0 0 0 3px;
+}
+
+section.plist div.prod_t{
+	width:200px;
+	height:25px;
+	text-align:left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+	color:black;
+	font-weight:bold;
+	font-size: 16px;
+}
+
+
+/***
+	product_register.css
+**/
+
+section.p_register div.content{
+	border:1px solid gray;
+	border-radius: 5px;
+	background-color:white;
+	text-align:left;
+	
+}
+
+section.p_register div.content ul{
+	list-style : none;
+}
+
+section.p_register div.content ul li:last-child{
+	text-align:right;
+}
+section.p_register div.content ul li:last-child button:last-child{
+	margin-right:30px;
+}
+
+/***
+	product_content.css
+**/
+
+/***
+	product_delete.css
+**/
+
+/***
+	product_update.css
+**/
+
