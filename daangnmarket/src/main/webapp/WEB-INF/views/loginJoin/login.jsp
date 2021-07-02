@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/practice/member.css">
+<title>당근마켓</title>
+<link rel="stylesheet" href="http://localhost:9000/daangn/sehee/loginJoin.css">
 </head>
 <body>
 <div id="content" class="content">
@@ -24,8 +24,8 @@
 	</span>	
 </div>
 <div id="buttons" class="buttons">
-	<button type="button" id="login_btn" class="carrot">로그인</button>
-	<button type="button" id="join_btn" class="carrot">회원가입</button>
+	<button type="button" id="login_btn" class="carrot_btn">로그인</button>
+	<button type="button" id="join_btn" class="carrot_btn">회원가입</button>
 </div>
 </form>
 </div>

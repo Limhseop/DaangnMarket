@@ -16,3 +16,16 @@ div.content {
 	width: 1024px;
 	height: auto;
 }
+
+/*당근색깔 버튼*/
+.carrot_btn{
+	background-color: rgb(255,138,61);
+	border: 1px solid rgb(255,200,164);
+	height: 45px;
+	margin: 2px 0;
+	color: white;
+}
+/*버튼에 마우스 올리면 모양 변하게 하는거 */
+button{
+	cursor: pointer;
+}
