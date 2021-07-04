@@ -32,7 +32,15 @@ public class ProductController {
 	}
 	
 	/***
-	 *  product_list >>>  상품 리스트
+	 *  product_list_search >>>  상품 검색 리스트(결과화면)
+	 */
+	@RequestMapping(value = "/product_search.do", method = RequestMethod.GET)
+	public String product_list_search(){
+		return "product/product_list_search";
+	}
+	
+	/***
+	 *  product_list >>>  상품 검색 화면
 	 */
 	@RequestMapping(value = "/product.do", method = RequestMethod.GET)
 	public String product_list(){

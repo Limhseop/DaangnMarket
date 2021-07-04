@@ -5,12 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="http://localhost:9000/daangn/css/header.css">
 <link rel="stylesheet" href="css/product_css.css">
 <link rel="stylesheet" href="css/commons.css">
 </head>
 <body>
-	<span>정말 삭제하시겠습니까?</span>
-	<button type = "button">예</button>
-	<button type = "button">아니오</button>
+	<!-- header -->
+	<jsp:include page = "../header.jsp"></jsp:include>
+
+
+	<div class = "content">
+		<section class = "m4_page">
+			<img src = "">
+				<span>정말 삭제하시겠습니까?</span>
+				<span>삭제하신 글은 복구가 불가능합니다.</span>
+			<div>
+				<button type = "button" class = "btn_cancle">예</button>
+				<button type = "button" class = "btn_confrim">아니오</button>
+			</div>
+		</section>
+	</div>
+	
+	<!-- 예를 클릭하면 alert 후 리스트로 이동 -->
 </body>
 </html>
