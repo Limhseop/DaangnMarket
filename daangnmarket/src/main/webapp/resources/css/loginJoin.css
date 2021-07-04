@@ -1,0 +1,136 @@
+/*공통*/
+
+div.content{
+	text-align: center;
+	margin: auto;
+}
+form input.input{
+	display: block;
+	margin: auto;
+	margin-bottom: 10px;
+	width: 380px;
+	height: 45px;
+	padding-left: 5px;
+}
+.carrot_btn{
+	background-color: rgb(255,138,61);
+	border: 1px solid rgb(255,200,164);
+	height: 45px;
+	margin: 2px 0;
+	color: white;
+}
+/*로그인*/
+form.login_form{
+	width: 400px;
+	margin: auto;
+}
+form.login_form button.carrot_btn{
+	width: 100%;
+	margin: 0;
+}
+form.login_form div.besides{
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	width: 400px;
+	height: 30px;
+}
+form.login_form div.besides span a{
+	font-size: 12px;
+	text-decoration: none;
+}
+form.login_form div.besides span a:link, form.login_form div.besides span a:visited,
+form.login_form div.besides span a:hover, form.login_form div.besides span a:active{
+	color: black;
+}
+form.login_form div.besides span label{
+	font-size: 12px;
+}
+form.login_form span.first{
+	text-align: left;
+	position: absolute; 
+	left: 0px;
+}
+form.login_form span.second{
+	position: absolute;
+	right: 0px;
+}
+form.login_form div.buttons{
+	position: static;
+	display: block;
+}
+
+
+/*회원가입*/
+form.join_form{
+	width: 450px;
+	margin: auto; 
+}
+form.join_form div.buttons button.carrot_btn{
+	width: 200px;
+}
+/*
+form.join_form div input:first-child{
+	margin-bottom: 0px;
+}
+*/
+form.join_form input.input, form.join_form input[type="text"]{
+	width: 430px;
+	height: 40px;
+	padding-left: 5px;
+	display: inline-block;
+	margin-bottom: 15px;
+}
+form.join_form input.input_phone, form.join_form input.input_post{
+	margin-bottom: 10px;
+	width: 316px;
+} 
+form.join_form div.phone_line button.carrot_btn, form.join_form input[type="button"].carrot_btn{
+	display : inline-block;
+	height: 45px;
+	width: 105px;
+	margin: 2px 2px;
+}
+form.join_form input.input_road, form.join_form input.input_jibun{
+	width: 180px;
+}
+form.join_form input.input_detail{
+	width: 232px;
+}
+
+
+/*회원가입 성공 시 */
+section.joinSuccess{
+	text-align:center;
+}
+
+section.joinSuccess h1{
+	font-size:40px;
+}
+
+section.joinSuccess div span{
+	color: rgb(128, 128, 161);
+}
+section.joinSuccess div {
+	margin:30px 0;
+}
+
+section.joinSuccess div:nth-child(3){
+	margin-bottom:150px;
+	
+}
+section.joinSuccess button{
+	padding:5px 20px;
+	margin: 0 5px;
+	border-radius:4px;
+	font-size:15px;
+	border: 1px solid rgb(255,200,164);
+	height: 45px;
+	width: 120px;
+	cursor: pointer;
+}
+button.btn_home{
+	background-color:white;
+	border-radius:4px;
+	color: gray;
+}
