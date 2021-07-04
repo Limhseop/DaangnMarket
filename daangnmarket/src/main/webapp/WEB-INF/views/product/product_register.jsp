@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/product_css.css">
+<link rel="stylesheet" href="css/commons.css">
 </head>
 <body>
 	<!-- header -->

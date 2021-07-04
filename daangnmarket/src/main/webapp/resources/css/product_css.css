@@ -102,7 +102,12 @@ section.plist div.content ul li:last-child span, section.plist div.content ul li
 	margin: 0 0 0 3px;
 }
 
-section.plist div.prod_t{
+section.plist a{
+	text-decoration:none;
+}
+
+section.plist span.prod_t{
+	display:block;
 	width:200px;
 	height:25px;
 	text-align:left;
