@@ -11,8 +11,8 @@
 </head>
 <body>
 	<!-- header -->
-	
-	
+	<jsp:include page="../header.jsp"/>
+	<br><br><br><br><br><br><br><br>
 	<!-- content -->
 	<div class="section">
 		<div class="section1">
@@ -64,7 +64,8 @@
 	
 	
 	<!-- footer -->
-	
+	<br><br><br><br><br><br><br><br>
+	<jsp:include page="../footer.jsp"/>
 	
 </body>
 </html>
