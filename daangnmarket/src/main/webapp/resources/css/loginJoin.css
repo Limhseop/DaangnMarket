@@ -134,3 +134,81 @@ button.btn_home{
 	border-radius:4px;
 	color: gray;
 }
+
+/*아이디 비밀번호 찾기*/
+section.findInfo h1{
+	font-size: 30px;
+}
+section.findInfo span{
+	margin: 40px 0;
+	display: inline-block;
+}
+section.findInfo div.buttons button{
+	display: block;
+	width: 400px; height: 60px;
+	margin: auto;
+	font-size: 17px;
+}
+
+/*아이디 비밀번호 찾기 팝업창 */
+section.findIdPass{
+	padding: 30px;
+	text-align: left;
+}
+section.findIdPass h1.title{
+	font-size: 20px;
+	border-bottom: 3px solid rgb(255,138,61);
+}
+section.findIdPass form.form_find, section.findIdPass form.form_findPass{
+	margin: 30px 0;
+}
+section.findIdPass div.intro{
+	text-align: left;
+	font-size : 15px;
+}
+section.findIdPass div.inputs{
+	margin: 20px 0;
+}
+section.findIdPass div.inputs input, section.findIdPass form.form_findPass input{
+	width: 100%;
+	height: 35px;
+}
+section.findIdPass div.button, section.findIdPass div.button_two{
+	text-align: center;
+	margin: 30px 0;
+}
+section.findIdPass div.button button.carrot_btn{
+	width: 200px;
+}
+
+/*아이디 찾기 결과*/
+section.findIdPass div.result{
+	margin: 20px 0;
+	padding: 20px 10px;
+	background-color: lightgray;
+	font-weight: bold;
+}
+section.findIdPass span.id{
+	color: rgb(223,89,0);
+}
+section.findIdPass div.button_two button{
+	width: 130px;
+}
+
+/*비밀번호 찾기 */
+section.findIdPass div.notice{
+	margin-top: -30px; 
+	color: rgb(223,89,0);
+	font-size: 13px;
+	line-height: 1.8;
+	margin-bottom: 20px;
+}
+section.findIdPass form.form_findPass input.input_hp{
+	width: 65%;
+	display: inline-block;
+}
+section.findIdPass form.form_findPass div.inputs button.carrot_btn{
+	width: 30%;
+	display: inline-block;
+	height: 38px; 
+}

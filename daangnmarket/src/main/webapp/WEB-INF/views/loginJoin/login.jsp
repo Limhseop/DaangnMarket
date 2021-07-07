@@ -21,7 +21,7 @@
 	<label for="saveID">아이디 저장</label>
 	</span>
 	<span class="second">
-	<a href="">아이디/비밀번호 찾기</a>
+	<a href="findInfo.do">아이디/비밀번호 찾기</a>
 	</span>	
 </div>
 <div id="buttons" class="buttons">
