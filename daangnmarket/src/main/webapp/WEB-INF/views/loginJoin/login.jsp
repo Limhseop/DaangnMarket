@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>당근마켓</title>
-<link rel="stylesheet" href="http://localhost:9000/daangn/sehee/loginJoin.css">
+<link rel="stylesheet" href="http://localhost:9000/daangn/resources/css/loginJoin.css">
+<link rel="stylesheet" href="http://localhost:9000/daangn/resources/css/commons.css">
 </head>
 <body>
 <div id="content" class="content">
