@@ -5,7 +5,108 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://localhost:9000/daangn/css/footer.css">
+<style>
+footer {
+    background-color: #495057;
+    color: #fff;
+    padding: 8rem 0;
+}
+footer .footer-container {
+    width: 1024px;
+    margin: 0 auto;
+}
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+.footer-logo {
+    width: 130px;
+    height: 37px;
+    background-image: url(http://localhost:9000/daangn/images/logo_white.svg);
+    background-size: 130px 37px;
+}
+.footer-list-item {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 3.2rem;
+}
+#copyright {
+    color: #ADB5BD;
+    margin-top: 3.2rem;
+}
+.copyright-list {
+    list-style-type: none;
+    margin-bottom: 0.4rem;
+}
+.copyright-list-item {
+    display: inline-block;
+    font-size: 14px;
+    margin: 0 0.8rem 0 0;
+    text-decoration: none;
+}
+#social {
+    margin-top: 3.2rem;
+    margin-bottom: 3.2rem;
+}
+.social-list-item {
+    display: inline-block;
+    margin: 0px;
+    margin-right: 2.4rem;
+}
+.global-links {
+    padding-left: 26px;
+    display: inline-block;
+    margin: 0px;
+}
+.footer-list-item {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+footer{
+	text-decoration: none;
+}
+.footer-list-item > a{
+	color: white;
+	text-decoration: none;
+	font-size: 15px;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+}
+.global-links select {
+    margin-left: 6px;
+    text-decoration: underline;
+    text-underline-position: under;
+    vertical-align: top;
+    background: #495057;
+    color: #ADB5BD;
+    font-size: 16px;
+    line-height: 24px;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -ms-appearance: none;
+}
+footer{
+	margin-top: 150px;
+}
+</style>
 </head>
 <body>
 	<footer id="footer">
@@ -13,31 +114,31 @@
     <div class="footer-top">
       <div class="footer-logo"></div>
       <ul class="footer-list">
-        <li class="footer-list-item"><a class="link-highlight" href="/trust">믿을 수 있는 중고거래</a></li>
-        <li class="footer-list-item"><a class="link-highlight" href="https://cs.kr.karrotmarket.com/wv/faqs">자주 묻는 질문</a></li>
+        <li class="footer-list-item"><a class="link-highlight" href="">믿을 수 있는 중고거래</a></li>
+        <li class="footer-list-item"><a class="link-highlight" href="">자주 묻는 질문</a></li>
       </ul>
       <ul class="footer-list">
-        <li class="footer-list-item"><a target="_blank" href="http://team.daangn.com">회사 소개</a></li>
-        <li class="footer-list-item"><a target="_blank" class="link-highlight" href="https://ad.daangn.com/">광고주센터</a></li>
+        <li class="footer-list-item"><a target="_blank" href="">회사 소개</a></li>
+        <li class="footer-list-item"><a target="_blank" class="link-highlight" href="">광고주센터</a></li>
         <li class="footer-list-item">
-          <a target="_blank" class="ga-click" data-event-category="town_link_from" data-event-action="index_base" data-event-label="footer_town" href="https://town.daangn.com">동네가게</a>
+          <a target="_blank" class="ga-click" data-event-category="town_link_from" data-event-action="index_base" data-event-label="footer_town" href="">동네가게</a>
         </li>
       </ul>
       <ul class="footer-list policy">
-        <li class="footer-list-item"><a target="_blank" href="https://policy.daangn.com/terms.html">이용약관</a></li>
-        <li class="footer-list-item"><a target="_blank" href="https://policy.daangn.com/privacy.html">개인정보처리방침</a></li>
-        <li class="footer-list-item"><a target="_blank" href="https://policy.daangn.com/location.html">위치기반서비스 이용약관</a></li>
+        <li class="footer-list-item"><a target="_blank" href="">이용약관</a></li>
+        <li class="footer-list-item"><a target="_blank" href="">개인정보처리방침</a></li>
+        <li class="footer-list-item"><a target="_blank" href="">위치기반서비스 이용약관</a></li>
       </ul>
     </div>
     <div class="footer-bottom">
       <div id="copyright">
         <ul class="copyright-list">
-          <li class="copyright-list-item">고객문의 <a href="mailto:cs@daangnservice.com"></a></li>
-          <li class="copyright-list-item">제휴문의 <a href="mailto:contact@daangn.com"></a></li>
+          <li class="copyright-list-item">고객문의 <a href=""></a></li>
+          <li class="copyright-list-item">제휴문의 <a href=""></a></li>
         </ul>
         <ul class="copyright-list">
-          <li class="copyright-list-item">지역광고 <a href="mailto:ad@daangn.com"></a></li>
-          <li class="copyright-list-item">PR문의 <a href="mailto:pr@daangn.com"></a></li>
+          <li class="copyright-list-item">지역광고 <a href=""></a></li>
+          <li class="copyright-list-item">PR문의 <a href=""></a></li>
         </ul>
         <ul class="copyright-list copyright-list-light">
           <li class="copyright-list-item"><address>서울특별시 구로구 디지털로 30길 28 609호 (당근서비스)</address></li>
