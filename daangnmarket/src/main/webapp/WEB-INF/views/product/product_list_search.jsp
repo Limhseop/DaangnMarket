@@ -6,8 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/daangn/css/header.css">
+<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="css/product_css.css">
 <link rel="stylesheet" href="css/commons.css">
+<script>
+$(document).ready(function(){
+	$("#re_search").click(function(){
+		$("#search").focus();
+	});
+	
+});
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -25,8 +34,9 @@
 					<option value = "state">지역</option>
 					<option value = "product">물품</option>
 				</select>
-				<input type = "text" class = "search" placeholder = "동네이름, 물품명 등을 검색해보세요!">
+				<input type = "text" class = "search" placeholder = "동네이름, 물품명 등을 검색해보세요!" id = "search">
 				<button type = "button" class = "carrot_btn">검색</button>
+				<a href = "http://localhost:9000/daangn/product_register.do"><button type = "button" class = "btn_confrim">중고거래 올리기</button></a>
 				<div class = "message">
 					<span>경기도 시흥시 근처를 검색하고 있어요!</span><!-- 검색하면 검색한 지역명 보이도록 -->
 					<span>다른 동네를 찾으셨나요?</span>
@@ -38,7 +48,7 @@
 				<div class = "content_nodata">
 					<p>'sdfw'에 대한 검색 결과가 없어요.<br>
 					검색어를 다시 확인해주세요!</p>
-					<span>다시 검색하기</span><!-- 클릭시 검색창으로 커서 이동 -->
+					<span id = "re_search">다시 검색하기</span><!-- 클릭시 검색창으로 커서 이동 -->
 				</div>
 			</section>
 			<!-- 검색결과가 없을 시 하단에 추천 상품만 뜨도록  -->

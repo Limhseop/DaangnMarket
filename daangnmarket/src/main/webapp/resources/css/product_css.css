@@ -127,6 +127,7 @@ section.plist span.prod_t, section.plist_r span.prod_t{
 	font-size: 16px;
 }
 
+
 /* search css *//* product_list */
 
 /*search placeholder icon*//* 좀 더 수정하기 */
@@ -156,7 +157,7 @@ section.content_search2 input.search::-webkit-input-placeholder
 	font-size:18px;
 }
 
-.pro_select, section.content_search2 input, section.content_search2 button.carrot_btn{
+.pro_select, section.content_search2 input, section.content_search2 button.carrot_btn, section.content_search button.btn_confrim{
 	height:35px;
 	margin-top:20px;
 	font-size:18px;
@@ -170,6 +171,11 @@ section.content_search button.carrot_btn{
 section.content_search2 button.carrot_btn{
 	height:38px;
 	width:70px;
+}
+
+section.content_search button.btn_confrim{
+	height:38px;
+	border-radius:0;
 }
 
 .pro_select{
@@ -214,6 +220,10 @@ section.content_search2 div.message span:nth-child(2){
 section.content_search2{
 	text-align:center;
 	padding: 100px;
+}
+
+section.content_search2 div.pro_button{
+	margin:20px 0;
 }
 
 /* nodata_css */
@@ -340,173 +350,176 @@ div.pic_icon span.pic_count{
 	margin: auto;
 }
 
+section.p_register div.content ul li:nth-child(7){
+	height: 160px;
+}
+
+section.p_register div.content ul li:nth-child(7)>span{
+	border-bottom: 1px solid rgb(233, 236, 239); 
+	padding-bottom: 10px; 
+}
+
+section.p_register div.content ul li:nth-child(7) img{
+	margin: 10px 0 10px 15px;
+}
+
+section.p_register div.content ul li:nth-child(7) button{
+	border: 1px solid rgb(255,200,164);
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	display: inline;
+	position: relative;
+	bottom: 15px;
+	right: 10px;
+	background-color: rgb(255,138,61);
+	color: white;
+}
+
 /***
 	product_content.css
 **/
 
 /* carousel css */
 /*GLOBALS*/
-*{margin:0; padding:0; list-style:none;}
-a{text-decoration:none; color:#666;}
-a:hover{color:#1bc1a3;}
-body, hmtl{background: #ecf0f1; font-family: 'Anton', sans-serif;}
-
-
-#wrapper{
-  width:600px;
-  margin:50px auto;
-  height:400px;
-  position:relative;
-  color:#fff;
-  text-shadow:rgba(0,0,0,0.1) 2px 2px 0px;  
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-#slider-wrap{
-  width:600px;
-  height:400px;
-  position:relative;
-  overflow:hidden;
+#slider-wrap {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
 }
 
-#slider-wrap ul#slider{
-  width:100%;
-  height:100%;
-  
-  position:absolute;
-  top:0;
-  left:0;   
+#slider-wrap ul#slider {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-#slider-wrap ul#slider li{
-  float:left;
-  position:relative;
-  width:600px;
-  height:400px; 
+#slider-wrap ul#slider li {
+    float: left;
+    position: relative;
+    width: 600px;
+    height: 400px;
 }
 
-#slider-wrap ul#slider li > div{
-  position:absolute;
-  top:20px;
-  left:35px;  
+#slider-wrap ul#slider li>div {
+    position: absolute;
+    top: 20px;
+    left: 35px;
 }
 
-#slider-wrap ul#slider li > div h3{
-  font-size:36px;
-  text-transform:uppercase; 
+#slider-wrap ul#slider li>div h3 {
+    font-size: 36px;
+    text-transform: uppercase;
 }
 
-#slider-wrap ul#slider li > div span{
-  font-family: Neucha, Arial, sans serif;
-  font-size:21px;
+#slider-wrap ul#slider li>div span {
+    font-size: 21px;
 }
 
-#slider-wrap ul#slider li img{
-  display:block;
-  width:100%;
-  height: 100%;
+#slider-wrap ul#slider li img {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
-
 
 /*btns*/
-.btns{
-  position:absolute;
-  width:50px;
-  height:60px;
-  top:50%;
-  margin-top:-25px;
-  line-height:57px;
-  text-align:center;
-  cursor:pointer; 
-  background:rgba(0,0,0,0.1);
-  z-index:100;
-  
-  
-  -webkit-user-select: none;  
-  -moz-user-select: none; 
-  -khtml-user-select: none; 
-  -ms-user-select: none;
-  
-  -webkit-transition: all 0.1s ease;
-  -moz-transition: all 0.1s ease;
-  -o-transition: all 0.1s ease;
-  -ms-transition: all 0.1s ease;
-  transition: all 0.1s ease;
+.slider-btns {
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    top: 50%;
+    margin-top: -25px;
+    line-height: 57px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    -webkit-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
 }
 
-.btns:hover{
-  background:rgba(0,0,0,0.3); 
+.slider-btns:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
 
-#next{right:-50px; border-radius:7px 0px 0px 7px;}
-#previous{left:-50px; border-radius:0px 7px 7px 7px;}
-#counter{
-  top: 30px; 
-  right:35px; 
-  width:auto;
-  position:absolute;
+#next {
+    right: -50px;
+    border-radius: 7px 0px 0px 7px;
+    color: #eee;
 }
 
-#slider-wrap.active #next{right:0px;}
-#slider-wrap.active #previous{left:0px;}
+#previous {
+    left: -50px;
+    border-radius: 0px 7px 7px 7px;
+    color: #eee;
+}
 
+#slider-wrap.active #next {
+    right: 0px;
+}
+
+#slider-wrap.active #previous {
+    left: 0px;
+}
 
 /*bar*/
-#pagination-wrap{
-  min-width:20px;
-  margin-top:350px;
-  margin-left: auto; 
-  margin-right: auto;
-  height:15px;
-  position:relative;
-  text-align:center;
+#slider-pagination-wrap {
+    min-width: 20px;
+    margin-top: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 15px;
+    position: relative;
+    text-align: center;
 }
 
-#pagination-wrap ul {
-  width:100%;
+#slider-pagination-wrap ul {
+    width: 100%;
 }
 
-#pagination-wrap ul li{
-  margin: 0 4px;
-  display: inline-block;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#fff;
-  opacity:0.5;
-  position:relative;
-  top:0;
-  
-  
+#slider-pagination-wrap ul li {
+    margin: 0 4px;
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.5;
+    position: relative;
+    top: 0;
 }
 
-#pagination-wrap ul li.active{
-  width:12px;
-  height:12px;
-  top:3px;
-  opacity:1;
-  box-shadow:rgba(0,0,0,0.1) 1px 1px 0px; 
+#slider-pagination-wrap ul li.active {
+    width: 12px;
+    height: 12px;
+    top: 3px;
+    opacity: 1;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
 }
-
-
-
-
-/*Header*/
-h1, h2{text-shadow:none; text-align:center;}
-h1{ color: #666; text-transform:uppercase;  font-size:36px;}
-h2{ color: #7f8c8d; font-family: Neucha, Arial, sans serif; font-size:18px; margin-bottom:30px;} 
-
-
-
 
 /*ANIMATION*/
-#slider-wrap ul, #pagination-wrap ul li{
-  -webkit-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-  -moz-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-  -o-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-  -ms-transition: all 0.3s cubic-bezier(1,.01,.32,1);
-  transition: all 0.3s cubic-bezier(1,.01,.32,1); 
+#slider-wrap ul,
+#slider-pagination-wrap ul li {
+    -webkit-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+    -o-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+    transition: all 0.3s cubic-bezier(1, .01, .32, 1);
 }
 
+/* 본문내용 */
 section.plist_r{
 	background-color: white;
 	width:1024px;
@@ -575,18 +588,49 @@ div.profile div:last-child span:last-child{
 
 /* 매너온도 수치 */
 div.profile div:last-child span:first-child{
-	color: blue;
+	color:  rgb(24, 110, 192);
 	font-size: 20px;
+}
+
+a.c_manner{
+	color: gray;
+	font-size: 13px;
+	position:relative;
+	bottom:10px;
+	left:10px;
+}
+
+/* progress bar */
+div.content_manner{
+	width:110px;
+	height:80px;
+}
+
+div.manner_pro{
+	width:70px;
+} 
+
+div.content_manner img{
+	position:relative;
+	left:75px;
+	bottom:45px;
+}
+
+div.manner_pro progress {
+	width:60px;
+	height:10px;
 }
 
 /* 프로필 */
 section.p_content div.profile div:nth-child(2){
 	margin-left: 10px;
+	margin-bottom: 10px;
 }
 section.p_content div.profile>img{
 	width:30px;
 	height:30px;
 	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 section.p_content div.profile div:nth-child(2) a span {
@@ -654,6 +698,21 @@ section.m4_page span:nth-child(3){
 div.content section.m4_page div{
 	margin-bottom:100px;
 }
+
+div.update_click{
+	display: inline-block;
+	position:relative;
+	left: 490px;
+	font-size: 13px;
+	color: gray;
+}
+
+div.update_click a{
+	text-decoration:none;
+	margin: 0 5px;
+}
+
+
 
 
 

@@ -8,6 +8,28 @@
 <link rel="stylesheet" href="http://localhost:9000/daangn/css/header.css">
 <link rel="stylesheet" href="css/product_css.css">
 <link rel="stylesheet" href="css/commons.css">
+<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		$("button[name=priceFilter]").click(function(){
+			var id = $(this).attr("id");
+			
+			if(id == "filter"){	
+				$(this).attr("id","filter_onclick");
+				$(this).removeClass("btn_confrim");
+				$(this).addClass("btn_cancle");
+				
+			}else if(id == "filter_onclick"){
+				$(this).attr("id","filter")
+				$(this).removeClass("btn_cancle");
+				$(this).addClass("btn_confrim");
+				
+			}	
+		
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -51,13 +73,23 @@
 					</li>
 					<li>
 						<input type = "text" placeholder = "가격(선택사항)">
-						<button type = "button" class = "btn_cancle" id = "btn_price">가격제안 받기</button>
+						<button type = "button" class = "btn_cancle" id = "filter" name = "priceFilter">가격제안 받기</button>
 					</li>
 					<li>
 						<div class = "pic_icon">
-							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png">
+							<!-- <input type = "file" name = "file1" id = "nfile"> -->
+							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" >
+							<!-- 사진 등록하면 카운트가 올라감 -->
 							<span class = "pic_count">0/3</span>
 						</div><!-- 사진업로드 -->
+					</li>
+					<li>	
+						<!-- 사진 업로드 시 사진 미리보기가 보이도록 -->
+						<span>사진 미리보기</span>
+						<div class = "preview">
+							<img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" width = "100px" height = "100px">
+							<button type = "button">X</button>
+						</div>
 					</li>
 					<li>
 						<span>정왕4동과 근처 동네 49개 ▽</span>

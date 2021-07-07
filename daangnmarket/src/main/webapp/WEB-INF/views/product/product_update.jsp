@@ -8,6 +8,26 @@
 <link rel="stylesheet" href="http://localhost:9000/daangn/css/header.css">
 <link rel="stylesheet" href="css/product_css.css">
 <link rel="stylesheet" href="css/commons.css">
+<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		$("button[name=priceFilter]").click(function(){
+			var id = $(this).attr("id");
+			
+			if(id == "filter"){	
+				$(this).attr("id","filter_onclick");
+				$(this).removeClass("btn_confrim");
+				$(this).addClass("btn_cancle");
+				
+			}else if(id == "filter_onclick"){
+				$(this).attr("id","filter")
+				$(this).removeClass("btn_cancle");
+				$(this).addClass("btn_confrim");
+			}	
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- header -->

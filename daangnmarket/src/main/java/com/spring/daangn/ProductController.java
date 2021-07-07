@@ -8,6 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ProductController {
 	
 	/***
+	 *  product_update >>>  상품 수정
+	 */
+	@RequestMapping(value = "/product_update.do", method = RequestMethod.GET)
+	public String product_update(){
+		return "product/product_update";
+	}
+	
+	/***
 	 *  product_register >>>  상품 등록
 	 */
 	@RequestMapping(value = "/product_register.do", method = RequestMethod.GET)
