@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>회원 정보 변경</title>
 <script src="http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
-<script src="http://localhost:9000/daangn/js/mypage.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

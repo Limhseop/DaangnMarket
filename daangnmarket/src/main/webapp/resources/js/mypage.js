@@ -86,5 +86,14 @@ $(document).ready(function(){
 		$("#li_3").css("border-bottom","1px solid #333");
 	});
 	
+	//회원 정보 변경하기 버튼
+	$("#memberUpdate").click(function(){
+			$("#memberUpdate").css("display","none");
+			$("#memberUpdate_submit").css("display","");
+			
+			
+			$(".inputText").attr("disabled",false);
+	});
+	
 		
 });
