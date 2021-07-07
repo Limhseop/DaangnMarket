@@ -10,12 +10,12 @@ public class BoardController {
 	//boardlist-게시판
 	@RequestMapping(value = "/boardlist.do", method = RequestMethod.GET)
 	public String boardlist() {
-		return "/boardlist";
+		return "/board/boardlist";
 	}
 	
 	//boardPost-게시글
 	@RequestMapping(value = "/boardPost.do", method = RequestMethod.GET)
 	public String boardPost() {
-		return "/boardPost";
+		return "/board/boardPost";
 	}
 }
