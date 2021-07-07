@@ -20,7 +20,7 @@
 			</div>	
 			<div>
 				<a href = "#"><button type = "button" class = "btn_home">홈으로</button></a>
-				<a href = "#"><button type = "button" class = "carrot_btn">로그인하기</button></a>
+				<a href = "login.do"><button type = "button" class = "carrot_btn">로그인하기</button></a>
 			</div>
 		</section>
 		

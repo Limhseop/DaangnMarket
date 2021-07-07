@@ -42,6 +42,10 @@ public class LoginJoinController {
 	public String findPassResult() {
 		return "loginJoin/findPassResult";
 	}
+	@RequestMapping(value="/changePass.do", method=RequestMethod.GET)
+	public String changePass() {
+		return "loginJoin/changePass";
+	}
 	@RequestMapping(value="/findPassHp.do", method=RequestMethod.GET)
 	public String findPassHp() {
 		return "loginJoin/findPassHp";

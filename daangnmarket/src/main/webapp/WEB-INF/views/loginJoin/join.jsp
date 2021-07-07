@@ -82,7 +82,7 @@
 			<div class="div_check" id="pass_check"></div>
 		</div>
  		<div id="buttons" class="buttons">
-			<button type="button" id="submit_btn" class="carrot_btn">가입하기</button>
+			<a href="joinSuccess.do"><button type="button" id="submit_btn" class="carrot_btn">가입하기</button></a>
 		</div>
 	</form>
 </div>

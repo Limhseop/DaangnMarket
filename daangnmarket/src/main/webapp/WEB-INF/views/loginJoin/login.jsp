@@ -26,7 +26,7 @@
 </div>
 <div id="buttons" class="buttons">
 	<button type="button" id="login_btn" class="carrot_btn">로그인</button>
-	<button type="button" id="join_btn" class="carrot_btn">회원가입</button>
+	<a href="join.do"><button type="button" id="join_btn" class="carrot_btn">회원가입</button></a>
 </div>
 </form>
 </div>

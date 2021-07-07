@@ -145,9 +145,9 @@ section.findInfo span{
 }
 section.findInfo div.buttons button{
 	display: block;
-	width: 400px; height: 60px;
+	width: 400px; height: 50px;
 	margin: auto;
-	font-size: 17px;
+	font-size: 16px;
 }
 
 /*아이디 비밀번호 찾기 팝업창 */
@@ -178,7 +178,7 @@ section.findIdPass div.button, section.findIdPass div.button_two{
 	margin: 30px 0;
 }
 section.findIdPass div.button button.carrot_btn{
-	width: 200px;
+	width: 150px;
 }
 
 /*아이디 찾기 결과*/
@@ -203,12 +203,30 @@ section.findIdPass div.notice{
 	line-height: 1.8;
 	margin-bottom: 20px;
 }
-section.findIdPass form.form_findPass input.input_hp{
-	width: 65%;
+section.findIdPass form.form_findPass input.input_short{
+	width: 64%;
 	display: inline-block;
 }
 section.findIdPass form.form_findPass div.inputs button.carrot_btn{
-	width: 30%;
+	width: 31%;
 	display: inline-block;
-	height: 38px; 
+	height: 40px;
+}
+section.findIdPass span{
+	font-size: 12px;
+	color: blue;
+}
+section.findIdPass div.certify input.input_short{
+	margin-top: 20px;
+}
+section.findIdPass div.certify{
+	display: none;
+}
+section.findIdPass div.certify span.certify_result{
+	color: blue;
+}
+section.findIdPass div.button button.btn_submit{
+	cursor: default;
+	height: 45px;
+	width: 150px;
 }
