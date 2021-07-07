@@ -6,18 +6,13 @@
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
 <style>	
-	.table { text-align:center; margin:20px 15px; width:1150px; font-size:13px; }
-	.table, .table th, .table td { 
-		border:1px solid lightgray;
- 		border-collapse:collapse;
- 	 }
+	 .table { text-align:center; margin:20px 15px; width:1150px; font-size:13px; }
+	 .table, .table th, .table td { border:1px solid lightgray; border-collapse:collapse;}
  	 .table td { padding:10px 0 10px 20px; text-align:left; }
- 	 .table input { width: 90%; 
- 	 line-height: 41px;
-  height: 41px;}
+ 	 .table input { width: 99%;  line-height: 41px; height: 41px;}
  	 .table #ntitle, .table textarea { border:1px solid lightgray; }
  	 .table th { background-color:rgb(237,237,237); vertical-align: middle; }
- 	 .table textarea { width:90%; height:300px; }
+ 	 .table textarea { width:99%; height:300px; }
  	 .table tr th { padding:5px 0 5px 0; }
  	 button.btn_style {
  	  background-color:rgb(56,57,78);
@@ -27,11 +22,11 @@
       margin: 0 auto;
       width: 95px;
       height: 45px;
- 	     }
- 	     .btn_div{
- 	     	text-align: center;
- 	     	width: 114%;
- 	     }
+ 	 }
+ 	 .btn_div{
+ 	     text-align: center;
+ 	     width: 114%;
+ 	 }
 </style>
 <script>
  	$(document).ready(function() {
