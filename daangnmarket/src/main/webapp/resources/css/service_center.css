@@ -47,7 +47,7 @@
     margin-top: 30px;
     padding: 20px;
     width: 96%;
-    height: 198px;
+    height: 250px;
 }
 .faq_wrap_inner {
     width: 1024px;
@@ -57,7 +57,8 @@
     border-right: 1px solid #ddd;
     padding: 10px;
     width: 482px;
-    height: 177px;
+    height: 200px;
+   	
 }
 .faq_wrap_inner_1 p {
     color: #222;
