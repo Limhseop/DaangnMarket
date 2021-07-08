@@ -5,92 +5,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="http://localhost:9000/daangn/css/header.css">
 <link rel="stylesheet" href="css/product_css.css">
-<link rel="stylesheet" href="css/commons.css">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/carousel.css">
+<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-//slide-wrap
-var slideWrapper = document.getElementById('slider-wrap');
-//current slideIndexition
-var slideIndex = 0;
-//items
-var slides = document.querySelectorAll('#slider-wrap ul li');
-//number of slides
-var totalSlides = slides.length;
-//get the slide width
-var sliderWidth = slideWrapper.clientWidth;
-//set width of items
-slides.forEach(function (element) {
-    element.style.width = sliderWidth + 'px';
-})
-//set width to be 'x' times the number of slides
-var slider = document.querySelector('#slider-wrap ul#slider');
-slider.style.width = sliderWidth * totalSlides + 'px';
 
-// next, prev
-var nextBtn = document.getElementById('next');
-var prevBtn = document.getElementById('previous');
-nextBtn.addEventListener('click', function () {
-    plusSlides(1);
-});
-prevBtn.addEventListener('click', function () {
-    plusSlides(-1);
+/******
+팝업창 띄우기
+*****/ 
+
+
+$(document).on('click', '#btn_price',function(){
+	var popupHeight = 350;
+	var popupWidth = 450;
+
+	var popupX = (window.screen.width/2) - (popupWidth / 2);
+	var popupY= (window.screen.height/2) - (popupHeight / 2);	
+
+	window.open('http://localhost:9000/daangn/product_price.do', 'window', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY + ', scrolbars = no ');
+
 });
 
-// hover
-slideWrapper.addEventListener('mouseover', function () {
-    this.classList.add('active');
-    clearInterval(autoSlider);
-});
-slideWrapper.addEventListener('mouseleave', function () {
-    this.classList.remove('active');
-    autoSlider = setInterval(function () {
-        plusSlides(1);
-    }, 3000);
+$(document).ready(function(){
+	$("#report").click(function(){
+		alert("신고가 접수되었습니다.");
+	});
 });
 
 
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
 
-function currentSlides(n) {
-    showSlides(slideIndex = n);
-}
 
-function showSlides(n) {
-    slideIndex = n;
-    if (slideIndex == -1) {
-        slideIndex = totalSlides - 1;
-    } else if (slideIndex === totalSlides) {
-        slideIndex = 0;
-    }
-
-    slider.style.left = -(sliderWidth * slideIndex) + 'px';
-    pagination();
-}
-
-//pagination
-slides.forEach(function () {
-    var li = document.createElement('li');
-    document.querySelector('#slider-pagination-wrap ul').appendChild(li);
-})
-
-function pagination() {
-    var dots = document.querySelectorAll('#slider-pagination-wrap ul li');
-    dots.forEach(function (element) {
-        element.classList.remove('active');
-    });
-    dots[slideIndex].classList.add('active');
-}
-
-pagination();
-var autoSlider = setInterval(function () {
-    plusSlides(1);
-}, 3000);
 </script>
 </head>
 <body>
@@ -98,61 +45,43 @@ var autoSlider = setInterval(function () {
 	<jsp:include page = "../header.jsp"></jsp:include>
 	
 	<!-- content -->
+	<section class = "p_w_content">
 	<div class = "content">
 		<!-- content  -->
 		<!-- 캐러셀 시작 -->
+		<div class = "carousel">
+		<div id="demo" class="carousel slide" data-ride="carousel">
+	
+		  <!-- Indicators -->
+		  <ul class="carousel-indicators">
+		    <li data-target="#demo" data-slide-to="0" class="active"></li>
+		    <li data-target="#demo" data-slide-to="1"></li>
+		    <li data-target="#demo" data-slide-to="2"></li>
+		  </ul>
+		  
+		  <!-- The slideshow -->
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="http://localhost:9000/daangn/pro_img/pro_img.jpg" alt="Los Angeles" width="450" height="500">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="http://localhost:9000/daangn/pro_img/pro_img2.jpg" alt="Chicago" width="450" height="500">
+		    </div>
+		    <div class="carousel-item">
+		      <img src="http://localhost:9000/daangn/pro_img/pro_img3.jpg" alt="New York" width="450" height="500">
+		    </div>
+		  </div>
+		  
+		  <!-- Left and right controls -->
+		  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+		    <span class="carousel-control-prev-icon"></span>
+		  </a>
+		  <a class="carousel-control-next" href="#demo" data-slide="next">
+		    <span class="carousel-control-next-icon"></span>
+		  </a>
+		</div>
+		</div>
 		
-<div id="slider-wrap">
-    <ul id="slider">
-        <li>
-            <div>
-                <h3>Slide #1</h3>
-                <span>Sub-title #1</span>
-            </div>
-            <img src="https://fakeimg.pl/350x200/960a96/000?text=11111">
-        </li>
-
-        <li>
-            <div>
-                <h3>Slide #2</h3>
-                <span>Sub-title #2</span>
-            </div>
-            <img src="https://fakeimg.pl/350x200/D27328/000?text=22222">
-        </li>
-
-        <li>
-            <div>
-                <h3>Slide #3</h3>
-                <span>Sub-title #3</span>
-            </div>
-            <img src="https://fakeimg.pl/350x200/FF607F/000?text=33333">
-        </li>
-
-        <li>
-            <div>
-                <h3>Slide #4</h3>
-                <span>Sub-title #4</span>
-            </div>
-            <img src="https://fakeimg.pl/350x200/0A6E0A/000?text=44444">
-        </li>
-
-        <li>
-            <div>
-                <h3>Slide #5</h3>
-                <span>Sub-title #5</span>
-            </div>
-            <img src="https://fakeimg.pl/350x200/0064CD/000?text=55555">
-        </li>
-    </ul>
-
-    <div class="slider-btns" id="next"><span>▶</span></div>
-    <div class="slider-btns" id="previous"><span>◀</span></div>
-
-    <div id="slider-pagination-wrap">
-        <ul>
-        </ul>
-    </div>
-</div>
 		<!-- 캐러셀 종료 -->
 		<!-- 내용 section -->
 		<section class = "p_content">
@@ -174,8 +103,11 @@ var autoSlider = setInterval(function () {
 			</div>	
 			<div class = "pro_content" id = "pro_content">
 				<h1>의자,테이블 정리해요 각 만원!</h1>
-				<span>가구/인테리어 ∙ 5일 전</span>
+				<span>가구/인테리어 ∙ 5일 전</span><br>
 				<h3>10,000원</h3>
+				<!-- 가격제안 가능시 선택 가능한 버튼으로 (클릭시 메시지 전달)-->
+				<button type = "button" class = "btn_no" disabled>가격제안 불가</button>
+				<!-- <button type = "button" class = "btn_yes" id = "btn_price">가격제안하기</button> -->
 				<p>의자 8개<br>
 				긴의자 1개<br>
 				테이블 2개<br>
@@ -185,7 +117,31 @@ var autoSlider = setInterval(function () {
 				<div class = "update_click">
 					<a href = "http://localhost:9000/daangn/product_update.do">수정하기</a>
 					<a href = "http://localhost:9000/daangn/product_delete.do">삭제하기</a>
+					<a href = "#" id = "report">신고하기</a>
 				</div>
+			</div>
+			<div class = "content_button">
+				<button class = "heart_button">♡</button>
+				<!-- 팔렸으면 버튼 disabled -->
+				<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
+				<!-- <button type = "button" class = "btn_confrim">채팅으로 거래하기</button> -->
+			</div>
+			<div>
+				<section class = "plist_r">
+					<div class = "content">
+						<div class = "content_t">
+							<span>바니바니바니님의 판매 상품</span>
+							<a href = "http://localhost:9000/daangn/product_more.do"><span>더보기</span></a>
+						</div>
+						<ul>
+							<li><img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" class = "item"></li><!-- 사진 -->
+							<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">11L 제습기 싸게 팔아요</span></a></li><!-- 이름 -->
+							<li>경기도 시흥시 장곡동</li><!-- 주소 -->
+							<li>10,000원</li><!-- 가격 -->
+							<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>5</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
+						</ul>
+					</div>
+				</section>	
 			</div>
 		</section>
 			
@@ -262,8 +218,9 @@ var autoSlider = setInterval(function () {
 			</div>
 		</section>
 	</div><!-- div.content -->
-	
+	</section>
 	<!-- footer -->
+	<jsp:include page = "../footer.jsp"></jsp:include>
 	
 </body>
 </html>

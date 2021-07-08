@@ -7,6 +7,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProductController {
 	
+	
+	
+	/***
+	 *  product_more >>> 더 많은 상품 보기  
+	 */
+	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
+	public String product_more(){
+		return "product/product_more";
+	}
+	
+	/***
+	 *  product_report >>>  신고하기
+	 */
+	@RequestMapping(value = "/product_report.do", method = RequestMethod.GET)
+	public String product_report(){
+		return "product/product_report";
+	}
+	
+	/***
+	 *  product_price >>>  가격제안
+	 */
+	@RequestMapping(value = "/product_price.do", method = RequestMethod.GET)
+	public String product_price(){
+		return "product/product_price";
+	}
+	
 	/***
 	 *  product_update >>>  상품 수정
 	 */

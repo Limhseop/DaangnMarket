@@ -141,5 +141,6 @@ $(document).ready(function(){
 		</section>
 	</div>
 	<!-- footer -->
+	<jsp:include page = "../footer.jsp"></jsp:include>
 </body>
 </html>

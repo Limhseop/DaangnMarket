@@ -13,13 +13,13 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
 }
 
 div.content {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	width: 1024px;
 	height: auto;
 	margin: auto;
 }
 
-/**´ç±Ù »ö±ò ¹öÆ°**/
+/**ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°**/
 .carrot_btn{
 	background-color: rgb(255,138,61);
 	border: 1px solid rgb(255,200,164);
@@ -27,7 +27,7 @@ div.content {
 	margin: 2px 0;
 	color: white;
 }
-/* ¹öÆ° ¸¶¿ì½º °®´Ù´ë¸é ¸ð¾ç ¹Ù²î°Ô ÇÏ´Â°Å */
+/* ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½Ù´ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Ï´Â°ï¿½ */
 button{
 	cursor: pointer;
 }

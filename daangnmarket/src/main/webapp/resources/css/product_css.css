@@ -7,7 +7,6 @@ div.content{
 	margin:auto;
 	width: 1024px;
 	height: auto;
-	
 }
 
 div.title{
@@ -19,7 +18,7 @@ div.title{
 	padding-bottom:35px;
 }
 
-.btn_cancle, .btn_confrim, .btn_cancle{
+.btn_cancle, .btn_confrim, .btn_cancle, .btn_sold{
 	padding:5px 20px;
 	margin: 0 5px;
 	background-color:white;
@@ -35,8 +34,14 @@ div.title{
 }
 .btn_cancle{
 	background-color:white;
-	color: 1px solid rgb(233, 236, 239);
+	border: 1px solid rgb(233, 236, 239);
 	color: gray;
+}
+
+.btn_sold{
+	background-color:lightgray;
+	border: 1px solid white;
+	color: white
 }
 
 /***
@@ -376,148 +381,15 @@ section.p_register div.content ul li:nth-child(7) button{
 	color: white;
 }
 
+.p_content section.plist_r div.content{
+	margin-bottom:0;
+	padding-bottom:0;
+}
+
 /***
 	product_content.css
 **/
 
-/* carousel css */
-/*GLOBALS*/
-* {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-#slider-wrap {
-    width: 100%;
-    height: 400px;
-    position: relative;
-    overflow: hidden;
-}
-
-#slider-wrap ul#slider {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#slider-wrap ul#slider li {
-    float: left;
-    position: relative;
-    width: 600px;
-    height: 400px;
-}
-
-#slider-wrap ul#slider li>div {
-    position: absolute;
-    top: 20px;
-    left: 35px;
-}
-
-#slider-wrap ul#slider li>div h3 {
-    font-size: 36px;
-    text-transform: uppercase;
-}
-
-#slider-wrap ul#slider li>div span {
-    font-size: 21px;
-}
-
-#slider-wrap ul#slider li img {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/*btns*/
-.slider-btns {
-    position: absolute;
-    width: 50px;
-    height: 60px;
-    top: 50%;
-    margin-top: -25px;
-    line-height: 57px;
-    text-align: center;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-    -webkit-transition: all 0.1s ease;
-    -o-transition: all 0.1s ease;
-    transition: all 0.1s ease;
-}
-
-.slider-btns:hover {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-#next {
-    right: -50px;
-    border-radius: 7px 0px 0px 7px;
-    color: #eee;
-}
-
-#previous {
-    left: -50px;
-    border-radius: 0px 7px 7px 7px;
-    color: #eee;
-}
-
-#slider-wrap.active #next {
-    right: 0px;
-}
-
-#slider-wrap.active #previous {
-    left: 0px;
-}
-
-/*bar*/
-#slider-pagination-wrap {
-    min-width: 20px;
-    margin-top: 350px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 15px;
-    position: relative;
-    text-align: center;
-}
-
-#slider-pagination-wrap ul {
-    width: 100%;
-}
-
-#slider-pagination-wrap ul li {
-    margin: 0 4px;
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #fff;
-    opacity: 0.5;
-    position: relative;
-    top: 0;
-}
-
-#slider-pagination-wrap ul li.active {
-    width: 12px;
-    height: 12px;
-    top: 3px;
-    opacity: 1;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
-}
-
-/*ANIMATION*/
-#slider-wrap ul,
-#slider-pagination-wrap ul li {
-    -webkit-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-    -o-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-    transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-}
 
 /* 본문내용 */
 section.plist_r{
@@ -526,13 +398,14 @@ section.plist_r{
 }
 
 section.plist_r div.content{
+	border:1px solid white;
 	background-color: white;
 	border-top:1px solid rgb(233, 236, 239);
 	border-radius:5px;
 	width:80%;
 	text-align:center;
  	margin-top:20px;
- 	margin-bottom:350px;
+ 	padding-bottom:350px;
 }
 
 .plist_r div.content_t{
@@ -596,29 +469,38 @@ a.c_manner{
 	color: gray;
 	font-size: 13px;
 	position:relative;
-	bottom:10px;
+	bottom:0px;
 	left:10px;
 }
 
 /* progress bar */
 div.content_manner{
-	width:110px;
+	width:150px;
 	height:80px;
 }
 
 div.manner_pro{
-	width:70px;
+	width:100px;
 } 
+
+div.manner_pro span{
+	position:relative;
+	top:17px;
+	left: 5px;
+}
 
 div.content_manner img{
 	position:relative;
 	left:75px;
-	bottom:45px;
+	bottom:20px;
 }
 
 div.manner_pro progress {
-	width:60px;
+	width:80px;
 	height:10px;
+	position:relative;
+	top:10px;
+	right: 10px;
 }
 
 /* 프로필 */
@@ -635,10 +517,13 @@ section.p_content div.profile>img{
 
 section.p_content div.profile div:nth-child(2) a span {
 	display: block;
-	text-decoration: none;
 	color: black;
 	font-weight:bold;
 	font-size:17px;
+}
+
+section.p_content div.profile div:nth-child(2) a{
+	text-decoration: none;
 }
 
 section.p_content div.profile div:nth-child(2)>span:last-child {
@@ -671,6 +556,59 @@ div.pro_content p{
 	padding-bottom:10px;
 }
 
+/* 판매상품 추가 */
+section.p_content section.plist_r div.content{
+	margin:0;
+	margin-top: 0px;
+	text-align:left;
+	
+}
+
+section.p_content div.content_button{
+	text-align: right;
+	margin-top: 10px;
+	padding: 5px 0 13px 0;
+	border-top: 1px solid rgb(233, 236, 239);
+}
+
+section.p_content div.content_button .heart_button {
+	width:35px;
+	height:35px;
+	font-size: 20px;
+	background-color: white;
+	border: 1px solid white;
+	color: rgb(255,138,61);
+}
+
+/* 가격제안 버튼 */
+div.pro_content h3{
+	display: inline-block;
+	margin-right: 5px;
+}
+
+div.pro_content button.btn_no{
+	border: 1px solid rgb(233, 236, 239);
+	border-radius: 4px;
+	background-color: white;
+	color:gray;
+}
+
+div.pro_content button.btn_yes{
+	border: 1px solid rgb(255,200,164);
+	border-radius: 4px;
+	background-color: rgb(255,138,61);
+	color:white;
+}
+
+/* carousel부분 */
+div.content div.carousel{
+	padding: 15px;
+	width: 450px;
+	margin: auto;
+}
+
+
+
 /***
 	product_delete.css
 **/
@@ -679,6 +617,7 @@ div.content section.m4_page{
 	width:90%;
 	margin:auto;
 	text-align:center;
+	margin-top: 50px;
 }
 
 section.m4_page span{
@@ -702,21 +641,77 @@ div.content section.m4_page div{
 div.update_click{
 	display: inline-block;
 	position:relative;
-	left: 490px;
+	left: 420px;
 	font-size: 13px;
-	color: gray;
 }
 
 div.update_click a{
 	text-decoration:none;
 	margin: 0 5px;
+	color: gray;
 }
 
 
 
+/***
+	product_more.css
+**/
+.btn_filter, .btn_filter_onclick{
+	font-size: 20px;
+	background-color: white;
+	border: 1px solid white;
+	border-bottom: 2px solid gray;
+	width: 259px;
+	padding: 10px 0;
+	color: gray;
+	margin-top: 20px;
+}
+
+.btn_filter_onclick{
+	border-bottom: 2px solid black;
+	color: black;
+	font-weight: bold;
+}
+
+.btn_back{
+	border: 1px solid white;
+	background-color: white;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.sold{
+	opacity: 0.5;
+}
+
+/***
+	product_report.css
+**/
+
+
+section.product_more div.content{
+	text-align:left;
+}
+
+section.product_more div.message{
+	border: 1px solid red;
+}
 
 
 /***
-	product_update.css
+	product_price.css
 **/
+div.price_content span{
+	display:block;
+}
 
+div.price_content div{
+	margin-bottom: 10px;
+}
+
+div.price_content input{
+	width: 250px;
+	height: 25px;
+	border: 1px solid white;
+	border-bottom: 1px solid gray;
+}
