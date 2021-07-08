@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>당근마켓</title>
 <link rel="stylesheet"
 	href="http://localhost:9000/daangn/resources/css/commons.css">
 <link rel="stylesheet"
@@ -12,28 +12,30 @@
 <script src="http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/daangn/js/bootstrap.min.js"></script>
 <style>
-	div.top_btn {
-		text-align:right;
-	}
-	div.middle {
-		border: 1px solid blue;
-	}
-	div textarea{
-		width: 90%;
-		height: 500px;
-		margin: auto;
-	}
+div.top_btn {
+	text-align: right;
+}
+
+div textarea {
+	width: 90%;
+	height: 300px;
+	margin: auto;
+}
 </style>
 </head>
 <body>
+	<!-- header -->
+	<jsp:include page="../header.jsp"></jsp:include>
+
 	<form>
 		<div class="content">
 			<div class="top">
-				<div class="top_btn" style= "border: 1px solid red;">
+				<div class="top_btn">
 					<button type="button" id="complete" class="carrot_btn">완료</button>
 				</div>
 				<div>
 					<select name="hometown">
+						<option value="default">게시글의 주제를 선택해주세요.</option>
 						<option value="hometown">우리동네질문</option>
 						<option value="lost">분실/실종센터</option>
 						<option value="accident">동네사건사고</option>
@@ -56,12 +58,16 @@
 				</div>
 			</div>
 			<div class="middle">
-				<textarea id="board_content" name="board_content" placeholder="궁금한 것을 물어보세요! 이웃이 친절하게 진짜 정보를 알려줄거에요."></textarea>
+				<textarea id="board_content" name="board_content"
+					placeholder="우리 동네 관련된 질문이나 이야기를 해보세요."></textarea>
 			</div>
 			<div class="bottom">
 				<input type="file" name="file" onchange="fileUpload(this)">
 			</div>
 		</div>
 	</form>
+	
+	<!-- footer -->
+	<jsp:include page = "../footer.jsp"></jsp:include>
 </body>
 </html>
