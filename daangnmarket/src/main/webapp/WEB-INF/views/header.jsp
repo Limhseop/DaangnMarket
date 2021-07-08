@@ -56,7 +56,7 @@ body{
 		
 			<div class ="header_list">
 				<ul>
-					<li class="admin"><a href ="http://localhost:9000/daangn/admlin.do" style="margin-right: 55px; text-decoration:none; color: black">Admin</a><div></div></li>
+					<li class="admin"><a href ="http://localhost:9000/daangn/admin.do" style="margin-right: 55px; text-decoration:none; color: black">Admin</a><div></div></li>
 					<li class="admin"><a href ="http://localhost:9000/daangn/mypage.do" style="margin-right: 55px; text-decoration:none; color: black">My Page</a><div></div></li>
 					<li class="admin"><a href ="http://localhost:9000/daangn/login.do"style="margin-right: 55px; text-decoration:none; color: black">Sign In</a><div></div></li>
 				</ul>
@@ -65,12 +65,11 @@ body{
 					<a href="http://localhost:9000/daangn/index.do"><img  class= "logo_img" src="http://localhost:9000/daangn/images/logo.svg"></a>
 					<nav>
 						<ul class= "category">
-							<li><div><a href= "" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">거래하기</a></div></li>
+							<li><div><a href= "http://localhost:9000/daangn/service_center.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">고객센터</a></div></li>
+							<li><div><a href= "" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">채팅</a></div></li>
 							<li><div><a href= "http://localhost:9000/daangn/notice.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">공지사항</a></div></li>
-							<li><div><a href= "" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">고객센터</a></div></li>
-							<li><div><a href= "" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">공지사항</a></div></li>
-							<li><div><a href= "" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">공지사항</a></div></li>
-							<li><div><a href= "" style="margin-right: 54px; font-size: 20px; text-decoration:none; color: black">공지사항</a></div></li>
+							<li><div><a href= "http://localhost:9000/daangn/boardlist.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">게시판</a></div></li>
+							<li><div><a href= "http://localhost:9000/daangn/product.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">상품</a></div></li>
 						</ul>
 					
 					</nav>
