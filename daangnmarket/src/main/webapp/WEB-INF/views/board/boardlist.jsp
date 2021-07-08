@@ -7,7 +7,7 @@
 <!-- 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  -->
-<title>Insert title here</title>
+<title>당근마켓</title>
 <link rel="stylesheet"
 	href="http://localhost:9000/daangn/resources/css/commons.css">
 <link rel="stylesheet"
@@ -25,6 +25,9 @@ div.bottom {
 </style>
 </head>
 <body>
+	<!-- header -->
+	<jsp:include page="../header.jsp"></jsp:include>
+
 	<div class="content">
 		<div class="top">
 			<div class="buttons" id="buttons">
@@ -88,5 +91,8 @@ div.bottom {
 			<button type="button" id="wrtie_btn" class="carrot_btn">글쓰기</button>
 		</div>
 	</div>
+	
+	<!-- footer -->
+	<jsp:include page = "../footer.jsp"></jsp:include>
 </body>
 </html>
