@@ -12,8 +12,8 @@
 <script src="http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/daangn/js/bootstrap.min.js"></script>
 <style>
-	button#complete {
-		float: right;
+	div.top_btn {
+		text-align:right;
 	}
 	div.middle {
 		border: 1px solid blue;
@@ -29,7 +29,7 @@
 	<form>
 		<div class="content">
 			<div class="top">
-				<div>
+				<div class="top_btn" style= "border: 1px solid red;">
 					<button type="button" id="complete" class="carrot_btn">완료</button>
 				</div>
 				<div>
