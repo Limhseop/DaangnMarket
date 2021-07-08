@@ -1,0 +1,142 @@
+.search_bg{
+	width: 100%;
+	height: 300px;
+	background: url(http://localhost:9000/daangn/images/main_search_bg.png);
+	border-radius: 5px;
+}
+.search_txt{
+	position: relative;
+	text-align: center;
+	width: 100%;
+	top: 55px;
+}
+.search_txt > strong{
+	color: #222;
+	font-size: 22px;
+}
+.main_search_input {
+    height: 45px;
+    left: 161px;
+    position: relative;
+    top: 89px;
+    width: 508px;
+}
+.main_search_input input {
+    border: none;
+    color: #666;
+    float: left;
+    font-size: 14px;
+    height: 39px;
+    line-height: 43px;
+    margin: 1px 0 0 20px;
+    width: 416px;
+}
+.main_search_input a {
+    background: url(http://localhost:9000/daangn/images/btn_magnifier.png);
+    float: right;
+    display: block;
+    height: 45px;
+    overflow: hidden;
+    text-indent: -20000px;
+    width: 45px;
+}
+.faq_wrap {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-top: 30px;
+    padding: 20px;
+    width: 96%;
+    height: 198px;
+}
+.faq_wrap_inner {
+    width: 1024px;
+}
+.faq_wrap_inner_1 {
+    float: left;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+    width: 482px;
+    height: 177px;
+}
+.faq_wrap_inner_1 p {
+    color: #222;
+    font-size: 14px;
+    margin-top: 12px;
+}
+.faq_wrap_inner_1 strong {
+    color: #222;
+    font-size: 18px;
+}
+.faq_wrap_inner_2 {
+    float: right;
+    padding: 10px 10px 10px 30px;
+    width: 431px;
+}
+.faq_wrap_inner_1 ul li a {
+    color: #666;
+    float: left;
+    font-size: 12px;
+    margin-left: 7px;
+    text-indent: 0;
+    text-decoration: none;
+    list-style: none;
+}
+.faq_wrap_inner_1 ul, .faq_wrap_inner_1 p{
+	margin-top: 10px;
+}
+.faq_wrap_inner_1 ul{
+	margin-left: 30px;
+}
+faq_wrap_inner_2 strong {
+    color: #222;
+    font-size: 18px;
+}
+faq_wrap_inner_2 p {
+	color: #222;
+    font-size: 14px;
+    margin-top: 12px;
+}
+.voc_login {
+    height: 74px;
+    margin-top: 20px;
+    width: 100%;
+}
+.voc_login_inner {
+    float: left;
+    height: 74px;
+    margin-left: 32px;
+ 
+}
+.voc_login_inner figure {
+    float: left;
+    height: 74px;
+    width: 74px;
+}
+.voc_login_inner p span {
+    color: #666;
+    display: table-cell;
+    font-size: 14px;
+    height: 74px;
+    text-align: center;
+    vertical-align: middle;
+    width: 216px;
+}
+.btn_login {
+    background: #e2c383;
+    border: 1px solid #bb9f65;
+    border-radius: 3px;
+    color: #222;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    margin-top: 25px;
+    text-align: center;
+    width: 235px;
+    margin-left: 47px;
+}
+.quick_service{
+	list-style: none;
+}
