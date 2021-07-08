@@ -14,8 +14,8 @@ public class BoardController {
 	}
 	
 	//boardPost-게시글
-	@RequestMapping(value = "/boardPost.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/board_add.do", method = RequestMethod.GET)
 	public String boardPost() {
-		return "/board/boardPost";
+		return "/board/board_add";
 	}
 }

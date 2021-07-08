@@ -29,7 +29,7 @@ div.bottom {
 		<div class="top">
 			<div class="buttons" id="buttons">
 				<button type="button" id="together_btn" class="carrot_btn">같이해요</button>
-				<button type="button" id="infor_btn" class="carrot_btn">우리동네질문</button>
+				<button type="button" id="hometown_btn" class="carrot_btn">우리동네질문</button>
 				<button type="button" id="plz_btn" class="carrot_btn">해주세요</button>
 				<button type="button" id="restaurant_btn" class="carrot_btn">동네맛집</button>
 				<button type="button" id="life_btn" class="carrot_btn">일상</button>
