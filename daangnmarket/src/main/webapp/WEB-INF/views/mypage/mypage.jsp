@@ -23,13 +23,13 @@
 			<label class="profileImageChange" for="profileImage">프로필 이미지 변경</label>
 			<div class="userProfile">
 				<br><br>
-				<strong class="userName">이름 출력</strong><button type="button" value="회원정보변경" class="memberUpdate" data-toggle="modal" data-target="#myModal">회원정보변경</button><br><br>
-				<span class="joinDate">상점오픈일    </span><span>  2021-06-29</span>
-				<span class="sale">상품판매    </span><span>  1회</span>
-				<span class="purchase">상품구매    </span><span>  1회</span>
+				<strong class="userName">${vo.name}</strong><button type="button" value="회원정보변경" class="memberUpdate" data-toggle="modal" data-target="#myModal">회원정보변경</button><br><br>
+				<span class="joinDate">상점오픈일    </span><span>${vo.joindate}</span>
+				<span class="sale">상품판매    </span><span>  ${vo.sale}회</span>
+				<span class="purchase">상품구매    </span><span>  ${vo.purchase}회</span>
 			</div>
 			<div class="intro">
-				<textarea rows="6" cols="50" class="introTextArea" disabled></textarea>
+				<textarea rows="6" cols="50" class="introTextArea" disabled>${vo.introduce}</textarea>
 				<input type="button" value="확인" class="introBtn" id="introBtn" >
 				<input type="button" value="소개글 수정" class="introUpdate" id="introUpdate" >
 			</div>
@@ -79,35 +79,26 @@
 			    	<tbody>
 				      <tr>
 				        <td class="col-md-4">아이디</td>
-				        <td><input type="text" disabled style="width:300px;"></td>
+				        <td><input type="text" disabled style="width:300px;" value="${vo.id }"></td>
 				      </tr>
 				      <tr>
 				        <td>이름</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
-				      </tr>
-				      <tr>
-				        <td>성별</td>               
-				        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.name }"></td>
 				      </tr>
 				      <tr>
 				        <td>이메일</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.email}"></td>
 				      </tr>
 				      <tr>
 				        <td>휴대폰</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.phone }"></td>
 				      </tr>
 				      <tr>
 				        <td>주소</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.addr }"></td>
 				      </tr>
-				      <tr>
-				        <td>상세주소</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
-				      </tr>
-				      <tr>
 				        <td>가입일</td>
-				        <td><input type="text" disabled style="width:300px;"></td>
+				        <td><input type="text" disabled style="width:300px;" value="${vo.joindate }"></td>
 					  </tr> 		
 			    </tbody>
 	  		</table>
