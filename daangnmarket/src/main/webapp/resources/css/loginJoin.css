@@ -13,12 +13,20 @@ form input.input{
 	padding-left: 5px;
 }
 .carrot_btn{
-	background-color: rgb(255,138,61);
+	background-color: #FF7E36;
 	border: 1px solid rgb(255,200,164);
 	height: 45px;
 	margin: 2px 0;
 	color: white;
 }
+div.title h1{
+	margin: 30px 0;
+	font-size: 30px;
+}
+div.title img{
+	width: 200px; height: 100px; 
+}
+
 /*로그인*/
 form.login_form{
 	width: 400px;
@@ -59,6 +67,9 @@ form.login_form div.buttons{
 	position: static;
 	display: block;
 }
+form.login_form div.buttons button{
+	font-size: 15px;
+}
 
 
 /*회원가입*/
@@ -68,6 +79,11 @@ form.join_form{
 }
 form.join_form div.buttons button.carrot_btn{
 	width: 200px;
+	height: 60px;
+	font-size: 17px;
+}
+form.join_form div.top{
+	margin-bottom: 30px;
 }
 /*
 form.join_form div input:first-child{
@@ -124,15 +140,13 @@ section.joinSuccess button{
 	margin: 0 5px;
 	border-radius:4px;
 	font-size:15px;
-	border: 1px solid rgb(255,200,164);
 	height: 45px;
 	width: 120px;
 	cursor: pointer;
 }
-button.btn_home{
-	background-color:white;
+section.joinSuccess button.gray_btn{
 	border-radius:4px;
-	color: gray;
+	border: 1px solid white; 
 }
 
 /*아이디 비밀번호 찾기*/
@@ -144,10 +158,14 @@ section.findInfo span{
 	display: inline-block;
 }
 section.findInfo div.buttons button{
-	display: block;
-	width: 400px; height: 50px;
+	display: inline-block;
+	width: 140px; height: 60px;
 	margin: auto;
 	font-size: 16px;
+	border-radius: 4px;
+}
+section.findInfo div.buttons button:first-child{
+	margin-right: 30px;
 }
 
 /*아이디 비밀번호 찾기 팝업창 */

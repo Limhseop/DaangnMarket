@@ -32,8 +32,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
+	<!-- header -->
+	<jsp:include page="../header.jsp"></jsp:include>
+	
 	<!-- content -->
+	<section class="page">
 	<div class = "content">
 		<section class = "findInfo">
 				<h1>아이디/비밀번호 찾기</h1>
@@ -45,6 +48,11 @@ $(document).ready(function(){
 		</section>
 		
 	</div>
+	</section>
+
+<!-- footer -->
+<jsp:include page="../footer.jsp"></jsp:include>
+	
 	
 </body>
 </html>

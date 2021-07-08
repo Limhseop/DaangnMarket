@@ -54,37 +54,51 @@
 </script>
 </head>
 <body>
+<!-- header -->
+<jsp:include page="../header.jsp"></jsp:include>
+
+<!-- content -->
+<section class="page">
 <div class="content">
+	<div class="title">
+		<h1>회원가입</h1>
+	</div>
 	<form name="join_form" class="join_form" id="join_form">
-		<input type="text" class="input" id="id" placeholder="아이디">
-		<div class="div_check" id="id_check"></div>
-		<div class="password">
-			<input type="password" class="input" id="pass" placeholder="비밀번호">
-			<input type="password" class="input" id="pass" placeholder="비밀번호 확인">
-		</div>
-		<div class="div_check" id="pass_check"></div>
-		<input type="text" id="name" class="input" placeholder="이름">
-		<input type="text" id="email" class="input" placeholder="이메일 주소">
-		<div id="phone_line" class="phone_line">
-			<input type="text" id="phone" class="input_phone" placeholder="휴대폰 번호">
-			<button type="button" id="certify" class="carrot_btn">인증하기</button>
+		<div class="top">
+			<input type="text" class="input" id="id" placeholder="아이디">
+			<div class="div_check" id="id_check"></div>
+			<div class="password">
+				<input type="password" class="input" id="pass" placeholder="비밀번호">
+				<input type="password" class="input" id="pass" placeholder="비밀번호 확인">
+			</div>
 			<div class="div_check" id="pass_check"></div>
-			<input type="text" id="phone_keynum" class="input" placeholder="인증번호 입력" disabled>
-			<div class="div_check" id="pass_check"></div>
-		</div>
-		<div id="addr_line" class="addr_line">
-			<input type="text" id="sample4_postcode" placeholder="우편번호" class="input_post">
-			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="carrot_btn"><br>
-			<div class="div_check" id="pass_check"></div>
-			<input type="text" id="sample4_roadAddress" placeholder="도로명주소" class="input_road">
-			<span id="guide" style="color:#999;display:none"></span>
-			<input type="text" id="sample4_detailAddress" placeholder="상세주소" class="input_detail">
-			<div class="div_check" id="pass_check"></div>
+			<input type="text" id="name" class="input" placeholder="이름">
+			<input type="text" id="email" class="input" placeholder="이메일 주소">
+			<div id="phone_line" class="phone_line">
+				<input type="text" id="phone" class="input_phone" placeholder="휴대폰 번호">
+				<button type="button" id="certify" class="carrot_btn">인증하기</button>
+				<div class="div_check" id="pass_check"></div>
+				<input type="text" id="phone_keynum" class="input" placeholder="인증번호 입력" disabled>
+				<div class="div_check" id="pass_check"></div>
+			</div>
+			<div id="addr_line" class="addr_line">
+				<input type="text" id="sample4_postcode" placeholder="우편번호" class="input_post">
+				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="carrot_btn"><br>
+				<div class="div_check" id="pass_check"></div>
+				<input type="text" id="sample4_roadAddress" placeholder="도로명주소" class="input_road">
+				<span id="guide" style="color:#999;display:none"></span>
+				<input type="text" id="sample4_detailAddress" placeholder="상세주소" class="input_detail">
+				<div class="div_check" id="pass_check"></div>
+			</div>
 		</div>
  		<div id="buttons" class="buttons">
 			<a href="joinSuccess.do"><button type="button" id="submit_btn" class="carrot_btn">가입하기</button></a>
 		</div>
 	</form>
 </div>
+</section>
+
+<!-- footer -->
+<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

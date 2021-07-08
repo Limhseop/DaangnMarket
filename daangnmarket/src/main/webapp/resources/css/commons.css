@@ -19,15 +19,29 @@ div.content {
 	margin: auto;
 }
 
-/**��� ���� ��ư**/
+/**carrot color button css**/
 .carrot_btn{
-	background-color: rgb(255,138,61);
+	background-color: #FF7E36;
 	border: 1px solid rgb(255,200,164);
 	height: 45px;
 	margin: 2px 0;
 	color: white;
+	border-radius: 4px;
 }
-/* ��ư ���콺 ���ٴ�� ��� �ٲ�� �ϴ°� */
+
+/**gray color button css**/
+.gray_btn {
+    background-color: #F1F3F5;
+    color: #212529;
+    height: 45px;
+	margin: 2px 0;
+	border-radius: 4px;
+}
+
+/* if the button is hovered, mouse pointer shape changes */
 button{
 	cursor: pointer;
+}
+section.page{
+	margin: 100px 0;
 }
