@@ -38,10 +38,7 @@
 			        <td>이름</td>
 			        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
 			      </tr>
-			      <tr>
-			        <td>성별</td>
-			        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
-			      </tr>
+			      
 			      <tr>
 			        <td>이메일</td>
 			        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
@@ -52,10 +49,6 @@
 			      </tr>
 			      <tr>
 			        <td>주소</td>
-			        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
-			      </tr>
-			      <tr>
-			        <td>상세주소</td>
 			        <td><input type="text" class="inputText" disabled style="width:300px;"></td>
 			      </tr>
 			      <tr>
