@@ -1,15 +1,38 @@
 package com.spring.daangn;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.service.MemberService;
 
 @Controller
 public class LoginJoinController {
+	
+	@Autowired
+	private MemberService memberService;
+	
+	//로그인 화면
 	@RequestMapping(value="/login.do",method=RequestMethod.GET)
 	public String login() {
 		return "loginJoin/login";
 	}
+	
+	//로그인 체크 진행
+	@RequestMapping(value="/login_check.do",method=RequestMethod.POST)
+	public ModelAndView login_check(String id, String pass, String saveID) {
+		ModelAndView mv = new ModelAndView();
+		if(memberService.loginCheck(id, pass)) {	//로그인 성공
+			mv.setViewName("index");
+		}else { //로그인 실패
+			mv.setViewName("loginJoin/login");
+			mv.addObject("result","fail");
+		}
+		return mv;
+	}
+	
 	
 	@RequestMapping(value="/join.do", method=RequestMethod.GET)
 	public String join() {

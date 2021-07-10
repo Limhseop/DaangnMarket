@@ -26,6 +26,10 @@ div.title h1{
 div.title img{
 	width: 200px; height: 100px; 
 }
+span.notice_message{
+	font-size: 12px;
+	color: red;
+}
 
 /*·Î±×ÀÎ*/
 form.login_form{
@@ -35,6 +39,11 @@ form.login_form{
 form.login_form button.carrot_btn{
 	width: 100%;
 	margin: 0;
+}
+form.login_form div.notice_div{
+	text-align: left;
+	margin-top: -10px;
+	margin-bottom: 10px;
 }
 form.login_form div.besides{
 	text-align: left;
