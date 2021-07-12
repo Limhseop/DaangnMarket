@@ -24,8 +24,8 @@
 			<div class="userProfile">
 				<br><br>
 				<strong class="userName">${vo.name}</strong><button type="button" value="회원정보변경" class="memberUpdate" data-toggle="modal" data-target="#myModal">회원정보변경</button><br><br>
-				<span class="joinDate">상점오픈일    </span><span>${vo.joindate}</span>
-				<span class="sale">상품판매    </span><span>  ${vo.sale}회</span>
+				<span class="joinDate">상점오픈일    </span><span>${vo.joindate}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="sale">상품판매    </span><span>  ${vo.sale}회</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<span class="purchase">상품구매    </span><span>  ${vo.purchase}회</span>
 			</div>
 			<div class="intro">
