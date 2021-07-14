@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "mapper.product">
+	<!-- productlist -->
+	<select id = "productlist" parameterType = "map" resultType = "com.spring.vo.ProductVO">
+		SELECT RNO, PID, PTITLE, PHIT, PDATE   
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, PHIT, TO_CHAR(PDATE, 'YYYY-MM-DD') PDATE   
+				 FROM (SELECT PID, PTITLE, PHIT, PDATE FROM PRODUCT_BOARD  
+				 ORDER BY PDATE DESC))  
+				 WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- morelist --><!-- 이 부분은 마이페이지로 이동해서 볼 수 있도록 진행 -->
+	<!-- <select id = "morelist" resultType = "com.spring.vo.ProductVO">
+		SELECT RNO, PID, PTITLE, PHIT, PDATE   
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, PHIT, TO_CHAR(PDATE, 'YYYY-MM-DD') PDATE   
+				 FROM (SELECT PID, PTITLE, PHIT, PDATE FROM PRODUCT_BOARD  
+				 ORDER BY PDATE DESC))  
+	</select> -->
+	
+	<!-- count  -->
+	<select id = "count" resultType = "int"> select count(*) from product_board </select>
+	
+	<!-- psfile  -->
+	<select id = "psfile" parameterType = "java.lang.String" resultType = "java.lang.String">
+		select psfile from product_board where pid = #{pid} 
+	</select>
+	
+	<!-- delete -->
+	<delete id = "delete" parameterType = "java.lang.String">
+		delete from product_board where pid = #{pid}
+	</delete>
+	
+	<!-- updateNofile -->
+	<update id = "updateNofile" parameterType = "com.spring.vo.ProductVO">
+		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent} where pid = #{pid}
+	</update>
+	
+	<!-- updateFile -->
+	<update id = "update" parameterType = "com.spring.vo.ProductVO">
+		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, pfile = #{pfile}, psfile = #{psfile} where pid = #{pid}
+	</update>
+	
+	<!-- updatehit -->
+	<update id = "updateHit" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET PHIT = PHIT + 1  
+					 WHERE PID = #{bid}
+	</update>
+	
+	<!-- productcontent -->
+	<select id = "content" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO">
+		SELECT PID, PTITLE, PHIT, TO_CHAR(PDATE, 'YYYY-MM-DD') MDATE, PCONTENT, PFILE, PSFILE FROM PRODUCT_BOARD  
+					 WHERE PID = #{pid}
+	</select>
+	
+	<!-- insert -->
+	<insert id = "insert" parameterType = "com.spring.vo.ProductVO">
+		<choose>
+			<when test = "pfile != null">
+				insert into product_board values('b_'||sequ_product_board.nextval, #{ptitle}, #{pcontent}, #{pfile}, #{psfile}, 0, sysdate)
+			</when>
+			<otherwise>
+				insert into product_board values('b_'||sequ_product_board.nextval, #{ptitle}, #{pcontent}, null, null, 0, sysdate)
+			</otherwise>
+		</choose>	
+	</insert>
+</mapper>
