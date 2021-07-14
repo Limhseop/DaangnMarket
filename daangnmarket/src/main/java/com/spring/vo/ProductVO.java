@@ -3,6 +3,7 @@ package com.spring.vo;
 public class ProductVO {
 	int rno, phit;
 	String pid, ptitle, pcontent, pdate, pfile, psfile;
+	
 	public int getRno() {
 		return rno;
 	}

@@ -1,30 +1,30 @@
 package com.spring.daangn;
 
-<<<<<<< Updated upstream
-=======
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> Stashed changes
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.service.ProductService;
+import com.spring.vo.ProductVO;
 
 @Controller
 public class ProductController {
 	
 	
+	@Autowired
+	private ProductService productService;
+	
 	
 	/***
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	 *  product_more >>> 더 많은 상품 보기  
+	 *  product_more >>> 더 많은 상품 보기  (마이페이지로 이동하도록 설정)
 	 */
 	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
 	public String product_more(){
@@ -32,10 +32,6 @@ public class ProductController {
 	}
 	
 	/***
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	 *  product_report >>>  신고하기
 	 */
 	@RequestMapping(value = "/product_report.do", method = RequestMethod.GET)
@@ -60,8 +56,6 @@ public class ProductController {
 	}
 	
 	/***
-<<<<<<< Updated upstream
-=======
 	 *  product_update_proc >>>  상품 수정
 	 */
 	@RequestMapping(value = "/product_update_proc.do", method = RequestMethod.GET)
@@ -124,7 +118,6 @@ public class ProductController {
 	}
 	
 	/***
->>>>>>> Stashed changes
 	 *  product_register >>>  상품 등록
 	 */
 	@RequestMapping(value = "/product_register.do", method = RequestMethod.GET)
@@ -144,10 +137,6 @@ public class ProductController {
 	 *  product_content >>>  상품 상세내용
 	 */
 	@RequestMapping(value = "/product_content.do", method = RequestMethod.GET)
-<<<<<<< Updated upstream
-	public String product_content(){
-		return "product/product_content";
-=======
 	public ModelAndView product_content(String pid, String rno){
 		ModelAndView mv = new ModelAndView();
 		
@@ -165,7 +154,6 @@ public class ProductController {
 		mv.addObject("rno", rno);
 		
 		return mv;
->>>>>>> Stashed changes
 	}
 	
 	/***
