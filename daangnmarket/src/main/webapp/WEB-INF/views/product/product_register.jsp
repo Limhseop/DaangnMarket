@@ -25,11 +25,13 @@
 			
 			if(id == "filter"){	
 				$(this).attr("id","filter_onclick");
+				$(this).val = 1;
 				$(this).removeClass("btn_confrim");
 				$(this).addClass("btn_cancle");
 				
 			}else if(id == "filter_onclick"){
-				$(this).attr("id","filter")
+				$(this).attr("id","filter");
+				$(this).val = 0;
 				$(this).removeClass("btn_cancle");
 				$(this).addClass("btn_confrim");
 				
@@ -72,7 +74,7 @@
 	<!-- content -->
 	<section class = "p_register">
 		<div class = "content">
-			<form name = "product_form" action = "#" method = "post">
+			<form name = "product_form" action = "product_regiset_proc.do" method = "post" enctype = "multipart/form-data">
 				<ul>
 					<li>
 						<span>중고거래 글쓰기</span>
@@ -107,7 +109,7 @@
 					</li>
 					<li>
 						<input type = "number" placeholder = "가격(선택사항)" id = "price">
-						<button type = "button" class = "btn_cancle" id = "filter" name = "priceFilter">가격제안 받기</button>
+						<button type = "button" class = "btn_cancle" id = "filter" name = "priceFilter" value = "0">가격제안 받기</button>
 					</li>
 					<li>
 						<div class = "pic_icon" id = "picture">
@@ -115,8 +117,9 @@
 							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" id = "upload_img">
 							<!-- 사진 등록하면 카운트가 올라감 -->
 							<span class = "pic_count">0/3</span>
-							<!-- <input type = "file" id="input_file" multiple="multiple" style = "display:none;"> -->
-						</div><!-- 사진업로드 -->
+							<!-- 사진업로드 -->
+							<input type = "file" id="input_file" multiple="multiple" style = "display:none;">
+						</div>
 					</li>
 					<li>	
 						<!-- 사진 업로드 시 사진 미리보기가 보이도록 -->

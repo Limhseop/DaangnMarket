@@ -59,13 +59,12 @@
 	
 	<!-- insert -->
 	<insert id = "insert" parameterType = "com.spring.vo.ProductVO">
-		<choose>
+		insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, 
+			#{category}, #{price}, #{pchoice}, sysdate, #{location}, test, 0, 0, 0, 0, N)
+		<choose>   
 			<when test = "pfile != null">
-				insert into product_board values('b_'||sequ_product_board.nextval, #{ptitle}, #{pcontent}, #{pfile}, #{psfile}, 0, sysdate)
+				insert into product_file values('p_'||SEQ_PRODUCT_PID.nextval, #{pfile}, #{psfile});
 			</when>
-			<otherwise>
-				insert into product_board values('b_'||sequ_product_board.nextval, #{ptitle}, #{pcontent}, null, null, 0, sysdate)
-			</otherwise>
 		</choose>	
 	</insert>
 </mapper>
