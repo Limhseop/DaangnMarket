@@ -156,6 +156,15 @@
     		<version>2.0.1</version>
 		</dependency>
 
+<<<<<<< Updated upstream
+=======
+		<dependency>
+		  <groupId>commons-fileupload</groupId>
+		  <artifactId>commons-fileupload</artifactId>
+		  <version>1.4</version>
+		</dependency>
+
+>>>>>>> Stashed changes
 	</dependencies>
     <build>
         <plugins>

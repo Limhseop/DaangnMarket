@@ -36,16 +36,16 @@
 	<!-- content -->
 	<section class = "p_register">
 		<div class = "content">
-			<form name = "product_form" action = "#" method = "get">
+			<form name = "product_form" action = "product_update_proc.do" method = "post" enctype = "multipart/form-data">
 				<ul>
 					<li>
 						<span>중고거래 글쓰기</span>
 					</li>
 					<li>
-						<input type = "text" placeholder = "글 제목" class = "pro_title">
+						<input type = "text" placeholder = "글 제목" class = "pro_title" name = "ptitle">
 					</li>
 					<li>
-						<select>
+						<select name = "category">
 							<option value = "choice">카테고리 선택></option>
 							<option value = "digital">디지털기기</option>
 							<option value = "household">생활가전</option>
@@ -67,10 +67,10 @@
 						</select>
 					</li>
 					<li>
-						<textarea placeholder = "물품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!" class = "r_content"></textarea>
+						<textarea placeholder = "물품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!" class = "r_content" name = "pcontent"></textarea>
 					</li>
 					<li>
-						<input type = "text" placeholder = "가격(선택사항)">
+						<input type = "text" name = "price" placeholder = "가격(선택사항)">
 						<button type = "button" class = "btn_cancle" id = "btn_price">가격제안 받기</button>
 					</li>
 					<li>

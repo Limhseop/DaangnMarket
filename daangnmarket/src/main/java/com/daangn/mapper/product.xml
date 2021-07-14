@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "mapper.product">
+	<!-- productlist -->
+	<select id = "productlistpage" parameterType = "map" resultType = "com.spring.vo.ProductVO">
+		SELECT RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE 
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE   
+				 FROM (SELECT PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE FROM PRODUCT_BOARD  
+				 ORDER BY PDATE DESC))  
+				 WHERE RNO BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id = "productlist" resultType = "com.spring.vo.ProductVO"> 
+		SELECT RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE 
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE   
+				 FROM (SELECT PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE FROM PRODUCT_BOARD  
+				 ORDER BY PDATE DESC))  
+	</select>
+	
+	<!-- morelist --><!-- 이 부분은 마이페이지로 이동해서 볼 수 있도록 진행 -->
+	<!-- <select id = "morelist" resultType = "com.spring.vo.ProductVO">
+		SELECT RNO, PID, PTITLE, PHIT, PDATE   
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, PHIT, TO_CHAR(PDATE, 'YYYY-MM-DD') PDATE   
+				 FROM (SELECT PID, PTITLE, PHIT, PDATE FROM PRODUCT_BOARD  
+				 ORDER BY PDATE DESC))  
+	</select> -->
+	
+	<!-- count  -->
+	<select id = "count" resultType = "int"> select count(*) from product_board </select>
+	
+	<!-- psfile  -->
+	<select id = "psfile" parameterType = "java.lang.String" resultType = "java.lang.String">
+		select psfile from product_file where pid = #{pid} 
+	</select>
+	
+	<!-- delete -->
+	<delete id = "delete" parameterType = "java.lang.String">
+		delete from product_board where pid = #{pid}
+	</delete>
+	
+	<!-- updateNofile -->
+	<update id = "updateNofile" parameterType = "com.spring.vo.ProductVO">
+		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category = #{category} where pid = #{pid}
+	</update>
+	
+	<!-- updateFile -->
+	<update id = "update" parameterType = "com.spring.vo.ProductVO">
+		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category = #{category}, 
+		pfile = #{pfile}, psfile = #{psfile} where pid = #{pid}
+	</update>
+	
+	<!-- updatehit -->
+	<update id = "updateHit" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET PHIT = PHIT + 1  
+					 WHERE PID = #{pid}
+	</update>
+	
+	<!-- updatereport -->
+	<update id = "updateReport" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET REPORT = REPORT + 1  
+					 WHERE PID = #{pid}
+	</update>
+	
+	<!-- updatechat -->
+	<update id = "updateChat" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET CHAT = CHAT + 1  
+					 WHERE PID = #{pid}
+	</update>
+	
+	<!-- updatefavorite -->
+	<update id = "updateFavorite" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE + 1  
+					 WHERE PID = #{pid}
+	</update>
+	
+	
+	<!-- productcontent -->
+	<select id = "content" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO">
+		SELECT PID, PCONTENT, PTITLE, CATEGORY, PRICE, PHIT, CHAT, FAVORITE, PHIT, REPORT, SALED, LOCATION, PDATE, PSFILE, ID 
+		FROM PRODUCT_BOARD  
+		WHERE PID = #{pid};
+	</select>
+	
+	<!-- insert -->
+	<insert id = "insert" parameterType = "com.spring.vo.ProductVO">
+		<choose>   
+			<when test = "pfile != null">
+				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval,  #{ptitle}, #{pcontent}, 
+					#{category}, #{price}, 0, sysdate, '경기도', 'test', 0, 0, 0, 0, 'N', #{pfile}, #{psfile})
+			</when>
+			<otherwise>
+				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, 
+					#{category}, #{price}, 0, sysdate, '경기도', 'test', 0, 0, 0, 0, 'N', null, null)
+			</otherwise>		
+		</choose>	
+	</insert>
+	
+	<!-- insertfile -->
+	<!-- <insert id = "insertfile" parameterType = "com.spring.vo.ProductVO">
+		<choose>   
+			<when test = "pfile != null">
+				insert into product_file values('p_'||SEQ_PRODUCT_PID.nextval, #{pfile}, #{psfile})
+			</when>
+		</choose>	
+	</insert> -->
+	
+</mapper>
