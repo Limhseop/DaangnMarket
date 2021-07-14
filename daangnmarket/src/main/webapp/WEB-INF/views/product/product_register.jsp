@@ -8,8 +8,16 @@
 <link rel="stylesheet" href="http://localhost:9000/daangn/css/header.css">
 <link rel="stylesheet" href="css/product_css.css">
 <link rel="stylesheet" href="css/commons.css">
-<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
+<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>\
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script>
+	$(function () {
+	    $('#upload_img').click(function (e) {
+	        e.preventDefault();
+	        $('#input_file').click();
+	    });
+	});
+
 	$(document).ready(function(){
 		
 		$("button[name=priceFilter]").click(function(){
@@ -28,6 +36,32 @@
 			}	
 		
 		});
+		
+		
+		$("#confrim").click(function(){
+			if($("#title").val() == ""){
+				alert("제목을 입력해주세요");
+				$("#title").focus();
+				return false;
+			}else if($("#category").val() == "choice"){
+				alert("카테고리를 선택해주세요");
+				$("#category").focus();
+				return false;
+			}else if($("#content").val() == ""){
+				alert("내용을 입력해주세요");
+				$("#content").focus();
+				return false;
+		/* 	}else if($("#price").val() == ""){
+				alert("가격을 입력해주세요");
+				$("#price").focus();
+				return false; */
+			}else{
+				product_form.submit();
+			}
+			
+		});
+		
+		
 	});
 </script>
 </head>
@@ -38,16 +72,16 @@
 	<!-- content -->
 	<section class = "p_register">
 		<div class = "content">
-			<form name = "product_form" action = "#" method = "get">
+			<form name = "product_form" action = "#" method = "post">
 				<ul>
 					<li>
 						<span>중고거래 글쓰기</span>
 					</li>
 					<li>
-						<input type = "text" placeholder = "글 제목" class = "pro_title">
+						<input type = "text" placeholder = "글 제목" class = "pro_title" id = "title">
 					</li>
 					<li>
-						<select>
+						<select id = "category">
 							<option value = "choice">카테고리 선택></option>
 							<option value = "digital">디지털기기</option>
 							<option value = "household">생활가전</option>
@@ -69,18 +103,19 @@
 						</select>
 					</li>
 					<li>
-						<textarea placeholder = "물품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!" class = "r_content"></textarea>
+						<textarea placeholder = "물품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!" class = "r_content" id = "content"></textarea>
 					</li>
 					<li>
-						<input type = "text" placeholder = "가격(선택사항)">
+						<input type = "number" placeholder = "가격(선택사항)" id = "price">
 						<button type = "button" class = "btn_cancle" id = "filter" name = "priceFilter">가격제안 받기</button>
 					</li>
 					<li>
-						<div class = "pic_icon">
+						<div class = "pic_icon" id = "picture">
 							<!-- <input type = "file" name = "file1" id = "nfile"> -->
-							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" >
+							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" id = "upload_img">
 							<!-- 사진 등록하면 카운트가 올라감 -->
 							<span class = "pic_count">0/3</span>
+							<!-- <input type = "file" id="input_file" multiple="multiple" style = "display:none;"> -->
 						</div><!-- 사진업로드 -->
 					</li>
 					<li>	
@@ -92,11 +127,11 @@
 						</div>
 					</li>
 					<li>
-						<span>정왕4동과 근처 동네 49개 ▽</span>
+						<span id = "location">정왕4동과 근처 동네 49개 ▽</span>
 					</li>
 					<li>
 						<a href = "http://localhost:9000/daangn/product.do"><button type = "button" class = "btn_cancle">닫기</button></a>
-						<button type = "button" class = "btn_confrim">완료</button>
+						<button type = "button" class = "btn_confrim" id = "confrim">완료</button>
 					</li>
 				</ul>
 			</form>
