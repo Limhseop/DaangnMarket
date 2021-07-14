@@ -3,9 +3,16 @@ package com.spring.vo;
 public class MemberVO {
 	String id,pass,name,email,phone,addr,introduce,imagepath,sex,joindate;
 	int sale,purchase;
+	boolean admin;
 	
 
 	
+	public boolean getAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	public String getSex() {
 		return sex;
 	}
