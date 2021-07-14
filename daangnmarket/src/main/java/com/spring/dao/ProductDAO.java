@@ -75,6 +75,19 @@ public class ProductDAO {
 	
 	//select: 리스트 가져오기
 	public ArrayList<ProductVO> getList(){
+<<<<<<< Updated upstream
+=======
+		
+		List<ProductVO> list = sqlSession.selectList(namespace+".productlist");
+		
+		return (ArrayList<ProductVO>)list;
+	}
+	
+	
+	//insert : 게시판 글 쓰기
+	public boolean getInsertResult(ProductVO vo) {
+		boolean result = false;
+>>>>>>> Stashed changes
 		
 		List<ProductVO> list = sqlSession.selectList(namespace+".productlist");
 		

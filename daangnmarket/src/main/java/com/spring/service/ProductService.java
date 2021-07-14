@@ -15,6 +15,9 @@ public interface ProductService {
 	ArrayList<ProductVO> getList();
 	boolean getInsertResult(ProductVO vo);
 	/* void getFileInsert(ProductVO vo); */
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 }

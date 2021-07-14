@@ -44,9 +44,13 @@
 	
 	<context:component-scan base-package="com.spring.daangn" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	
 	
 	
+=======
+	<context:component-scan base-package="com.spring.dao" />
+>>>>>>> Stashed changes
 =======
 	<context:component-scan base-package="com.spring.dao" />
 >>>>>>> Stashed changes
