@@ -14,4 +14,8 @@ public class MemberServiceImpl implements MemberService{
 	public boolean loginCheck(String id, String pass) {
 		return dao.loginCheck(id, pass);
 	}
+	
+	public boolean idCheck(String id) {
+		return dao.idCheck(id);
+	}
 }

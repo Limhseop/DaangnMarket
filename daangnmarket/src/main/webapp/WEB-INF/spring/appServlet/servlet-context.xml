@@ -29,10 +29,9 @@
 	
 	<!--  DAO Object -->
 	<beans:bean id="MypageDAO" class="com.spring.dao.MypageDAO"></beans:bean>
-	<beans:bean id="MemberDAO" class="com.spring.dao.MemberDAO"></beans:bean>
 	
 	<!-- Service Object -->
-	<beans:bean id="Mypage" class="com.spring.service.MypageImpl"></beans:bean>
+	<beans:bean id="Mypage" class="com.spring.service.MypageServiceImpl"></beans:bean>
 	<beans:bean id="memberService" class="com.spring.service.MemberServiceImpl"></beans:bean>
 	
 	<!-- 상품 사진 올리기 프로세스 -->
@@ -42,7 +41,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.spring.daangn" />
-	
+	<context:component-scan base-package="com.spring.dao" />
 	
 	
 	
