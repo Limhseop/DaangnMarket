@@ -18,8 +18,11 @@
 	<!-- content -->
 	<div class="section">
 		<div class="section1">
-			<div class="userImage"><img src="images/${vo.imagepath }" class="profileImage">
-			<input type="file" id="profileImage" style="display:none"></div>
+			<div class="userImage"><img src="profileimage/${vo.imagepath }" class="profileImage">
+			<form id="uploadForm" name="formData" action="profileImageChange.do" enctype="multipart/form-data" method="post">
+				<input type="file" id="profileImage" name="file" style="display:none">
+			</form>
+			</div>
 			<label class="profileImageChange" for="profileImage">프로필 이미지 변경</label>
 			<div class="userProfile">
 				<br><br>

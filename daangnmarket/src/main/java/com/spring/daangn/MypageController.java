@@ -1,9 +1,14 @@
 package com.spring.daangn;
 
+import java.io.File;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.MypageService;
@@ -28,6 +33,37 @@ public class MypageController {
 		
 		mav.setViewName("/mypage/mypage");
 		mav.addObject("vo",vo);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/profileImageChange.do" , method = RequestMethod.POST)
+	public ModelAndView profileImageChange(MultipartHttpServletRequest request) throws Exception{
+		
+		ModelAndView mav = new ModelAndView();
+		
+		MultipartFile fileName = request.getFile("file");
+		
+		System.out.println("Controller");
+		String file="";
+		String root_path="";
+		String attach_path="";
+		String name="jihwan";
+		if(fileName.getSize() != 0) {
+			
+			root_path = request.getSession().getServletContext().getRealPath("/");
+			attach_path = "\\resources\\profileimage\\";
+			
+			UUID uuid = UUID.randomUUID();
+			file = uuid + fileName.getOriginalFilename();
+			
+			File file1 = new File(root_path + attach_path + uuid + fileName.getOriginalFilename());
+			fileName.transferTo(file1);
+			System.out.println(file1.getName());
+		}
+		
+		mypageService.profileImageChange(file,name);
+		mav.setViewName("redirect:/mypage.do");
 		
 		return mav;
 	}

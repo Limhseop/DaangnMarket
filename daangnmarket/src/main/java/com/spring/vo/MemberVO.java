@@ -4,7 +4,7 @@ public class MemberVO {
 	String id,pass,name,email,phone,addr,introduce,imagepath,sex,joindate;
 	int sale,purchase;
 	
-	
+
 	
 	public String getSex() {
 		return sex;

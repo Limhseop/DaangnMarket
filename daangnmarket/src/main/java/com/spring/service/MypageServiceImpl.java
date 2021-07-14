@@ -17,4 +17,9 @@ public class MypageServiceImpl implements MypageService{
 		return mypagedao.getMember(id);
 	}
 
+	@Override
+	public void profileImageChange(String file,String name) {
+		mypagedao.profileImageChangge(file,name);
+	}
+
 }

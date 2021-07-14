@@ -36,7 +36,28 @@ $(document).ready(function(){
 			reader.readAsDataURL(this.files[0]);
 			var fileValue = $("#profileImage").val().split("\\");
 			var fileName = fileValue[fileValue.length-1];
-			alert(fileName);
+			var form = $("#uploadForm")[0];
+			var formData = new FormData(form);
+			
+			$.ajax({
+				url : "http://localhost:9000/daangn/profileImageChange.do",
+				type : "POST",
+				data : formData ,
+				contentType : false,
+				processData : false,
+				success : function(data){
+					alert("이미지 변경 완료");
+				},
+				error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					alert(msg);
+				}
+
+			});
+			//$("#uploadForm").submit();
+			
 		}
 	});
 	

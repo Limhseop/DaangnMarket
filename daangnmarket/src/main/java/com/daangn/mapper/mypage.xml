@@ -9,4 +9,9 @@
 	<select id="getmember" parameterType="java.lang.String" resultType="com.spring.vo.MemberVO">
 		select id,name,email,phone,addr,introduce,to_char(joindate,'yyyy-mm-dd')joindate,sale,purchase,imagepath from daangn_member where id=#{id}
 	</select>
+	
+	<!-- 회원 프로필 이미지 변경하기 -->
+	<update id="profileimageupdate" parameterType="map">
+		update daangn_member set imagepath = #{fileName} where id=#{name}
+	</update>
 </mapper>

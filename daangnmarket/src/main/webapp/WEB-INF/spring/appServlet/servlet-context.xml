@@ -18,6 +18,7 @@
 	<resources mapping="/pro_img/**" location="/resources/pro_img/" />
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/js/**" location="/resources/js/" />
+	<resources mapping="/profileimage/**" location="/resources/profileimage/" />
 	<!-- product 사진 업로드 -->
 	<resources mapping="pro_upload/**" location="/resources/pro_upload/" />
 
@@ -32,7 +33,7 @@
 	<beans:bean id="MemberDAO" class="com.spring.dao.MemberDAO"></beans:bean>
 	
 	<!-- Service Object -->
-	<beans:bean id="Mypage" class="com.spring.service.MypageImpl"></beans:bean>
+	<beans:bean id="MypageService" class="com.spring.service.MypageServiceImpl"></beans:bean>
 	<beans:bean id="memberService" class="com.spring.service.MemberServiceImpl"></beans:bean>
 	
 	<!-- 상품 사진 올리기 프로세스 -->
