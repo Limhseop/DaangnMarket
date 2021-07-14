@@ -16,6 +16,9 @@ public interface ProductService {
 	boolean getInsertResult(ProductVO vo);
 	/* void getFileInsert(ProductVO vo); */
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

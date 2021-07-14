@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class ProductController {
 	
 	
 	/***
+<<<<<<< Updated upstream
 	 *  product_more >>> 더 많은 상품 보기  (마이페이지로 이동하도록 설정)
 	 */
 	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
@@ -32,6 +34,8 @@ public class ProductController {
 	}
 	
 	/***
+=======
+>>>>>>> Stashed changes
 	 *  product_report >>>  신고하기
 	 */
 	@RequestMapping(value = "/product_report.do", method = RequestMethod.GET)
@@ -162,9 +166,12 @@ public class ProductController {
 	@RequestMapping(value = "/product_search.do", method = RequestMethod.GET)
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	public String product_list_search(){
 		return "product/product_list_search";
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	public ModelAndView product_list_search_total(){
