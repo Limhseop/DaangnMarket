@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.service.Mypage;
+import com.spring.service.MypageService;
 import com.spring.vo.MemberVO;
 
 @Controller
 public class MypageController {
 	
 	@Autowired
-	private Mypage mypage;
+	private MypageService mypageService;
 	
 //	@RequestMapping(value="/memberUpdate.do", method = RequestMethod.GET)
 //	public ModelAndView memberUpdate() {
@@ -24,7 +24,7 @@ public class MypageController {
 	public ModelAndView mypage(String id) {
 		ModelAndView mav = new ModelAndView();
 		
-		MemberVO vo = mypage.getMember(id);
+		MemberVO vo = mypageService.getMember(id);
 		
 		mav.setViewName("/mypage/mypage");
 		mav.addObject("vo",vo);

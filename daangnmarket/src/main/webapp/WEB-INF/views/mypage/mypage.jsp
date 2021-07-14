@@ -18,7 +18,7 @@
 	<!-- content -->
 	<div class="section">
 		<div class="section1">
-			<div class="userImage"><img src="images/img_profile_male.png" class="profileImage">
+			<div class="userImage"><img src="images/${vo.imagepath }" class="profileImage">
 			<input type="file" id="profileImage" style="display:none"></div>
 			<label class="profileImageChange" for="profileImage">프로필 이미지 변경</label>
 			<div class="userProfile">
