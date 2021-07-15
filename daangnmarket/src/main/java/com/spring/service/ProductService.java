@@ -15,6 +15,7 @@ public interface ProductService {
 	ProductVO getContent(String pid);
 	ArrayList<ProductVO> getList(int start, int end);
 	ArrayList<ProductVO> getList();
+	ArrayList<ProductVO> getList(String id);
 	boolean getInsertResult(ProductVO vo);
 	/* void getFileInsert(ProductVO vo); */
 

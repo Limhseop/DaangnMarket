@@ -57,6 +57,10 @@ public class ProductServiceimpl implements ProductService{
 		return productDAO.getList();
 	}
 	@Override
+	public ArrayList<ProductVO> getList(String id){
+		return productDAO.getList(id);
+	}
+	@Override
 	public boolean getInsertResult(ProductVO vo) {
 		return productDAO.getInsertResult(vo);
 	}

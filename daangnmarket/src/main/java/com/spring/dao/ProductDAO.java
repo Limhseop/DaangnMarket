@@ -64,7 +64,7 @@ public class ProductDAO {
 	
 	//update: 조회수 올리기
 	public void getUpdateHit(String pid) {
-		sqlSession.update(namespace+".phit", pid);
+		sqlSession.update(namespace+".updateHit", pid);
 	}
 	
 	//select : 상세내용 가져오기
@@ -85,9 +85,13 @@ public class ProductDAO {
 	
 	//select: 리스트 가져오기
 	public ArrayList<ProductVO> getList(){
-		
 		List<ProductVO> list = sqlSession.selectList(namespace+".productlist");
-		
+		return (ArrayList<ProductVO>)list;
+	}
+	
+	//select: 해당 판매자 id가져오기 
+	public ArrayList<ProductVO> getList(String id){
+		List<ProductVO> list = sqlSession.selectList(namespace+".productlistuser", id);
 		return (ArrayList<ProductVO>)list;
 	}
 

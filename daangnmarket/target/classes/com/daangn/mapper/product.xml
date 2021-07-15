@@ -21,6 +21,15 @@
 				 ORDER BY PDATE DESC))  
 	</select>
 	
+	<select id = "productlistuser" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO"> 
+		SELECT RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE, PRICE 
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE   
+				 FROM (SELECT PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE FROM PRODUCT_BOARD  
+				 WHERE ID = #{id}
+				 ORDER BY PDATE DESC))
+				 WHERE RNO BETWEEN 1 AND 3  
+	</select>
+	
 	<!-- morelist --><!-- 이 부분은 마이페이지로 이동해서 볼 수 있도록 진행 -->
 	<!-- <select id = "morelist" resultType = "com.spring.vo.ProductVO">
 		SELECT RNO, PID, PTITLE, PHIT, PDATE   
@@ -80,9 +89,9 @@
 	
 	<!-- productcontent -->
 	<select id = "content" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO">
-		SELECT PID, PCONTENT, PTITLE, CATEGORY, PRICE, PHIT, CHAT, FAVORITE, PHIT, REPORT, SALED, LOCATION, PDATE, PSFILE, ID 
+		SELECT PID, PCONTENT, PTITLE, CATEGORY, PRICE, CHAT, FAVORITE, PHIT, REPORT, SALED, LOCATION, PDATE, PSFILE, ID, PCHOICE 
 		FROM PRODUCT_BOARD  
-		WHERE PID = #{pid};
+		WHERE PID = #{pid}
 	</select>
 	
 	<!-- insert -->

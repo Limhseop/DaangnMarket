@@ -149,17 +149,29 @@ public class ProductController {
 	public ModelAndView product_content(String pid, String rno){
 		ModelAndView mv = new ModelAndView();
 		
+		//내용 꺼내오기
 		ProductVO vo = productService.getContent(pid);
+		
+		//전체 리스트 꺼내오기
 		ArrayList<ProductVO> list = productService.getList(1, 6);
 		
+		//해당 판매자의 리스트 꺼내오기
+		String id = vo.getId();
+		System.out.println(id);
+		ArrayList<ProductVO> ulist = productService.getList(id);
+		
+		//조회수 올리기
 		if(vo != null) productService.getUpdateHit(pid);
 		String content = vo.getPcontent().replace("\r\n", "<br>");
+		
+		//날짜 연산 추가하기 
 		
 		mv.setViewName("product/product_content");
 		mv.addObject("vo", vo);
 		mv.addObject("list", list);
+		mv.addObject("ulist", ulist);
 		mv.addObject("content", content);
-		mv.addObject("bid", pid);
+		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
 		
 		return mv;

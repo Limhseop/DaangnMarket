@@ -65,7 +65,7 @@ $(document).ready(function(){
 							<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
 						</c:otherwise>
 					</c:choose>
-					<li><a href = "product_content.do?pid=${plist.pid}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
+					<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
 					<li>${plist.location}</li><!-- 주소 -->
 					<li>${plist.price}원</li><!-- 가격 -->
 					<c:choose>
