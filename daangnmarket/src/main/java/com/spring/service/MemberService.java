@@ -1,6 +1,8 @@
 package com.spring.service;
 
+import com.spring.vo.SessionVO;
+
 public interface MemberService {
-	boolean loginCheck(String id, String pass);
+	SessionVO loginCheck(String id, String pass);
 	boolean idCheck(String id);
 }

@@ -7,8 +7,8 @@
 <mapper namespace="mapper.loginjoin">
 
 	<!-- 로그인 체크 -->
-	<select id="login" parameterType="map" resultType="int">
-	select count(*) from daangn_member where id=#{id} and pass=#{pass}
+	<select id="login" parameterType="map" resultType="com.spring.vo.SessionVO">
+	select count(*) result, id, name from daangn_member where id=#{id} and pass=#{pass} group by id, name
 	</select>
 
 	<!-- 회원가입 아이디 중복체크 -->

@@ -1,6 +1,6 @@
 package com.spring.daangn;
 
-import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.spring.service.MemberService;
+import com.spring.vo.SessionVO;
 
 @Controller
 public class LoginJoinController {
@@ -27,13 +26,19 @@ public class LoginJoinController {
 	
 	//로그인 체크 진행
 	@RequestMapping(value="/login_check.do",method=RequestMethod.POST)
-	public ModelAndView login_check(String id, String pass, String saveID) {
+	public ModelAndView login_check(String id, String pass, HttpSession session) {
+		String result_page = "";
 		ModelAndView mv = new ModelAndView();
-		if(memberService.loginCheck(id, pass)) {	//로그인 성공
-			mv.setViewName("index");
+		SessionVO svo = memberService.loginCheck(id, pass);
+
+		if(svo!=null) {	//로그인 성공
+			session.setAttribute("svo",svo);
+			result_page = "index";
+			mv.setViewName(result_page);
 		}else { //로그인 실패
-			mv.setViewName("loginJoin/login");
-			mv.addObject("result","fail");
+			result_page = "loginJoin/login";
+			mv.setViewName(result_page);
+			mv.addObject("result", "fail");
 		}
 		return mv;
 	}

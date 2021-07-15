@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.vo.SessionVO;
+
 @Repository
 public class MemberDAO extends DBConn {
 
@@ -17,13 +19,11 @@ public class MemberDAO extends DBConn {
 	
 	
 	//로그인 체크
-	public boolean loginCheck(String id, String pass) {
-		boolean result=false;
+	public SessionVO loginCheck(String id, String pass) {
 		Map param = new HashMap<String, String>();
 		param.put("id", id);
 		param.put("pass",pass);
-		int sessionresult = sqlSession.selectOne(namespace+".login", param);
-		if(sessionresult!=0) result=true;
+		return sqlSession.selectOne(namespace+".login", param);
 		/*
 		String sql = " select count(*) from daangn_member where id=? and pass=? ";
 		getPreparedStatement(sql);
@@ -44,7 +44,6 @@ public class MemberDAO extends DBConn {
 			e.printStackTrace();
 		}
 		*/
-		return result;
 	}
 	
 	//아이디 중복 체크

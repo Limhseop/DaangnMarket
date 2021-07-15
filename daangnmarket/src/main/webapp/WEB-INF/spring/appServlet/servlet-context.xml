@@ -43,6 +43,25 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</beans:bean> 
 	
+	<!-- Session -->
+	
+	<!-- Interceptor Object -->
+	<beans:bean id="authInterceptor" class="com.spring.interceptor.AuthInterceptor"></beans:bean>
+	
+	<interceptors>		<!-- 언제언제 interceptor를 실행시킬지의 여부 -->
+		<interceptor>
+			<mapping path="/mypage*" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin*" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	
+	</interceptors>
+	
+	
+	
 	<context:component-scan base-package="com.spring.daangn" />
 	<!-- <context:component-scan base-package="com.spring.dao" />-->
 	
