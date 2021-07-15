@@ -1,12 +1,14 @@
 package com.spring.daangn;
 
 import java.io.File;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +26,20 @@ public class MypageController {
 //	public ModelAndView memberUpdate() {
 //		
 //	}
-			
+	@RequestMapping(value="/introUpdate.do" , method = RequestMethod.POST)
+	public ModelAndView introUpdate(@RequestParam Map<String,String> intro) {
+		ModelAndView mav = new ModelAndView();
+		
+		String name = "jihwan";
+		String introduce = intro.get("intro");
+		
+		mypageService.introUpdate(introduce,name);
+		
+		mav.setViewName("redirect:/mypage.do?id=jihwan");
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/mypage.do" , method = RequestMethod.GET)
 	public ModelAndView mypage(String id) {
 		ModelAndView mav = new ModelAndView();

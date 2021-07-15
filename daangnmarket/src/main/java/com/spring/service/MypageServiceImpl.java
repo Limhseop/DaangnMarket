@@ -22,4 +22,9 @@ public class MypageServiceImpl implements MypageService{
 		mypagedao.profileImageChangge(file,name);
 	}
 
+	@Override
+	public void introUpdate(String introduce, String name) {
+		mypagedao.introUpdate(introduce,name);
+	}
+
 }

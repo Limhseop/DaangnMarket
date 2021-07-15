@@ -26,4 +26,11 @@ public class MypageDAO extends DBConn{
 		profile.put("name", name);
 		sqlSession.update(namespace+".profileimageupdate",profile);
 	}
+	
+	public void introUpdate(String introduce,String name) {
+		Map<String,String> param = new HashMap<String,String>();
+		param.put("introduce",introduce);
+		param.put("name", name);
+		sqlSession.update(namespace+".introupdate",param);
+	}
 }
