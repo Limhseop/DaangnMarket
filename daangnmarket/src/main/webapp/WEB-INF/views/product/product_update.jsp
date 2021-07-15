@@ -76,8 +76,8 @@
 						<input type = "text" placeholder = "글 제목" class = "pro_title" id = "ptitle" name = "ptitle" value = "${vo.ptitle }">
 					</li>
 					<li>
-						<select name = "category" >
-							<option value = "${vo.category }"selected disabled hidden>${vo.category }</option>
+						<select name = "category" id = "category">
+							<option value = "${vo.category}"selected hidden>${vo.category}</option>
 							<option value = "choice">카테고리 선택></option>
 							<option value = "디지털기기">디지털기기</option>
 							<option value = "생활가전">생활가전</option>
@@ -102,7 +102,7 @@
 						<textarea placeholder = "물품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!" class = "r_content" id = "pcontent" name = "pcontent">${content}</textarea>
 					</li>
 					<li>
-						<input type = "number" placeholder = "가격(필수사항)" id = "price" name = "price" value = "${vo.price }">
+						<input type = "number" placeholder = "가격(필수사항)" id = "price" name = "price" value = "${vo.price}">
 						<button type = "button" class = "btn_cancle" id = "btn_price">가격제안 받기</button>
 						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
 					</li>

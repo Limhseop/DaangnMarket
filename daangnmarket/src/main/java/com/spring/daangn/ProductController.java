@@ -170,7 +170,7 @@ public class ProductController {
 	/***
 	 *  product_delete_proc >>>  상품 삭제 프로세스
 	 */
-	@RequestMapping(value = "/product_delete_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/product_delete_proc.do", method = RequestMethod.GET)
 	public ModelAndView product_delete_proc(String pid, HttpServletRequest request){
 		
 		ModelAndView mv = new ModelAndView();

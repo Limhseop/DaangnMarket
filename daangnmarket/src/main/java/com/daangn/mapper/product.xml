@@ -41,26 +41,33 @@
 	<!-- count  -->
 	<select id = "count" resultType = "int"> select count(*) from product_board </select>
 	
-	<!-- psfile  -->
-	<select id = "psfile" parameterType = "java.lang.String" resultType = "java.lang.String">
-		select psfile from product_board where pid = #{pid} 
-	</select>
-	
 	<!-- delete -->
 	<delete id = "pro_delete" parameterType = "java.lang.String">
-		delete from product_board where pid = #{pid}
+		DELETE FROM PRODUCT_BOARD WHERE PID = #{pid}
 	</delete>
+	
+	<!-- psfile  -->
+	<select id = "psfile" parameterType = "java.lang.String" resultType = "java.lang.String">
+		SELECT PSFILE FROM PRODUCT_BOARD WHERE PID = #{pid}
+	</select>
+
+
+	
 	
 	<!-- updateNofile -->
 	<update id = "pro_updateNofile" parameterType = "com.spring.vo.ProductVO">
-		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category=#{category}, price = #{price} where pid = #{pid}
+		UPDATE PRODUCT_BOARD SET PTITLE =#{ptitle, jdbcType = VARCHAR}, PCONTENT =#{pcontent, jdbcType = VARCHAR}, CATEGORY=#{category, jdbcType = VARCHAR}, PRICE =#{price, jdbcType = NUMERIC}
+		WHERE PID = #{pid, jdbcType = VARCHAR}   	
 	</update>
 	
 	<!-- updateFile -->
 	<update id = "pro_update" parameterType = "com.spring.vo.ProductVO">
-		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category = #{category}, price = #{price},
-		pfile = #{pfile}, psfile = #{psfile} where pid = #{pid}
+		UPDATE PRODUCT_BOARD SET PTITLE =#{ptitle, jdbcType = VARCHAR}, PCONTENT=#{pcontent, jdbcType = VARCHAR}, CATEGORY =#{category, jdbcType = VARCHAR}, PRICE =#{price, jdbcType = NUMERIC}, 
+		PFILE = #{pfile, jdbcType = VARCHAR}, PSFILE = #{psfile, jdbcType = VARCHAR} WHERE PID =#{pid, jdbcType = VARCHAR}    
 	</update>
+	
+	
+	
 	
 	<!-- updatehit -->
 	<update id = "updateHit" parameterType = "java.lang.String">

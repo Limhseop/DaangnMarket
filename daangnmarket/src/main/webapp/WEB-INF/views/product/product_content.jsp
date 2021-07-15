@@ -146,7 +146,7 @@ $(document).ready(function(){
 						<div class = "content_t">
 							<span>바니바니바니님의 판매 상품</span>
 							<!-- 마이페이지로 이동 -->
-							<a href = "http://localhost:9000/daangn/product_more.do"><span>더보기</span></a>
+							<a href = "http://localhost:9000/daangn/mypage.do"><span>더보기</span></a>
 						</div>
 						<c:forEach var = "userlist" items = "${ulist}">
 						<ul>
@@ -177,27 +177,54 @@ $(document).ready(function(){
 					<a href = "http://localhost:9000/daangn/product.do"><span>더 구경하기</span></a>
 				</div>
 				<c:forEach var = "plist" items = "${list}">
-				<ul>
-					<c:choose>
-						<c:when test = "${plist.psfile ne null}">
-							<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
-						</c:when>
-						<c:otherwise>
-							<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
-						</c:otherwise>
-					</c:choose>
-					<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
-					<li>${plist.location}</li><!-- 주소 -->
-					<li>${plist.price}원</li><!-- 가격 -->
-					<c:choose>
-						<c:when test = "${plist.favorite ne null}">
-							<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${plist.favorite}</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
-						</c:when>
-						<c:otherwise>
-							<li></li>
-						</c:otherwise>
-					</c:choose>	
-				</ul>
+				<c:choose>
+					<c:when test = "${vo.saled eq 'N'}">
+						<ul>
+						<c:choose>
+							<c:when test = "${plist.psfile ne null}">
+								<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
+							</c:when>
+							<c:otherwise>
+								<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
+							</c:otherwise>
+						</c:choose>
+						<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
+						<li>${plist.location}</li><!-- 주소 -->
+						<li>${plist.price}원</li><!-- 가격 -->
+						<c:choose>
+							<c:when test = "${plist.favorite ne null}">
+								<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${plist.favorite}</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
+							</c:when>
+							<c:otherwise>
+								<li></li>
+							</c:otherwise>
+						</c:choose>	
+						</ul>
+					</c:when>
+					<c:otherwise>
+					<ul class = "sold">
+						<c:choose>
+							<c:when test = "${plist.psfile ne null}">
+								<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
+							</c:when>
+							<c:otherwise>
+								<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
+							</c:otherwise>
+						</c:choose>
+						<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
+						<li>${plist.location}</li><!-- 주소 -->
+						<li>${plist.price}원</li><!-- 가격 -->
+						<c:choose>
+							<c:when test = "${plist.favorite ne null}">
+								<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${plist.favorite}</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
+							</c:when>
+							<c:otherwise>
+								<li></li>
+							</c:otherwise>
+						</c:choose>	
+					</ul>
+				</c:otherwise>	
+			</c:choose>
 			</c:forEach>	
 			</div>
 		</section>

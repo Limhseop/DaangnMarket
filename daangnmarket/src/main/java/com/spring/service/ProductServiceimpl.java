@@ -38,12 +38,6 @@ public class ProductServiceimpl implements ProductService{
 	public void getUpdateHit(String pid) {
 		productDAO.getUpdateHit(pid);
 	}
-
-	/*
-	 * @Override public void getFileInsert(ProductVO vo) {
-	 * productDAO.getFileInsert(vo); }
-	 */
-	
 	@Override
 	public ProductVO getContent(String pid) {
 		return productDAO.getContent(pid);

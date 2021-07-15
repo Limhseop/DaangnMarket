@@ -43,7 +43,9 @@ public class ProductDAO {
 	//update : 수정하기(파일 미포함)
 	public boolean getUpdateResultNofile(ProductVO vo) {
 		boolean result = false;
+		
 		int value = sqlSession.update(namespace+".pro_updateNofile", vo);
+		
 		if(value != 0) {
 			result = true;
 		}
