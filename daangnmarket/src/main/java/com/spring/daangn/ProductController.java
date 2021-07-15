@@ -69,20 +69,53 @@ public class ProductController {
 	/***
 	 *  product_update_proc >>>  상품 수정
 	 */
-	@RequestMapping(value = "/product_update_proc.do", method = RequestMethod.GET)
-	public ModelAndView product_update_proc(String pid, String rno){
+	@RequestMapping(value = "/product_update_proc.do", method = RequestMethod.POST)
+	public ModelAndView product_update_proc(ProductVO vo, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		ProductVO vo = productService.getContent(pid);
-		String content = vo.getPcontent().replace("<br>", "\r\n");
+		if(vo.getPfile1().getSize() != 0) {
+			//1.파일저장 위치
+			String root_path = request.getSession().getServletContext().getRealPath("/");
+			String attach_path = "\\resources\\pro_upload\\";
 		
-		mv.setViewName("redirect:/product.do");
-		mv.addObject("vo", vo);
-		mv.addObject("content", content);
-		mv.addObject("pid", pid);
-		mv.addObject("rno", rno);
+			//2.파일이름 ---> vo에 저장
+			UUID uuid = UUID.randomUUID();
+			vo.setPfile(vo.getPfile1().getOriginalFilename());
+			vo.setPsfile(uuid + "_" +vo.getPfile1().getOriginalFilename());
+			System.out.println("pfile---->" + vo.getPfile());
+			System.out.println("psfile---->" + vo.getPsfile());
+			
+		
+			//3.DB연동
+			System.out.println("pid>>>>>>>"+vo.getPid());
+			String old_psfile = productService.getPsfile(vo.getPid());
+			boolean result = productService.getUpdateResult(vo);
+		
+			if(result){
+				//4.DB 연동 성공 ---> upload 폴더에 저장
+				File file = new File(root_path+attach_path+vo.getPsfile());
+				vo.getPfile1().transferTo(file);
+				
+				File old_file = new File(root_path+attach_path+old_psfile);
+				
+				if(old_file.exists()) {
+					old_file.delete();
+				}
+
+			}
+		
+		}else {
+			boolean result = productService.getUpdateResultNofile(vo);
+		}
+		
+		mv.setViewName("redirect:/product_search.do");
+		/*
+		 * mv.setViewName("redirect:/product_content.do?pid="+vo.getPid()+"&rno="+vo.
+		 * getRno());
+		 */
 		
 		return mv;
+		
 	}
 	
 	/***
@@ -135,11 +168,44 @@ public class ProductController {
 	}
 	
 	/***
+	 *  product_delete_proc >>>  상품 삭제 프로세스
+	 */
+	@RequestMapping(value = "/product_delete_proc.do", method = RequestMethod.POST)
+	public ModelAndView product_delete_proc(String pid, HttpServletRequest request){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		String old_psfile = productService.getPsfile(pid);
+		boolean result = productService.getDeleteResult(pid);
+		
+		if(result){
+			//리스트 페이지로 페이지 이동
+			mv.setViewName("redirect:/product_search.do");
+
+			String root_path = request.getSession().getServletContext().getRealPath("/");
+			String attach_path = "\\resources\\pro_upload\\";
+			
+			File old_file = new File(root_path+attach_path + old_psfile);
+			if(old_file.exists()) {
+				old_file.delete();
+			}
+		}
+		
+		return mv;
+	}
+	
+	/***
 	 *  product_delete >>>  상품 삭제 페이지
 	 */
 	@RequestMapping(value = "/product_delete.do", method = RequestMethod.GET)
-	public String product_delete(){
-		return "product/product_delete";
+	public ModelAndView product_delete(String pid, String rno){
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("product/product_delete");
+		mv.addObject("rno", rno);
+		mv.addObject("pid", pid);
+		
+		return mv;
 	}
 	
 	/***

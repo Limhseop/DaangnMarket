@@ -58,14 +58,23 @@ $(document).ready(function(){
 		  
 		  <!-- The slideshow -->
 		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="http://localhost:9000/daangn/pro_img/${vo.psfile}" alt="Los Angeles" width="450" height="500">
+		  <c:choose>
+		  	<c:when test = "${vo.psfile ne null }">
+			    <div class="carousel-item active">
+			      <img src="http://localhost:9000/daangn/pro_upload/${vo.psfile}" alt="Los Angeles" width="450" height="500">
+			    </div>
+		    </c:when>
+		    <c:otherwise>
+			    <div class="carousel-item active">
+			      <img src="http://localhost:9000/daangn/pro_img/noimage.png" alt="Los Angeles" width="450" height="500">
+			    </div>
+		    </c:otherwise>
+		   </c:choose> 
+		    <div class="carousel-item">
+		      <img src="http://localhost:9000/daangn/pro_img/noimage.png" alt="Chicago" width="450" height="500">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="http://localhost:9000/daangn/pro_img/pro_img2.jpg" alt="Chicago" width="450" height="500">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="http://localhost:9000/daangn/pro_img/pro_img3.jpg" alt="New York" width="450" height="500">
+		      <img src="http://localhost:9000/daangn/pro_img/noimage.png" alt="New York" width="450" height="500">
 		    </div>
 		  </div>
 		  
@@ -114,16 +123,22 @@ $(document).ready(function(){
 				<p>${content}</p>
 				<span>채팅 ${vo.chat} ∙ 관심 ${vo.favorite} ∙ 조회 ${vo.phit}</span>
 				<div class = "update_click">
-					<a href = "http://localhost:9000/daangn/product_update.do">수정하기</a>
-					<a href = "http://localhost:9000/daangn/product_delete.do">삭제하기</a>
+					<a href = "http://localhost:9000/daangn/product_update.do?pid=${pid}&rno=${rno}">수정하기</a>
+					<a href = "http://localhost:9000/daangn/product_delete.do?pid=${pid}&rno=${rno}">삭제하기</a>
 					<a href = "#" id = "report">신고하기</a>
 				</div>
 			</div>
 			<div class = "content_button">
 				<button class = "heart_button">♡</button>
 				<!-- 팔렸으면 버튼 disabled -->
-				<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
-				<!-- <button type = "button" class = "btn_confrim">채팅으로 거래하기</button> -->
+				<c:choose>
+					<c:when test = "${vo.saled eq 'N'}">
+						<button type = "button" class = "btn_confrim">채팅으로 거래하기</button>
+					</c:when>	
+					<c:otherwise>
+						<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
+					</c:otherwise>
+				</c:choose>	
 			</div>
 			<div>
 				<section class = "plist_r">
@@ -136,17 +151,17 @@ $(document).ready(function(){
 						<c:forEach var = "userlist" items = "${ulist}">
 						<ul>
 							<c:choose>
-								<c:when test = "${ulist.psfile ne null}">
-									<li><img src = "http://localhost:9000/daangn/pro_upload/${ulist.psfile}" class = "item"></li><!-- 사진 -->
+								<c:when test = "${userlist.psfile ne null}">
+									<li><img src = "http://localhost:9000/daangn/pro_upload/${userlist.psfile}" class = "item"></li><!-- 사진 -->
 								</c:when>
 								<c:otherwise>
 									<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
 								</c:otherwise>
 							</c:choose>
-								<li><a href = "product_content.do?pid=${ulist.pid}&rno=${ulist.rno}"><span class = "prod_t">${ulist.ptitle}</span></a></li><!-- 이름 -->
-								<li>${ulist.location}</li><!-- 주소 -->
-								<li>${ulist.price}원</li><!-- 가격 -->
-								<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${ulist.favorite}</span></li>
+								<li><a href = "product_content.do?pid=${userlist.pid}&rno=${userlist.rno}"><span class = "prod_t">${userlist.ptitle}</span></a></li><!-- 이름 -->
+								<li>${userlist.location}</li><!-- 주소 -->
+								<li>${userlist.price}원</li><!-- 가격 -->
+								<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${userlist.favorite}</span></li>
 						</ul>
 						</c:forEach>
 					</div>

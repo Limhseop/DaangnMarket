@@ -32,7 +32,7 @@ public class ProductDAO {
 	//delete : 삭제하기
 	public boolean getDeleteResult(String pid) {
 		boolean result = false;
-		int value = sqlSession.delete(namespace+".delete", pid);
+		int value = sqlSession.delete(namespace+".pro_delete", pid);
 		if(value != 0) {
 			result = true;
 		}
@@ -43,7 +43,7 @@ public class ProductDAO {
 	//update : 수정하기(파일 미포함)
 	public boolean getUpdateResultNofile(ProductVO vo) {
 		boolean result = false;
-		int value = sqlSession.update(namespace+".updateNofile", vo);
+		int value = sqlSession.update(namespace+".pro_updateNofile", vo);
 		if(value != 0) {
 			result = true;
 		}
@@ -54,7 +54,7 @@ public class ProductDAO {
 	//update : 수정하기 (파일 포함)
 	public boolean getUpdateResult(ProductVO vo) {
 		boolean result = false;
-		int value = sqlSession.update(namespace+".update", vo);
+		int value = sqlSession.update(namespace+".pro_update", vo);
 		if(value != 0) {
 			result = true;
 		}

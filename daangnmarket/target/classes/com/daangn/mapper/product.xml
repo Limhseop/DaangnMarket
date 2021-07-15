@@ -43,22 +43,22 @@
 	
 	<!-- psfile  -->
 	<select id = "psfile" parameterType = "java.lang.String" resultType = "java.lang.String">
-		select psfile from product_file where pid = #{pid} 
+		select psfile from product_board where pid = #{pid} 
 	</select>
 	
 	<!-- delete -->
-	<delete id = "delete" parameterType = "java.lang.String">
+	<delete id = "pro_delete" parameterType = "java.lang.String">
 		delete from product_board where pid = #{pid}
 	</delete>
 	
 	<!-- updateNofile -->
-	<update id = "updateNofile" parameterType = "com.spring.vo.ProductVO">
-		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category = #{category} where pid = #{pid}
+	<update id = "pro_updateNofile" parameterType = "com.spring.vo.ProductVO">
+		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category=#{category}, price = #{price} where pid = #{pid}
 	</update>
 	
 	<!-- updateFile -->
-	<update id = "update" parameterType = "com.spring.vo.ProductVO">
-		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category = #{category}, 
+	<update id = "pro_update" parameterType = "com.spring.vo.ProductVO">
+		update product_board set ptitle=#{ptitle}, pcontent=#{pcontent}, category = #{category}, price = #{price},
 		pfile = #{pfile}, psfile = #{psfile} where pid = #{pid}
 	</update>
 	
@@ -89,7 +89,7 @@
 	
 	<!-- productcontent -->
 	<select id = "content" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO">
-		SELECT PID, PCONTENT, PTITLE, CATEGORY, PRICE, CHAT, FAVORITE, PHIT, REPORT, SALED, LOCATION, PDATE, PSFILE, ID, PCHOICE 
+		SELECT PID, PCONTENT, PTITLE, CATEGORY, PRICE, CHAT, FAVORITE, PHIT, REPORT, SALED, LOCATION, TO_CHAR(PDATE, 'YYYY-MM-DD') PDATE, PSFILE, ID, PCHOICE 
 		FROM PRODUCT_BOARD  
 		WHERE PID = #{pid}
 	</select>
