@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,6 +54,7 @@ $(document).ready(function(){
 			</section>
 			<!-- 검색결과가 없을 시 하단에 추천 상품만 뜨도록  -->
 			<div class = "content">
+			<div style = "text-align:left; width:90%; margin:auto;">
 			<c:forEach var = "plist" items = "${list}">
 				<ul>
 					<c:choose>
@@ -60,7 +62,7 @@ $(document).ready(function(){
 							<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
 						</c:when>
 						<c:otherwise>
-							<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item" style = "display:none;"></li><!-- 사진 -->
+							<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
 						</c:otherwise>
 					</c:choose>
 					<li><a href = "product_content.do?pid=${plist.pid}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
@@ -77,6 +79,7 @@ $(document).ready(function(){
 				</ul>
 			</c:forEach>	
 			</div>
+		</div>
 		</section>
 	</div>
 	<!-- footer -->

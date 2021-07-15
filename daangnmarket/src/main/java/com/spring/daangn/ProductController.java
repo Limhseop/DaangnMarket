@@ -4,12 +4,19 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.spring.service.ProductService;
 import com.spring.vo.ProductVO;
 
 @Controller
 public class ProductController {
-	
 	
 	@Autowired
 	private ProductService productService;
@@ -42,8 +49,21 @@ public class ProductController {
 	 *  product_update >>>  상품 수정
 	 */
 	@RequestMapping(value = "/product_update.do", method = RequestMethod.GET)
-	public String product_update(){
-		return "product/product_update";
+	public ModelAndView product_update(String pid, String rno){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ProductVO vo = productService.getContent(pid);
+		String content = vo.getPcontent().replace("<br>", "\r\n");
+		
+		mv.setViewName("product/product_update");
+		mv.addObject("vo", vo);
+		mv.addObject("content", content);
+		mv.addObject("pid", pid);
+		mv.addObject("rno", rno);
+		
+		return mv;
+		
 	}
 	
 	/***
@@ -86,7 +106,6 @@ public class ProductController {
 			System.out.println("pfile---->" + vo.getPfile());
 			System.out.println("psfile---->" + vo.getPsfile());
 			
-			/* productService.getFileInsert(vo); */
 		}
 		
 		//3.DB연동
@@ -94,8 +113,7 @@ public class ProductController {
 		
 		if(result){
 			//리스트 페이지로 페이지 이동
-			/* mv.setViewName("redirect:/product.do"); */
-			mv.setViewName("product/product_list_search");
+			mv.setViewName("redirect:/product_search.do");
 
 			if(vo.getPfile1().getSize() != 0) {	
 			//4.DB 연동 성공 ---> upload 폴더에 저장
@@ -132,7 +150,7 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		
 		ProductVO vo = productService.getContent(pid);
-		ArrayList<ProductVO> = productService.getList(1, 6);
+		ArrayList<ProductVO> list = productService.getList(1, 6);
 		
 		if(vo != null) productService.getUpdateHit(pid);
 		String content = vo.getPcontent().replace("\r\n", "<br>");
@@ -148,7 +166,7 @@ public class ProductController {
 	}
 	
 	/***
-	 *  product_list_search >>>  상품 검색 리스트(결과화면)
+	 *  product_list_search >>>  상품 검색 리스트(기본 전체 리스트)
 	 */
 	@RequestMapping(value = "/product_search.do", method = RequestMethod.GET)
 	public ModelAndView product_list_search_total(){
@@ -164,8 +182,9 @@ public class ProductController {
 	}
 	
 	/***
-	 *  product_list_search >>>  상품 검색 리스트(기본 전체화면(시간순))
+	 *  product_list_search >>>  상품 검색 리스트(검색결과)
 	 */
+	
 	/*
 	 * @RequestMapping(value = "/product_search.do", method = RequestMethod.GET)
 	 * public ModelAndView product_list_search_total(String rpage){

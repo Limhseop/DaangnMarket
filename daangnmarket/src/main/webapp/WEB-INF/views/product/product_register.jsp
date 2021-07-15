@@ -54,10 +54,10 @@
 				alert("내용을 입력해주세요");
 				$("#content").focus();
 				return false;
-		/* 	}else if($("#price").val() == ""){
+		 	}else if($("#price").val() == ""){
 				alert("가격을 입력해주세요");
 				$("#price").focus();
-				return false; */
+				return false; 
 			}else{
 				product_form.submit();
 			}
@@ -109,7 +109,7 @@
 						<textarea placeholder = "물품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!" class = "r_content" id = "pcontent" name = "pcontent"></textarea>
 					</li>
 					<li>
-						<input type = "number" placeholder = "가격(선택사항)" id = "price" name = "price">
+						<input type = "number" placeholder = "가격(필수사항)" id = "price" name = "price">
 						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
 						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
 					</li>
