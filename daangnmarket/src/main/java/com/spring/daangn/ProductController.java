@@ -26,6 +26,7 @@ public class ProductController {
 	
 	/***
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	 *  product_more >>> 더 많은 상품 보기  (마이페이지로 이동하도록 설정)
 	 */
 	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
@@ -34,6 +35,8 @@ public class ProductController {
 	}
 	
 	/***
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	 *  product_report >>>  신고하기
@@ -167,9 +170,12 @@ public class ProductController {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	public String product_list_search(){
 		return "product/product_list_search";
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======

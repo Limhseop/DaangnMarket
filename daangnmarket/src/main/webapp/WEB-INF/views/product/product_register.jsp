@@ -37,6 +37,9 @@
 				$(this).attr("id","filter");
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -88,7 +91,11 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			<form name = "product_form" action = "#" method = "post">
+=======
+			<form name = "product_form" action = "product_register_proc.do" method = "post" enctype = "multipart/form-data">
+>>>>>>> Stashed changes
 =======
 			<form name = "product_form" action = "product_register_proc.do" method = "post" enctype = "multipart/form-data">
 >>>>>>> Stashed changes
@@ -134,8 +141,14 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 						<input type = "number" placeholder = "가격(선택사항)" id = "price">
 						<button type = "button" class = "btn_cancle" id = "filter" name = "priceFilter">가격제안 받기</button>
+=======
+						<input type = "number" placeholder = "가격(선택사항)" id = "price" name = "price">
+						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
+						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
+>>>>>>> Stashed changes
 =======
 						<input type = "number" placeholder = "가격(선택사항)" id = "price" name = "price">
 						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>

@@ -70,22 +70,31 @@ public class ProductDAO {
 		
 		List<ProductVO> list = sqlSession.selectList(namespace+".productlistpage", param);
 <<<<<<< Updated upstream
-		
-		return (ArrayList<ProductVO>)list;
-	}
-	
-	//select: 리스트 가져오기
-	public ArrayList<ProductVO> getList(){
 <<<<<<< Updated upstream
-=======
-		
-		List<ProductVO> list = sqlSession.selectList(namespace+".productlist");
 =======
 >>>>>>> Stashed changes
 		
 		return (ArrayList<ProductVO>)list;
 	}
 	
+	//select: 리스트 가져오기
+	public ArrayList<ProductVO> getList(){
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+		
+		List<ProductVO> list = sqlSession.selectList(namespace+".productlist");
+=======
+>>>>>>> Stashed changes
+=======
+		
+		List<ProductVO> list = sqlSession.selectList(namespace+".productlist");
+>>>>>>> Stashed changes
+		
+		return (ArrayList<ProductVO>)list;
+	}
+	
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
 	//select: 리스트 가져오기
@@ -96,6 +105,8 @@ public class ProductDAO {
 		return (ArrayList<ProductVO>)list;
 	}
 	
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	
 	//insert : 게시판 글 쓰기
