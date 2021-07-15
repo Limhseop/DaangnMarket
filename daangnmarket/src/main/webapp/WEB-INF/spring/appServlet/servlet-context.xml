@@ -26,16 +26,21 @@
 	</beans:bean>
 	
 	<!--  DAO Object -->
+	
 	<beans:bean id="MypageDAO" class="com.spring.dao.MypageDAO"></beans:bean>
-	<beans:bean id="MemberDAO" class="com.spring.dao.MemberDAO"></beans:bean>
+	<beans:bean id="MemberDAO" class="com.spring.dao.MemberDAO"></beans:bean> 
+	<beans:bean id="NoticeDAO" class="com.spring.dao.NoticeDAO"></beans:bean> 
+	
+	
 	
 	<!-- Service Object -->
 	<beans:bean id="Mypage" class="com.spring.service.MypageImpl"></beans:bean>
-	<beans:bean id="memberService" class="com.spring.service.MemberServiceImpl"></beans:bean>
+	 <beans:bean id="MemberService" class="com.spring.service.MemberServiceImpl"></beans:bean> 
+	 <beans:bean id="NoticeService" class="com.spring.service.NoticeServiceImpl"></beans:bean> 
 	
 	<context:component-scan base-package="com.spring.daangn" />
 	
-	
+	<context:component-scan base-package="com.spring.controller" />
 	
 	
 	
