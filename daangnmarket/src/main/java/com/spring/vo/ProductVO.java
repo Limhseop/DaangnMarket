@@ -1,8 +1,8 @@
 package com.spring.vo;
 
 public class ProductVO {
-	int rno, phit;
-	String pid, ptitle, pcontent, pdate, pfile, psfile;
+	int rno, phit, chat, favorite;
+	String pid, ptitle, category, pcontent, pdate, pfile, psfile;
 	
 	public int getRno() {
 		return rno;

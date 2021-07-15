@@ -4,15 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.spring.service.ProductService;
 import com.spring.vo.ProductVO;
 
@@ -23,10 +14,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	
 	/***
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	 *  product_more >>> 더 많은 상품 보기  (마이페이지로 이동하도록 설정)
 	 */
 	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
@@ -35,10 +23,6 @@ public class ProductController {
 	}
 	
 	/***
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	 *  product_report >>>  신고하기
 	 */
 	@RequestMapping(value = "/product_report.do", method = RequestMethod.GET)
@@ -167,19 +151,6 @@ public class ProductController {
 	 *  product_list_search >>>  상품 검색 리스트(결과화면)
 	 */
 	@RequestMapping(value = "/product_search.do", method = RequestMethod.GET)
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	public String product_list_search(){
-		return "product/product_list_search";
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	public ModelAndView product_list_search_total(){
 		
 		ModelAndView mvo = new ModelAndView();
@@ -190,7 +161,6 @@ public class ProductController {
 		mvo.addObject("list", list);
 		
 		return mvo;
->>>>>>> Stashed changes
 	}
 	
 	/***

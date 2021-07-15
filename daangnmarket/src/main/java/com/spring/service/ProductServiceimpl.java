@@ -1,9 +1,7 @@
 package com.spring.service;
 
-public class ProductServiceimpl {
+import java.util.ArrayList;
 
-<<<<<<< Updated upstream
-=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +43,7 @@ public class ProductServiceimpl implements ProductService{
 	 * @Override public void getFileInsert(ProductVO vo) {
 	 * productDAO.getFileInsert(vo); }
 	 */
+	
 	@Override
 	public ProductVO getContent(String pid) {
 		return productDAO.getContent(pid);
@@ -61,5 +60,4 @@ public class ProductServiceimpl implements ProductService{
 	public boolean getInsertResult(ProductVO vo) {
 		return productDAO.getInsertResult(vo);
 	}
->>>>>>> Stashed changes
 }

@@ -1,8 +1,10 @@
 package com.spring.service;
 
+import java.util.ArrayList;
+
+import com.spring.vo.ProductVO;
+
 public interface ProductService {
-<<<<<<< Updated upstream
-=======
 	
 	int execTotalCount();
 	String getPsfile(String pid);
@@ -15,15 +17,5 @@ public interface ProductService {
 	ArrayList<ProductVO> getList();
 	boolean getInsertResult(ProductVO vo);
 	/* void getFileInsert(ProductVO vo); */
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 }

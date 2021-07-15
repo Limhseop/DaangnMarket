@@ -31,20 +31,7 @@
 				$("#pchoice").val = 1;
 				
 			}else if(id == "filter_onclick"){
-<<<<<<< Updated upstream
-				$(this).attr("id","filter")
-=======
 				$(this).attr("id","filter");
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 				$(this).removeClass("btn_cancle");
 				$(this).addClass("btn_confrim");
 				
@@ -88,23 +75,7 @@
 	<!-- content -->
 	<section class = "p_register">
 		<div class = "content">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-			<form name = "product_form" action = "#" method = "post">
-=======
 			<form name = "product_form" action = "product_register_proc.do" method = "post" enctype = "multipart/form-data">
->>>>>>> Stashed changes
-=======
-			<form name = "product_form" action = "product_register_proc.do" method = "post" enctype = "multipart/form-data">
->>>>>>> Stashed changes
-=======
-			<form name = "product_form" action = "product_register_proc.do" method = "post" enctype = "multipart/form-data">
->>>>>>> Stashed changes
-=======
-			<form name = "product_form" action = "product_register_proc.do" method = "post" enctype = "multipart/form-data">
->>>>>>> Stashed changes
 				<ul>
 					<li>
 						<span>중고거래 글쓰기</span>
@@ -138,32 +109,9 @@
 						<textarea placeholder = "물품에 대한 자세한 정보를 작성하면 판매확률이 올라가요!" class = "r_content" id = "pcontent" name = "pcontent"></textarea>
 					</li>
 					<li>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-						<input type = "number" placeholder = "가격(선택사항)" id = "price">
-						<button type = "button" class = "btn_cancle" id = "filter" name = "priceFilter">가격제안 받기</button>
-=======
 						<input type = "number" placeholder = "가격(선택사항)" id = "price" name = "price">
 						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
 						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
->>>>>>> Stashed changes
-=======
-						<input type = "number" placeholder = "가격(선택사항)" id = "price" name = "price">
-						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
-						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
->>>>>>> Stashed changes
-=======
-						<input type = "number" placeholder = "가격(선택사항)" id = "price" name = "price">
-						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
-						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
->>>>>>> Stashed changes
-=======
-						<input type = "number" placeholder = "가격(선택사항)" id = "price" name = "price">
-						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
-						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
->>>>>>> Stashed changes
 					</li>
 					<li>
 						<div class = "pic_icon" id = "picture">
@@ -171,15 +119,10 @@
 							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" id = "upload_img">
 							<!-- 사진 등록하면 카운트가 올라감 -->
 							<span class = "pic_count">0/3</span>
-<<<<<<< Updated upstream
-							<!-- <input type = "file" id="input_file" multiple="multiple" style = "display:none;"> -->
-						</div><!-- 사진업로드 -->
-=======
 							<!-- 사진업로드 -->
 							<input type = "file" id="input_file" name = "pfile1" style = "display:none;">
 <!-- 						<input type = "file" id="input_file" name = "file" multiple="multiple" style = "display:none;"> -->
 						</div>
->>>>>>> Stashed changes
 					</li>
 					<li>	
 						<!-- 사진 업로드 시 사진 미리보기가 보이도록 -->
