@@ -57,7 +57,7 @@ body{
 			<div class ="header_list">
 				<ul>
 					<li class="admin"><a href ="http://localhost:9000/daangn/admin.do" style="margin-right: 55px; text-decoration:none; color: black">Admin</a><div></div></li>
-					<li class="admin"><a href ="http://localhost:9000/daangn/mypage.do?id=jihwan" style="margin-right: 55px; text-decoration:none; color: black">My Page</a><div></div></li>
+					<li class="admin"><a href ="http://localhost:9000/daangn/mypage.do?id=${sessionScope.svo.id}" style="margin-right: 55px; text-decoration:none; color: black">My Page</a><div></div></li>
 					<li class="admin"><a href ="http://localhost:9000/daangn/login.do"style="margin-right: 55px; text-decoration:none; color: black">Sign In</a><div></div></li>
 				</ul>
 				

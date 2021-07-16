@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.MypageService;
 import com.spring.vo.MemberVO;
+import com.spring.vo.SessionVO;
 
 @Controller
 public class MypageController {
@@ -26,16 +29,32 @@ public class MypageController {
 //	public ModelAndView memberUpdate() {
 //		
 //	}
+	@RequestMapping(value="/memberUpdate.do" , method = RequestMethod.POST)
+	public ModelAndView memberUpdate(@RequestParam Map<String,String> member) {
+		ModelAndView mav = new ModelAndView();
+		MemberVO vo = new MemberVO();
+		
+		String id = member.get("id");
+		String phone = member.get("phone");
+		
+		System.out.println(id + phone);
+		
+		return mav;
+	}
+	
+	
 	@RequestMapping(value="/introUpdate.do" , method = RequestMethod.POST)
-	public ModelAndView introUpdate(@RequestParam Map<String,String> intro) {
+	public ModelAndView introUpdate(@RequestParam Map<String,String> intro, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
-		String name = "jihwan";
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		String name = svo.getId();
 		String introduce = intro.get("intro");
 		
 		mypageService.introUpdate(introduce,name);
 		
-		mav.setViewName("redirect:/mypage.do?id=jihwan");
+		mav.setViewName("redirect:/mypage.do?id="+ svo.getId());
 		
 		return mav;
 	}
@@ -53,17 +72,19 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/profileImageChange.do" , method = RequestMethod.POST)
-	public ModelAndView profileImageChange(MultipartHttpServletRequest request) throws Exception{
+	public ModelAndView profileImageChange(MultipartHttpServletRequest request,HttpSession session) throws Exception{
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
 		
 		ModelAndView mav = new ModelAndView();
 		
 		MultipartFile fileName = request.getFile("file");
 		
-		System.out.println("Controller");
 		String file="";
 		String root_path="";
 		String attach_path="";
-		String name="jihwan";
+		String name=svo.getId();
+		
+		
 		if(fileName.getSize() != 0) {
 			
 			root_path = request.getSession().getServletContext().getRealPath("/");
@@ -74,11 +95,10 @@ public class MypageController {
 			
 			File file1 = new File(root_path + attach_path + uuid + fileName.getOriginalFilename());
 			fileName.transferTo(file1);
-			System.out.println(file1.getName());
 		}
 		
 		mypageService.profileImageChange(file,name);
-		mav.setViewName("redirect:/mypage.do");
+		mav.setViewName("redirect:/mypage.do?id="+svo.getId());
 		
 		return mav;
 	}
