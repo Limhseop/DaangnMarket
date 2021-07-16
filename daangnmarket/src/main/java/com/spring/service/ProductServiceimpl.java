@@ -58,4 +58,11 @@ public class ProductServiceimpl implements ProductService{
 	public boolean getInsertResult(ProductVO vo) {
 		return productDAO.getInsertResult(vo);
 	}
+	@Override
+	public String getUserName(String id) {
+		return productDAO.getUserName(id);
+	}
+	
+	
+	
 }

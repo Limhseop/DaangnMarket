@@ -66,6 +66,7 @@ public class ProductController {
 		
 	}
 	
+	
 	/***
 	 *  product_update_proc >>>  상품 수정
 	 */
@@ -217,12 +218,15 @@ public class ProductController {
 		
 		//내용 꺼내오기
 		ProductVO vo = productService.getContent(pid);
+		String id = vo.getId();
+		
+		//id이용해서 name 꺼내오기
+		String name = productService.getUserName(id);
 		
 		//전체 리스트 꺼내오기
 		ArrayList<ProductVO> list = productService.getList(1, 6);
 		
 		//해당 판매자의 리스트 꺼내오기
-		String id = vo.getId();
 		System.out.println(id);
 		ArrayList<ProductVO> ulist = productService.getList(id);
 		
@@ -239,6 +243,7 @@ public class ProductController {
 		mv.addObject("content", content);
 		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
+		mv.addObject("name", name);
 		
 		return mv;
 	}

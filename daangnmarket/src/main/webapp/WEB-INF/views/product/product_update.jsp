@@ -68,6 +68,7 @@
 	<section class = "p_register">
 		<div class = "content">
 			<form name = "product_form" action = "product_update_proc.do" method = "post" enctype = "multipart/form-data">
+				<input type = hidden value = "${vo.pid }" name = "pid" id = "pid">
 				<ul>
 					<li>
 						<span>중고거래 글쓰기</span>

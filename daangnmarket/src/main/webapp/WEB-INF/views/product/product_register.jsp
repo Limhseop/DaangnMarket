@@ -76,6 +76,7 @@
 	<section class = "p_register">
 		<div class = "content">
 			<form name = "product_form" action = "product_register_proc.do" method = "post" enctype = "multipart/form-data">
+				<input type = "hidden" name = "id" class = "id" value = "${sessionScope.svo.id}"><!-- 게시글 등록자 아이디  -->
 				<ul>
 					<li>
 						<span>중고거래 글쓰기</span>
