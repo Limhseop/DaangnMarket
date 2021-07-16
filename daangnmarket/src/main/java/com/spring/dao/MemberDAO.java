@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.vo.MemberVO;
 import com.spring.vo.SessionVO;
 
 @Repository
@@ -50,6 +51,14 @@ public class MemberDAO extends DBConn {
 	public boolean idCheck(String id) {
 		boolean result=false;
 		int sessionresult = sqlSession.selectOne(namespace+".idcheck", id);
+		if(sessionresult!=0) result=true;
+		return result;
+	}
+	
+	//회원가입 진행
+	public boolean join_proc(MemberVO vo) {
+		boolean result = false;
+		int sessionresult = sqlSession.insert(namespace+".join_proc", vo);
 		if(sessionresult!=0) result=true;
 		return result;
 	}

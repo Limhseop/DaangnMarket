@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.spring.service.MemberService;
+import com.spring.vo.MemberVO;
 import com.spring.vo.SessionVO;
 
 import net.nurigo.java_sdk.api.Message;
@@ -50,6 +51,16 @@ public class LoginJoinController {
 			mv.addObject("result", "fail");
 		}
 		return mv;
+	}
+	
+	//로그아웃
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		if(svo!=null)
+			session.invalidate();
+		
+		return "/index";
 	}
 	
  	//회원가입 페이지
@@ -97,14 +108,17 @@ public class LoginJoinController {
 	    params.put("text", "[당근마켓] 인증번호 ["+num+"]를 입력해주세요.");
 	    params.put("app_version", "test app 1.2"); // application name and version
 	    JSONObject obj = new JSONObject();
+	    
 	    try {
 	    	obj = (JSONObject) coolsms.send(params);
 	    	result="success";
-	    	System.out.println(obj.toString());
+	    	//System.out.println(num);
+	    
 	    } catch (CoolsmsException e) {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
+	     
 	    
 	    obj.put("result", result);
 	    obj.put("number", num);
@@ -112,6 +126,23 @@ public class LoginJoinController {
 	    Gson gson = new Gson();
 	    return gson.toJson(obj);
 	  }
+	
+	//회원가입 진행
+	@RequestMapping(value="/join_proc.do", method=RequestMethod.POST)
+	public ModelAndView join_proc(MemberVO vo) {
+		vo.setAddr(vo.getAddr_jibun(), vo.getAddr_detail());
+		vo.setIntroduce("안녕하세요. "+vo.getId()+"입니다.");
+		vo.setImagepath("img_profile_male.png");
+		vo.setAdmin("N");
+		ModelAndView mv = new ModelAndView();
+		boolean result = memberService.join_proc(vo);
+		if(result==true) {
+			mv.setViewName("loginJoin/joinSuccess");
+		}else {
+			mv.setViewName("error_page");
+		}
+		return mv;
+	}
 	
 	//회원가입 성공 페이지
 	@RequestMapping(value="/joinSuccess.do", method=RequestMethod.GET)

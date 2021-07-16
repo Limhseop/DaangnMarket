@@ -81,6 +81,33 @@ $(document).ready(function(){
 		});
 	});
 	
+	//회원정보 변경
+	$("#memberUpdate_submit").click(function(){
+		var id = $("#id").val();
+		var name = $("#name").val();
+		var email = $("#email").val();
+		var phone = $("#phone").val();
+		var addr = $("#addr").val();
+		var joindate = $("#joindate").val();
+		
+		$.ajax({
+			url : "http://localhost:9000/daangn/memberUpdate.do",
+			type : "POST",
+			data : {"id" : id, "name" : name, "email" : email, "phone" : phone, "addr" : addr, "joindate" : joindate},
+			success : function(data){
+				alert("변경 완료");
+			},
+			error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					alert(msg);
+			}
+		
+		});
+		
+	});
+	
 	
 	// 상품,상점문의,찜,상점후기 테두리 변경
 	$("#li_1").click(function(){
