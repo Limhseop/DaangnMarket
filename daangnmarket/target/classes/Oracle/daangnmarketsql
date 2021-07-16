@@ -1,26 +1,63 @@
---������̺�
+DROP TABLE DAANGN_BOARD;
+DROP TABLE daangn_member;
+DROP SEQUENCE BOARD_NO_SEQ;
+
+-- 寃뚯떆�뙋(�룞�꽕�깮�솢) �뀒�씠釉�
+CREATE TABLE DAANGN_BOARD(
+  NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 寃뚯떆�뙋 踰덊샇
+  CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 移댄뀒怨좊━
+  CONTENT VARCHAR2(2000) CONSTRAINT NN_BOARD_CONTENT NOT NULL, -- �궡�슜
+  ID VARCHAR2(100) CONSTRAINT NN_BOARD_ID NOT NULL, -- ID
+  TOWN VARCHAR2(30) CONSTRAINT NN_BOARD_TOWN NOT NULL,  -- �룞�꽕
+  WDATE DATE CONSTRAINT NN_BOARD_DATE NOT NULL, -- �옉�꽦�씪�옄
+  IMG VARCHAR2(100), -- �궗�슜�옄媛� 蹂닿쾶�맆 �뙆�씪 紐�
+  SIMG  VARCHAR2(100)  -- �떎�젣濡� ���옣�맆 �뙆�씪 紐�
+);
+
+-- 寃뚯떆�뙋 �떆���뒪 �깮�꽦
+CREATE SEQUENCE BOARD_NO_SEQ
+START WITH 1 -- 1遺��꽣 �떆�옉
+INCREMENT BY 1 -- 1�뵫 利앷�
+CACHE 2; -- 硫붾え由ъ뿉 誘몃━ �삱�젮 �넃�쓣 �씤�뜳�뒪 媛쒖닔. 鍮꾩젙�긽 醫낅즺�릺硫� LAST_NUMBER媛� 2�뵫 利앷�
+
+-- 紐⑤뱺 寃뚯떆�뙋 寃뚯떆湲� 議고쉶
+SELECT * FROM DAANGN_BOARD;
+
+-- BOARD �뜲�씠�꽣 �엯�젰
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�븞�뀞�븯�꽭�슂 �뀕 肄붾줈�굹媛� �떖�빐吏� �슂利� �떎�뱾 嫄닿컯議곗떖�븯�꽭�슂^^ <br> 肄붾줈�굹 �떆援��뿉 �뵾�떆諛⑹뿉�꽌 留먭뎄 嫄댁쟾�븯寃� �삩�씪�씤�쑝濡� 媛숈씠 �뀕�뀕 濡ㅽ븯�떎 20��遺꾨뱾 �엳�쓣源뚯슂~?', '蹂댁꽍�끂�옉', '遊됱쿇�룞', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�떊�엯 �씤�꽩 PT 諛쒗몴�뿰�뒿�쓣 �븯怨� �떢���뜲 留덈븙�븳 �옄由ш� �뾾�뼱�꽌�슂�뀪�뀪 �샊�떆 �씪�슂�씪�뿉 �떆媛� �릺�떆嫄곕굹 �떖�떖�븯�떊遺� 而ㅽ뵾 �븳�옍 �뱶�떆硫댁꽌 �뵾�뱶諛� �빐二쇱떎 �닔 �엳�굹�슂? 而ㅽ뵾�뒗 �젣媛� �룧寃뚯슂 �뀕�뀕', '2bbb', '遊됱쿇�룞', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '媛숈씠 �뼚�뱾�궗�엺?', '湲몃깷�씠', '遊됱쿇�룞', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '9�떆 �븘移� 源뚯튂�궛 / �굺�꽦��怨듭썝�뿉�꽌 �궛梨� 醫뗭븘�븯�뒗 �궗�엺 �엳�뼱�슂?', '�땲肄쒕씪�뒪', '遊됱쿇�룞', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�궡�씪 �븘移� 7�떆易� �룄由쇱쿇 吏㏐쾶 嫄룰퀬 �븯猷� �떆�옉�븯�떎 遺� �엳�굹�슂?', '�닔諛뺤�ъ뒪', '遊됱쿇�룞', SYSDATE, NULL, NULL);
+
+
+--회원정보 테이블
 create table daangn_member(
   ID varchar2(100),
   PASS varchar2(100),
   NAME varchar2(50),
   EMAIL varchar2(100),
   PHONE varchar2(30),
-  ADDR varchar2(200),
+  ADDR varchar2(600),
+  ADDR_JIBUN VARCHAR2(500),
+  ADDR_POST VARCHAR2(200),
+  ADDR_ROAD VARCHAR2(200),
+  ADDR_DETAIL VARCHAR2(300),
   INTRODUCE varchar2(300),
   joindate date,
   SALE NUMBER(10),
   PURCHASE NUMBER(10),
   IMAGEPATH varchar2(100),
-  admin varchar2(1)
+  admin varchar2(10)
 );
 
---������̺� ���� ���� �߰�
+--제약사항 추가
 alter table daangn_member
 ADD CONSTRAINT MEMBER_ID_PK PRIMARY KEY(ID);
 
 ALTER TABLE DAANGN_MEMBER
 MODIFY PASS CONSTRAINT MEMBER_PASS_NN NOT NULL;
 
---������̺� ������ ���� �߰�
+--관리자 계정 데이터 추가
 INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
-VALUES('admin', '1234', '������', 'Y');
+VALUES('admin', '1234', '관리자', 'Y');

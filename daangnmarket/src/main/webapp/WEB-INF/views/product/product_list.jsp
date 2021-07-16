@@ -26,7 +26,7 @@
 					<option value = "product">물품</option>
 				</select>
 				<input type = "text" class = "search" placeholder = "동네이름, 물품명 등을 검색해보세요!">
-				<button type = "button" class = "carrot_btn">검색</button>
+				<a href = "http://localhost:9000/daangn/product_search.do"><button type = "button" class = "carrot_btn">검색</button></a>
 				<div class = "message">
 					<span>전국민이 이용하는 당근마켓!</span>
 					<span>물품을 검색하시고 우리동네에서 거래하세요</span>
