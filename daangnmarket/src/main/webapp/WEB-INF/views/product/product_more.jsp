@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>          
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,28 +22,50 @@
 		<section class = "plist_r">
 			<div class = "content">
 				<div class = "content_t">
-					<a href = "http://localhost:9000/daangn/product_content.do"><button type = "button" class = "btn_back">←</button></a>
-					<span>바니바니바니님의 판매 상품 보기</span>
+					<a href = "http://localhost:9000/daangn/product_content.do?pid=${pid}&rno=${rno}"><button type = "button" class = "btn_back">←</button></a>
+					<span>${name}님의 판매 상품 보기</span>
 						<div class = "more_menu">
 						<button type = "button" class = "btn_filter_onclick">전체</button>
 						<button type = "button" class = "btn_filter">거래중</button>
 						<button type = "button" class = "btn_filter">거래완료</button>
 					</div>
 				</div>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">11L 제습기 싸게 팔아요</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 장곡동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>5</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
-				</ul>
-				<ul class = "sold">
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img2.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">위닉스 제습기</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 은행동</li><!-- 주소 -->
-					<li>70,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>2</span></li><!-- 관심수 표시 -->
-				</ul>
+				<c:forEach var = "userlist" items = "${ulist}">
+					<c:choose>
+						<c:when test = "${userlist.saled eq 'N'}">
+							<ul>
+								<c:choose>
+									<c:when test = "${userlist.psfile ne null}">
+										<li><img src = "http://localhost:9000/daangn/pro_upload/${userlist.psfile}" class = "item"></li><!-- 사진 -->
+									</c:when>
+									<c:otherwise>
+										<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
+									</c:otherwise>
+								</c:choose>
+									<li><a href = "product_content.do?pid=${userlist.pid}&rno=${userlist.rno}"><span class = "prod_t">${userlist.ptitle}</span></a></li><!-- 이름 -->
+									<li>${userlist.location}</li><!-- 주소 -->
+									<li>${userlist.price}원</li><!-- 가격 -->
+									<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${userlist.favorite}</span></li>
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul class = "sold">
+								<c:choose>
+									<c:when test = "${userlist.psfile ne null}">
+										<li><img src = "http://localhost:9000/daangn/pro_upload/${userlist.psfile}" class = "item"></li><!-- 사진 -->
+									</c:when>
+									<c:otherwise>
+										<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
+									</c:otherwise>
+								</c:choose>
+									<li><a href = "product_content.do?pid=${userlist.pid}&rno=${userlist.rno}"><span class = "prod_t">${userlist.ptitle}</span></a></li><!-- 이름 -->
+									<li>${userlist.location}</li><!-- 주소 -->
+									<li>${userlist.price}원</li><!-- 가격 -->
+									<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${userlist.favorite}</span></li>
+							</ul>
+						</c:otherwise>
+					</c:choose>	
+				</c:forEach>
 			</div>
 		</section>
 	</div><!-- div.content -->

@@ -2,7 +2,37 @@ DROP TABLE DAANGN_BOARD;
 DROP TABLE daangn_member;
 DROP SEQUENCE BOARD_NO_SEQ;
 
--- 寃뚯떆�뙋(�룞�꽕�깮�솢) �뀒�씠釉�
+
+-- 게시판(동네생활) 테이블
+CREATE TABLE DAANGN_BOARD(
+  NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 게시판 번호
+  CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 카테고리
+  CONTENT VARCHAR2(2000) CONSTRAINT NN_BOARD_CONTENT NOT NULL, -- 내용
+  ID VARCHAR2(100) CONSTRAINT NN_BOARD_ID NOT NULL, -- ID
+  TOWN VARCHAR2(30) CONSTRAINT NN_BOARD_TOWN NOT NULL,  -- 동네
+  WDATE DATE CONSTRAINT NN_BOARD_DATE NOT NULL, -- 작성일자
+  IMG VARCHAR2(100), -- 사용자가 보게될 파일 명
+  SIMG  VARCHAR2(100)  -- 실제로 저장될 파일 명
+);
+
+-- 게시판 시퀀스 생성
+CREATE SEQUENCE BOARD_NO_SEQ
+START WITH 1 -- 1부터 시작
+INCREMENT BY 1 -- 1씩 증가
+CACHE 2; -- 메모리에 미리 올려 놓을 인덱스 개수. 비정상 종료되면 LAST_NUMBER가 2씩 증가
+
+-- 모든 게시판 게시글 조회
+SELECT * FROM DAANGN_BOARD;
+
+-- BOARD 데이터 입력
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '안녕하세요 ㅎ 코로나가 심해진 요즘 다들 건강조심하세요^^ <br> 코로나 시국에 피시방에서 말구 건전하게 온라인으로 같이 ㅎㅎ 롤하실 20대분들 있을까요~?', '보석노랑', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '신입 인턴 PT 발표연습을 하고 싶은데 마땅한 자리가 없어서요ㅠㅠ 혹시 일요일에 시간 되시거나 심심하신분 커피 한잔 드시면서 피드백 해주실 수 있나요? 커피는 제가 쏠게요 ㅎㅎ', '2bbb', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '같이 떠들사람?', '길냥이', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '9시 아침 까치산 / 낙성대공원에서 산책 좋아하는 사람 있어요?', '니콜라스', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '내일 아침 7시쯤 도림천 짧게 걷고 하루 시작하실 분 있나요?', '수박쥬스', '봉천동', SYSDATE, NULL, NULL);
+
+
+
 CREATE TABLE DAANGN_BOARD(
   NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 寃뚯떆�뙋 踰덊샇
   CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 移댄뀒怨좊━
@@ -14,16 +44,15 @@ CREATE TABLE DAANGN_BOARD(
   SIMG  VARCHAR2(100)  -- �떎�젣濡� ���옣�맆 �뙆�씪 紐�
 );
 
--- 寃뚯떆�뙋 �떆���뒪 �깮�꽦
+
 CREATE SEQUENCE BOARD_NO_SEQ
 START WITH 1 -- 1遺��꽣 �떆�옉
 INCREMENT BY 1 -- 1�뵫 利앷�
 CACHE 2; -- 硫붾え由ъ뿉 誘몃━ �삱�젮 �넃�쓣 �씤�뜳�뒪 媛쒖닔. 鍮꾩젙�긽 醫낅즺�릺硫� LAST_NUMBER媛� 2�뵫 利앷�
 
--- 紐⑤뱺 寃뚯떆�뙋 寃뚯떆湲� 議고쉶
+
 SELECT * FROM DAANGN_BOARD;
 
--- BOARD �뜲�씠�꽣 �엯�젰
 INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�븞�뀞�븯�꽭�슂 �뀕 肄붾줈�굹媛� �떖�빐吏� �슂利� �떎�뱾 嫄닿컯議곗떖�븯�꽭�슂^^ <br> 肄붾줈�굹 �떆援��뿉 �뵾�떆諛⑹뿉�꽌 留먭뎄 嫄댁쟾�븯寃� �삩�씪�씤�쑝濡� 媛숈씠 �뀕�뀕 濡ㅽ븯�떎 20��遺꾨뱾 �엳�쓣源뚯슂~?', '蹂댁꽍�끂�옉', '遊됱쿇�룞', SYSDATE, NULL, NULL);
 INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�떊�엯 �씤�꽩 PT 諛쒗몴�뿰�뒿�쓣 �븯怨� �떢���뜲 留덈븙�븳 �옄由ш� �뾾�뼱�꽌�슂�뀪�뀪 �샊�떆 �씪�슂�씪�뿉 �떆媛� �릺�떆嫄곕굹 �떖�떖�븯�떊遺� 而ㅽ뵾 �븳�옍 �뱶�떆硫댁꽌 �뵾�뱶諛� �빐二쇱떎 �닔 �엳�굹�슂? 而ㅽ뵾�뒗 �젣媛� �룧寃뚯슂 �뀕�뀕', '2bbb', '遊됱쿇�룞', SYSDATE, NULL, NULL);
 INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '媛숈씠 �뼚�뱾�궗�엺?', '湲몃깷�씠', '遊됱쿇�룞', SYSDATE, NULL, NULL);
@@ -32,6 +61,7 @@ INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '
 
 
 --회원정보 테이블
+>>>>>>> main
 create table daangn_member(
   ID varchar2(100),
   PASS varchar2(100),
@@ -51,13 +81,23 @@ create table daangn_member(
   admin varchar2(10)
 );
 
+
+
+
 --제약사항 추가
+
 alter table daangn_member
 ADD CONSTRAINT MEMBER_ID_PK PRIMARY KEY(ID);
 
 ALTER TABLE DAANGN_MEMBER
 MODIFY PASS CONSTRAINT MEMBER_PASS_NN NOT NULL;
 
+
+--������̺� ������ ���� �߰�
+INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
+VALUES('admin', '1234', '������', 'Y');
+
 --관리자 계정 데이터 추가
 INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
 VALUES('admin', '1234', '관리자', 'Y');
+

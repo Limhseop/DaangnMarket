@@ -101,6 +101,12 @@ public class ProductDAO {
 		List<ProductVO> list = sqlSession.selectList(namespace+".productlistuser", id);
 		return (ArrayList<ProductVO>)list;
 	}
+	
+	//select: 해당 판매자 id가져오기 
+	public ArrayList<ProductVO> getMoreList(String id){
+		List<ProductVO> list = sqlSession.selectList(namespace+".productlistmore", id);
+		return (ArrayList<ProductVO>)list;
+	}
 
 	public boolean getInsertResult(ProductVO vo) {
 		// TODO Auto-generated method stub

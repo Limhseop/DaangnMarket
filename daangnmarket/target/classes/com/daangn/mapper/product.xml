@@ -34,6 +34,13 @@
 				 ORDER BY PDATE DESC))
 				 WHERE RNO BETWEEN 1 AND 3  
 	</select>
+	<select id = "productlistmore" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO"> 
+		SELECT RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE, PRICE 
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE   
+				 FROM (SELECT PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE FROM PRODUCT_BOARD  
+				 WHERE ID = #{id}
+				 ORDER BY PDATE DESC))
+	</select>
 	
 	<!-- morelist --><!-- 이 부분은 마이페이지로 이동해서 볼 수 있도록 진행 -->
 	<!-- <select id = "morelist" resultType = "com.spring.vo.ProductVO">
