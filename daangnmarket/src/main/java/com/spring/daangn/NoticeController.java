@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,12 +27,6 @@ public class NoticeController {
 		return "/notice/notice_write";
 	}
 	
-	// 공지사항 리스트 화면
-	@RequestMapping(value="/notice.do", method=RequestMethod.GET)
-	public String notice() {
-		return "/notice/notice";
-	}
-	
 	
 	// 공지사항 작성 처리
 	@RequestMapping(value="/notice_proc.do", method=RequestMethod.POST)
@@ -46,9 +41,20 @@ public class NoticeController {
 		
 	
 		if(result){				
-			mv.setViewName("redirect:/board_list.do");	
+			mv.setViewName("redirect:/notice.do");	
 		}
 		return mv;
 	}
 	
+	/**
+	 * notice.do  ---> 공지사항 리스트 출력
+	 */
+	
+	@RequestMapping(value = "/notice.do", method = RequestMethod.GET)
+	public String list(Model model, NoticeVO vo) throws Exception{
+		model.addAttribute("list",noticeService.list());
+		
+		return "/notice/notice";
+		
+	}
 }
