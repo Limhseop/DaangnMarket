@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,12 +56,23 @@ body{
 	<header id="header">
 		
 			<div class ="header_list">
-				<ul>
-					<li class="admin"><a href ="http://localhost:9000/daangn/admin.do" style="margin-right: 55px; text-decoration:none; color: black">Admin</a><div></div></li>
-					<li class="admin"><a href ="http://localhost:9000/daangn/mypage.do?id=${sessionScope.svo.id}" style="margin-right: 55px; text-decoration:none; color: black">My Page</a><div></div></li>
-					<li class="admin"><a href ="http://localhost:9000/daangn/login.do"style="margin-right: 55px; text-decoration:none; color: black">Sign In</a><div></div></li>
-				</ul>
-				
+				<c:choose>
+				<c:when test="${sessionScope.svo==null }">
+					<ul>
+						<li class="admin"><a href ="http://localhost:9000/daangn/mypage.do?id=${sessionScope.svo.id}" style="margin-right: 55px; text-decoration:none; color: black">My Page</a><div></div></li>
+						<li class="admin"><a href ="http://localhost:9000/daangn/login.do"style="margin-right: 55px; text-decoration:none; color: black">Sign In</a><div></div></li>
+					</ul>
+				</c:when>
+				<c:otherwise>
+					<ul>
+						<c:if test="${sessionScope.svo.id=='admin' }">
+						<li class="admin"><a href ="http://localhost:9000/daangn/admin.do" style="margin-right: 55px; text-decoration:none; color: black">Admin</a><div></div></li>
+						</c:if>
+						<li class="admin"><a href ="http://localhost:9000/daangn/mypage.do?id=${sessionScope.svo.id}" style="margin-right: 55px; text-decoration:none; color: black">My Page</a><div></div></li>
+						<li class="admin"><a href ="http://localhost:9000/daangn/logout.do"style="margin-right: 55px; text-decoration:none; color: black">Sign Out</a><div></div></li>
+					</ul>
+				</c:otherwise>
+				</c:choose>
 				<div class= "logo">
 					<a href="http://localhost:9000/daangn/index.do"><img  class= "logo_img" src="http://localhost:9000/daangn/images/logo.svg"></a>
 					<nav>

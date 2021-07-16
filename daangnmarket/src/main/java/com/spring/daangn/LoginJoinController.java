@@ -53,6 +53,16 @@ public class LoginJoinController {
 		return mv;
 	}
 	
+	//로그아웃
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		if(svo!=null)
+			session.invalidate();
+		
+		return "/index";
+	}
+	
  	//회원가입 페이지
 	@RequestMapping(value="/join.do", method=RequestMethod.GET)
 	public String join() {
