@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page
+	import="com.spring.dao.BoardDAO, com.spring.vo.BoardVO, java.util.*"%>
+<%
+	BoardDAO dao = new BoardDAO();
+	
+	//페이징 처리 - startCount, endCount 구하기
+	int startCount = 0;
+	int endCount = 0;
+	int pageSize = 10; //한페이지당 게시물 수
+	int reqPage = 1; //요청페이지	
+	int pageCount = 1; //전체 페이지 수
+	int dbCount = dao.execTotalCount(); //DB에서 가져온 전체 행수
+	
+	ArrayList<BoardVO> list = dao.getList(startCount, endCount);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,41 +80,19 @@ div.bottom {
 					</tr>
 				</thead>
 				<tbody>
+					<%
+					for (BoardVO vo : list) {
+					%>
 					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
+						<td><%=vo.getCategory()%></td>
+						<td><%=vo.getContent()%></td>
+						<td><%=vo.getId()%></td>
+						<td><%=vo.getTown()%></td>
+						<td><%=vo.getWdate()%></td>
 					</tr>
-					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
-					</tr>
-					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
-					</tr>
-					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
-					</tr>
-					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
-					</tr>
+					<%
+					}
+					%>
 				</tbody>
 			</table>
 		</div>
