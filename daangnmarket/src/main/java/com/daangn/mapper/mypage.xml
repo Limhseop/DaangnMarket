@@ -14,4 +14,9 @@
 	<update id="profileimageupdate" parameterType="map">
 		update daangn_member set imagepath = #{fileName} where id=#{name}
 	</update>
+	
+	<!-- 자기소개 업데이트 -->
+	<update id="introupdate" parameterType="map">
+		update daangn_member set introduce = #{introduce} where id=#{name}
+	</update>
 </mapper>

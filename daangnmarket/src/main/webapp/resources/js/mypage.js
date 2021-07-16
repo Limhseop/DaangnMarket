@@ -61,6 +61,26 @@ $(document).ready(function(){
 		}
 	});
 	
+	//자기소개 수정
+	$("#introBtn").click(function(){
+		var intro = $("#introduce").val();
+		
+		$.ajax({
+			url : "http://localhost:9000/daangn/introUpdate.do",
+			type : "POST",
+			data : {"intro":intro},
+			success : function(data){
+				alert("변경 완료");
+			},
+			error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					alert(msg);
+			}
+		});
+	});
+	
 	
 	// 상품,상점문의,찜,상점후기 테두리 변경
 	$("#li_1").click(function(){

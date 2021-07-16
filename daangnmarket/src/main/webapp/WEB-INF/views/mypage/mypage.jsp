@@ -32,7 +32,7 @@
 				<span class="purchase">상품구매    </span><span>  ${vo.purchase}회</span>
 			</div>
 			<div class="intro">
-				<textarea rows="6" cols="50" class="introTextArea" disabled>${vo.introduce}</textarea>
+				<textarea rows="6" cols="50" class="introTextArea" id="introduce" disabled>${vo.introduce}</textarea>
 				<input type="button" value="확인" class="introBtn" id="introBtn" >
 				<input type="button" value="소개글 수정" class="introUpdate" id="introUpdate" >
 			</div>

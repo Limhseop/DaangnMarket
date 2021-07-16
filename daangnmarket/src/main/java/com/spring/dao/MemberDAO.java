@@ -53,4 +53,5 @@ public class MemberDAO extends DBConn {
 		if(sessionresult!=0) result=true;
 		return result;
 	}
+	
 }
