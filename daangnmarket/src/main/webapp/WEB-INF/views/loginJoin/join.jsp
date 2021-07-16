@@ -39,6 +39,7 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postcode').value = data.zonecode;
                 document.getElementById("roadAddress").value = roadAddr;
+                document.getElementById("jibunAddress").value = data.jibunAddress;
                 
                 var guideTextBox = document.getElementById("guide");
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
@@ -160,6 +161,11 @@
     		}
     	});
     	
+    	$("#addr_btn").click(function(){	//주소 검색 버튼 클릭했을 때
+    		sample4_execDaumPostcode();
+    	});
+    	
+    	
     	$("#submit_btn").click(function(){	//가입하기 버튼을 클릭했을 때. 아이디 중복여부, 비밀번호 일치여부도 체크해야함
     		if($("#id").val()==""){	//아이디가 없을 때
     			$("#id_check").text("아이디를 입력해주세요.");
@@ -210,22 +216,6 @@
     				}
     			}
     		}
-    	/*
-    		else if($("#pass").val()==""){	//비밀번호가 없을 때
-    			$("#pass_check").text("비밀번호를 입력해주세요.");
-    		}else if($("#pass_confirm").val()==""){
-    			$("#pass_confirm_check").text("비밀번호 확인을 입력해주세요.");
-    		}else if($("#name").val()==""){
-    			$("#name_check").text("이름을 입력해주세요.");
-    		*/	
-    		//else if로 휴대폰 인증 이루어졌는지 체크
-    		//else if로 우편번호 찾기 이루어졌는지 체크
-    			
-    			
-    			
-    		/* }else{	//가입
-    			join_form.submit();
-    		} */
     		
     	
     	});
@@ -243,33 +233,34 @@
 	<div class="title">
 		<h1>회원가입</h1>
 	</div>
-	<form name="join_form" class="join_form" id="join_form">
+	<form name="join_form" action="join_proc.do" method="post" class="join_form" id="join_form">
 		<div class="top">
-			<input type="text" class="input" id="id" placeholder="아이디">
+			<input type="text" class="input" id="id" name="id" placeholder="아이디">
 			<div class="div_check" id="id_check"></div>
 			<div class="password">
-				<input type="password" class="input" id="pass" placeholder="비밀번호">
+				<input type="password" class="input" id="pass" name="pass" placeholder="비밀번호">
 				<div class="div_check" id="pass_check"></div>
 				<input type="password" class="input" id="pass_confirm" placeholder="비밀번호 확인">
 				<div class="div_check" id="pass_confirm_check"></div>
 			</div>
-			<input type="text" id="name" class="input" placeholder="이름">
+			<input type="text" id="name" class="input" name="name" placeholder="이름">
 				<div class="div_check" id="name_check"></div>
-			<input type="text" id="email" class="input" placeholder="이메일 주소">
+			<input type="text" id="email" class="input" name="email" placeholder="이메일 주소">
 			<div id="phone_line" class="phone_line">
-				<input type="text" id="phone" class="input_phone" placeholder="휴대폰 번호">
+				<input type="text" id="phone" class="input_phone" name="phone" placeholder="휴대폰 번호">
 				<button type="button" id="certify_phone" class="carrot_btn">인증하기</button>
 				<div class="div_check" id="phone_check"></div>
 				<input type="text" id="phone_keynum" class="input" placeholder="인증번호 입력" disabled>
 				<div class="div_check" id="certify_check"></div>
 			</div>
 			<div id="addr_line" class="addr_line">
-				<input type="text" id="postcode" placeholder="우편번호" class="input_post">
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="carrot_btn"><br>
+				<input type="text" id="postcode" placeholder="우편번호" class="input_post" name="addr_post">
+				<input type="button" id="addr_btn" value="우편번호 찾기" class="carrot_btn"><br>
 				<div class="div_check" id="address_check"></div>
-				<input type="text" id="roadAddress" placeholder="도로명주소" class="input_road">
+				<input type="text" id="roadAddress" placeholder="도로명주소" class="input_road" name="addr_road">
 				<span id="guide" style="color:#999;display:none"></span>
-				<input type="text" id="detailAddress" placeholder="상세주소" class="input_detail">
+				<input type="hidden" id="jibunAddress" name="addr_jibun">
+				<input type="text" id="detailAddress" placeholder="상세주소" class="input_detail" name="addr_detail">
 				<div class="div_check" id="address_detail_check"></div>
 			</div>
 		</div>

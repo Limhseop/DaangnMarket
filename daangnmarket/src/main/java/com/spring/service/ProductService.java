@@ -18,5 +18,6 @@ public interface ProductService {
 	ArrayList<ProductVO> getList(String id);
 	boolean getInsertResult(ProductVO vo);
 	/* void getFileInsert(ProductVO vo); */
+	String getUserName(String id);
 
 }

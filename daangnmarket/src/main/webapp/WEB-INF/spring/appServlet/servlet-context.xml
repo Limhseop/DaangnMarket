@@ -57,6 +57,10 @@
 			<mapping path="/admin*" />
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/product/product_register*" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
 	
 	</interceptors>
 	

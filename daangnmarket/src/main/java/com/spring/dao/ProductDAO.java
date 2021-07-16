@@ -18,6 +18,11 @@ public class ProductDAO {
 	private SqlSessionTemplate sqlSession;
 	private static String namespace = "mapper.product";
 	
+	//select : 유저 이름 알아오기
+	public String getUserName(String id) {
+		return sqlSession.selectOne(namespace+".username", id);
+	}
+	
 	//select : 행 수 얻어오기
 	public int execTotalCount() {
 		return sqlSession.selectOne(namespace+".count");
@@ -109,5 +114,7 @@ public class ProductDAO {
 		
 		return result;
 	}
+	
+	
 	
 }

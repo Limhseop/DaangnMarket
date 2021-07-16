@@ -94,7 +94,7 @@ $(document).ready(function(){
 			<div class = profile>
 				<img src = "http://localhost:9000/daangn/pro_img/profile_icon.png">
 				<div>
-					<a href = "#"><span>바니바니바니</span></a>
+					<a href = "#"><span>${name}</span></a>
 					<span>${vo.location}</span>
 				</div>
 				<!-- 매너온도 표시 : 클릭시 해당 회원정보 페이지로 이동 -->
@@ -123,9 +123,16 @@ $(document).ready(function(){
 				<p>${content}</p>
 				<span>채팅 ${vo.chat} ∙ 관심 ${vo.favorite} ∙ 조회 ${vo.phit}</span>
 				<div class = "update_click">
-					<a href = "http://localhost:9000/daangn/product_update.do?pid=${pid}&rno=${rno}">수정하기</a>
-					<a href = "http://localhost:9000/daangn/product_delete.do?pid=${pid}&rno=${rno}">삭제하기</a>
-					<a href = "#" id = "report">신고하기</a>
+					<c:choose>
+						<c:when test = "${sessionScope.svo.id eq vo.id}">
+							<a href = "http://localhost:9000/daangn/product_update.do?pid=${pid}&rno=${rno}">수정하기</a>
+							<a href = "http://localhost:9000/daangn/product_delete.do?pid=${pid}&rno=${rno}">삭제하기</a>
+							<a href = "#" id = "report">신고하기</a>
+						</c:when>
+						<c:otherwise>
+							<a href = "#" id = "report">신고하기</a>
+						</c:otherwise>
+					</c:choose>	
 				</div>
 			</div>
 			<div class = "content_button">
@@ -144,7 +151,7 @@ $(document).ready(function(){
 				<section class = "plist_r">
 					<div class = "content">
 						<div class = "content_t">
-							<span>바니바니바니님의 판매 상품</span>
+							<span>${name }님의 판매 상품</span>
 							<!-- 마이페이지로 이동 -->
 							<a href = "http://localhost:9000/daangn/mypage.do"><span>더보기</span></a>
 						</div>
