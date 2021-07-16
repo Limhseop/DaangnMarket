@@ -18,8 +18,11 @@
 	<!-- content -->
 	<div class="section">
 		<div class="section1">
-			<div class="userImage"><img src="images/img_profile_male.png" class="profileImage">
-			<input type="file" id="profileImage" style="display:none"></div>
+			<div class="userImage"><img src="profileimage/${vo.imagepath }" onerror="this.src='profileimage/logo.png'" class="profileImage" >
+			<form id="uploadForm" name="formData" action="profileImageChange.do" enctype="multipart/form-data" method="post">
+				<input type="file" id="profileImage" name="file" style="display:none">
+			</form>
+			</div>
 			<label class="profileImageChange" for="profileImage">프로필 이미지 변경</label>
 			<div class="userProfile">
 				<br><br>
@@ -29,7 +32,7 @@
 				<span class="purchase">상품구매    </span><span>  ${vo.purchase}회</span>
 			</div>
 			<div class="intro">
-				<textarea rows="6" cols="50" class="introTextArea" disabled>${vo.introduce}</textarea>
+				<textarea rows="6" cols="50" class="introTextArea" id="introduce" disabled>${vo.introduce}</textarea>
 				<input type="button" value="확인" class="introBtn" id="introBtn" >
 				<input type="button" value="소개글 수정" class="introUpdate" id="introUpdate" >
 			</div>
@@ -79,33 +82,33 @@
 			    	<tbody>
 				      <tr>
 				        <td class="col-md-4">아이디</td>
-				        <td><input type="text" disabled style="width:300px;" value="${vo.id }"></td>
+				        <td><input type="text" disabled style="width:300px;" id="id" value="${vo.id }"></td>
 				      </tr>
 				      <tr>
 				        <td>이름</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.name }"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" id="name" value="${vo.name }"></td>
 				      </tr>
 				      <tr>
 				        <td>이메일</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.email}"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" id="email" value="${vo.email}"></td>
 				      </tr>
 				      <tr>
 				        <td>휴대폰</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.phone }"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" id="phone" value="${vo.phone }"></td>
 				      </tr>
 				      <tr>
 				        <td>주소</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;" value="${vo.addr }"></td>
+				        <td><input type="text" class="inputText" disabled style="width:300px;" id="addr" value="${vo.addr }"></td>
 				      </tr>
 				        <td>가입일</td>
-				        <td><input type="text" disabled style="width:300px;" value="${vo.joindate }"></td>
+				        <td><input type="text" disabled style="width:300px;" id="joindate" value="${vo.joindate }"></td>
 					  </tr> 		
 			    </tbody>
 	  		</table>
 		        </div>
 		        <div class="modal-footer">
 		  		  <button type="button" id="memberUpdate" class="btn btn-primary pull-left" style="border:1px solid #333;margin-left:200px;">변경하기</button>
-		  		  <button type="button" id="memberUpdate_submit" class="btn btn-primary pull-left" style="border:1px solid #333;margin-left:200px;display:none;">변경하기</button>
+			  	  <button type="button" id="memberUpdate_submit" class="btn btn-primary pull-left" style="border:1px solid #333;margin-left:200px;display:none;">변경하기</button>
 		          <button type="button" class="btn btn-danger pull-left"data-dismiss="modal">닫기</button>
 		        </div>
 		    </div>

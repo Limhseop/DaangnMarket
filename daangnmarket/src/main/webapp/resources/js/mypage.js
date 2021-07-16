@@ -36,8 +36,76 @@ $(document).ready(function(){
 			reader.readAsDataURL(this.files[0]);
 			var fileValue = $("#profileImage").val().split("\\");
 			var fileName = fileValue[fileValue.length-1];
-			alert(fileName);
+			var form = $("#uploadForm")[0];
+			var formData = new FormData(form);
+			
+			$.ajax({
+				url : "http://localhost:9000/daangn/profileImageChange.do",
+				type : "POST",
+				data : formData ,
+				contentType : false,
+				processData : false,
+				success : function(data){
+					alert("이미지 변경 완료");
+				},
+				error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					alert(msg);
+				}
+
+			});
+			//$("#uploadForm").submit();
+			
 		}
+	});
+	
+	//자기소개 수정
+	$("#introBtn").click(function(){
+		var intro = $("#introduce").val();
+		
+		$.ajax({
+			url : "http://localhost:9000/daangn/introUpdate.do",
+			type : "POST",
+			data : {"intro":intro},
+			success : function(data){
+				alert("변경 완료");
+			},
+			error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					alert(msg);
+			}
+		});
+	});
+	
+	//회원정보 변경
+	$("#memberUpdate_submit").click(function(){
+		var id = $("#id").val();
+		var name = $("#name").val();
+		var email = $("#email").val();
+		var phone = $("#phone").val();
+		var addr = $("#addr").val();
+		var joindate = $("#joindate").val();
+		
+		$.ajax({
+			url : "http://localhost:9000/daangn/memberUpdate.do",
+			type : "POST",
+			data : {"id" : id, "name" : name, "email" : email, "phone" : phone, "addr" : addr, "joindate" : joindate},
+			success : function(data){
+				alert("변경 완료");
+			},
+			error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					alert(msg);
+			}
+		
+		});
+		
 	});
 	
 	

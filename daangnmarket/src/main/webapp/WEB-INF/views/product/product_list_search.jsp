@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,99 +46,40 @@ $(document).ready(function(){
 				<!-- 물품을 검색하면 관련 추천 검색어가 뜨도록 -->
 			</section>
 			<section class = "no_data"><!-- 검색 결과가 없을때 띄우는 창 -->
-				<div class = "content_nodata">
+				<!-- <div class = "content_nodata">
 					<p>'sdfw'에 대한 검색 결과가 없어요.<br>
 					검색어를 다시 확인해주세요!</p>
-					<span id = "re_search">다시 검색하기</span><!-- 클릭시 검색창으로 커서 이동 -->
-				</div>
+					<span id = "re_search">다시 검색하기</span>클릭시 검색창으로 커서 이동
+				</div> -->
 			</section>
 			<!-- 검색결과가 없을 시 하단에 추천 상품만 뜨도록  -->
 			<div class = "content">
+			<div style = "text-align:left; width:90%; margin:auto;">
+			<c:forEach var = "plist" items = "${list}">
 				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">11L 제습기 싸게 팔아요</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 장곡동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>5</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
+					<c:choose>
+						<c:when test = "${plist.psfile ne null}">
+							<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
+						</c:when>
+						<c:otherwise>
+							<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
+						</c:otherwise>
+					</c:choose>
+					<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
+					<li>${plist.location}</li><!-- 주소 -->
+					<li>${plist.price}원</li><!-- 가격 -->
+					<c:choose>
+						<c:when test = "${plist.favorite ne null}">
+							<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${plist.favorite}</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
+						</c:when>
+						<c:otherwise>
+							<li></li>
+						</c:otherwise>
+					</c:choose>	
 				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img2.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">위닉스 제습기</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 은행동</li><!-- 주소 -->
-					<li>70,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>2</span></li><!-- 관심수 표시 -->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img3.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">의자, 테이블 정리해요 각 만원!</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 정왕동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>3</span></li><!-- 관심수 표시 -->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">11L 제습기 싸게 팔아요</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 장곡동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>5</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img2.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">위닉스 제습기</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 은행동</li><!-- 주소 -->
-					<li>70,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>2</span></li><!-- 관심수 표시 -->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img3.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">의자, 테이블 정리해요 각 만원!</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 정왕동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>3</span></li><!-- 관심수 표시 -->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">11L 제습기 싸게 팔아요</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 장곡동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>5</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img2.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">위닉스 제습기</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 은행동</li><!-- 주소 -->
-					<li>70,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>2</span></li><!-- 관심수 표시 -->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img3.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">의자, 테이블 정리해요 각 만원!</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 정왕동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>3</span></li><!-- 관심수 표시 -->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">11L 제습기 싸게 팔아요</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 장곡동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>5</span></li><!-- 관심수 표시 (있으면 보여주고 없으면 보여주지 않음)-->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img2.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">위닉스 제습기</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 은행동</li><!-- 주소 -->
-					<li>70,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>2</span></li><!-- 관심수 표시 -->
-				</ul>
-				<ul>
-					<li><img src = "http://localhost:9000/daangn/pro_img/pro_img3.jpg" class = "item"></li><!-- 사진 -->
-					<li><a href = "http://localhost:9000/daangn/product_content.do"><span class = "prod_t">의자, 테이블 정리해요 각 만원!</span></a></li><!-- 이름 -->
-					<li>경기도 시흥시 정왕동</li><!-- 주소 -->
-					<li>10,000원</li><!-- 가격 -->
-					<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>3</span></li><!-- 관심수 표시 -->
-				</ul>
+			</c:forEach>	
 			</div>
+		</div>
 		</section>
 	</div>
 	<!-- footer -->
