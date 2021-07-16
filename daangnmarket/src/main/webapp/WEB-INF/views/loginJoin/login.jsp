@@ -34,7 +34,7 @@
 
 	$(document).ready(function(){
 		var id=getCookie("id");
-		if(id!=""){	//아이디 저장이 된 경우
+		if(id!=""){
 			$("#id").val(id);
 			$("#pass").focus();
 			$("#saveID").prop("checked",true);
@@ -50,7 +50,7 @@
 				alert("비밀번호를 입력해주세요.");
 				$("#pass").focus();
 			}else{
-				if($("#saveID").is(':checked')){	//아이디 저장 여부
+				if($("#saveID").is(':checked')){
 					setCookie("id",$("#id").val(),30);
 				}else{
 					setCookie("id","",30);

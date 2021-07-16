@@ -1,31 +1,9 @@
 package com.spring.dao;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-import com.spring.vo.MemberVO;
-import com.spring.vo.SessionVO;
-
-@Repository
 public class MemberDAO extends DBConn {
-
-	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-	private static String namespace = "mapper.loginjoin";
-	
-	
 	//로그인 체크
-	public SessionVO loginCheck(String id, String pass) {
-		Map param = new HashMap<String, String>();
-		param.put("id", id);
-		param.put("pass",pass);
-		return sqlSession.selectOne(namespace+".login", param);
-		/*
+	public boolean loginCheck(String id, String pass) {
+		boolean result=false;
 		String sql = " select count(*) from daangn_member where id=? and pass=? ";
 		getPreparedStatement(sql);
 		
@@ -44,23 +22,7 @@ public class MemberDAO extends DBConn {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
-	}
-	
-	//아이디 중복 체크
-	public boolean idCheck(String id) {
-		boolean result=false;
-		int sessionresult = sqlSession.selectOne(namespace+".idcheck", id);
-		if(sessionresult!=0) result=true;
+		
 		return result;
 	}
-	
-	//회원가입 진행
-	public boolean join_proc(MemberVO vo) {
-		boolean result = false;
-		int sessionresult = sqlSession.insert(namespace+".join_proc", vo);
-		if(sessionresult!=0) result=true;
-		return result;
-	}
-	
 }

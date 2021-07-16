@@ -20,9 +20,7 @@
 <script src="http://localhost:9000/daangn/js/bootstrap.min.js"></script>
 <style>
 div.bottom {
-	text-align: right;
-	display: block;
-	width: 100%;
+	float: right;
 }
 </style>
 </head>
@@ -31,7 +29,7 @@ div.bottom {
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<div class="content">
-		<div class="top mt-3">
+		<div class="top">
 			<div class="buttons" id="buttons">
 				<button type="button" id="together_btn" class="carrot_btn">같이해요</button>
 				<button type="button" id="hometown_btn" class="carrot_btn">우리동네질문</button>
@@ -54,51 +52,37 @@ div.bottom {
 			</div>
 		</div>
 		<div>
-			<table class="table mt-3">
+			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">카테고리</th>
-						<th scope="col">내용</th>
-						<th scope="col">ID</th>
+						<th scope="col">제목</th>
+						<th scope="col">닉네임</th>
 						<th scope="col">동네</th>
 						<th scope="col">올라온시간</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
+						<td>카테고리</td>
+						<td>제목</td>
+						<td>닉네임</td>
+						<td>동네</td>
+						<td>올라온시간</td>
 					</tr>
 					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
+						<td>카테고리</td>
+						<td>제목</td>
+						<td>닉네임</td>
+						<td>동네</td>
+						<td>올라온시간</td>
 					</tr>
 					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
-					</tr>
-					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
-					</tr>
-					<tr>
-						<td>같이해요</td>
-						<td>내용</td>
-						<td>id</td>
-						<td>봉천동</td>
-						<td>시간</td>
+						<td>카테고리</td>
+						<td>제목</td>
+						<td>닉네임</td>
+						<td>동네</td>
+						<td>올라온시간</td>
 					</tr>
 				</tbody>
 			</table>
@@ -107,8 +91,8 @@ div.bottom {
 			<button type="button" id="wrtie_btn" class="carrot_btn">글쓰기</button>
 		</div>
 	</div>
-
+	
 	<!-- footer -->
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page = "../footer.jsp"></jsp:include>
 </body>
 </html>

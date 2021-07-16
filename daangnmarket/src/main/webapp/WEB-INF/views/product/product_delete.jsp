@@ -19,8 +19,8 @@
 				<span>정말 삭제하시겠습니까?</span>
 				<span>삭제하신 글은 복구가 불가능합니다.</span>
 			<div>
-				<a href = "http://localhost:9000/daangn/product_delete_proc.do?pid=${pid}"><button type = "button" class = "btn_cancle">예</button></a>
-				<a href = "http://localhost:9000/daangn/product_content.do?pid=${pid}&rno=${rno}"><button type = "button" class = "btn_confrim">아니오</button>
+				<a href = "http://localhost:9000/daangn/product_search.do"><button type = "button" class = "btn_cancle">예</button></a>
+				<button type = "button" class = "btn_confrim">아니오</button>
 			</div>
 		</section>
 	</div>

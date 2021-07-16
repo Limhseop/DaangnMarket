@@ -104,7 +104,7 @@ footer{
     -ms-appearance: none;
 }
 footer{
-	 padding-top: 150px; /* 이부분 수정해도 되는지 물어보기 */ 
+	margin-top: 150px;
 }
 </style>
 </head>
