@@ -32,7 +32,33 @@ $(document).ready(function(){
 	$("#report").click(function(){
 		alert("신고가 접수되었습니다.");
 	});
+	
+	
+
+	$("button[name=heartbutton]").click(function(){
+		var id = $(this).attr("id");
+		
+		if(id == "heart"){	
+			$(this).attr("id","heart_onclick");
+			$(this).removeClass("heartbutton");
+			$(this).addClass("heartbutton_onclick");
+			
+			$("#pchoice").val = 1;
+			
+		}else if(id == "heart_onclick"){
+			$(this).attr("id","heart");
+			$(this).removeClass("heartbutton_onclick");
+			$(this).addClass("heartbutton");
+			
+			$("#pchoice").val = 0;
+		}	
+	
+	});
+	
+	
 });
+
+
 
 
 </script>
@@ -136,7 +162,8 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class = "content_button">
-				<button class = "heart_button">♡</button>
+				<!-- <button class = "heart_button">♡</button> -->
+				<button class = "heart_button">♥</button>
 				<!-- 팔렸으면 버튼 disabled -->
 				<c:choose>
 					<c:when test = "${vo.saled eq 'N'}">
@@ -153,7 +180,7 @@ $(document).ready(function(){
 						<div class = "content_t">
 							<span>${name }님의 판매 상품</span>
 							<!-- 마이페이지로 이동 -->
-							<a href = "http://localhost:9000/daangn/mypage.do"><span>더보기</span></a>
+							<a href = "http://localhost:9000/daangn/product_more.do?id=${vo.id}&pid=${pid}&rno=${rno}"><span>더보기</span></a>
 						</div>
 						<c:forEach var = "userlist" items = "${ulist}">
 						<ul>
@@ -185,7 +212,7 @@ $(document).ready(function(){
 				</div>
 				<c:forEach var = "plist" items = "${list}">
 				<c:choose>
-					<c:when test = "${vo.saled eq 'N'}">
+					<c:when test = "${plist.saled eq 'N'}">
 						<ul>
 						<c:choose>
 							<c:when test = "${plist.psfile ne null}">

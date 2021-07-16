@@ -1,4 +1,37 @@
---������̺�
+DROP TABLE DAANGN_BOARD;
+DROP TABLE daangn_member;
+DROP SEQUENCE BOARD_NO_SEQ;
+
+-- 게시판(동네생활) 테이블
+CREATE TABLE DAANGN_BOARD(
+  NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 게시판 번호
+  CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 카테고리
+  CONTENT VARCHAR2(2000) CONSTRAINT NN_BOARD_CONTENT NOT NULL, -- 내용
+  ID VARCHAR2(100) CONSTRAINT NN_BOARD_ID NOT NULL, -- ID
+  TOWN VARCHAR2(30) CONSTRAINT NN_BOARD_TOWN NOT NULL,  -- 동네
+  WDATE DATE CONSTRAINT NN_BOARD_DATE NOT NULL, -- 작성일자
+  IMG VARCHAR2(100), -- 사용자가 보게될 파일 명
+  SIMG  VARCHAR2(100)  -- 실제로 저장될 파일 명
+);
+
+-- 게시판 시퀀스 생성
+CREATE SEQUENCE BOARD_NO_SEQ
+START WITH 1 -- 1부터 시작
+INCREMENT BY 1 -- 1씩 증가
+CACHE 2; -- 메모리에 미리 올려 놓을 인덱스 개수. 비정상 종료되면 LAST_NUMBER가 2씩 증가
+
+-- 모든 게시판 게시글 조회
+SELECT * FROM DAANGN_BOARD;
+
+-- BOARD 데이터 입력
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '안녕하세요 ㅎ 코로나가 심해진 요즘 다들 건강조심하세요^^ <br> 코로나 시국에 피시방에서 말구 건전하게 온라인으로 같이 ㅎㅎ 롤하실 20대분들 있을까요~?', '보석노랑', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '신입 인턴 PT 발표연습을 하고 싶은데 마땅한 자리가 없어서요ㅠㅠ 혹시 일요일에 시간 되시거나 심심하신분 커피 한잔 드시면서 피드백 해주실 수 있나요? 커피는 제가 쏠게요 ㅎㅎ', '2bbb', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '같이 떠들사람?', '길냥이', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '9시 아침 까치산 / 낙성대공원에서 산책 좋아하는 사람 있어요?', '니콜라스', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '같이해요', '내일 아침 7시쯤 도림천 짧게 걷고 하루 시작하실 분 있나요?', '수박쥬스', '봉천동', SYSDATE, NULL, NULL);
+
+
+--������̺�
 create table daangn_member(
   ID varchar2(100),
   PASS varchar2(100),
@@ -14,13 +47,13 @@ create table daangn_member(
   admin varchar2(1)
 );
 
---������̺� ���� ���� �߰�
+--������̺� ���� ���� �߰�
 alter table daangn_member
 ADD CONSTRAINT MEMBER_ID_PK PRIMARY KEY(ID);
 
 ALTER TABLE DAANGN_MEMBER
 MODIFY PASS CONSTRAINT MEMBER_PASS_NN NOT NULL;
 
---������̺� ������ ���� �߰�
+--������̺� ������ ���� �߰�
 INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
-VALUES('admin', '1234', '������', 'Y');
+VALUES('admin', '1234', '������', 'Y');

@@ -25,8 +25,23 @@ public class ProductController {
 	 *  product_more >>> 더 많은 상품 보기  (마이페이지로 이동하도록 설정)
 	 */
 	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
-	public String product_more(){
-		return "product/product_more";
+	public ModelAndView product_more(String id, String pid, String rno){
+		ModelAndView mv = new ModelAndView();
+		
+		//id이용해서 name 꺼내오기
+		String name = productService.getUserName(id);
+		
+		//해당 판매자의 리스트 꺼내오기
+		ArrayList<ProductVO> ulist = productService.getMoreList(id);
+		
+		
+		mv.setViewName("product/product_more");
+		mv.addObject("ulist", ulist);
+		mv.addObject("name", name);
+		mv.addObject("pid", pid);
+		mv.addObject("rno", rno);
+		
+		return mv;
 	}
 	
 	/***
