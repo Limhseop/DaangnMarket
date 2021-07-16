@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.spring.vo.BoardVO, java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,9 @@
 <script src="http://localhost:9000/daangn/js/bootstrap.min.js"></script>
 <style>
 div.bottom {
-	float: right;
+	text-align: right;
+	display: block;
+	width: 100%;
 }
 </style>
 </head>
@@ -29,7 +32,7 @@ div.bottom {
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<div class="content">
-		<div class="top">
+		<div class="top mt-3">
 			<div class="buttons" id="buttons">
 				<button type="button" id="together_btn" class="carrot_btn">같이해요</button>
 				<button type="button" id="hometown_btn" class="carrot_btn">우리동네질문</button>
@@ -52,18 +55,20 @@ div.bottom {
 			</div>
 		</div>
 		<div>
-			<table class="table">
+			<table class="table mt-3">
 				<thead>
 					<tr>
+						<th scope="col">NO</th>
 						<th scope="col">카테고리</th>
-						<th scope="col">제목</th>
-						<th scope="col">닉네임</th>
+						<th scope="col">내용</th>
+						<th scope="col">ID</th>
 						<th scope="col">동네</th>
 						<th scope="col">올라온시간</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
+						<td>NO</td>
 						<td>카테고리</td>
 						<td>제목</td>
 						<td>닉네임</td>
@@ -71,6 +76,7 @@ div.bottom {
 						<td>올라온시간</td>
 					</tr>
 					<tr>
+						<td>NO</td>
 						<td>카테고리</td>
 						<td>제목</td>
 						<td>닉네임</td>
@@ -78,6 +84,7 @@ div.bottom {
 						<td>올라온시간</td>
 					</tr>
 					<tr>
+						<td>NO</td>
 						<td>카테고리</td>
 						<td>제목</td>
 						<td>닉네임</td>
@@ -91,8 +98,8 @@ div.bottom {
 			<button type="button" id="wrtie_btn" class="carrot_btn">글쓰기</button>
 		</div>
 	</div>
-	
+
 	<!-- footer -->
-	<jsp:include page = "../footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
