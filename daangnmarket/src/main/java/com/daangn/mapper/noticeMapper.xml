@@ -7,10 +7,19 @@
  <mapper namespace="mapper.notice">
  	<!--  공지사항 글 작성  -->
  	<insert id="insert" parameterType="com.spring.vo.NoticeVO">
- 		
-  	    
   	    INSERT INTO DAANGN_NOTICE(BNO, TITLE, CONTENT)
   	    VALUES (DAANGN_NOTICE_SEQ.NEXTVAL, '${title}', '${content}')
  	</insert>
- 
+ 	
+ 	
+ 	<!-- 전체리스트 -->
+	<select id="list" resultType="com.spring.vo.NoticeVO" parameterType="com.spring.vo.NoticeVO">
+	SELECT BNO,
+		   TITLE,
+           CONTENT,    
+           NDATE
+		   FROM DAANGN_NOTICE
+		   ORDER BY BNO DESC
+	</select>
+	 
  </mapper>

@@ -32,11 +32,13 @@
 	<beans:bean id="MypageDAO" class="com.spring.dao.MypageDAO"></beans:bean>
 	<beans:bean id="MemberDAO" class="com.spring.dao.MemberDAO"></beans:bean>
 	<beans:bean id="ProductDAO" class="com.spring.dao.ProductDAO"></beans:bean>
+	<beans:bean id="NoticeDAO" class="com.spring.dao.NoticeDAO"></beans:bean>
 	
 	<!-- Service Object -->
 	<beans:bean id="MypageService" class="com.spring.service.MypageServiceImpl"></beans:bean>
 	<beans:bean id="memberService" class="com.spring.service.MemberServiceImpl"></beans:bean>
 	<beans:bean id="ProductService" class="com.spring.service.ProductServiceimpl"></beans:bean>
+	<beans:bean id="NoticeService" class="com.spring.service.NoticeServiceImpl"></beans:bean>
 	
 	<!-- 상품 사진 올리기 프로세스 -->
 	<!-- multipartResolver -->
