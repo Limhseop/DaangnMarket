@@ -20,5 +20,6 @@ public interface ProductService {
 	boolean getInsertResult(ProductVO vo);
 	/* void getFileInsert(ProductVO vo); */
 	String getUserName(String id);
+	String getLocation(String id);
 
 }

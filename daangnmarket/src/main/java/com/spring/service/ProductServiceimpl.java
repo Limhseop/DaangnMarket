@@ -66,6 +66,10 @@ public class ProductServiceimpl implements ProductService{
 	public String getUserName(String id) {
 		return productDAO.getUserName(id);
 	}
+	@Override
+	public String getLocation(String id) {
+		return productDAO.getLocation(id);
+	}
 	
 	
 	

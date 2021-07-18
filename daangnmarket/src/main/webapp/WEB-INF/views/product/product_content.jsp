@@ -29,6 +29,7 @@ $(document).on('click', '#btn_price',function(){
 });
 
 $(document).ready(function(){
+	
 	$("#report").click(function(){
 		alert("신고가 접수되었습니다.");
 	});

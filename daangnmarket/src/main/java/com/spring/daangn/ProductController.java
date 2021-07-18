@@ -179,8 +179,18 @@ public class ProductController {
 	 *  product_register >>>  상품 등록
 	 */
 	@RequestMapping(value = "/product_register.do", method = RequestMethod.GET)
-	public String product_register(){
-		return "product/product_register";
+	public ModelAndView product_register(String id){
+		
+		//주소 정보 가져올 수 있도록 처리
+		ModelAndView mv = new ModelAndView();
+		
+		String location = productService.getLocation(id);
+		
+		mv.setViewName("product/product_register");
+		mv.addObject("location", location);
+		
+		return mv;
+		
 	}
 	
 	/***

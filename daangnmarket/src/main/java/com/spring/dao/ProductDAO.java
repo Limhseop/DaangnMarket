@@ -18,6 +18,11 @@ public class ProductDAO {
 	private SqlSessionTemplate sqlSession;
 	private static String namespace = "mapper.product";
 	
+	//select : 유저 위치 알아오기
+	public String getLocation(String id) {
+		return sqlSession.selectOne(namespace+".location", id);
+	}
+	
 	//select : 유저 이름 알아오기
 	public String getUserName(String id) {
 		return sqlSession.selectOne(namespace+".username", id);
@@ -120,6 +125,8 @@ public class ProductDAO {
 		
 		return result;
 	}
+
+	
 	
 	
 	
