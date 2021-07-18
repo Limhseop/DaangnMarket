@@ -127,12 +127,10 @@
 	<insert id = "insert" parameterType = "com.spring.vo.ProductVO">
 		<choose>   
 			<when test = "pfile != null">
-				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval,  #{ptitle}, #{pcontent}, 
-					#{category}, #{price}, #{pchoice}, sysdate, ${location}, #{id}, 0, 0, 0, 0, 'N', #{pfile}, #{psfile})
+				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, #{category}, #{price}, #{pchoice}, sysdate, #{location}, #{id}, 0, 0, 0, 0, 'N', #{pfile}, #{psfile})
 			</when>
 			<otherwise>
-				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, 
-					#{category}, #{price}, #{pchoice}, sysdate, ${location}, #{id}, 0, 0, 0, 0, 'N', null, null)
+				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, #{category}, #{price}, #{pchoice}, sysdate, #{location}, #{id}, 0, 0, 0, 0, 'N', null, null)
 			</otherwise>		
 		</choose>	
 	</insert>

@@ -23,6 +23,40 @@ public class ProductController {
 	private ProductService productService;
 	
 	/**
+	 * product_search_proc.do >> 검색 
+	 */
+	@RequestMapping(value = "/product_search_proc.do", method = RequestMethod.GET)
+	public ModelAndView product_search_proc(String category, String search) {
+		ModelAndView mv = new ModelAndView();
+		
+		if(category.equals("choice")&& search.equals("")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("category", "all");
+			mv.addObject("search", "total");
+		}else if(category.equals("choice")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("category", "all");
+			mv.addObject("search", search);
+		}else if(category.equals("state")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("categoroy", category);
+			mv.addObject("search", search);
+		}else if(category.equals("product")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("categoroy", category);
+			mv.addObject("search", search);
+		}else {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("category", "all");
+			mv.addObject("search", "total");
+		}
+		
+			
+		return mv;
+	}
+	
+	
+	/**
 	 * product_userpage >>유저 페이지 확인하기  
 	 */
 	@RequestMapping(value = "/product_userpage.do", method = RequestMethod.GET)
@@ -158,6 +192,9 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		
 		String root_path = "", attach_path = "";
+		
+		System.out.println("pchoice>>>>>>" + vo.getPchoice());
+		System.out.println("location>>>>>>" + vo.getLocation());
 		
 		if(vo.getPfile1().getSize() != 0) {
 			//1.파일저장 위치

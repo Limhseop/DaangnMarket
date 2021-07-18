@@ -19,14 +19,10 @@
 	<div class="section">
 		<div class="section1">
 			<div class="userImage"><img src="profileimage/${vo.imagepath }" onerror="this.src='profileimage/logo.png'" class="profileImage" >
-			<form id="uploadForm" name="formData" action="profileImageChange.do" enctype="multipart/form-data" method="post">
-				<input type="file" id="profileImage" name="file" style="display:none">
-			</form>
 			</div>
-			<label class="profileImageChange" for="profileImage">프로필 이미지 변경</label>
 			<div class="userProfile">
 				<br><br>
-				<strong class="userName">${vo.name}</strong><button type="button" value="회원정보변경" class="memberUpdate" data-toggle="modal" data-target="#myModal">회원정보변경</button><br><br>
+				<strong class="userName">${vo.name}</strong><br><br>
 				<span class="joinDate">상점오픈일    </span><span>${vo.joindate}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<span class="sale">상품판매    </span><span>  ${vo.sale}회</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<span class="purchase">상품구매    </span><span>  ${vo.purchase}회</span>
@@ -34,7 +30,6 @@
 			<div class="intro">
 				<textarea rows="6" cols="50" class="introTextArea" id="introduce" disabled>${vo.introduce}</textarea>
 				<input type="button" value="확인" class="introBtn" id="introBtn" >
-				<input type="button" value="소개글 수정" class="introUpdate" id="introUpdate" >
 			</div>
 		</div>
 		
