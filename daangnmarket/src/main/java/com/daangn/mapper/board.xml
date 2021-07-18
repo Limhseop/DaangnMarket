@@ -17,4 +17,5 @@
 												 from (select category, content, id, town, wdate from daangn_board order by no desc);
 						 where rno between #{start} and #{end}
 	</select>
+	
 </mapper>

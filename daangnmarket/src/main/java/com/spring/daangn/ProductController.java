@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.ProductService;
+import com.spring.vo.MemberVO;
 import com.spring.vo.ProductVO;
 
 @Controller
@@ -21,8 +22,23 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	/**
+	 * product_userpage >>유저 페이지 확인하기  
+	 */
+	@RequestMapping(value = "/product_userpage.do", method = RequestMethod.GET)
+	public ModelAndView product_userpage(String id) {
+		ModelAndView mv = new ModelAndView();
+		
+		MemberVO vo = productService.getMember(id);
+		
+		mv.setViewName("product/product_userpage");
+		mv.addObject("vo",vo);
+		
+		return mv;
+	}
+	
 	/***
-	 *  product_more >>> 더 많은 상품 보기  (마이페이지로 이동하도록 설정)
+	 *  product_more >>> 더 많은 상품 보기 
 	 */
 	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
 	public ModelAndView product_more(String id, String pid, String rno){
@@ -189,6 +205,8 @@ public class ProductController {
 		mv.setViewName("product/product_register");
 		mv.addObject("location", location);
 		
+		System.out.println(location);
+		
 		return mv;
 		
 	}
@@ -269,6 +287,7 @@ public class ProductController {
 		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
 		mv.addObject("name", name);
+		mv.addObject("id", id);
 		
 		return mv;
 	}

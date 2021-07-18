@@ -2,6 +2,7 @@ package com.spring.service;
 
 import java.util.ArrayList;
 
+import com.spring.vo.MemberVO;
 import com.spring.vo.ProductVO;
 
 public interface ProductService {
@@ -21,5 +22,7 @@ public interface ProductService {
 	/* void getFileInsert(ProductVO vo); */
 	String getUserName(String id);
 	String getLocation(String id);
+	//회원 정보 가져오기
+	MemberVO getMember(String id);
 
 }
