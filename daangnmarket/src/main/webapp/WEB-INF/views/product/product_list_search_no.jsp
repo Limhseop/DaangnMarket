@@ -30,15 +30,13 @@ $(document).ready(function(){
 			<!-- 검색 section -->
 			<section class = "content_search">
 				<!-- 내 근처 위치를 잡아서 필터링/DB에 저장된 주소에 따라 필터링/체크박스에 따라 필터링  -->
-				<form name = "search" action = "product_search_proc.do" method = "get">
-					<select class = "pro_select">
-						<option value = "choice">선택</option>
-						<option value = "state">지역</option>
-						<option value = "product">물품</option>
-					</select>
-					<input type = "text" class = "search" placeholder = "동네이름, 물품명 등을 검색해보세요!" id = "search">
-					<button type = "button" class = "carrot_btn">검색</button>
-				</form>
+				<select class = "pro_select">
+					<option value = "choice">선택</option>
+					<option value = "state">지역</option>
+					<option value = "product">물품</option>
+				</select>
+				<input type = "text" class = "search" placeholder = "동네이름, 물품명 등을 검색해보세요!" id = "search">
+				<button type = "button" class = "carrot_btn">검색</button>
 				<a href = "http://localhost:9000/daangn/product_register.do?id=${sessionScope.svo.id}"><button type = "button" class = "btn_confrim">중고거래 올리기</button></a>
 				<div class = "message">
 					<span>경기도 시흥시 근처를 검색하고 있어요!</span><!-- 검색하면 검색한 지역명 보이도록 -->

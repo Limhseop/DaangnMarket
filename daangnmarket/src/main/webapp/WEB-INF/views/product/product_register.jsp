@@ -28,15 +28,16 @@
 				$(this).attr("id","filter_onclick");
 				$(this).removeClass("btn_confrim");
 				$(this).addClass("btn_cancle");
-				
+				$("input#pchoice").val("Y");
 				alert($("#pchoice").val());
 				
 			}else if(id == "filter_onclick"){
 				$(this).attr("id","filter");
 				$(this).removeClass("btn_cancle");
 				$(this).addClass("btn_confrim");
-				
+				$("input#pchoice").val("N");
 				alert($("#pchoice").val());
+				
 			}	
 		
 		});
@@ -113,7 +114,7 @@
 					<li>
 						<input type = "number" placeholder = "가격(필수사항)" id = "price" name = "price">
 						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
-						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
+						<input type = "hidden" id = "pchoice" name = "pchoice" value = "N">
 					</li>
 					<li>
 						<div class = "pic_icon" id = "picture">
@@ -123,7 +124,6 @@
 							<span class = "pic_count">0/3</span>
 							<!-- 사진업로드 -->
 							<input type = "file" id="input_file" name = "pfile1" style = "display:none;">
-<!-- 						<input type = "file" id="input_file" name = "file" multiple="multiple" style = "display:none;"> -->
 						</div>
 					</li>
 					<li>	
@@ -135,8 +135,8 @@
 						</div>
 					</li>
 					<li>
-						<span id = "location" value = "${location}">${location} ▽ </span>
-<%-- 						<span id = "location">${location} 근처 동네 49개 ▽</span> --%>
+						<span> ${location} ▽ </span>
+						<input type = "hidden" id = "location" name = "location" value = "${location}">
 					</li>
 					<li>
 						<a href = "http://localhost:9000/daangn/product.do"><button type = "button" class = "btn_cancle">닫기</button></a>
