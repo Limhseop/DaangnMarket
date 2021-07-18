@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.dao.ProductDAO;
+import com.spring.vo.MemberVO;
 import com.spring.vo.ProductVO;
 
 @Service("productService")
@@ -65,6 +66,14 @@ public class ProductServiceimpl implements ProductService{
 	@Override
 	public String getUserName(String id) {
 		return productDAO.getUserName(id);
+	}
+	@Override
+	public String getLocation(String id) {
+		return productDAO.getLocation(id);
+	}
+	@Override
+	public MemberVO getMember(String id) {
+		return productDAO.getMember(id);
 	}
 	
 	

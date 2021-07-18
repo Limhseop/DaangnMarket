@@ -60,7 +60,7 @@
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		<interceptor>
-			<mapping path="/product/product_register*" />
+			<mapping path="/product_register.do" />
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	

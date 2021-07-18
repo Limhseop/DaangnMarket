@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,31 +29,31 @@
 				$(this).removeClass("btn_confrim");
 				$(this).addClass("btn_cancle");
 				
-				$("#pchoice").val = 1;
+				alert($("#pchoice").val());
 				
 			}else if(id == "filter_onclick"){
 				$(this).attr("id","filter");
 				$(this).removeClass("btn_cancle");
 				$(this).addClass("btn_confrim");
 				
-				$("#pchoice").val = 0;
+				alert($("#pchoice").val());
 			}	
 		
 		});
 		
 		
 		$("#confrim").click(function(){
-			if($("#title").val() == ""){
+			if($("#ptitle").val() == ""){
 				alert("제목을 입력해주세요");
-				$("#title").focus();
+				$("#ptitle").focus();
 				return false;
 			}else if($("#category").val() == "choice"){
 				alert("카테고리를 선택해주세요");
 				$("#category").focus();
 				return false;
-			}else if($("#content").val() == ""){
+			}else if($("#pcontent").val() == ""){
 				alert("내용을 입력해주세요");
-				$("#content").focus();
+				$("#pcontent").focus();
 				return false;
 		 	}else if($("#price").val() == ""){
 				alert("가격을 입력해주세요");
@@ -134,7 +135,8 @@
 						</div>
 					</li>
 					<li>
-						<span id = "location">정왕4동과 근처 동네 49개 ▽</span>
+						<span id = "location" value = "${location}">${location} ▽ </span>
+<%-- 						<span id = "location">${location} 근처 동네 49개 ▽</span> --%>
 					</li>
 					<li>
 						<a href = "http://localhost:9000/daangn/product.do"><button type = "button" class = "btn_cancle">닫기</button></a>

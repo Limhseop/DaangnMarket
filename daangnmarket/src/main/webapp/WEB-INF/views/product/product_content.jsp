@@ -29,6 +29,7 @@ $(document).on('click', '#btn_price',function(){
 });
 
 $(document).ready(function(){
+	
 	$("#report").click(function(){
 		alert("신고가 접수되었습니다.");
 	});
@@ -120,7 +121,7 @@ $(document).ready(function(){
 			<div class = profile>
 				<img src = "http://localhost:9000/daangn/pro_img/profile_icon.png">
 				<div>
-					<a href = "#"><span>${name}</span></a>
+					<a href = "http://localhost:9000/daangn/product_userpage.do?id=${id}"><span>${name}</span></a>
 					<span>${vo.location}</span>
 				</div>
 				<!-- 매너온도 표시 : 클릭시 해당 회원정보 페이지로 이동 -->

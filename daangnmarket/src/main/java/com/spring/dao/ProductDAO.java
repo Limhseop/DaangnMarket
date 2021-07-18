@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.vo.MemberVO;
 import com.spring.vo.ProductVO;
 
 @Repository
@@ -17,6 +18,17 @@ public class ProductDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	private static String namespace = "mapper.product";
+	
+	//select: 유저 정보 가져오기
+	public MemberVO getMember(String id) {
+		return sqlSession.selectOne(namespace+".member", id);
+	}
+	
+	
+	//select : 유저 위치 알아오기
+	public String getLocation(String id) {
+		return sqlSession.selectOne(namespace+".location", id);
+	}
 	
 	//select : 유저 이름 알아오기
 	public String getUserName(String id) {
@@ -120,6 +132,8 @@ public class ProductDAO {
 		
 		return result;
 	}
+
+	
 	
 	
 	

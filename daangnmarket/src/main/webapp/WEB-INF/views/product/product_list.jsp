@@ -32,7 +32,7 @@
 					<span>물품을 검색하시고 우리동네에서 거래하세요</span>
 				</div>
 				<div class = "pro_button">
-					<a href = "http://localhost:9000/daangn/product_register.do"><button type = "button" class = "btn_confrim">중고거래 올리기</button></a>
+					<a href = "http://localhost:9000/daangn/product_register.do?id=${sessionScope.svo.id}"><button type = "button" class = "btn_confrim">중고거래 올리기</button></a>
 				</div>
 			</section>
 		</section>
