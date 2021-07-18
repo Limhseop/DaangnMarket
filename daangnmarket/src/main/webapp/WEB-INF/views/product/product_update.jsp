@@ -124,7 +124,8 @@
 						</div>
 					</li>
 					<li>
-						<span>정왕4동과 근처 동네 49개 ▽</span>
+						<span>${vo.location } ▽</span>
+<!-- 						<span>정왕4동과 근처 동네 49개 ▽</span> -->
 					</li>
 					<li>
 						<a href = "http://localhost:9000/daangn/product.do"><button type = "button" class = "btn_cancle">닫기</button></a>

@@ -37,7 +37,7 @@ $(document).ready(function(){
 				</select>
 				<input type = "text" class = "search" placeholder = "동네이름, 물품명 등을 검색해보세요!" id = "search">
 				<button type = "button" class = "carrot_btn">검색</button>
-				<a href = "http://localhost:9000/daangn/product_register.do"><button type = "button" class = "btn_confrim">중고거래 올리기</button></a>
+				<a href = "http://localhost:9000/daangn/product_register.do?id=${sessionScope.svo.id}"><button type = "button" class = "btn_confrim">중고거래 올리기</button></a>
 				<div class = "message">
 					<span>경기도 시흥시 근처를 검색하고 있어요!</span><!-- 검색하면 검색한 지역명 보이도록 -->
 					<span>다른 동네를 찾으셨나요?</span>
