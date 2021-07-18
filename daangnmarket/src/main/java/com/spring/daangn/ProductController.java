@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.ProductService;
+import com.spring.vo.MemberVO;
 import com.spring.vo.ProductVO;
 
 @Controller
@@ -21,8 +22,57 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	/**
+	 * product_search_proc.do >> 검색 
+	 */
+	@RequestMapping(value = "/product_search_proc.do", method = RequestMethod.GET)
+	public ModelAndView product_search_proc(String category, String search) {
+		ModelAndView mv = new ModelAndView();
+		
+		if(category.equals("choice")&& search.equals("")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("category", "all");
+			mv.addObject("search", "total");
+		}else if(category.equals("choice")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("category", "all");
+			mv.addObject("search", search);
+		}else if(category.equals("state")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("categoroy", category);
+			mv.addObject("search", search);
+		}else if(category.equals("product")) {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("categoroy", category);
+			mv.addObject("search", search);
+		}else {
+			mv.setViewName("product/product_list_search");
+			mv.addObject("category", "all");
+			mv.addObject("search", "total");
+		}
+		
+			
+		return mv;
+	}
+	
+	
+	/**
+	 * product_userpage >>유저 페이지 확인하기  
+	 */
+	@RequestMapping(value = "/product_userpage.do", method = RequestMethod.GET)
+	public ModelAndView product_userpage(String id) {
+		ModelAndView mv = new ModelAndView();
+		
+		MemberVO vo = productService.getMember(id);
+		
+		mv.setViewName("product/product_userpage");
+		mv.addObject("vo",vo);
+		
+		return mv;
+	}
+	
 	/***
-	 *  product_more >>> 더 많은 상품 보기  (마이페이지로 이동하도록 설정)
+	 *  product_more >>> 더 많은 상품 보기 
 	 */
 	@RequestMapping(value = "/product_more.do", method = RequestMethod.GET)
 	public ModelAndView product_more(String id, String pid, String rno){
@@ -143,6 +193,9 @@ public class ProductController {
 		
 		String root_path = "", attach_path = "";
 		
+		System.out.println("pchoice>>>>>>" + vo.getPchoice());
+		System.out.println("location>>>>>>" + vo.getLocation());
+		
 		if(vo.getPfile1().getSize() != 0) {
 			//1.파일저장 위치
 			root_path = request.getSession().getServletContext().getRealPath("/");
@@ -179,8 +232,20 @@ public class ProductController {
 	 *  product_register >>>  상품 등록
 	 */
 	@RequestMapping(value = "/product_register.do", method = RequestMethod.GET)
-	public String product_register(){
-		return "product/product_register";
+	public ModelAndView product_register(String id){
+		
+		//주소 정보 가져올 수 있도록 처리
+		ModelAndView mv = new ModelAndView();
+		
+		String location = productService.getLocation(id);
+		
+		mv.setViewName("product/product_register");
+		mv.addObject("location", location);
+		
+		System.out.println(location);
+		
+		return mv;
+		
 	}
 	
 	/***
@@ -259,6 +324,7 @@ public class ProductController {
 		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
 		mv.addObject("name", name);
+		mv.addObject("id", id);
 		
 		return mv;
 	}

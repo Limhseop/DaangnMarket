@@ -3,10 +3,17 @@ package com.spring.vo;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class ProductVO {
-	int rno, phit, chat, favorite, report, price, pchoice;
-	String pid, ptitle, category, pcontent, pdate, pfile, psfile, location, id, saled;
+	int rno, phit, chat, favorite, report, price;
+	String pid, ptitle, category, pcontent, pdate, pfile, psfile, location, id, saled, pchoice;
 	CommonsMultipartFile pfile1;
 	
+	
+	public String getPchoice() {
+		return pchoice;
+	}
+	public void setPchoice(String pchoice) {
+		this.pchoice = pchoice;
+	}
 	public int getRno() {
 		return rno;
 	}
@@ -42,12 +49,6 @@ public class ProductVO {
 	}
 	public void setPrice(int price) {
 		this.price = price;
-	}
-	public int getPchoice() {
-		return pchoice;
-	}
-	public void setPchoice(int pchoice) {
-		this.pchoice = pchoice;
 	}
 	public String getPid() {
 		return pid;

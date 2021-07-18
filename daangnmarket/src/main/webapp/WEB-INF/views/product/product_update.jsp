@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,19 +19,23 @@
 	});
 	$(document).ready(function(){
 		
-		$("button[name=priceFilter]").click(function(){
+		$("button[name=pricebutton]").click(function(){
 			var id = $(this).attr("id");
 			
 			if(id == "filter"){	
 				$(this).attr("id","filter_onclick");
 				$(this).removeClass("btn_confrim");
 				$(this).addClass("btn_cancle");
+				$("#pchoice").val("Y");
 				
 			}else if(id == "filter_onclick"){
-				$(this).attr("id","filter")
+				$(this).attr("id","filter");
 				$(this).removeClass("btn_cancle");
 				$(this).addClass("btn_confrim");
+				$("#pchoice").val("N");
+				
 			}	
+		
 		});
 		
 		$("#confrim").click(function(){
@@ -104,8 +109,16 @@
 					</li>
 					<li>
 						<input type = "number" placeholder = "가격(필수사항)" id = "price" name = "price" value = "${vo.price}">
-						<button type = "button" class = "btn_cancle" id = "btn_price">가격제안 받기</button>
-						<input type = "hidden" id = "pchoice" name = "pchoice" value = 0>
+						<c:choose>
+							<c:when test = "${vo.pchoice eq 'N'}">
+								<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
+								<input type = "hidden" id = "pchoice" name = "pchoice" value = ${vo.pchoice }>
+							</c:when>
+							<c:otherwise>
+								<button type = "button" class = "btn_cancle" id = "filter_onclick" name = "pricebutton">가격제안 받기</button>
+								<input type = "hidden" id = "pchoice" name = "pchoice" value = ${vo.pchoice }>
+							</c:otherwise>
+						</c:choose>	
 					</li>
 					<li>
 						<div class = "pic_icon">
@@ -124,7 +137,8 @@
 						</div>
 					</li>
 					<li>
-						<span>정왕4동과 근처 동네 49개 ▽</span>
+						<span> ${location} ▽ </span>
+						<input type = "hidden" id = "location" name = "location" value = "${location}">
 					</li>
 					<li>
 						<a href = "http://localhost:9000/daangn/product.do"><button type = "button" class = "btn_cancle">닫기</button></a>

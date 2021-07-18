@@ -5,6 +5,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace = "mapper.product">
+	<!-- member -->
+	<select id = "member" parameterType = "java.lang.String" resultType = "com.spring.vo.MemberVO">
+		select id,name,email,phone,addr,introduce,to_char(joindate,'yyyy-mm-dd')joindate,sale,purchase,imagepath from daangn_member where id=#{id}
+	</select>
+
+	<!-- location -->
+	<select id = "location"  parameterType = "java.lang.String" resultType = "java.lang.String">
+		SELECT ADDR FROM DAANGN_MEMBER WHERE ID = #{id}
+	</select>
+	
 	<!-- username -->
 	<select id = "username"  parameterType = "java.lang.String" resultType = "java.lang.String">
 		SELECT NAME FROM DAANGN_MEMBER WHERE ID = #{id}
@@ -117,23 +127,12 @@
 	<insert id = "insert" parameterType = "com.spring.vo.ProductVO">
 		<choose>   
 			<when test = "pfile != null">
-				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval,  #{ptitle}, #{pcontent}, 
-					#{category}, #{price}, 0, sysdate, '경기도', #{id}, 0, 0, 0, 0, 'N', #{pfile}, #{psfile})
+				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, #{category}, #{price}, #{pchoice}, sysdate, #{location}, #{id}, 0, 0, 0, 0, 'N', #{pfile}, #{psfile})
 			</when>
 			<otherwise>
-				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, 
-					#{category}, #{price}, 0, sysdate, '경기도', #{id}, 0, 0, 0, 0, 'N', null, null)
+				insert into product_board values('p_'||SEQ_PRODUCT_PID.nextval, #{ptitle}, #{pcontent}, #{category}, #{price}, #{pchoice}, sysdate, #{location}, #{id}, 0, 0, 0, 0, 'N', null, null)
 			</otherwise>		
 		</choose>	
 	</insert>
-	
-	<!-- insertfile -->
-	<!-- <insert id = "insertfile" parameterType = "com.spring.vo.ProductVO">
-		<choose>   
-			<when test = "pfile != null">
-				insert into product_file values('p_'||SEQ_PRODUCT_PID.nextval, #{pfile}, #{psfile})
-			</when>
-		</choose>	
-	</insert> -->
 	
 </mapper>

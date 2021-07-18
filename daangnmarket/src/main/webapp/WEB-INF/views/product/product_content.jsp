@@ -29,6 +29,7 @@ $(document).on('click', '#btn_price',function(){
 });
 
 $(document).ready(function(){
+	
 	$("#report").click(function(){
 		alert("신고가 접수되었습니다.");
 	});
@@ -43,14 +44,10 @@ $(document).ready(function(){
 			$(this).removeClass("heartbutton");
 			$(this).addClass("heartbutton_onclick");
 			
-			$("#pchoice").val = 1;
-			
 		}else if(id == "heart_onclick"){
 			$(this).attr("id","heart");
 			$(this).removeClass("heartbutton_onclick");
 			$(this).addClass("heartbutton");
-			
-			$("#pchoice").val = 0;
 		}	
 	
 	});
@@ -120,7 +117,7 @@ $(document).ready(function(){
 			<div class = profile>
 				<img src = "http://localhost:9000/daangn/pro_img/profile_icon.png">
 				<div>
-					<a href = "#"><span>${name}</span></a>
+					<a href = "http://localhost:9000/daangn/product_userpage.do?id=${id}"><span>${name}</span></a>
 					<span>${vo.location}</span>
 				</div>
 				<!-- 매너온도 표시 : 클릭시 해당 회원정보 페이지로 이동 -->
@@ -139,7 +136,7 @@ $(document).ready(function(){
 				<h3>${vo.price }원</h3>
 				<!-- 가격제안 가능시 선택 가능한 버튼으로 (클릭시 메시지 전달)-->
 				<c:choose>
-					<c:when test = "${vo.pchoice == 0}">
+					<c:when test = "${vo.pchoice eq 'N'}">
 						<button type = "button" class = "btn_no" disabled>가격제안 불가</button>
 					</c:when>
 					<c:otherwise>
