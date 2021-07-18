@@ -109,15 +109,21 @@ public class LoginJoinController {
 	    params.put("app_version", "test app 1.2"); // application name and version
 	    JSONObject obj = new JSONObject();
 	    
+	    /*	//휴대폰 인증 잠시 막아뒀습니다!
 	    try {
 	    	obj = (JSONObject) coolsms.send(params);
 	    	result="success";
-	    	//System.out.println(num);
 	    
 	    } catch (CoolsmsException e) {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
+	    */
+	    
+	    /*휴대폰 인증 막았을 때 오픈하는 코드*/
+	    
+	    result="success";
+	    System.out.println(num);
 	     
 	    
 	    obj.put("result", result);

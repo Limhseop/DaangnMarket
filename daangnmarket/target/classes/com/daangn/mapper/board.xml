@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+	<!-- 전체 로우수 -->
+	<select id="count" resultType="int">
+		select count(*) from danngn_board
+	</select>
+	
+	<!-- 전체리스트 -->
+	<select id="list" parameterType="map" resultType="com.spring.vo.BoardVO">
+		select category, content, id, town, wdate
+						 from ( select rownum rno, category, content, id, town, to_char(wdate, 'yyyy-mm-dd hh:mi:ss') wdate 
+												 from (select category, content, id, town, wdate from daangn_board order by no desc);
+						 where rno between #{start} and #{end}
+	</select>
+	
+</mapper>
