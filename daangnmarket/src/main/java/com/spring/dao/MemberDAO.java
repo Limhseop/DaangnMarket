@@ -63,4 +63,9 @@ public class MemberDAO extends DBConn {
 		return result;
 	}
 	
+	public String findIdCheck(MemberVO vo) {
+		String sessionresult = sqlSession.selectOne(namespace+".findidcheck", vo);
+		if(sessionresult==null) sessionresult="";
+		return sessionresult;
+	}
 }

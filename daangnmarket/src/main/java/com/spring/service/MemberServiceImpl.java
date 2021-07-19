@@ -22,4 +22,7 @@ public class MemberServiceImpl implements MemberService{
 	public boolean join_proc(MemberVO vo) {
 		return dao.join_proc(vo);
 	}
+	public String findIdCheck(MemberVO vo) {
+		return dao.findIdCheck(vo);
+	}
 }

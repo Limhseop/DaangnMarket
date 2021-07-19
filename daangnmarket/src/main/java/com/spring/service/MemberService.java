@@ -7,4 +7,5 @@ public interface MemberService {
 	SessionVO loginCheck(String id, String pass);
 	boolean idCheck(String id);
 	boolean join_proc(MemberVO vo);
+	String findIdCheck(MemberVO vo);
 }

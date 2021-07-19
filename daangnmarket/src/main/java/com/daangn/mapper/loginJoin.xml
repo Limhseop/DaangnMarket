@@ -32,4 +32,8 @@
 		</choose>
 	</insert>
 	
+	<!-- 아이디 찾기 -->
+	<select id="findidcheck" parameterType = "com.spring.vo.MemberVO" resultType="java.lang.String">
+		select id from daangn_member where phone=#{phone}
+	</select>
 </mapper>

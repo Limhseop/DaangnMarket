@@ -132,7 +132,7 @@
     	
     	$("#name").blur(function(){	//이름 체크
     		if($("#name").val()==""){
-    			$("#name_check").text("이름을 입력해주세요.");
+    			$("#name_check").text("당근마켓에서 사용할 이름을 입력해주세요.");
     		}else{
     			$("#name_check").text("");
     		}

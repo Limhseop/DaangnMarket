@@ -20,7 +20,6 @@ import com.spring.vo.MemberVO;
 import com.spring.vo.SessionVO;
 
 import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 public class LoginJoinController {
@@ -124,7 +123,7 @@ public class LoginJoinController {
 	    
 	    result="success";
 	    System.out.println(num);
-	     
+	    /* 여기까지*/
 	    
 	    obj.put("result", result);
 	    obj.put("number", num);
@@ -175,9 +174,20 @@ public class LoginJoinController {
 	}
 	
 	//아이디 찾기 결과
-	@RequestMapping(value="/findIdResult.do", method=RequestMethod.GET)
-	public String findIdResult() {
-		return "loginJoin/findIdResult";
+	@RequestMapping(value="/findIdResult.do", method=RequestMethod.POST)
+	public ModelAndView findIdResult(MemberVO vo) {
+		ModelAndView mv = new ModelAndView();
+		String url="";
+		String result = memberService.findIdCheck(vo);
+		if(result.equals("")) {
+			url="loginJoin/findId";
+			mv.addObject("result","fail");
+		}else {
+			url="loginJoin/findIdResult";
+			mv.addObject("id",result);
+		}
+		mv.setViewName(url);
+		return mv;
 	}
 	
 	//비밀번호 찾기 결과
