@@ -253,20 +253,20 @@ section.findIdPass form.form_findPass div.inputs button.carrot_btn{
 	display: inline-block;
 	height: 40px;
 }
-/*
-section.findIdPass span{
+
+section.findIdPass form.form_findPass span{
 	font-size: 12px;
 	color: blue;
 }
-*/
-section.findIdPass div.certify input.input_short{
-	margin-top: 20px;
-}
+
 section.findIdPass div.certify{
 	display: none;
 }
+section.findIdPass div.certify input.input_short{
+	margin-top: 20px;
+}
 section.findIdPass div.certify span.certify_result{
-	color: blue;
+	color: red;
 }
 section.findIdPass div.button button.btn_submit{
 	cursor: default;

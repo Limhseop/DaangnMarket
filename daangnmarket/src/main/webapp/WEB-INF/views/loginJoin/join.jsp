@@ -156,6 +156,7 @@
     				$("#certify_check").css({"color":"blue"});
     				$("#certify_check").text("인증 완료");
     				$("#phone_keynum").prop("disabled",true);
+    				$("#certify_phone").prop("disabled",true);
     				phoneCertifyCheck = 1;
     			}
     		}

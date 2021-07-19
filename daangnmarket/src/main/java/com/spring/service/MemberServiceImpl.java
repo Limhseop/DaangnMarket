@@ -25,4 +25,13 @@ public class MemberServiceImpl implements MemberService{
 	public String findIdCheck(MemberVO vo) {
 		return dao.findIdCheck(vo);
 	}
+	public boolean findPassCheck(MemberVO vo) {
+		return dao.findPassCheck(vo);
+	}
+	public boolean phone_num_ajax(MemberVO vo) {
+		return dao.phone_num_ajax(vo);
+	}
+	public boolean setNewPass(MemberVO vo) {
+		return dao.setNewPass(vo);
+	}
 }
