@@ -34,22 +34,26 @@ div.div_check{
 	font-size: 12px;
 	color: red;
 	text-align: left;
+}
+form.join_form div.div_check{
 	margin: -11px 0 11px 5px;
 }
+
+
 
 /*로그인*/
 form.login_form{
 	width: 400px;
 	margin: auto;
 }
-form.login_form button.carrot_btn{
-	width: 100%;
-	margin: 0;
-}
 form.login_form div.notice_div{
 	text-align: left;
 	margin-top: -10px;
 	margin-bottom: 10px;
+}
+form.login_form button.carrot_btn{
+	width: 100%;
+	margin: 0;
 }
 form.login_form div.besides{
 	text-align: left;
@@ -213,7 +217,11 @@ section.findIdPass div.button, section.findIdPass div.button_two{
 section.findIdPass div.button button.carrot_btn{
 	width: 150px;
 }
-
+section.findIdPass div.notice_div{
+	text-align: left;
+	margin-top: -20px;
+	margin-bottom: 10px;
+}
 /*아이디 찾기 결과*/
 section.findIdPass div.result{
 	margin: 20px 0;
@@ -245,18 +253,20 @@ section.findIdPass form.form_findPass div.inputs button.carrot_btn{
 	display: inline-block;
 	height: 40px;
 }
-section.findIdPass span{
+
+section.findIdPass form.form_findPass span{
 	font-size: 12px;
 	color: blue;
+}
+
+section.findIdPass div.certify{
+	display: none;
 }
 section.findIdPass div.certify input.input_short{
 	margin-top: 20px;
 }
-section.findIdPass div.certify{
-	display: none;
-}
 section.findIdPass div.certify span.certify_result{
-	color: blue;
+	color: red;
 }
 section.findIdPass div.button button.btn_submit{
 	cursor: default;
