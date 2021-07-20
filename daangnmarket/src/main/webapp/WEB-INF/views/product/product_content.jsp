@@ -28,6 +28,8 @@ $(document).on('click', '#btn_price',function(){
 
 });
 
+
+
 $(document).ready(function(){
 	
 	$("#report").click(function(){
@@ -36,19 +38,46 @@ $(document).ready(function(){
 	
 	
 
-	$("button[name=heartbutton]").click(function(){
+	$("button[name=heart_button]").click(function(){
 		var id = $(this).attr("id");
-		
-		if(id == "heart"){	
-			$(this).attr("id","heart_onclick");
-			$(this).removeClass("heartbutton");
-			$(this).addClass("heartbutton_onclick");
+		if(id == "heart_button"){	
+			$.ajax({
+				url:"likeUpdateProcess.do?pid="+$("#pid").val(),
+				success:function(result){
+					if(result==1){
+						$("#heart_button").attr("src","http://localhost:9000/daangn/pro_img/hearticon_click.PNG");
+						$("#heart_button").attr("id","heart_button_onclick");
+						location.reload();
+					}
+				}
+			});
 			
-		}else if(id == "heart_onclick"){
-			$(this).attr("id","heart");
-			$(this).removeClass("heartbutton_onclick");
-			$(this).addClass("heartbutton");
+		}else if(id == "heart_button_onclick"){
+			$.ajax({
+				url:"likeCancleProcess.do?pid="+$("#pid").val(),
+				success:function(result){
+					if(result==1){
+						$("#heart_button_onclick").attr("id","heart_button");
+						$("#heart_button_onclick").attr("src","http://localhost:9000/daangn/pro_img/hearticon.PNG");
+						location.reload();
+					}
+				}
+			});
+			
 		}	
+	
+	});
+	
+	$("button[name=report_button]").click(function(){
+		$.ajax({
+			url:"ReportUpdate.do?pid="+$("#pid").val(),
+			success:function(result){
+				if(result==1){
+					alert("신고가 완료되었습니다.");
+					location.reload();
+				}
+			}
+		});
 	
 	});
 	
@@ -71,6 +100,7 @@ $(document).ready(function(){
 		<!-- 캐러셀 시작 -->
 		<div class = "carousel">
 		<div id="demo" class="carousel slide" data-ride="carousel">
+		<input type = "hidden" value = "${pid }" id = "pid">
 	
 		  <!-- Indicators -->
 		  <ul class="carousel-indicators">
@@ -146,6 +176,7 @@ $(document).ready(function(){
 				<p>${content}</p>
 				<span>채팅 ${vo.chat} ∙ 관심 ${vo.favorite} ∙ 조회 ${vo.phit}</span>
 				<div class = "update_click">
+					<div>
 					<c:choose>
 						<c:when test = "${sessionScope.svo.id eq vo.id}">
 							<a href = "http://localhost:9000/daangn/product_update.do?pid=${pid}&rno=${rno}">수정하기</a>
@@ -153,14 +184,24 @@ $(document).ready(function(){
 							<a href = "#" id = "report">신고하기</a>
 						</c:when>
 						<c:otherwise>
-							<a href = "#" id = "report">신고하기</a>
+							<a href = "#" id = "report" style = "margin-left:160px;">신고하기</a>
 						</c:otherwise>
 					</c:choose>	
+					</div>
 				</div>
 			</div>
 			<div class = "content_button">
-				<!-- <button class = "heart_button">♡</button> -->
-				<button class = "heart_button">♥</button>
+				<!-- 하트 버튼 -->
+					<a href="#"><img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button"></a>
+				<!-- session체크에 좋아함 정보를 넣어서 해당 회원이 마음에 들어한 게시글이면 표시 -->	
+				<%-- <c:choose>
+					<c:when>
+					<a href="#"><img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button"></a>
+					</c:when>
+					<c:otherwise>
+					<a href="#"><img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button_onclick" id="heart_button_onclick"></a>
+					</c:otherwise>
+				</c:choose> --%>
 				<!-- 팔렸으면 버튼 disabled -->
 				<c:choose>
 					<c:when test = "${vo.saled eq 'N'}">
@@ -203,14 +244,14 @@ $(document).ready(function(){
 		<!-- 중고 추천 section -->
 		<section class = "plist_r">
 			<div class = "content">
-				<div class = "content_t">
+				<div class = "content_t" >
 					<span>당근마켓 인기중고</span>
 					<a href = "http://localhost:9000/daangn/product.do"><span>더 구경하기</span></a>
 				</div>
 				<c:forEach var = "plist" items = "${list}">
 				<c:choose>
 					<c:when test = "${plist.saled eq 'N'}">
-						<ul>
+						<ul style = "float:left;">
 						<c:choose>
 							<c:when test = "${plist.psfile ne null}">
 								<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->

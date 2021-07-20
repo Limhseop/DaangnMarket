@@ -56,6 +56,10 @@ public class ProductServiceimpl implements ProductService{
 		return productDAO.getList(id);
 	}
 	@Override
+	public ArrayList<ProductVO> getList(String category, String search){
+		return productDAO.getList(category, search);
+	}
+	@Override
 	public ArrayList<ProductVO> getMoreList(String id){
 		return productDAO.getList(id);
 	}
@@ -74,6 +78,18 @@ public class ProductServiceimpl implements ProductService{
 	@Override
 	public MemberVO getMember(String id) {
 		return productDAO.getMember(id);
+	}
+	@Override
+	public int getLikeResult(String pid) {
+		return productDAO.getLikeResult(pid);
+	}
+	@Override
+	public int getDislikeResult(String pid) {
+		return productDAO.getLikeResult(pid);
+	}
+	@Override
+	public int getReportResult(String pid) {
+		return productDAO.getReportResult(pid);
 	}
 	
 	

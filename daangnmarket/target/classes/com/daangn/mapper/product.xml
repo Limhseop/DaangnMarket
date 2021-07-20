@@ -5,6 +5,25 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace = "mapper.product">
+	<!-- productsearch -->
+	<select id = "productsearch" parameterType = "map" resultType = "com.spring.vo.ProductVO">
+		SELECT RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE, CATEGORY 
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, FAVORITE, SALED, PRICE, LOCATION, PSFILE, CATEGORY   
+				 FROM (SELECT PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE, CATEGORY FROM PRODUCT_BOARD  
+				 ORDER BY PDATE DESC))  
+		<choose>
+			<when test = "category eq 'choice'">
+				WHERE PTITLE LIKE '%'||#{sname}||'%' OR LOCATION LIKE '%'||#{sname}||'%'
+			</when>
+			<when test = "category eq 'state'">
+				WHERE LOCATION LIKE '%'||#{sname}||'%'
+			</when>
+			<when test = "category eq 'product'">
+				WHERE PTITLE LIKE '%'||#{sname}||'%'
+			</when>
+		</choose>
+	</select>
+
 	<!-- member -->
 	<select id = "member" parameterType = "java.lang.String" resultType = "com.spring.vo.MemberVO">
 		select id,name,email,phone,addr,introduce,to_char(joindate,'yyyy-mm-dd')joindate,sale,purchase,imagepath from daangn_member where id=#{id}
@@ -97,11 +116,32 @@
 					 WHERE PID = #{pid}
 	</update>
 	
+	
+	<!-- updatelike -->
+	<update id = "updatelike" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE + 1  
+					 WHERE PID = #{pid}
+	</update>
+	<!-- updatedislike -->
+	<update id = "updatedislike" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE + 1  
+					 WHERE PID = #{pid}
+	</update>
+	
+	<!-- updatedislike -->
+	<update id = "updatereport" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET REPORT = REPORT + 1  
+					 WHERE PID = #{pid}
+	</update>
+	
 	<!-- updatereport -->
 	<update id = "updateReport" parameterType = "java.lang.String">
 		UPDATE PRODUCT_BOARD SET REPORT = REPORT + 1  
 					 WHERE PID = #{pid}
 	</update>
+	
+	
+	
 	
 	<!-- updatechat -->
 	<update id = "updateChat" parameterType = "java.lang.String">
