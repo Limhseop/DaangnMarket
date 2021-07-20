@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,14 +21,17 @@ import com.spring.vo.MemberVO;
 import com.spring.vo.SessionVO;
 
 import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 public class LoginJoinController {
 	
 	@Autowired
 	private MemberService memberService;
-	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+
+
+		
 	//로그인 화면
 	@RequestMapping(value="/login.do",method=RequestMethod.GET)
 	public String login() {
@@ -121,10 +125,9 @@ public class LoginJoinController {
 	    */
 	    
 	    /*휴대폰 인증 막았을 때 오픈하는 코드*/
-	    
-	    result="success";
-	    System.out.println(num);
-	     
+		    result="success";
+		    System.out.println(num);
+	    /* 여기까지*/
 	    
 	    obj.put("result", result);
 	    obj.put("number", num);
@@ -140,6 +143,8 @@ public class LoginJoinController {
 		vo.setIntroduce("안녕하세요. "+vo.getId()+"입니다.");
 		vo.setImagepath("img_profile_male.png");
 		vo.setAdmin("N");
+		String password = passwordEncoder.encode(vo.getPass());
+		vo.setPass(password);
 		ModelAndView mv = new ModelAndView();
 		boolean result = memberService.join_proc(vo);
 		if(result==true) {
@@ -175,27 +180,87 @@ public class LoginJoinController {
 	}
 	
 	//아이디 찾기 결과
-	@RequestMapping(value="/findIdResult.do", method=RequestMethod.GET)
-	public String findIdResult() {
-		return "loginJoin/findIdResult";
+	@RequestMapping(value="/findIdResult.do", method=RequestMethod.POST)
+	public ModelAndView findIdResult(MemberVO vo) {
+		ModelAndView mv = new ModelAndView();
+		String url="";
+		String result = memberService.findIdCheck(vo);
+		if(result.equals("")) {
+			url="loginJoin/findId";
+			mv.addObject("result","fail");
+		}else {
+			url="loginJoin/findIdResult";
+			mv.addObject("id",result);
+		}
+		mv.setViewName(url);
+		return mv;
+	}
+
+	//비밀번호 찾기 핸드폰 인증 페이지 
+	@RequestMapping(value="/findPassHp.do", method=RequestMethod.POST)
+	public ModelAndView findPassHp(MemberVO vo) {
+		ModelAndView mv = new ModelAndView();
+		String url ="";
+		boolean result = memberService.findPassCheck(vo);
+		if(result==false) {
+			url="loginJoin/findPass";
+			mv.addObject("result","fail");
+		}else {
+			url="loginJoin/findPassHp";
+			mv.addObject("id",vo.getId());
+		}
+		mv.setViewName(url);
+		return mv;
 	}
 	
-	//비밀번호 찾기 결과
-	@RequestMapping(value="/findPassResult.do", method=RequestMethod.GET)
-	public String findPassResult() {
-		return "loginJoin/findPassResult";
+	//입력한 핸드폰 번호가 DB와 일치하는지 ajax
+	@ResponseBody
+	@RequestMapping(value="/phone_num_check_ajax.do", method=RequestMethod.GET)
+	public String phone_num_check_ajax(String id, String phone) {
+		MemberVO vo = new MemberVO();
+		vo.setId(id);
+		vo.setPhone(phone);
+		boolean result = memberService.phone_num_ajax(vo);
+		JSONObject jobj = new JSONObject();
+		if(result==true) {			//번호 일치
+			jobj.put("id", id);
+			jobj.put("phone", phone);
+			jobj.put("result", "success");
+		}else {		//번호 불일치
+			jobj.put("id", id);
+			jobj.put("result", "fail");
+		}
+		
+		Gson gson = new Gson();
+		return gson.toJson(jobj);
 	}
 	
 	//비밀번호 재설정
-	@RequestMapping(value="/changePass.do", method=RequestMethod.GET)
-	public String changePass() {
-		return "loginJoin/changePass";
+	@RequestMapping(value="/changePass.do", method=RequestMethod.POST)
+	public ModelAndView changePass(MemberVO vo) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("loginJoin/changePass");
+		mv.addObject("id",vo.getId());
+		
+		return mv;
 	}
 	
-	//비밀번호 찾기 핸드폰 인증 페이지 
-	@RequestMapping(value="/findPassHp.do", method=RequestMethod.GET)
-	public String findPassHp() {
-		return "loginJoin/findPassHp";
+	//비밀번호 재설정 결과
+	@RequestMapping(value="/findPassResult.do", method=RequestMethod.POST)
+	public ModelAndView findPassResult(MemberVO vo) {
+		ModelAndView mv = new ModelAndView();
+		String password = passwordEncoder.encode(vo.getPass());
+		vo.setPass(password);
+		String url ="";
+		boolean result = memberService.setNewPass(vo);
+		if(result==false) {
+			url="error_page";
+		}else {
+			url="loginJoin/findPassResult";
+		}
+		mv.setViewName(url);
+		return mv;
 	}
+	
 	
 }

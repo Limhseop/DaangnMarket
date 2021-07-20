@@ -6,6 +6,11 @@
     
 <mapper namespace="mapper.loginjoin">
 
+	<!-- 로그인 체크 - 암호화된 비밀번호 가져오기 -->
+	<select id="loginGetPass" parameterType="java.lang.String" resultType="java.lang.String">
+		select pass from daangn_member where id=#{id}
+	</select>
+	
 	<!-- 로그인 체크 -->
 	<select id="login" parameterType="map" resultType="com.spring.vo.SessionVO">
 		select count(*) result, id, name from daangn_member where id=#{id} and pass=#{pass} group by id, name
@@ -31,5 +36,25 @@
 			</otherwise>
 		</choose>
 	</insert>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findidcheck" parameterType = "com.spring.vo.MemberVO" resultType="java.lang.String">
+		select id from daangn_member where phone=#{phone}
+	</select>
+	
+	<!-- 비밀번호 찾기 - 아이디 있나 확인 -->
+	<select id="findpasscheck" parameterType = "com.spring.vo.MemberVO" resultType = "int">
+		select count(*) from daangn_member where id=#{id} 
+	</select>
+	
+	<!-- 비밀번호 찾기 - 핸드폰 번호 일치하는지 확인 -->
+	<select id="phone_num_ajax" parameterType="com.spring.vo.MemberVO" resultType="int">
+		select count(*) from daangn_member where id=#{id} and phone=#{phone}
+	</select>
+	
+	<!-- 비밀번호 찾기 - 비밀번호 재설정 -->
+	<update id="setNewPass" parameterType="com.spring.vo.MemberVO">
+		update daangn_member set pass=#{pass} where id=#{id}
+	</update>
 	
 </mapper>
