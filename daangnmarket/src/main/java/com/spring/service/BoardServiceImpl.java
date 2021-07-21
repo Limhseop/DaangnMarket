@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.spring.dao.BoardDAO;
 
 @Service("boardService")
-public class BoardSerivceImpl implements BoardSerivce {
+public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardDAO boardDAO;
