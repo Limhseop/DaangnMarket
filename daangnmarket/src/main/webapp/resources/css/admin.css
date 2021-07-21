@@ -1,0 +1,26 @@
+.section{
+	width:1200px;
+	margin:auto;
+	height:100%;
+}
+.section1{
+	width:1024px;
+	margin:auto;
+	height:500px;
+}
+
+.table1{
+	float:left;
+}
+.memberlist{
+	float:left;	
+	margin-left:50px;
+}
+.noticemanage{
+	float:left;
+	display:none;
+}
+.qanda{
+	float:left;
+	display:none;
+}
