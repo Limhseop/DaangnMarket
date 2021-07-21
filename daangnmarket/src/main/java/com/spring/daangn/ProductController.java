@@ -2,6 +2,7 @@ package com.spring.daangn;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +31,84 @@ public class ProductController {
 	@Autowired
 	private ProductDAO productDAO;
 	
+	/***
+	 * notice/notice_select_delete_proc.do -----> 관리자 > 공지사항 리스트 선택삭제 처리
+	 */
+	@RequestMapping(value = "/adminproduct_select_delete_proc.do", method = RequestMethod.GET)
+	public ModelAndView adminproduct_select_delete_proc(String chkList){
+		ModelAndView mv = new ModelAndView();
+		
+		StringTokenizer st = new StringTokenizer(chkList,",");
+		//String 객체 안에 있는 , 를 기준으로 잘라주는 객체!
+		String[] stArray = new String[st.countTokens()];
+		
+		for(int i=0; i<stArray.length; i++) {
+			stArray[i] = st.nextToken();
+			//String 으로 리턴해줌
+			
+			System.out.println("--->"+stArray[i]);
+		}
+		
+		int result = productService.getSelectDelete(stArray);
+		
+		if(result != 0) {
+			mv.setViewName("redirect:/notice/notice_list.do");
+		}
+		
+		return mv;
+	}
+	
+	
+	/**
+	 * product_search_proc.do >> 검색
+	 */
+	@RequestMapping(value = "/adminproduct_search_proc.do", method = RequestMethod.POST)
+	public ModelAndView adminproduct_search_proc(String category, String search) {
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<ProductVO> list = productDAO.getList(category, search);
+		ArrayList<ProductVO> totalList = productService.getList();
+		mv.addObject("list", list);
+		mv.addObject("search", search);
+		mv.addObject("totalList", totalList);
+		mv.setViewName("product/adminProduct_search");
+		
+		return mv;
+	}
+	
+	/**
+	 * adminProduct.do
+	 */
+	@RequestMapping(value = "/adminProduct.do", method = RequestMethod.GET)
+	public ModelAndView adminProduct() {
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<ProductVO> list = productService.getList();
+		
+		mv.addObject("list", list);
+		mv.setViewName("product/adminProduct");
+		
+		return mv;
+	}
+	
+	
+	/**
+	 * UpdateSale.do
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/UpdateSale.do", method = RequestMethod.GET)
+	public String UpdateSale(String pid) {
+		int value = productService.getSaleResult(pid);
+		return String.valueOf(value);
+		
+	}
 	/**
 	 * ReportUpdate.do
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/ReportUpdate.do", method = RequestMethod.GET)
 	public String ReportUpdate(String pid) {
-		int value = productDAO.getReportResult(pid);
+		int value = productService.getReportResult(pid);
 		return String.valueOf(value);
 		
 	}
@@ -47,7 +119,7 @@ public class ProductController {
 	@ResponseBody
 	@RequestMapping(value = "/likeUpdateProcess.do", method = RequestMethod.GET)
 	public String likeUpdateProcess(String pid) {
-		int value = productDAO.getLikeResult(pid);
+		int value = productService.getLikeResult(pid);
 		return String.valueOf(value);
 		
 	}
@@ -58,7 +130,7 @@ public class ProductController {
 	@ResponseBody
 	@RequestMapping(value = "/likeCancleProcess.do", method = RequestMethod.GET)
 	public String likeCancleProcess(String pid) {
-		int value = productDAO.getDislikeResult(pid);
+		int value = productService.getDislikeResult(pid);
 		return String.valueOf(value);
 		
 	}
@@ -112,9 +184,54 @@ public class ProductController {
 		mv.setViewName("product/product_more");
 		mv.addObject("ulist", ulist);
 		mv.addObject("name", name);
+		mv.addObject("id", id);
 		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
 
+		return mv;
+	}
+	/***
+	 * product_more_sale >>> 판매중인 상품
+	 */
+	@RequestMapping(value = "/product_more_sale.do", method = RequestMethod.GET)
+	public ModelAndView product_more_sale(String id, String pid, String rno) {
+		ModelAndView mv = new ModelAndView();
+		
+		// id이용해서 name 꺼내오기
+		String name = productService.getUserName(id);
+		
+		// 해당 판매자의 리스트 꺼내오기
+		ArrayList<ProductVO> ulist = productService.getMoreList(id);
+		
+		mv.setViewName("product/product_more_sale");
+		mv.addObject("ulist", ulist);
+		mv.addObject("name", name);
+		mv.addObject("id", id);
+		mv.addObject("pid", pid);
+		mv.addObject("rno", rno);
+		
+		return mv;
+	}
+	/***
+	 * product_more_saled >>> 판매된 상품
+	 */
+	@RequestMapping(value = "/product_more_saled.do", method = RequestMethod.GET)
+	public ModelAndView product_more_saled(String id, String pid, String rno) {
+		ModelAndView mv = new ModelAndView();
+		
+		// id이용해서 name 꺼내오기
+		String name = productService.getUserName(id);
+		
+		// 해당 판매자의 리스트 꺼내오기
+		ArrayList<ProductVO> ulist = productService.getMoreList(id);
+		
+		mv.setViewName("product/product_more_saled");
+		mv.addObject("ulist", ulist);
+		mv.addObject("name", name);
+		mv.addObject("id", id);
+		mv.addObject("pid", pid);
+		mv.addObject("rno", rno);
+		
 		return mv;
 	}
 

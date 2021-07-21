@@ -82,8 +82,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	
-	
 });
 </script>
 </head>
@@ -109,7 +107,11 @@ $(document).ready(function(){
 					<button type = "button" class = "btn_confrim" id = "btn_delete">삭제하기</button>
 				</form>
 				<div class = "message">
+					<span>${search}를 검색하고 있어요!</span><!-- 검색하면 검색한 지역명 보이도록 -->
+					<span>다른 검색 내용을 찾으셨나요?</span>
 				</div>
+				<!-- <span>추천  잠실 냉장고 분당 유모차 자전거 키즈카페 강남 명품가방 홍대 쇼파</span> -->
+				<!-- 물품을 검색하면 관련 추천 검색어가 뜨도록 -->
 			</section>
 			<c:choose>
 			<c:when test = "${!empty list}">
@@ -142,7 +144,7 @@ $(document).ready(function(){
 							<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
 							<li>${plist.location}</li><!-- 주소 -->
 							<li>${plist.price}원</li><!-- 가격 -->
-							<li style = "color:blue; font-weight:bold;">관심 횟수 : ${plist.favorite }번</li>
+							<li style = "color:blue; font-weight:bold;">관심 횟수 : ${plist.favorite }번</li><br>
 							<li style = "color:tomato; font-weight:bold; float:left;">신고횟수 : ${plist.report}번</li><!-- 신고횟수 -->
 						</div>
 					</ul>

@@ -32,13 +32,8 @@ $(document).on('click', '#btn_price',function(){
 
 $(document).ready(function(){
 	
-	$("#report").click(function(){
-		alert("신고가 접수되었습니다.");
-	});
-	
-	
-
-	$("button[name=heart_button]").click(function(){
+	/* 즐겨찾기 버튼 */
+	$("img[name=heart_button]").click(function(){
 		var id = $(this).attr("id");
 		if(id == "heart_button"){	
 			$.ajax({
@@ -68,12 +63,25 @@ $(document).ready(function(){
 	
 	});
 	
-	$("button[name=report_button]").click(function(){
+	/* 판매완료 버튼 */
+	$("#btn_sale").click(function(){
+		$.ajax({
+			url:"UpdateSale.do?pid="+$("#pid").val(),
+			success:function(result){
+				if(result==1){
+					location.reload();
+				}
+			}
+		});
+	});
+	
+	/* 신고버튼 */
+	$("span[name=report_button]").click(function(){
 		$.ajax({
 			url:"ReportUpdate.do?pid="+$("#pid").val(),
 			success:function(result){
 				if(result==1){
-					alert("신고가 완료되었습니다.");
+					alert("신고가 접수되었습니다.");
 					location.reload();
 				}
 			}
@@ -179,12 +187,13 @@ $(document).ready(function(){
 					<div>
 					<c:choose>
 						<c:when test = "${sessionScope.svo.id eq vo.id}">
+						<div style = "position:relative; left:100px;">
 							<a href = "http://localhost:9000/daangn/product_update.do?pid=${pid}&rno=${rno}">수정하기</a>
 							<a href = "http://localhost:9000/daangn/product_delete.do?pid=${pid}&rno=${rno}">삭제하기</a>
-							<a href = "#" id = "report">신고하기</a>
+						</div>	
 						</c:when>
 						<c:otherwise>
-							<a href = "#" id = "report" style = "margin-left:160px;">신고하기</a>
+							<span id = "report" name = "report_button" style = "margin-left:160px;">신고하기</span>
 						</c:otherwise>
 					</c:choose>	
 					</div>
@@ -192,25 +201,31 @@ $(document).ready(function(){
 			</div>
 			<div class = "content_button">
 				<!-- 하트 버튼 -->
-					<a href="#"><img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button"></a>
+				<img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button">
 				<!-- session체크에 좋아함 정보를 넣어서 해당 회원이 마음에 들어한 게시글이면 표시 -->	
-				<%-- <c:choose>
-					<c:when>
-					<a href="#"><img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button"></a>
-					</c:when>
-					<c:otherwise>
-					<a href="#"><img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button_onclick" id="heart_button_onclick"></a>
-					</c:otherwise>
-				</c:choose> --%>
 				<!-- 팔렸으면 버튼 disabled -->
 				<c:choose>
-					<c:when test = "${vo.saled eq 'N'}">
-						<button type = "button" class = "btn_confrim">채팅으로 거래하기</button>
-					</c:when>	
+					<c:when test = "${sessionScope.svo.id eq vo.id}">
+						<c:choose>
+							<c:when test = "${vo.saled eq 'N'}">
+								<button type = "button" class = "btn_confrim" id = "btn_sale">판매 완료</button>
+							</c:when>	
+							<c:otherwise>
+								<button type = "button" class = "btn_sold" disabled>판매 완료</button>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
 					<c:otherwise>
-						<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
-					</c:otherwise>
-				</c:choose>	
+						<c:choose>
+							<c:when test = "${vo.saled eq 'N'}">
+								<button type = "button" class = "btn_confrim">채팅으로 거래하기</button>
+							</c:when>	
+							<c:otherwise>
+								<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>	
+				</c:choose>
 			</div>
 			<div>
 				<section class = "plist_r">

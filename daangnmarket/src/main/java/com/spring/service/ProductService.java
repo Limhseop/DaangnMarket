@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.spring.vo.MemberVO;
@@ -30,5 +31,7 @@ public interface ProductService {
 	int getLikeResult(String pid);
 	int getDislikeResult(String pid);
 	int getReportResult(String pid);
+	int getSaleResult(String pid);
+	int getSelectDelete(Array stArray);
 
 }

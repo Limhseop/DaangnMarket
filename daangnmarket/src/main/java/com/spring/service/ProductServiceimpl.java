@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,14 @@ public class ProductServiceimpl implements ProductService{
 	@Override
 	public int getReportResult(String pid) {
 		return productDAO.getReportResult(pid);
+	}
+	@Override
+	public int getSaleResult(String pid) {
+		return productDAO.getSaleResult(pid);
+	}
+	@Override
+	public int getSelectDelete(Array starray) {
+		return productDAO.getSelectDelete(starray);
 	}
 	
 	

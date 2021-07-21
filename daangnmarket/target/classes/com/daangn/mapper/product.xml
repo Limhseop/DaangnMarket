@@ -49,9 +49,9 @@
 	</select>
 	
 	<select id = "productlist" resultType = "com.spring.vo.ProductVO"> 
-		SELECT RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE, PRICE 
-				 FROM (SELECT ROWNUM RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE   
-				 FROM (SELECT PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE FROM PRODUCT_BOARD  
+		SELECT RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PSFILE, PRICE, REPORT 
+				 FROM (SELECT ROWNUM RNO, PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE, REPORT   
+				 FROM (SELECT PID, PTITLE, FAVORITE, SALED, LOCATION, PRICE, PSFILE, REPORT FROM PRODUCT_BOARD  
 				 ORDER BY PDATE DESC))  
 	</select>
 	
@@ -117,6 +117,11 @@
 	</update>
 	
 	
+	<!-- updateSale -->
+	<update id = "updateSale" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET SALED = 'Y' WHERE PID = #{pid}
+	</update>
+	
 	<!-- updatelike -->
 	<update id = "updatelike" parameterType = "java.lang.String">
 		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE + 1  
@@ -141,6 +146,16 @@
 	</update>
 	
 	
+	<!-- select_delete -->
+	<delete id = "select_delete" parameterType = "java.lang.reflect.Array">
+		delete from board_table 
+		where pid in 
+	 	<foreach item="stArray" index="index" collection="array"
+		      open="(" separator="," close=")">
+		        #{stArray}
+ 		</foreach>
+		
+	</delete>
 	
 	
 	<!-- updatechat -->

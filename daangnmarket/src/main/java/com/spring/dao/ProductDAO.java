@@ -19,6 +19,11 @@ public class ProductDAO {
 	private SqlSessionTemplate sqlSession;
 	private static String namespace = "mapper.product";
 	
+	//관리자 리스트에서 선택 삭제
+	public int getSelectDelete(String[] stArray) {
+		return sqlSession.delete(namespace+".select_delete", stArray);
+	}
+	
 	//update : 즐겨찾기 신고하기
 	public int getReportResult(String pid) {
 		return sqlSession.update(namespace+".updatereport", pid);
@@ -92,6 +97,11 @@ public class ProductDAO {
 		}
 		
 		return result;
+	}
+	
+	//update: 판매상태 바꾸기
+	public int getSaleResult(String pid) {
+		return sqlSession.update(namespace+".updateSale", pid);
 	}
 	
 	//update: 조회수 올리기
