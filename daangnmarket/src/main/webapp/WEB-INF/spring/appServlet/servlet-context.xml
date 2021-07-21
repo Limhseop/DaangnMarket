@@ -34,6 +34,7 @@
 	<beans:bean id="ProductDAO" class="com.spring.dao.ProductDAO"></beans:bean>
 	<beans:bean id="NoticeDAO" class="com.spring.dao.NoticeDAO"></beans:bean>
 	<beans:bean id="AdminDAO" class="com.spring.dao.AdminDAO"></beans:bean>
+	<beans:bean id="BoardDAO" class="com.spring.dao.BoardDAO"></beans:bean>
 	<!-- Service Object -->
 	
 	<beans:bean id="MypageService" class="com.spring.service.MypageServiceImpl"></beans:bean>
@@ -41,6 +42,7 @@
 	<beans:bean id="ProductService" class="com.spring.service.ProductServiceimpl"></beans:bean>
 	<beans:bean id="NoticeService" class="com.spring.service.NoticeServiceImpl"></beans:bean>
 	<beans:bean id="AdminService" class="com.spring.service.AdminServiceImpl"></beans:bean>
+	<beans:bean id="BoardService" class="com.spring.service.BoardServiceImpl"></beans:bean>
 	
 	<!-- 상품 사진 올리기 프로세스 -->
 	<!-- multipartResolver -->
