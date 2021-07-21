@@ -35,4 +35,8 @@ public class NoticeDAO {
 			return sqlSession.selectList("mapper.notice.list");
 		}
 		
+		// Select 공지사항 상세정보 
+		public NoticeVO getContent(String bno) {
+			return sqlSession.selectOne(namespace+".content", bno);
+		}
 }

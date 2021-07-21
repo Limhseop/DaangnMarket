@@ -57,4 +57,21 @@ public class NoticeController {
 		return "/notice/notice";
 		
 	}
+	
+	/**
+	 *	notice_content.do  ---> 게시판 상세내용 화면
+	 */
+	@RequestMapping(value="/notice_content.do", method=RequestMethod.GET)
+	public ModelAndView notice_content(String bno) {
+		ModelAndView mv = new ModelAndView();
+		
+		NoticeVO vo = (NoticeVO)noticeService.getContent(bno);	
+		
+		
+		mv.setViewName("notice/notice_content");
+		mv.addObject("vo", vo);
+		mv.addObject("bno", bno);
+		
+		return mv;
+	}
 }

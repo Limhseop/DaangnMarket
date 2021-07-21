@@ -87,7 +87,7 @@ $(document).ready(function(){
                     <c:forEach items="${list}" var = "list">
                         <li>
                             <article>
-                                <button class = "notice_btn">
+                                <button class = "notice_btn" onclick="location.href='notice_content.do?bno=${list.bno}' ">
                                     <div class = "noti">
                                         <h1><c:out value="${list.title}" /></h1>
                                         <time class= "time"><c:out value="${list.ndate}" /></time>

@@ -1,0 +1,57 @@
+.relative{
+	position: relative;
+	min-width: 1280px;
+	margin-top: 40px;
+	overflow: hidden;
+}
+
+.title_wrap{
+	display: inline-block;
+	width: 221px;	
+	height: 500px;
+}
+.title_text{
+	display: block;
+    padding: 76px 40px 0 0;
+    font-size: 18px;
+    line-height: 30px;
+    color: #1e1e1e;
+    vertical-align: top;
+}
+.title_date{
+	color: #666;
+	font-size: 16px;
+    line-height: 1.5;
+}
+.content_text{
+	display: inline-block;
+	width: 791px;
+	height: 1000px;
+	border-bottom: 1px solid;
+	margin-bottom: 45px;
+}
+body, th, td, input, select, textarea, button {
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'NotoSans Light','Malgun Gothic','¸¼Àº °íµñ','Apple SD Gothic Neo','µ¸¿ò',dotum, sans-serif;
+    color: #666;
+}
+footer{
+	clear: left;
+	clear: right;
+}
+.btn_list {
+    float: right;
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 40px;
+	color: #fff;
+    background-color: #4d4d4d;
+    text-align: center;
+    text-decoration: none;
+}
+.wrap_btn{
+	overflow: hidden;
+	margin-bottom: 45px;
+}

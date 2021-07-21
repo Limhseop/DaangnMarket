@@ -4,11 +4,6 @@ import java.sql.Date;
 
 public class NoticeVO {
 	private int bno;
-	private String title;
-	private String content;
-	private Date regdate;
-	
-	
 	public int getBno() {
 		return bno;
 	}
@@ -27,11 +22,17 @@ public class NoticeVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getNdate() {
+		return ndate;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setNdate(Date ndate) {
+		this.ndate = ndate;
 	}
+	private String title;
+	private String content;
+	private Date ndate;
+	
+	
+	
 	
 }
