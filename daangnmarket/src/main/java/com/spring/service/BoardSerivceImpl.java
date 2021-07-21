@@ -20,6 +20,12 @@ public class BoardSerivceImpl implements BoardSerivce {
 	}
 
 	@Override
+	public Object getContent(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public int execTotalCount() {
 		// TODO Auto-generated method stub
 		return boardDAO.execTotalCount();

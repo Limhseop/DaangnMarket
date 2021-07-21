@@ -8,4 +8,5 @@ public interface BoardSerivce {
 
 	ArrayList<Object> getList(int start, int end);
 	int execTotalCount();
+	Object getContent(String id);
 }
