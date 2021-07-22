@@ -45,8 +45,6 @@ public class ProductController {
 		for(int i=0; i<stArray.length; i++) {
 			stArray[i] = st.nextToken();
 			//String 으로 리턴해줌
-			
-			System.out.println("stArray--->"+stArray[i]);
 		}
 		
 		int result = productService.getSelectDelete(stArray);
@@ -92,6 +90,16 @@ public class ProductController {
 	}
 	
 	
+	/**
+	 * UpdateSale.do
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/chatCountUpdate.do", method = RequestMethod.GET)
+	public String chatCountUpdate(String pid) {
+		int value = productService.getChatCount(pid);
+		return String.valueOf(value);
+		
+	}
 	/**
 	 * UpdateSale.do
 	 */

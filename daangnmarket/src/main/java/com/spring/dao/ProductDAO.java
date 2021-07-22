@@ -24,6 +24,10 @@ public class ProductDAO {
 		return sqlSession.delete(namespace+".select_delete", stArray);
 	}
 	
+	//update : 채팅 카운트 올리기
+	public int getChatCount(String pid) {
+		return sqlSession.update(namespace+".updatechat", pid);
+	}
 	//update : 즐겨찾기 신고하기
 	public int getReportResult(String pid) {
 		return sqlSession.update(namespace+".updatereport", pid);

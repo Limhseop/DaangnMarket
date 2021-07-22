@@ -97,6 +97,10 @@ public class ProductServiceimpl implements ProductService{
 		return productDAO.getSaleResult(pid);
 	}
 	@Override
+	public int getChatCount(String pid) {
+		return productDAO.getChatCount(pid);
+	}
+	@Override
 	public int getSelectDelete(String[] stArray) {
 		return productDAO.getSelectDelete(stArray);
 	}

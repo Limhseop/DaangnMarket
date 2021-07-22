@@ -89,6 +89,19 @@ $(document).ready(function(){
 	
 	});
 	
+	/* 채팅버튼 */
+	$("span[name=chat_button]").click(function(){
+		$.ajax({
+			url:"chatCountUpdate.do?pid="+$("#pid").val(),
+			success:function(result){
+				if(result==1){
+					location.reload();
+				}
+			}
+		});
+	
+	});
+	
 	
 });
 
@@ -218,7 +231,7 @@ $(document).ready(function(){
 					<c:otherwise>
 						<c:choose>
 							<c:when test = "${vo.saled eq 'N'}">
-								<button type = "button" class = "btn_confrim">채팅으로 거래하기</button>
+								<button type = "button" class = "btn_confrim" id = "chat_button" name = "chat_button">채팅으로 거래하기</button>
 							</c:when>	
 							<c:otherwise>
 								<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
