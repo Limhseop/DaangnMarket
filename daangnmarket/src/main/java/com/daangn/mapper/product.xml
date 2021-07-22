@@ -148,8 +148,7 @@
 	
 	<!-- select_delete -->
 	<delete id = "select_delete" parameterType = "java.lang.reflect.Array">
-		delete from board_table 
-		where pid in 
+		DELETE FROM PRODUCT_BOARD WHERE PID IN
 	 	<foreach item="stArray" index="index" collection="array"
 		      open="(" separator="," close=")">
 		        #{stArray}

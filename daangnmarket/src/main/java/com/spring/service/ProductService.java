@@ -32,6 +32,6 @@ public interface ProductService {
 	int getDislikeResult(String pid);
 	int getReportResult(String pid);
 	int getSaleResult(String pid);
-	int getSelectDelete(Array stArray);
+	int getSelectDelete(String[] stArray);
 
 }

@@ -39,9 +39,6 @@ $(document).ready(function(){
 	//전체 선택 & 전체 해제
 	$("#all").click(function(){
 		var all_check = $("#all").is(":checked");
-/* 			var all_check = $(this).is(":checked");  이것도 가능이에요*/
-		/* 체크가 되었나 안되었나 여부가 all_check안에 들어간다. */
-		alert(all_check);
 		
 		if(all_check){
 			/* true이면 모두 선택 */
@@ -56,7 +53,6 @@ $(document).ready(function(){
 	//선택삭제 버튼 처리
 	$("#btn_delete").click(function(){
 		var choice = confirm("정말로 삭제하시겠습니까?");
-		/* alert(choice); */
 		if(choice){
 			//삭제 진행 : 여러개를 담는 그릇(배열)
 			var chkList = new Array();
@@ -68,7 +64,7 @@ $(document).ready(function(){
 					chkList[i] = $(this).val();
 				}
 				
-				});
+			});
 			
 			//삭제하는 페이지 호출
 			//location.href>>자바스크립트 형식
@@ -121,7 +117,7 @@ $(document).ready(function(){
 					</ul>
 				<c:forEach var = "plist" items = "${list}">
 					<ul style = "display:block; width:95%; height:200px; border:1px solid rgb(233, 236, 239); border-radius:5px; margin-bottom: 10px;">
-						<li style = "margin-bottom:10px;"><input type = "checkbox" name = "ptotal" id = "part" value = "${vo.pid }"></li>
+						<li style = "margin-bottom:10px;"><input type = "checkbox" name = "ptotal" id = "part" value = "${plist.pid}"></li>
 						<c:choose>
 							<c:when test = "${plist.psfile ne null}">
 								<li style = "display: inline-block;"><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
@@ -151,11 +147,9 @@ $(document).ready(function(){
 				</div>
 			</c:when>
 			<c:otherwise>
-				<section class = "no_data"><!-- 검색 결과가 없을때 띄우는 창 -->
+				<section class = "no_data"><!-- 등록된 게시글이 없을때 띄우는 창 -->
 					<div class = "content_nodata">
-						<p>'${search}'에 대한 검색 결과가 없어요.<br>
-						검색어를 다시 확인해주세요!</p>
-						<span id = "re_search">다시 검색하기</span>
+						<p>등록된 게시글이 없습니다.<br>
 					</div>
 				</section>
 		</c:otherwise>
