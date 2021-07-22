@@ -41,6 +41,14 @@ public class ProductServiceimpl implements ProductService{
 		productDAO.getUpdateHit(pid);
 	}
 	@Override
+	public void likeInsert(String memberid, String pid) {
+		productDAO.likeInsert(memberid, pid);
+	}
+	@Override
+	public void likeDelete(String memberid, String pid) {
+		productDAO.likeDelete(memberid, pid);
+	}
+	@Override
 	public ProductVO getContent(String pid) {
 		return productDAO.getContent(pid);
 	}
@@ -103,6 +111,10 @@ public class ProductServiceimpl implements ProductService{
 	@Override
 	public int getSelectDelete(String[] stArray) {
 		return productDAO.getSelectDelete(stArray);
+	}
+	@Override
+	public String getLike(String memberid) {
+		return productDAO.getLike(memberid);
 	}
 	
 	

@@ -37,7 +37,7 @@ $(document).ready(function(){
 		var id = $(this).attr("id");
 		if(id == "heart_button"){	
 			$.ajax({
-				url:"likeUpdateProcess.do?pid="+$("#pid").val(),
+				url:"likeUpdateProcess.do?pid="+$("#pid").val()+"$memberid="+${sessionScope.svo.id},
 				success:function(result){
 					if(result==1){
 						$("#heart_button").attr("src","http://localhost:9000/daangn/pro_img/hearticon_click.PNG");
@@ -49,7 +49,7 @@ $(document).ready(function(){
 			
 		}else if(id == "heart_button_onclick"){
 			$.ajax({
-				url:"likeCancleProcess.do?pid="+$("#pid").val(),
+				url:"likeCancleProcess.do?pid="+$("#pid").val()+"$memberid="+${sessionScope.svo.id},
 				success:function(result){
 					if(result==1){
 						$("#heart_button_onclick").attr("id","heart_button");
@@ -213,11 +213,23 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class = "content_button">
-				<!-- 하트 버튼 -->
-				<img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button">
-				<!-- session체크에 좋아함 정보를 넣어서 해당 회원이 마음에 들어한 게시글이면 표시 -->	
-				<!-- 팔렸으면 버튼 disabled -->
 				<c:choose>
+					<c:when test = "${sessionScope.svo ne null }">
+						<c:choose>
+							<c:when test = "">
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<!-- 하트 버튼 -->
+						<!-- session체크에 좋아함 정보를 넣어서 해당 회원이 마음에 들어한 게시글이면 표시 -->	
+						<img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button">
+					</c:otherwise>
+				</c:choose>				
+				<c:choose>
+				<!-- 팔렸으면 버튼 disabled -->
 					<c:when test = "${sessionScope.svo.id eq vo.id}">
 						<c:choose>
 							<c:when test = "${vo.saled eq 'N'}">

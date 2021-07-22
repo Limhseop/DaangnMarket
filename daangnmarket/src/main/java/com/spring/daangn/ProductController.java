@@ -115,8 +115,12 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/ReportUpdate.do", method = RequestMethod.GET)
-	public String ReportUpdate(String pid) {
+	public String ReportUpdate(String pid, String memberid) {
 		int value = productService.getReportResult(pid);
+		
+		//회원이름과 함께 즐겨찾기 추가
+		productService.likeInsert(memberid, pid);
+		
 		return String.valueOf(value);
 		
 	}
@@ -126,8 +130,12 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/likeUpdateProcess.do", method = RequestMethod.GET)
-	public String likeUpdateProcess(String pid) {
+	public String likeUpdateProcess(String pid, String memberid) {
 		int value = productService.getLikeResult(pid);
+		
+		//회원이름으로 즐겨찾기 삭제
+		productService.likeDelete(memberid, pid);
+		
 		return String.valueOf(value);
 		
 	}
@@ -433,7 +441,7 @@ public class ProductController {
 	 * product_content >>> 상품 상세내용
 	 */
 	@RequestMapping(value = "/product_content.do", method = RequestMethod.GET)
-	public ModelAndView product_content(String pid, String rno) {
+	public ModelAndView product_content(String pid, String rno, String memberid) {
 		ModelAndView mv = new ModelAndView();
 
 		// 내용 꺼내오기
@@ -448,6 +456,10 @@ public class ProductController {
 
 		// 해당 판매자의 리스트 꺼내오기
 		ArrayList<ProductVO> ulist = productService.getList(id);
+		
+		//session을 이용해서 즐겨찾기를 해 두었는지 확인
+		String value = productService.getLike(memberid);
+		System.out.println(value);
 
 		// 조회수 올리기
 		if (vo != null)
