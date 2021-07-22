@@ -27,9 +27,6 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-
-	@Autowired
-	private ProductDAO productDAO;
 	
 	/***
 	 * notice/notice_select_delete_proc.do -----> 관리자 > 공지사항 리스트 선택삭제 처리
@@ -64,7 +61,7 @@ public class ProductController {
 	public ModelAndView adminproduct_search_proc(String category, String search) {
 		ModelAndView mv = new ModelAndView();
 		
-		ArrayList<ProductVO> list = productDAO.getList(category, search);
+		ArrayList<ProductVO> list = productService.getList(category, search);
 		ArrayList<ProductVO> totalList = productService.getList();
 		mv.addObject("list", list);
 		mv.addObject("search", search);
