@@ -51,6 +51,25 @@ body{
 	padding-top: 130px;
 }
 </style>
+<script src="http://localhost:9000/daangn/resources/js/jquery-3.6.0.min.js"></script>
+<script>
+	/*****
+		팝업창 띄우기
+	*****/
+	
+	function chatPop(){
+		window.open("chat_main.do","","width = 1300, height = 900, top = 25, left = 25")
+	}
+	
+	
+$(document).ready(function(){
+	$("#chat").click(function(){
+		chatPop();
+	});
+	
+});
+	
+</script>
 </head>
 <body>	
 	<header id="header">
@@ -78,7 +97,7 @@ body{
 					<nav>
 						<ul class= "category">
 							<li><div><a href= "http://localhost:9000/daangn/service_center.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">고객센터</a></div></li>
-							<li><div><a href= "" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">채팅</a></div></li>
+							<li><div><a href= "" id="chat" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">채팅</a></div></li>
 							<li><div><a href= "http://localhost:9000/daangn/notice.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">공지사항</a></div></li>
 							<li><div><a href= "http://localhost:9000/daangn/boardlist.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">게시판</a></div></li>
 							<li><div><a href= "http://localhost:9000/daangn/product.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">상품</a></div></li>
