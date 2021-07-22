@@ -166,7 +166,7 @@ section.chat div.right_side span.word{
 	line-height: 40px;
 	border-radius: 20px;
 	display: inline-block;
-	padding: 10px;
+	padding: 2px 15px;
 	text-align: center;
 }
 section.chat div.right_side div.other_chatlog span.word{
