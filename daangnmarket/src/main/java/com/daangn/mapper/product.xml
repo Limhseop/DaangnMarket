@@ -117,6 +117,12 @@
 	</update>
 	
 	
+	<!-- updatechat -->
+	<update id = "updatechat" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET CHAT = CHAT + 1 
+			WHERE PID = #{pid}
+	</update>
+	
 	<!-- updateSale -->
 	<update id = "updateSale" parameterType = "java.lang.String">
 		UPDATE PRODUCT_BOARD SET SALED = 'Y' WHERE PID = #{pid}
@@ -129,7 +135,7 @@
 	</update>
 	<!-- updatedislike -->
 	<update id = "updatedislike" parameterType = "java.lang.String">
-		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE + 1  
+		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE - 1  
 					 WHERE PID = #{pid}
 	</update>
 	
