@@ -21,16 +21,16 @@
  	</bean>
 	
 	<!-- sqlSessionFactoryBuilder & sqlSessionFactory 생성 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations"
-			value="classpath*:com/daangn/mapper/*.xml" />
-	</bean>
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="mapperLocations" 
+         value="classpath:com/daangn/mapper/*.xml" />
+   </bean>
 
-	<!-- sqlSession 생성 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean> 
+   <!-- sqlSession 생성 -->
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg index="0" ref="sqlSessionFactory" />
+   </bean> 
 
 </beans>
 
