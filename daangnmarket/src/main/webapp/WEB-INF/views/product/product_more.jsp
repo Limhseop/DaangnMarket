@@ -25,9 +25,9 @@
 					<a href = "http://localhost:9000/daangn/product_content.do?pid=${pid}&rno=${rno}"><button type = "button" class = "btn_back">←</button></a>
 					<span>${name}님의 판매 상품 보기</span>
 						<div class = "more_menu">
-						<button type = "button" class = "btn_filter_onclick">전체</button>
-						<button type = "button" class = "btn_filter">거래중</button>
-						<button type = "button" class = "btn_filter">거래완료</button>
+						<a href = "http://localhost:9000/daangn/product_more.do?id=${id}&pid=${pid}&rno=${rno}"><button type = "button" class = "btn_filter_onclick">전체</button></a>
+						<a href = "http://localhost:9000/daangn/product_more_sale.do?id=${id}&pid=${pid}&rno=${rno}"><button type = "button" class = "btn_filter">거래중</button></a>
+						<a href = "http://localhost:9000/daangn/product_more_saled.do?id=${id}&pid=${pid}&rno=${rno}"><button type = "button" class = "btn_filter">거래완료</button></a>
 					</div>
 				</div>
 				<c:forEach var = "userlist" items = "${ulist}">

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://localhost:9000/daangn/css/header.css">
 <link rel="stylesheet" href="css/product_css.css">
 <link rel="stylesheet" href="css/commons.css">
-<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>\
+<script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script>
 	$(function () {

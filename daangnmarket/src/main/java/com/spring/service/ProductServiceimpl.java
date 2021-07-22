@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,10 @@ public class ProductServiceimpl implements ProductService{
 		return productDAO.getList(id);
 	}
 	@Override
+	public ArrayList<ProductVO> getList(String category, String search){
+		return productDAO.getList(category, search);
+	}
+	@Override
 	public ArrayList<ProductVO> getMoreList(String id){
 		return productDAO.getList(id);
 	}
@@ -74,6 +79,26 @@ public class ProductServiceimpl implements ProductService{
 	@Override
 	public MemberVO getMember(String id) {
 		return productDAO.getMember(id);
+	}
+	@Override
+	public int getLikeResult(String pid) {
+		return productDAO.getLikeResult(pid);
+	}
+	@Override
+	public int getDislikeResult(String pid) {
+		return productDAO.getLikeResult(pid);
+	}
+	@Override
+	public int getReportResult(String pid) {
+		return productDAO.getReportResult(pid);
+	}
+	@Override
+	public int getSaleResult(String pid) {
+		return productDAO.getSaleResult(pid);
+	}
+	@Override
+	public int getSelectDelete(String[] stArray) {
+		return productDAO.getSelectDelete(stArray);
 	}
 	
 	

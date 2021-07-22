@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.spring.vo.MemberVO;
@@ -24,5 +25,13 @@ public interface ProductService {
 	String getLocation(String id);
 	//회원 정보 가져오기
 	MemberVO getMember(String id);
+	//검색 리스트 가져오기 
+	ArrayList<ProductVO> getList(String category, String search);
+	//즐겨찾기 클릭
+	int getLikeResult(String pid);
+	int getDislikeResult(String pid);
+	int getReportResult(String pid);
+	int getSaleResult(String pid);
+	int getSelectDelete(String[] stArray);
 
 }

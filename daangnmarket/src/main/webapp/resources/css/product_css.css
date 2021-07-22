@@ -580,6 +580,13 @@ section.p_content div.content_button .heart_button {
 	color: rgb(255,138,61);
 }
 
+/* heart button */
+.heart_button{
+	
+}
+
+/* heart button_onclick */
+
 /* 가격제안 버튼 */
 div.pro_content h3{
 	display: inline-block;

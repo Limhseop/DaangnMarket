@@ -19,6 +19,24 @@ public class ProductDAO {
 	private SqlSessionTemplate sqlSession;
 	private static String namespace = "mapper.product";
 	
+	//관리자 리스트에서 선택 삭제
+	public int getSelectDelete(String[] stArray) {
+		return sqlSession.delete(namespace+".select_delete", stArray);
+	}
+	
+	//update : 즐겨찾기 신고하기
+	public int getReportResult(String pid) {
+		return sqlSession.update(namespace+".updatereport", pid);
+	}
+	//update : 즐겨찾기 설정
+	public int getLikeResult(String pid) {
+		return sqlSession.update(namespace+".updatelike", pid);
+	}
+	//update : 즐겨찾기 해제
+	public int getDislikeResult(String pid) {
+		return sqlSession.update(namespace+".updatedislike", pid);
+	}
+	
 	//select: 유저 정보 가져오기
 	public MemberVO getMember(String id) {
 		return sqlSession.selectOne(namespace+".member", id);
@@ -81,6 +99,11 @@ public class ProductDAO {
 		return result;
 	}
 	
+	//update: 판매상태 바꾸기
+	public int getSaleResult(String pid) {
+		return sqlSession.update(namespace+".updateSale", pid);
+	}
+	
 	//update: 조회수 올리기
 	public void getUpdateHit(String pid) {
 		sqlSession.update(namespace+".updateHit", pid);
@@ -105,6 +128,15 @@ public class ProductDAO {
 	//select: 리스트 가져오기
 	public ArrayList<ProductVO> getList(){
 		List<ProductVO> list = sqlSession.selectList(namespace+".productlist");
+		return (ArrayList<ProductVO>)list;
+	}
+	//select: 검색 리스트 가져오기
+	public ArrayList<ProductVO> getList(String category, String search){
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("category", category); 
+		param.put("sname", search);
+		List<ProductVO> list = sqlSession.selectList(namespace+".productsearch", param);
+		
 		return (ArrayList<ProductVO>)list;
 	}
 	

@@ -28,27 +28,64 @@ $(document).on('click', '#btn_price',function(){
 
 });
 
+
+
 $(document).ready(function(){
 	
-	$("#report").click(function(){
-		alert("신고가 접수되었습니다.");
+	/* 즐겨찾기 버튼 */
+	$("img[name=heart_button]").click(function(){
+		var id = $(this).attr("id");
+		if(id == "heart_button"){	
+			$.ajax({
+				url:"likeUpdateProcess.do?pid="+$("#pid").val(),
+				success:function(result){
+					if(result==1){
+						$("#heart_button").attr("src","http://localhost:9000/daangn/pro_img/hearticon_click.PNG");
+						$("#heart_button").attr("id","heart_button_onclick");
+						location.reload();
+					}
+				}
+			});
+			
+		}else if(id == "heart_button_onclick"){
+			$.ajax({
+				url:"likeCancleProcess.do?pid="+$("#pid").val(),
+				success:function(result){
+					if(result==1){
+						$("#heart_button_onclick").attr("id","heart_button");
+						$("#heart_button_onclick").attr("src","http://localhost:9000/daangn/pro_img/hearticon.PNG");
+						location.reload();
+					}
+				}
+			});
+			
+		}	
+	
 	});
 	
+	/* 판매완료 버튼 */
+	$("#btn_sale").click(function(){
+		$.ajax({
+			url:"UpdateSale.do?pid="+$("#pid").val(),
+			success:function(result){
+				if(result==1){
+					location.reload();
+				}
+			}
+		});
+	});
 	
-
-	$("button[name=heartbutton]").click(function(){
-		var id = $(this).attr("id");
-		
-		if(id == "heart"){	
-			$(this).attr("id","heart_onclick");
-			$(this).removeClass("heartbutton");
-			$(this).addClass("heartbutton_onclick");
-			
-		}else if(id == "heart_onclick"){
-			$(this).attr("id","heart");
-			$(this).removeClass("heartbutton_onclick");
-			$(this).addClass("heartbutton");
-		}	
+	/* 신고버튼 */
+	$("span[name=report_button]").click(function(){
+		$.ajax({
+			url:"ReportUpdate.do?pid="+$("#pid").val(),
+			success:function(result){
+				if(result==1){
+					alert("신고가 접수되었습니다.");
+					location.reload();
+				}
+			}
+		});
 	
 	});
 	
@@ -71,6 +108,7 @@ $(document).ready(function(){
 		<!-- 캐러셀 시작 -->
 		<div class = "carousel">
 		<div id="demo" class="carousel slide" data-ride="carousel">
+		<input type = "hidden" value = "${pid }" id = "pid">
 	
 		  <!-- Indicators -->
 		  <ul class="carousel-indicators">
@@ -146,30 +184,48 @@ $(document).ready(function(){
 				<p>${content}</p>
 				<span>채팅 ${vo.chat} ∙ 관심 ${vo.favorite} ∙ 조회 ${vo.phit}</span>
 				<div class = "update_click">
+					<div>
 					<c:choose>
 						<c:when test = "${sessionScope.svo.id eq vo.id}">
+						<div style = "position:relative; left:100px;">
 							<a href = "http://localhost:9000/daangn/product_update.do?pid=${pid}&rno=${rno}">수정하기</a>
 							<a href = "http://localhost:9000/daangn/product_delete.do?pid=${pid}&rno=${rno}">삭제하기</a>
-							<a href = "#" id = "report">신고하기</a>
+						</div>	
 						</c:when>
 						<c:otherwise>
-							<a href = "#" id = "report">신고하기</a>
+							<span id = "report" name = "report_button" style = "margin-left:160px;">신고하기</span>
 						</c:otherwise>
 					</c:choose>	
+					</div>
 				</div>
 			</div>
 			<div class = "content_button">
-				<!-- <button class = "heart_button">♡</button> -->
-				<button class = "heart_button">♥</button>
+				<!-- 하트 버튼 -->
+				<img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button">
+				<!-- session체크에 좋아함 정보를 넣어서 해당 회원이 마음에 들어한 게시글이면 표시 -->	
 				<!-- 팔렸으면 버튼 disabled -->
 				<c:choose>
-					<c:when test = "${vo.saled eq 'N'}">
-						<button type = "button" class = "btn_confrim">채팅으로 거래하기</button>
-					</c:when>	
+					<c:when test = "${sessionScope.svo.id eq vo.id}">
+						<c:choose>
+							<c:when test = "${vo.saled eq 'N'}">
+								<button type = "button" class = "btn_confrim" id = "btn_sale">판매 완료</button>
+							</c:when>	
+							<c:otherwise>
+								<button type = "button" class = "btn_sold" disabled>판매 완료</button>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
 					<c:otherwise>
-						<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
-					</c:otherwise>
-				</c:choose>	
+						<c:choose>
+							<c:when test = "${vo.saled eq 'N'}">
+								<button type = "button" class = "btn_confrim">채팅으로 거래하기</button>
+							</c:when>	
+							<c:otherwise>
+								<button type = "button" class = "btn_sold" disabled>채팅으로 거래하기</button>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>	
+				</c:choose>
 			</div>
 			<div>
 				<section class = "plist_r">
@@ -203,14 +259,14 @@ $(document).ready(function(){
 		<!-- 중고 추천 section -->
 		<section class = "plist_r">
 			<div class = "content">
-				<div class = "content_t">
+				<div class = "content_t" >
 					<span>당근마켓 인기중고</span>
 					<a href = "http://localhost:9000/daangn/product.do"><span>더 구경하기</span></a>
 				</div>
 				<c:forEach var = "plist" items = "${list}">
 				<c:choose>
 					<c:when test = "${plist.saled eq 'N'}">
-						<ul>
+						<ul style = "float:left;">
 						<c:choose>
 							<c:when test = "${plist.psfile ne null}">
 								<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
