@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="mapper.chat">
+ 
+ <!-- 채팅 생성 -->
+ <insert id="send_chat" parameterType="com.spring.vo.ChatVO">
+ 	insert into daangn_chat values(seq_daangn_cid.nextval, #{sender}, #{receiver}, #{pid}, null, null)
+ </insert>
+ 
+ </mapper>
