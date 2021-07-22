@@ -46,13 +46,13 @@ public class ProductController {
 			stArray[i] = st.nextToken();
 			//String 으로 리턴해줌
 			
-			System.out.println("--->"+stArray[i]);
+			System.out.println("stArray--->"+stArray[i]);
 		}
 		
 		int result = productService.getSelectDelete(stArray);
 		
 		if(result != 0) {
-			mv.setViewName("redirect:/notice/notice_list.do");
+			mv.setViewName("redirect:/adminProduct.do");
 		}
 		
 		return mv;

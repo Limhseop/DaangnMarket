@@ -97,8 +97,8 @@ public class ProductServiceimpl implements ProductService{
 		return productDAO.getSaleResult(pid);
 	}
 	@Override
-	public int getSelectDelete(Array starray) {
-		return productDAO.getSelectDelete(starray);
+	public int getSelectDelete(String[] stArray) {
+		return productDAO.getSelectDelete(stArray);
 	}
 	
 	

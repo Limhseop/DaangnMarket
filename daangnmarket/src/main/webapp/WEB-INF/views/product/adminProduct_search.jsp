@@ -39,9 +39,6 @@ $(document).ready(function(){
 	//전체 선택 & 전체 해제
 	$("#all").click(function(){
 		var all_check = $("#all").is(":checked");
-/* 			var all_check = $(this).is(":checked");  이것도 가능이에요*/
-		/* 체크가 되었나 안되었나 여부가 all_check안에 들어간다. */
-		alert(all_check);
 		
 		if(all_check){
 			/* true이면 모두 선택 */
@@ -69,10 +66,6 @@ $(document).ready(function(){
 				}
 				
 				});
-			
-			//삭제하는 페이지 호출
-			//location.href>>자바스크립트 형식
-			//$(location).attr>>jquery형식
 			
 			$(location).attr("href","adminproduct_select_delete_proc.do?chkList="+chkList);
 																		// chkList는 자바 스크립트에서 만든 객체이기 때문에 ""밖에 적는다.
@@ -123,7 +116,7 @@ $(document).ready(function(){
 					</ul>
 				<c:forEach var = "plist" items = "${list}">
 					<ul style = "display:block; width:95%; height:200px; border:1px solid rgb(233, 236, 239); border-radius:5px; margin-bottom: 10px;">
-						<li style = "margin-bottom:10px;"><input type = "checkbox" name = "ptotal" id = "part" value = "${vo.pid }"></li>
+						<li style = "margin-bottom:10px;"><input type = "checkbox" name = "ptotal" id = "part" value = "${plist.pid}"></li>
 						<c:choose>
 							<c:when test = "${plist.psfile ne null}">
 								<li style = "display: inline-block;"><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
