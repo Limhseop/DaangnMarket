@@ -61,3 +61,43 @@ MODIFY PASS CONSTRAINT MEMBER_PASS_NN NOT NULL;
 --관리자 계정 데이터 추가
 INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
 VALUES('admin', '1234', '관리자', 'Y');
+
+--product 테이블
+CREATE TABLE PRODUCT_BOARD(
+  PID VARCHAR2(100) CONSTRAINT PK_PID PRIMARY KEY,
+  PTITLE VARCHAR2(500) NOT NULL,
+  PCONTENT VARCHAR2(1000) NOT NULL,
+  CATEGORY VARCHAR2(100) NOT NULL,
+  PRICE NUMBER(30),
+  PCHOICE NUMBER(1) DEFAULT 0,
+  PDATE DATE DEFAULT SYSDATE NOT NULL,
+  LOCATION VARCHAR2(500) NOT NULL,
+  ID VARCHAR2(20) NOT NULL,
+  CHAT NUMBER(30) DEFAULT 0,
+  FAVORITE NUMBER(30) DEFAULT 0,
+  PHIT NUMBER(30) DEFAULT 0,
+  REPORT NUMBER(10) DEFAULT 0,
+  SALED VARCHAR2(1) DEFAULT 'N',
+  PFILE VARCHAR2(1000),
+  PSFILE VARCHAR2(1000)
+);
+
+--product 시퀀스
+CREATE SEQUENCE SEQ_PRODUCT_PID 
+START WITH 1
+INCREMENT BY 1;
+
+--채팅
+create table daangn_chat(
+  cid number(35) primary key,
+   sender varchar2(100) not null references daangn_member(id) on delete cascade,
+   receiver varchar2(100) not null references daangn_member(id) on delete cascade,
+   PID VARCHAR2(100) not null references PRODUCT_BOARD(pid) on delete cascade,
+   log varchar2(1000),
+   cdate DATE DEFAULT SYSDATE not null
+  );
+
+--시퀀스
+create sequence seq_daangn_cid
+start with 1
+increment by 1;

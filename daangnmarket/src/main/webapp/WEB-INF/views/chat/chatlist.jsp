@@ -9,8 +9,11 @@
 <link rel="stylesheet" href="http://localhost:9000/daangn/resources/css/chat.css">
 </head>
 <body>
-<section class="page">
+<section class="all">
 	<section class="chat">
+		<div class="top">
+			<img src="http://localhost:9000/daangn/resources/images/logo.svg">
+		</div>
 		<div class="left_side">
 			<div class="name_div">
 			<h1>나남</h1>
