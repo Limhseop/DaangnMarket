@@ -24,11 +24,6 @@
 		</choose>
 	</select>
 
-	<!-- getlike -->
-	<select id = "getlike" parameterType = "java.lang.String" resultType = "java.lang.String">
-		select pid from product_like where id = #{memberid}
-	</select>
-	
 	<!-- member -->
 	<select id = "member" parameterType = "java.lang.String" resultType = "com.spring.vo.MemberVO">
 		select id,name,email,phone,addr,introduce,to_char(joindate,'yyyy-mm-dd')joindate,sale,purchase,imagepath from daangn_member where id=#{id}
@@ -120,14 +115,6 @@
 		UPDATE PRODUCT_BOARD SET PHIT = PHIT + 1  
 					 WHERE PID = #{pid}
 	</update>
-	<!-- likeinsert -->
-	<insert id = "likeinsert" parameterType = "map">
-		INSERT INTO PRODUCT_LIKE VALUES(${pid}, ${memberid})
-	</insert>
-	<!-- likedelete -->
-	<delete id = "likedelete" parameterType = "map">
-		DELETE FROM PRODUCT_LIKE WHERE ID = ${memberid} AND PID = ${pid}
-	</delete>
 	
 	
 	<!-- updatechat -->

@@ -82,15 +82,7 @@ $(document).ready(function(){
 								<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
 							</c:otherwise>
 						</c:choose>
-						<!-- session체크가 되어있다면 로그인한 회원의 정보와 함께 넘어가기 -->
-						<c:choose>
-							<c:when>
-								<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}&member=${sessionScope.svo.id}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
-							</c:when>
-							<c:otherwise>
-								<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
-							</c:otherwise>
-						</c:choose>
+						<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
 						<li>${plist.location}</li><!-- 주소 -->
 						<li>${plist.price}원</li><!-- 가격 -->
 						<c:choose>

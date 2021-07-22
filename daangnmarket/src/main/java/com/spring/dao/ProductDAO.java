@@ -24,11 +24,6 @@ public class ProductDAO {
 		return sqlSession.delete(namespace+".select_delete", stArray);
 	}
 	
-	//select : 회원이 좋아요 했는지 여부 가져오기
-	public String getLike(String memberid) {
-		return sqlSession.selectOne(namespace+".getlike", memberid);
-	}
-	
 	//update : 채팅 카운트 올리기
 	public int getChatCount(String pid) {
 		return sqlSession.update(namespace+".updatechat", pid);
@@ -116,20 +111,6 @@ public class ProductDAO {
 	//update: 조회수 올리기
 	public void getUpdateHit(String pid) {
 		sqlSession.update(namespace+".updateHit", pid);
-	}
-	//insert: 좋아요 기록하기
-	public void likeInsert(String memberid, String pid) {
-		Map<String, String> param = new HashMap();
-		param.put("memberid", memberid);
-		param.put("pid", pid);
-		sqlSession.update(namespace+".likeinsert", pid);
-	}
-	//delete: 좋아요 삭제하기
-	public void likeDelete(String memberid, String pid) {
-		Map<String, String> param = new HashMap();
-		param.put("memberid", memberid);
-		param.put("pid", pid);
-		sqlSession.update(namespace+".likedelete", pid);
 	}
 	
 	//select : 상세내용 가져오기
