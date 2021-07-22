@@ -19,11 +19,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getList(start, end);
 	}
 
-	@Override
-	public Object getContent(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*
+	 * @Override public Object getContent(String id) { // TODO Auto-generated method
+	 * stub return null; }
+	 */
 
 	@Override
 	public int execTotalCount() {

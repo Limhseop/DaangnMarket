@@ -7,7 +7,7 @@
 <mapper namespace="mapper.board">
 	<!-- 전체 로우수 -->
 	<select id="count" resultType="int">
-		select count(*) from danngn_board
+		select count(*) from daangn_board
 	</select>
 	
 	<!-- 전체리스트 -->
