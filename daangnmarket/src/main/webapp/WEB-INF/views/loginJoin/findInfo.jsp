@@ -14,10 +14,10 @@
 	*****/
 	
 	function idPop(){
-		window.open("findId.do","","width = 400, height = 500, top = 25, left = 800")
+		window.open("findId.do","","width = 500, height = 500, top = 25, left = 800")
 	}
 	function passPop(){
-		window.open("findPass.do","","width = 400, height = 500, top = 25, left = 800")
+		window.open("findPass.do","","width = 500, height = 500, top = 25, left = 800")
 	}
 	
 $(document).ready(function(){
@@ -40,10 +40,10 @@ $(document).ready(function(){
 	<div class = "content">
 		<section class = "findInfo">
 				<h1>아이디/비밀번호 찾기</h1>
-				<span>등록된 휴대폰 번호로 아이디나 비밀번호를 찾을 수 있습니다.</span>
+				<span>등록된 휴대폰 번호로 아이디를 찾거나 비밀번호를 재설정할 수 있습니다.</span>
 			<div class="buttons">
 				<button type="button" class="carrot_btn" id="btn_id">아이디 찾기</button>	
-				<button type="button" class="carrot_btn" id="btn_pass">비밀번호 찾기</button>	
+				<button type="button" class="carrot_btn" id="btn_pass">비밀번호 재설정</button>	
 			</div>	
 		</section>
 		

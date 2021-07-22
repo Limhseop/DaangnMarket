@@ -34,7 +34,7 @@ INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '
 --회원정보 테이블
 create table daangn_member(
   ID varchar2(100),
-  PASS varchar2(100),
+  PASS varchar2(300),
   NAME varchar2(50),
   EMAIL varchar2(100),
   PHONE varchar2(30),
