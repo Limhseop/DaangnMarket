@@ -75,8 +75,10 @@ public class MemberVO {
 	public String getAddr() {
 		return addr;
 	}
-	public void setAddr(String addr_jibun, String addr_detail) {
-		this.addr = addr_jibun + " " + addr_detail;
+	public void setAddr(String addr_jibun) {
+		addr_jibun.replace(" ", "%");
+		String[] jibuns = addr_jibun.split("%");
+		this.addr = jibuns[1]+" "+jibuns[2];
 	}
 	public String getIntroduce() {
 		return introduce;

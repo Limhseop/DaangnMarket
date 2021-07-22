@@ -90,11 +90,13 @@ $(document).ready(function(){
 	});
 	
 	/* 채팅버튼 */
-	$("span[name=chat_button]").click(function(){
+	$("button[name=chat_button]").click(function(){
 		$.ajax({
 			url:"chatCountUpdate.do?pid="+$("#pid").val(),
 			success:function(result){
 				if(result==1){
+					//채팅 폼 열리기
+					window.open("send_chat.do?pid=${pid}&receiver=${id}&sender=${sessionScope.svo.id}","","width = 1300, height = 900, top = 25, left = 25");
 					location.reload();
 				}
 			}
