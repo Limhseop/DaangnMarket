@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.spring.dao.ProductDAO;
 import com.spring.service.ProductService;
 import com.spring.vo.MemberVO;
 import com.spring.vo.ProductVO;
-
 
 @Controller
 public class ProductController {
