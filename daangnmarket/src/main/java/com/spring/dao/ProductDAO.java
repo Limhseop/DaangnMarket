@@ -19,6 +19,12 @@ public class ProductDAO {
 	private SqlSessionTemplate sqlSession;
 	private static String namespace = "mapper.product";
 	
+	//id 가져오기
+	public ArrayList<ProductVO> getLikeList(String pid) {
+		List<ProductVO> list = sqlSession.selectList(namespace+".likelist", pid);
+		return (ArrayList<ProductVO>)list;
+	}
+	
 	//관리자 리스트에서 선택 삭제
 	public int getSelectDelete(String[] stArray) {
 		return sqlSession.delete(namespace+".select_delete", stArray);
@@ -111,6 +117,20 @@ public class ProductDAO {
 	//update: 조회수 올리기
 	public void getUpdateHit(String pid) {
 		sqlSession.update(namespace+".updateHit", pid);
+	}
+	//insert: 좋아요 기록
+	public void Updatelike(String pid, String uid) {
+		Map<String, String> param = new HashMap();
+		param.put("pid", pid);
+		param.put("uid", uid);
+		sqlSession.insert(namespace+".updatelikeUser", param);
+	}
+	//delete: 좋아요 삭제
+	public void Updatedislike(String pid, String uid) {
+		Map<String, String> param = new HashMap();
+		param.put("pid", pid);
+		param.put("uid", uid);
+		sqlSession.delete(namespace+".updatedislikeUser", param);
 	}
 	
 	//select : 상세내용 가져오기
