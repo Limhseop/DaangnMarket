@@ -1,5 +1,7 @@
 package com.spring.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,8 @@ public class ChatServiceImpl implements ChatService{
 	
 	public boolean send_chat(ChatVO vo) {
 		return dao.send_chat(vo);
+	}
+	public ArrayList<ChatVO> load_chatlist(String myid){
+		return dao.load_chatlist(myid);
 	}
 }

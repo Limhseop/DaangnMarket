@@ -1,11 +1,17 @@
 package com.spring.vo;
 
 public class ChatVO {
-	int pid, cid;
+	int pid, cid, lid;
 	String sender, receiver, log, cdate;
 	
 	
 	
+	public int getLid() {
+		return lid;
+	}
+	public void setLid(int lid) {
+		this.lid = lid;
+	}
 	public int getPid() {
 		return pid;
 	}

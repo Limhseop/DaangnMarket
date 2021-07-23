@@ -1,5 +1,7 @@
 package com.spring.daangn;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +16,19 @@ public class ChatController {
 	@Autowired
 	private ChatService chatService;
 	
+	//채팅 jsp 보기
+	@RequestMapping(value="/chat_plain.do", method=RequestMethod.GET)
+	public String chat_plain() {
+		return "chat/chatlist";
+	}
+	
 	//채팅 기본 화면
 	@RequestMapping(value="/chat_main.do", method=RequestMethod.GET)
-	public ModelAndView chat_main() {
+	public ModelAndView chat_main(String myid) {
+		ArrayList<ChatVO> chat_list = chatService.load_chatlist(myid);	//cid 받아옴
+		//불러와지는 데까진 구현함ㅠ		
+		
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("chat/chatlist");
 		return mv;
@@ -31,10 +43,15 @@ public class ChatController {
 		vo.setReceiver(receiver);
 		vo.setSender(sender);
 		boolean result = chatService.send_chat(vo);
-		mv.addObject("pid",pid);
-		mv.addObject("receiver",receiver);
-		mv.addObject("sender",sender);
-		mv.setViewName("chat/chatlist");
+		if(result) {
+			mv.addObject("pid",pid);
+			mv.addObject("receiver",receiver);
+			mv.addObject("sender",sender);
+			mv.addObject("myid",sender);
+			mv.setViewName("redirect:/chat_main.do");
+		}else {
+			mv.setViewName("error_page");
+		}
 		return mv;
 	}
 	
