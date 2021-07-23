@@ -37,24 +37,24 @@ $(document).ready(function(){
 		var id = $(this).attr("id");
 		if(id == "heart_button"){	
 			$.ajax({
-				url:"likeUpdateProcess.do?pid="+$("#pid").val(),
+				url:"likeUpdateProcess.do?pid="+$("#pid").val()+"$uid="+$("#loginUser").val(),
 				success:function(result){
 					if(result==1){
 						$("#heart_button").attr("src","http://localhost:9000/daangn/pro_img/hearticon_click.PNG");
 						$("#heart_button").attr("id","heart_button_onclick");
-						location.reload();
+						//location.reload();
 					}
 				}
 			});
 			
 		}else if(id == "heart_button_onclick"){
 			$.ajax({
-				url:"likeCancleProcess.do?pid="+$("#pid").val(),
+				url:"likeCancleProcess.do?pid="+$("#pid").val()+"$uid="+$("#loginUser").val(),
 				success:function(result){
 					if(result==1){
 						$("#heart_button_onclick").attr("id","heart_button");
 						$("#heart_button_onclick").attr("src","http://localhost:9000/daangn/pro_img/hearticon.PNG");
-						location.reload();
+						//location.reload();
 					}
 				}
 			});
@@ -167,6 +167,7 @@ $(document).ready(function(){
 		<!-- 캐러셀 종료 -->
 		<!-- 내용 section -->
 		<section class = "p_content">
+		<input type = "hidden" id = "loginUser" name = "loginUser" value = "${sessionScope.svo.id }">
 			<div class = profile>
 				<img src = "http://localhost:9000/daangn/pro_img/profile_icon.png">
 				<div>
@@ -215,8 +216,10 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class = "content_button">
+			
 				<!-- 하트 버튼 -->
 				<img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button">
+				
 				<!-- session체크에 좋아함 정보를 넣어서 해당 회원이 마음에 들어한 게시글이면 표시 -->	
 				<!-- 팔렸으면 버튼 disabled -->
 				<c:choose>

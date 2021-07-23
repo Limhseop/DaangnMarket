@@ -41,6 +41,14 @@ public class ProductServiceimpl implements ProductService{
 		productDAO.getUpdateHit(pid);
 	}
 	@Override
+	public void Updatelike(String pid, String uid) {
+		productDAO.Updatelike(pid, uid);
+	}
+	@Override
+	public void Updatedislike(String pid, String uid) {
+		productDAO.Updatedislike(pid, uid);
+	}
+	@Override
 	public ProductVO getContent(String pid) {
 		return productDAO.getContent(pid);
 	}
@@ -103,6 +111,10 @@ public class ProductServiceimpl implements ProductService{
 	@Override
 	public int getSelectDelete(String[] stArray) {
 		return productDAO.getSelectDelete(stArray);
+	}
+	@Override
+	public ArrayList<ProductVO> getLikeList(String pid) {
+		return productDAO.getLikeList(pid);
 	}
 	
 	

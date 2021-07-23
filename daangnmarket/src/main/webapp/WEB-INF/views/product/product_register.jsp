@@ -29,14 +29,12 @@
 				$(this).removeClass("btn_confrim");
 				$(this).addClass("btn_cancle");
 				$("input#pchoice").val("Y");
-				alert($("#pchoice").val());
 				
 			}else if(id == "filter_onclick"){
 				$(this).attr("id","filter");
 				$(this).removeClass("btn_cancle");
 				$(this).addClass("btn_confrim");
 				$("input#pchoice").val("N");
-				alert($("#pchoice").val());
 				
 			}	
 		
