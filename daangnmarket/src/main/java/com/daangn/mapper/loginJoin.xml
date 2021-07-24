@@ -24,7 +24,7 @@
 	<!-- 회원가입 처리 -->
 	<insert id="join_proc" parameterType="com.spring.vo.MemberVO">
 		<choose>
-			<when test="email != null">
+			<when test="email eq ''">
 				INSERT INTO DAANGN_MEMBER
 				VALUES(#{id}, #{pass}, #{name}, #{email}, #{phone}, #{addr_enter}, #{addr_jibun}, #{addr_post}, #{addr_road}, #{addr_detail},
 				 #{introduce}, sysdate, 0, 0, #{imagepath}, #{admin})

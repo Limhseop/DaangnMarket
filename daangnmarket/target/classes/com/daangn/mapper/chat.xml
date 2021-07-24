@@ -11,12 +11,25 @@
  
  <!-- 채팅 생성 -->
  <insert id="send_chat" parameterType="com.spring.vo.ChatVO">
- 	insert into daangn_chat values(seq_daangn_lid.nextval, seq_daangn_cid.nextval, #{sender}, #{receiver}, #{pid}, null, sysdate)
+	 <choose>
+		 <when test="psfile != null">
+		 	insert into daangn_chat values(seq_daangn_lid.nextval, seq_daangn_cid.nextval, #{sender}, #{sender_name}, 
+		 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{ptitle}, #{p_location}, 
+		 	#{psfile}, null, null, null, sysdate)
+		 </when>
+		 <otherwise>
+		 	insert into daangn_chat values(seq_daangn_lid.nextval, seq_daangn_cid.nextval, #{sender}, #{sender_name}, 
+		 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{ptitle}, #{p_location}, 
+		 	null, null, null, null, sysdate)
+		 </otherwise>
+	 </choose>
  </insert>
  
  <!-- 채팅방 채팅내역, 날짜 -->
  <select id="load_chatlist" parameterType="java.lang.String" resultType="com.spring.vo.ChatVO">
- 	select * from daangn_chat where (receiver=#{myid} or sender=#{myid}) and lid=(select max(lid) from daangn_chat where receiver=#{myid} or sender=#{myid} group by cid)
+ 	select lid, cid, sender, sender_name, sender_image, receiver, receiver_name,
+ 	receiver_image, pid, ptitle, p_location, psfile, log, cfile, csfile,
+ 	concat(to_char(cdate,'mondd'),'일') cdate from daangn_chat where (receiver=#{myid} or sender=#{myid}) and lid=(select max(lid) from daangn_chat where receiver=#{myid} or sender=#{myid} group by cid) order by cdate desc
  </select>
  
 

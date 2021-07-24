@@ -10,9 +10,9 @@ public class MemberVO {
 		return addr_enter;
 	}
 	public void setAddr_enter(String addr_jibun) {
-		addr_jibun.replace(" ", "%");
-		String[] jibuns = addr_jibun.split("%");
-		this.addr = jibuns[1]+" "+jibuns[2];
+		String di = addr_jibun.replace(' ', '%');
+		String[] jibuns = di.split("%");
+		this.addr_enter = jibuns[1]+" "+jibuns[2];
 	}
 	public String getAddr_jibun() {
 		return addr_jibun;
