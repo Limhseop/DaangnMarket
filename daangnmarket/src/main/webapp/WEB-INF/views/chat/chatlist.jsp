@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,24 +17,62 @@
 		</div>
 		<div class="left_side">
 			<div class="name_div">
-			<h1>${mvo.getName }</h1>
+			<h1>${mvo.getName() }</h1>
 			</div>
 			<div class="second_div">
 				<button type="button" class="unread_message" id="unread_message">안읽은 메시지만 보기</button>
 			</div>
 			<div class="chat_list_div">
 				<ul class="chat_list_ul">
-					<li class="chat_list_li">
-						<div class="chat_list_li_div">
-							<div class="chat_list_li_top">
-								<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/daangn_profile.jpg" class="img_profile"></span>
-								<span class="chat_name">당근이</span>
-								<span class="chat_list_date">송정동, 07월 11일</span>
-							</div>
-							<span class="chat_list_content">안녕하세요. 혹시 제품 아직 구...</span>
-						</div>
-						<img src="http://localhost:9000/daangn/resources/images/daangn_img.png" class="product_img">
-					</li>
+				
+				<c:forEach var="cvo" items="${chat_list }">
+					<c:if test="cvo.getLog!=null">
+						<c:choose>
+						<c:when test="cvo.getSender==${myid }">
+							<li class="chat_list_li">
+								<div class="chat_list_li_div">
+									<div class="chat_list_li_top">
+										<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${cvo.getReceiver_image() }" class="img_profile"></span>
+										<span class="chat_name">${cvo.getReceiver_name() }</span>
+										<span class="chat_list_date">${cvo.getP_location() }, ${cvo.getCdate() }</span>
+									</div>
+									<c:choose>
+									<c:when test="${cvo.getLog()}.length()>=10">
+										<span class="chat_list_content">${cvo.getLog() }.substring(0,9)</span>
+									</c:when>
+									<c:otherwise>
+										<span class="chat_list_content">${cvo.getLog() }</span>
+									</c:otherwise>
+									</c:choose>
+								</div>
+								<img src="http://localhost:9000/daangn/resources/images/${cvo.getPsfile() }" class="product_img">
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="chat_list_li">
+								<div class="chat_list_li_div">
+									<div class="chat_list_li_top">
+										<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${cvo.getSender_image() }" class="img_profile"></span>
+										<span class="chat_name">${cvo.getSender_name() }</span>
+										<span class="chat_list_date">${cvo.getP_location() }, ${cvo.getCdate() }</span>
+									</div>
+									<c:choose>
+									<c:when test="${cvo.getLog()}.length()>=10">
+										<span class="chat_list_content">${cvo.getLog() }.substring(0,9)</span>
+									</c:when>
+									<c:otherwise>
+										<span class="chat_list_content">${cvo.getLog() }</span>
+									</c:otherwise>
+									</c:choose>
+								</div>
+								<c:if test="${cvo.getPsfile()!=null }">
+									<img src="http://localhost:9000/daangn/resources/images/${cvo.getPsfile() }" class="product_img">
+								</c:if>
+							</li>
+						</c:otherwise>
+						</c:choose>
+					</c:if>
+				</c:forEach>
 				</ul>
 			</div>
 		</div>

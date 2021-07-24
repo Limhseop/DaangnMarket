@@ -89,15 +89,28 @@ INCREMENT BY 1;
 
 --채팅
 create table daangn_chat(
-  cid number(35) primary key,
+  lid number(35) primary key,
+  cid number(35) not null,
    sender varchar2(100) not null references daangn_member(id) on delete cascade,
+   sender_name varchar2(50),
+   sender_image varchar2(100),
    receiver varchar2(100) not null references daangn_member(id) on delete cascade,
+   receiver_name varchar2(50),
+   receiver_image varchar2(100),
    PID VARCHAR2(100) not null references PRODUCT_BOARD(pid) on delete cascade,
+   ptitle varchar2(500),
+   p_location varchar2(500),
+   psfile varchar2(1000),
    log varchar2(1000),
-   cdate DATE DEFAULT SYSDATE not null
+   cfile varchar2(500),
+   csfile varchar2(500),
+   cdate DATE
   );
-
---시퀀스
+  
 create sequence seq_daangn_cid
+start with 1
+increment by 1;
+
+create sequence seq_daangn_lid
 start with 1
 increment by 1;

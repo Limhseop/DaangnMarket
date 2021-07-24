@@ -139,7 +139,6 @@ public class LoginJoinController {
 	//회원가입 진행
 	@RequestMapping(value="/join_proc.do", method=RequestMethod.POST)
 	public ModelAndView join_proc(MemberVO vo) {
-		vo.setAddr(vo.getAddr_jibun());
 		vo.setIntroduce("안녕하세요. "+vo.getId()+"입니다.");
 		vo.setImagepath("img_profile_male.png");
 		vo.setAdmin("N");
