@@ -16,7 +16,7 @@
 		</div>
 		<div class="left_side">
 			<div class="name_div">
-			<h1>나남</h1>
+			<h1>${mvo.getName }</h1>
 			</div>
 			<div class="second_div">
 				<button type="button" class="unread_message" id="unread_message">안읽은 메시지만 보기</button>

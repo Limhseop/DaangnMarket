@@ -26,12 +26,12 @@
 		<choose>
 			<when test="email != null">
 				INSERT INTO DAANGN_MEMBER
-				VALUES(#{id}, #{pass}, #{name}, #{email}, #{phone}, #{addr}, #{addr_jibun}, #{addr_post}, #{addr_road}, #{addr_detail},
+				VALUES(#{id}, #{pass}, #{name}, #{email}, #{phone}, #{addr_enter}, #{addr_jibun}, #{addr_post}, #{addr_road}, #{addr_detail},
 				 #{introduce}, sysdate, 0, 0, #{imagepath}, #{admin})
 			</when>
 			<otherwise>
 				INSERT INTO DAANGN_MEMBER
-				VALUES(#{id}, #{pass}, #{name}, null, #{phone}, #{addr}, #{addr_jibun}, #{addr_post}, #{addr_road}, #{addr_detail},
+				VALUES(#{id}, #{pass}, #{name}, null, #{phone}, #{addr_enter}, #{addr_jibun}, #{addr_post}, #{addr_road}, #{addr_detail},
 				 #{introduce}, sysdate, 0, 0, #{imagepath}, #{admin})
 			</otherwise>
 		</choose>
