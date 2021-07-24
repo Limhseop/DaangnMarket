@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.ChatService;
+import com.spring.service.MypageService;
 import com.spring.vo.ChatVO;
+import com.spring.vo.MemberVO;
 
 @Controller
 public class ChatController {
 	@Autowired
 	private ChatService chatService;
+
+	@Autowired
+	private MypageService mypageService;
 	
 	//채팅 jsp 보기
 	@RequestMapping(value="/chat_plain.do", method=RequestMethod.GET)
@@ -25,12 +30,14 @@ public class ChatController {
 	//채팅 기본 화면
 	@RequestMapping(value="/chat_main.do", method=RequestMethod.GET)
 	public ModelAndView chat_main(String myid) {
-		ArrayList<ChatVO> chat_list = chatService.load_chatlist(myid);	//cid 받아옴
-		//불러와지는 데까진 구현함ㅠ		
-		
-		
+		ArrayList<ChatVO> chat_list = chatService.load_chatlist(myid);	//chatVO 받아옴
+		MemberVO mvo = mypageService.getMember(myid);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("chat/chatlist");
+		mv.addObject("myid",myid);
+		mv.addObject("chat_list", chat_list);
+		mv.addObject("mvo",mvo);
+		
 		return mv;
 	}
 	
