@@ -106,6 +106,21 @@ section.chat li.chat_list_li img.product_img{
 }
 
 /*메인화면 - right side*/
+
+section.chat div.right_all_div{
+	height: 900px;
+	text-align: center;
+}
+section.chat div.right_all_div img.chat_bubble_img{
+	width: 100px;
+	height: 100px;
+	margin-top: 300px;
+	display: inline-block;
+}
+section.chat div.right_all_div span.announce{
+	display: block;
+	
+}
 section.chat div.right_side h1{
 	display: inline-block;
 }

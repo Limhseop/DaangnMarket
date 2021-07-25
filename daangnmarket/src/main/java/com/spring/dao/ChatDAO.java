@@ -1,6 +1,7 @@
 package com.spring.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,7 +18,7 @@ public class ChatDAO extends DBConn{
 	
 	private static String namespace = "mapper.chat";
 	
-	public boolean send_chat(ChatVO vo) {
+	public boolean send_chat(ChatVO vo) {	//수정 필요
 		boolean result = false;
 		int checkresult = sqlSession.selectOne(namespace+".send_chat_check", vo);
 		if(checkresult==0) {	//첫 채팅. 새 cid 배정해서 생성해야함
@@ -31,8 +32,20 @@ public class ChatDAO extends DBConn{
 		return result;
 	}
 	
+	public boolean send_chat_check(ChatVO vo) {
+		boolean result = false;
+		int checkresult = sqlSession.selectOne(namespace+".send_chat_check", vo);
+		if(checkresult==0) result=true;  //첫 채팅. 새 cid 배정해서 생성해야함
+		return result;
+	}
+	
 	public ArrayList<ChatVO> load_chatlist(String myid){
 		List<ChatVO> olist = sqlSession.selectList(namespace+".load_chatlist", myid);
+		return (ArrayList<ChatVO>)olist;
+	}
+	
+	public ArrayList<ChatVO> load_chatdetail(String cid){
+		List<ChatVO> olist = sqlSession.selectList(namespace+".load_chatdetail", cid);
 		return (ArrayList<ChatVO>)olist;
 	}
 }

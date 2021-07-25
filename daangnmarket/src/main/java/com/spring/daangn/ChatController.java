@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.ChatService;
@@ -28,8 +29,11 @@ public class ChatController {
 	
 	//채팅 jsp 보기
 	@RequestMapping(value="/chat_plain.do", method=RequestMethod.GET)
-	public String chat_plain() {
-		return "chat/chatlist";
+	public ModelAndView chat_plain() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("chat/chatlist");
+		mv.addObject("status","load");
+		return mv;
 	}
 	
 	//채팅 리스트 화면
@@ -54,7 +58,45 @@ public class ChatController {
 		return mv;
 	}
 	
+	//채팅 상세내용 화면 조회
+	@RequestMapping(value="/view_chat.do", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView view_chat(String cid, String myid) {
+		ModelAndView mv = new ModelAndView();
+		ArrayList<ChatVO> list = chatService.load_chatdetail(cid);
+		
+		return mv;
+	}
+	
 	//제품 페이지에서 채팅 걸었을 경우
+	@RequestMapping(value="/make_newchat.do", method=RequestMethod.GET)
+	public ModelAndView make_newchat(String pid, String receiver, String sender) {
+		ModelAndView mv = new ModelAndView();
+		ChatVO vo = new ChatVO();
+		MemberVO receiver_mvo = mypageService.getMember(receiver);
+		MemberVO sender_mvo = mypageService.getMember(sender);
+		ProductVO pvo = productService.getContent(pid);
+		
+		vo.setSender(sender);
+		vo.setSender_name(sender_mvo.getName());
+		vo.setSender_image(sender_mvo.getImagepath());
+		vo.setReceiver(receiver);
+		vo.setReceiver_name(receiver_mvo.getName());
+		vo.setReceiver_image(receiver_mvo.getImagepath());
+		vo.setPid(pid);
+		vo.setPtitle(pvo.getPtitle());
+		vo.setP_location(pvo.getLocation());
+		vo.setPsfile(pvo.getPsfile());
+		
+		mv.addObject("myid",sender);
+		mv.addObject("status","new");
+		mv.addObject("cvo", vo);
+		mv.setViewName("redirect:/chat_main.do");
+		return mv;
+	}
+	
+	
+	//채팅 보낼 경우
 	@RequestMapping(value="/send_chat.do", method=RequestMethod.GET)
 	public ModelAndView send_chat(String pid, String receiver, String sender) {
 		ModelAndView mv = new ModelAndView();
@@ -74,18 +116,15 @@ public class ChatController {
 		vo.setP_location(pvo.getLocation());
 		vo.setPsfile(pvo.getPsfile());
 		
-		boolean result = chatService.send_chat(vo);
-		if(result) {
-			/**
-			mv.addObject("pid",pid);
-			mv.addObject("receiver",receiver);
-			mv.addObject("sender",sender);
-			**/
+		boolean result = chatService.send_chat_check(vo);
+		if(result) {	//새 채팅
 			mv.addObject("myid",sender);
 			mv.addObject("status","new");
 			mv.setViewName("redirect:/chat_main.do");
-		}else {
-			mv.setViewName("error_page");
+		}else {	//이미 채팅이 있는 경우
+			mv.addObject("myid",sender);
+			mv.addObject("status","new");
+			mv.setViewName("redirect:/chat_main.do");
 		}
 		return mv;
 	}

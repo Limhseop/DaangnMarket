@@ -32,6 +32,11 @@
  	concat(to_char(cdate,'mondd'),'일') cdate from daangn_chat where (receiver=#{myid} or sender=#{myid}) and lid=(select max(lid) from daangn_chat where receiver=#{myid} or sender=#{myid} group by cid) order by cdate desc
  </select>
  
-
+<!-- 채팅방 세부내역 -->
+<select id="load_chatdetail" parameterType="map" resultType="com.spring.vo.ChatVO">
+	select lid, cid, sender, sender_name, sender_image, receiver, receiver_name, receiver_image, pid,
+	ptitle, p_location, psfile, log, csfile, cdate
+	from daangn_chat where cid=#{cid}
+</select>
  
  </mapper>
