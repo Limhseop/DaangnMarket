@@ -23,6 +23,12 @@
 			</when>
 		</choose>
 	</select>
+	
+	<!-- likelist -->
+	<select id = "likelist" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO">
+		SELECT ID FROM PRODUCT_LIKE WHERE PID = #{pid}
+	</select>
+	
 
 	<!-- member -->
 	<select id = "member" parameterType = "java.lang.String" resultType = "com.spring.vo.MemberVO">
@@ -117,6 +123,29 @@
 	</update>
 	
 	
+	
+	
+	
+	<!-- updatelikeUser -->
+	<insert id = "updatelikeUser" parameterType = "map">
+		insert into product_like values(#{pid},#{uid})
+	</insert>
+	
+	<!-- updatedislikeUser -->
+	<delete id = "updatedislikeUser" parameterType = "map">
+		DELETE PRODUCT_LIKE PID = #{pid} AND ID = #{uid}
+	</delete>
+	
+	
+	
+	
+	
+	<!-- updatechat -->
+	<update id = "updatechat" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET CHAT = CHAT + 1 
+			WHERE PID = #{pid}
+	</update>
+	
 	<!-- updateSale -->
 	<update id = "updateSale" parameterType = "java.lang.String">
 		UPDATE PRODUCT_BOARD SET SALED = 'Y' WHERE PID = #{pid}
@@ -129,7 +158,7 @@
 	</update>
 	<!-- updatedislike -->
 	<update id = "updatedislike" parameterType = "java.lang.String">
-		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE + 1  
+		UPDATE PRODUCT_BOARD SET FAVORITE = FAVORITE - 1  
 					 WHERE PID = #{pid}
 	</update>
 	

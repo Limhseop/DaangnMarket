@@ -45,8 +45,6 @@ public class ProductController {
 		for(int i=0; i<stArray.length; i++) {
 			stArray[i] = st.nextToken();
 			//String 으로 리턴해줌
-			
-			System.out.println("stArray--->"+stArray[i]);
 		}
 		
 		int result = productService.getSelectDelete(stArray);
@@ -96,6 +94,16 @@ public class ProductController {
 	 * UpdateSale.do
 	 */
 	@ResponseBody
+	@RequestMapping(value = "/chatCountUpdate.do", method = RequestMethod.GET)
+	public String chatCountUpdate(String pid) {
+		int value = productService.getChatCount(pid);
+		return String.valueOf(value);
+		
+	}
+	/**
+	 * UpdateSale.do
+	 */
+	@ResponseBody
 	@RequestMapping(value = "/UpdateSale.do", method = RequestMethod.GET)
 	public String UpdateSale(String pid) {
 		int value = productService.getSaleResult(pid);
@@ -118,8 +126,11 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/likeUpdateProcess.do", method = RequestMethod.GET)
-	public String likeUpdateProcess(String pid) {
+	public String likeUpdateProcess(String pid, String uid) {
 		int value = productService.getLikeResult(pid);
+		
+		productService.Updatelike(pid, uid);
+		
 		return String.valueOf(value);
 		
 	}
@@ -129,8 +140,11 @@ public class ProductController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/likeCancleProcess.do", method = RequestMethod.GET)
-	public String likeCancleProcess(String pid) {
+	public String likeCancleProcess(String pid, String uid) {
 		int value = productService.getDislikeResult(pid);
+		
+		productService.Updatedislike(pid, uid);
+		
 		return String.valueOf(value);
 		
 	}
@@ -310,7 +324,7 @@ public class ProductController {
 			boolean result = productService.getUpdateResultNofile(vo);
 		}
 
-		mv.setViewName("redirect:/product_search.do");
+		mv.setViewName("product/product_list");
 		/*
 		 * mv.setViewName("redirect:/product_content.do?pid="+vo.getPid()+"&rno="+vo.
 		 * getRno());
@@ -347,7 +361,7 @@ public class ProductController {
 
 		if (result) {
 			// 리스트 페이지로 페이지 이동
-			mv.setViewName("redirect:/product_search.do");
+			mv.setViewName("product/product_list");
 
 			if (vo.getPfile1().getSize() != 0) {
 				// 4.DB 연동 성공 ---> upload 폴더에 저장
@@ -374,8 +388,6 @@ public class ProductController {
 		mv.setViewName("product/product_register");
 		mv.addObject("location", location);
 
-		System.out.println(location);
-
 		return mv;
 
 	}
@@ -393,7 +405,7 @@ public class ProductController {
 
 		if (result) {
 			// 리스트 페이지로 페이지 이동
-			mv.setViewName("redirect:/product_search.do");
+			mv.setViewName("product/product_list");
 
 			String root_path = request.getSession().getServletContext().getRealPath("/");
 			String attach_path = "\\resources\\pro_upload\\";
@@ -445,9 +457,11 @@ public class ProductController {
 		if (vo != null)
 			productService.getUpdateHit(pid);
 		String content = vo.getPcontent().replace("\r\n", "<br>");
+		
+		//좋아요 받은 리스트 가져오기
+		ArrayList<ProductVO> likeList = productService.getLikeList(pid);
 
 		// 날짜 연산 추가하기
-
 		mv.setViewName("product/product_content");
 		mv.addObject("vo", vo);
 		mv.addObject("list", list);
@@ -457,6 +471,7 @@ public class ProductController {
 		mv.addObject("rno", rno);
 		mv.addObject("name", name);
 		mv.addObject("id", id);
+		mv.addObject("likeList", likeList);
 
 		return mv;
 	}

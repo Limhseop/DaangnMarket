@@ -29,12 +29,14 @@
 				$(this).removeClass("btn_confrim");
 				$(this).addClass("btn_cancle");
 				$("input#pchoice").val("Y");
+				alert($("#pchoice").val());
 				
 			}else if(id == "filter_onclick"){
 				$(this).attr("id","filter");
 				$(this).removeClass("btn_cancle");
 				$(this).addClass("btn_confrim");
 				$("input#pchoice").val("N");
+				alert($("#pchoice").val());
 				
 			}	
 		
@@ -119,7 +121,7 @@
 							<!-- <input type = "file" name = "file1" id = "nfile"> -->
 							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" id = "upload_img">
 							<!-- 사진 등록하면 카운트가 올라감 -->
-							<span class = "pic_count">0/3</span>
+							<span class = "pic_count" id = "img_count" name = "img_count">0/3</span>
 							<!-- 사진업로드 -->
 							<input type = "file" id="input_file" name = "pfile1" style = "display:none;">
 						</div>
@@ -129,7 +131,7 @@
 						<span>사진 미리보기</span>
 						<div class = "preview">
 							<img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" width = "100px" height = "100px">
-							<button type = "button">X</button>
+							<button type = "button" id = "img_delete" name = "img_delete">X</button> 
 						</div>
 					</li>
 					<li>

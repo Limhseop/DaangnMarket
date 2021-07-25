@@ -28,26 +28,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!--  DAO Object -->
-	<beans:bean id="MypageDAO" class="com.spring.dao.MypageDAO"></beans:bean>
-	<beans:bean id="MemberDAO" class="com.spring.dao.MemberDAO"></beans:bean>
-	<beans:bean id="ProductDAO" class="com.spring.dao.ProductDAO"></beans:bean>
-	<beans:bean id="NoticeDAO" class="com.spring.dao.NoticeDAO"></beans:bean>
-	<beans:bean id="AdminDAO" class="com.spring.dao.AdminDAO"></beans:bean>
-	<beans:bean id="BoardDAO" class="com.spring.dao.BoardDAO"></beans:bean>
-	<!-- Service Object -->
 	
-	<beans:bean id="MypageService" class="com.spring.service.MypageServiceImpl"></beans:bean>
+	<!-- Service Object -->
+	<beans:bean id="mypageService" class="com.spring.service.MypageServiceImpl"></beans:bean>
 	<beans:bean id="memberService" class="com.spring.service.MemberServiceImpl"></beans:bean>
-	<beans:bean id="ProductService" class="com.spring.service.ProductServiceimpl"></beans:bean>
-	<beans:bean id="NoticeService" class="com.spring.service.NoticeServiceImpl"></beans:bean>
-	<beans:bean id="AdminService" class="com.spring.service.AdminServiceImpl"></beans:bean>
-	<beans:bean id="BoardService" class="com.spring.service.BoardServiceImpl"></beans:bean>
+	<beans:bean id="productService" class="com.spring.service.ProductServiceimpl"></beans:bean>
+	<beans:bean id="noticeService" class="com.spring.service.NoticeServiceImpl"></beans:bean>
+	<beans:bean id="adminService" class="com.spring.service.AdminServiceImpl"></beans:bean>
+	<beans:bean id="chatService" class="com.spring.service.ChatServiceImpl"></beans:bean>
 	
 	<!-- 상품 사진 올리기 프로세스 -->
 	<!-- multipartResolver -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	</beans:bean> 
+	<beans:property name="maxUploadSize" value="10000000"></beans:property>
+	</beans:bean>
 	
 	<!-- Session -->
 	
@@ -67,13 +61,21 @@
 			<mapping path="/product_register.do" />
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/likeUpdateProcess.do" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/likeCancleProcess.do" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
 	
 	</interceptors>
 	
 	
 	
 	<context:component-scan base-package="com.spring.daangn" />
-	<!-- <context:component-scan base-package="com.spring.dao" />-->
+	<context:component-scan base-package="com.spring.dao" />
 	
 	
 </beans:beans>

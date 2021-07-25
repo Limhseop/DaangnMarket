@@ -32,6 +32,11 @@ public interface ProductService {
 	int getDislikeResult(String pid);
 	int getReportResult(String pid);
 	int getSaleResult(String pid);
+	int getChatCount(String pid);
 	int getSelectDelete(String[] stArray);
+	ArrayList<ProductVO> getLikeList(String pid);
+	
+	void Updatelike(String pid, String uid);
+	void Updatedislike(String pid, String uid);
 
 }

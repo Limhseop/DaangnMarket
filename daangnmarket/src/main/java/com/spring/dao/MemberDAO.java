@@ -54,6 +54,7 @@ public class MemberDAO extends DBConn {
 	//회원가입 진행
 	public boolean join_proc(MemberVO vo) {
 		boolean result = false;
+		vo.setAddr_enter(vo.getAddr_jibun());
 		int sessionresult = sqlSession.insert(namespace+".join_proc", vo);
 		if(sessionresult!=0) result=true;
 		return result;
