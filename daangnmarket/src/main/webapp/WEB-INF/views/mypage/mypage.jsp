@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,30 +38,31 @@
 				<input type="button" value="소개글 수정" class="introUpdate" id="introUpdate" >
 			</div>
 		</div>
-		
+		<br><br><br>
 		<div class="section2">
 			<div>
-				<ul class="section2_ul">
-					<li class="section2_li" id="li_1">상품</li>
-					<li class="section2_li" id="li_2">상점문의</li>
+				<span class="section2_li" id="li_1" style="width:100%;text-align:center;">상품</span>
+				<!-- <ul class="section2_ul"> -->
+					<!-- <li class="section2_li" id="li_2">상점문의</li>
 					<li class="section2_li" id="li_3">찜</li>
-					<li class="section2_li" id="li_4">상점후기</li>
-				</ul>
+					<li class="section2_li" id="li_4">상점후기</li> -->
+				<!-- </ul> -->
 			</div>
-			<br>
-			
 			<div>
-				<span>상품  </span><span>0</span>
 				<br><br>
 				<div class="line"></div><br>
 				<!-- <span>등록된 상품이 없습니다</span> -->
 				<div class="product">
-					<div>
-						<img src="images/img_profile_male.png" class="productImage"><br>
-						<p class="productName">상품 글제목</p><br>
-						<p class="productPrice">금액</p><br>
-						<p class="productDate">등록시간</p><br>
-					</div>
+				<ul>
+					<c:forEach var="product" items="${pvo}">
+							<li style="display:inline-block; margin:15px;">
+								<img src="${product.psfile }" class="productImage"><br>
+								<p class="productName">${product.ptitle}</p><br>
+								<p class="productPrice">${product.price }</p><br>
+								<p class="productDate">${product.pdate}</p><br>
+							</li>
+					</c:forEach>
+				</ul>
 				</div>
 			</div>
 		</div>
@@ -98,7 +100,7 @@
 				      </tr>
 				      <tr>
 				        <td>주소</td>
-				        <td><input type="text" class="inputText" disabled style="width:300px;" id="addr" value="${vo.addr }"></td>
+				        <td><input type="text" disabled style="width:300px;" id="addr" value="${vo.addr }"></td>
 				      </tr>
 				        <td>가입일</td>
 				        <td><input type="text" disabled style="width:300px;" id="joindate" value="${vo.joindate }"></td>

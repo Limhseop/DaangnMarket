@@ -19,4 +19,9 @@
 	<update id="introupdate" parameterType="map">
 		update daangn_member set introduce = #{introduce} where id=#{name}
 	</update>
+	
+	<!-- 상품리스트 가져오기 -->
+	<select id="getproduct" parameterType="java.lang.String" resultType="com.spring.vo.ProductVO">
+		select psfile,ptitle,price,pdate from product_board where id=#{id}
+	</select>
 </mapper>
