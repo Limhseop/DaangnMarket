@@ -39,4 +39,23 @@ public class NoticeDAO {
 		public NoticeVO getContent(String bno) {
 			return sqlSession.selectOne(namespace+".content", bno);
 		}
+		
+		// Update 공지사항 수정 
+		public boolean getUpdateResult(NoticeVO vo){
+			boolean result = false;
+			int value = sqlSession.update(namespace+".update", vo);
+			if(value !=0) result = true;
+			return result;
+		}
+		// DELETE 공지사항 삭제
+		public boolean getDeleteResult(NoticeVO vo){
+			boolean result = false;
+			int value = sqlSession.delete(namespace+".delete", vo);
+			if(value != 0) result = true;
+			
+			return result;
+		}
+		
+		
+		
 }

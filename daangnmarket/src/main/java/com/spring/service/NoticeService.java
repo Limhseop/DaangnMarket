@@ -13,4 +13,8 @@ public interface NoticeService {
 	public List<NoticeVO> list() throws Exception;
 	// 공지사항 상세보기
 	NoticeVO getContent(String bno);
+	//공지사항 업데이트
+	boolean getUpdateResult(NoticeVO vo);
+	//공지사항 삭제 
+	boolean getDeleteResult(NoticeVO vo);
 }

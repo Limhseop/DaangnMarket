@@ -12,7 +12,20 @@
   	    INSERT INTO DAANGN_NOTICE(BNO, TITLE, CONTENT)
   	    VALUES (DAANGN_NOTICE_SEQ.NEXTVAL, '${title}', '${content}')
  	</insert>
+ 	<!--  공지사항 수정 -->
+ 	<update id="update" parameterType="com.spring.vo.NoticeVO">
+ 		UPDATE DAANGN_NOTICE
+ 		 SET TITLE=#{title},
+ 		   CONTENT=#{content} 
+ 		   WHERE BNO=#{bno}
  	
+ 	</update>
+ 	<!-- 공지사항 삭제 -->
+ 	<delete id="delete" parameterType="com.spring.vo.NoticeVO">
+ 		DELETE
+ 		FROM DAANGN_NOTICE 
+ 		WHERE BNO=#{bno}
+ 	</delete>
  	
  	<!-- 전체리스트 -->
 	<select id="list" resultType="com.spring.vo.NoticeVO" parameterType="com.spring.vo.NoticeVO">

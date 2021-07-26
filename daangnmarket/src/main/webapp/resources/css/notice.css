@@ -106,10 +106,7 @@
         background: rgb(255, 255, 255);
        	 border-collapse : collapse;
     
-}
-.test2{
-	 display:table;
-}
+
 #li_1, #li_2, #li_3{
     border : 1px solid #333;
     

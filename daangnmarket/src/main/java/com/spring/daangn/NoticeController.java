@@ -74,4 +74,32 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+	// 공지사항 수정
+	@RequestMapping(value="/notice_updateproc.do", method=RequestMethod.POST)
+	public ModelAndView notice_update_proc(NoticeVO vo, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		boolean result = noticeService.getUpdateResult(vo);
+				
+		if(result) {
+			
+			mv.setViewName("redirect:/admin_notice.do");	
+		}
+			
+		return mv;
+	}
+	// 공지사항 삭제처리
+	@RequestMapping(value="/admin_noticedelete_proc.do", method=RequestMethod.GET)
+	public ModelAndView notice_delete_proc(NoticeVO vo, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		boolean result = noticeService.getDeleteResult(vo);
+		
+		if(result) {
+			mv.setViewName("redirect:/admin_notice.do");
+			}
+		return mv;
+	}
+	
 }
