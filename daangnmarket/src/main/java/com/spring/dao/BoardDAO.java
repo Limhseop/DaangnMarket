@@ -19,6 +19,12 @@ public class BoardDAO {
 
 	private String namespace = "mapper.board";
 
+	// select
+	public List<BoardVO> list() throws Exception{
+		
+		return sqlSession.selectList("mapper.board.list");
+	}
+	
 	// 전체 로우수
 	public int execTotalCount() {
 		return sqlSession.selectOne(namespace + ".count");

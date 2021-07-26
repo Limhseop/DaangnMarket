@@ -2,33 +2,33 @@ DROP TABLE DAANGN_BOARD;
 DROP TABLE daangn_member;
 DROP SEQUENCE BOARD_NO_SEQ;
 
--- 寃뚯떆�뙋(�룞�꽕�깮�솢) �뀒�씠釉�
+-- 동네생활 게시판
 CREATE TABLE DAANGN_BOARD(
-  NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 寃뚯떆�뙋 踰덊샇
-  CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 移댄뀒怨좊━
-  CONTENT VARCHAR2(2000) CONSTRAINT NN_BOARD_CONTENT NOT NULL, -- �궡�슜
+  NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 게시글 번호
+  CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 카테고리
+  CONTENT VARCHAR2(2000) CONSTRAINT NN_BOARD_CONTENT NOT NULL, -- 내용
   ID VARCHAR2(100) CONSTRAINT NN_BOARD_ID NOT NULL, -- ID
-  TOWN VARCHAR2(30) CONSTRAINT NN_BOARD_TOWN NOT NULL,  -- �룞�꽕
-  WDATE DATE CONSTRAINT NN_BOARD_DATE NOT NULL, -- �옉�꽦�씪�옄
-  IMG VARCHAR2(100), -- �궗�슜�옄媛� 蹂닿쾶�맆 �뙆�씪 紐�
-  SIMG  VARCHAR2(100)  -- �떎�젣濡� ���옣�맆 �뙆�씪 紐�
+  TOWN VARCHAR2(30) CONSTRAINT NN_BOARD_TOWN NOT NULL,  -- 동네
+  WDATE DATE CONSTRAINT NN_BOARD_DATE NOT NULL, -- 작성일자
+  IMG VARCHAR2(100), -- 사용자가 보게 될 파일명
+  SIMG  VARCHAR2(100)  -- 실제 파일명
 );
 
--- 寃뚯떆�뙋 �떆���뒪 �깮�꽦
+-- 게시물 번호 시퀀스 생성
 CREATE SEQUENCE BOARD_NO_SEQ
-START WITH 1 -- 1遺��꽣 �떆�옉
-INCREMENT BY 1 -- 1�뵫 利앷�
-CACHE 2; -- 硫붾え由ъ뿉 誘몃━ �삱�젮 �넃�쓣 �씤�뜳�뒪 媛쒖닔. 鍮꾩젙�긽 醫낅즺�릺硫� LAST_NUMBER媛� 2�뵫 利앷�
+START WITH 1 -- 1부터 시작
+INCREMENT BY 1 -- 1씩 증가
+CACHE 2; -- 메모리에 미리 올려 놓을 인덱스 개수. 비정상 종료되면 LAST_NUMBER가 2씩 증가
 
--- 紐⑤뱺 寃뚯떆�뙋 寃뚯떆湲� 議고쉶
+-- 게시판 확인
 SELECT * FROM DAANGN_BOARD;
 
--- BOARD �뜲�씠�꽣 �엯�젰
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�븞�뀞�븯�꽭�슂 �뀕 肄붾줈�굹媛� �떖�빐吏� �슂利� �떎�뱾 嫄닿컯議곗떖�븯�꽭�슂^^ <br> 肄붾줈�굹 �떆援��뿉 �뵾�떆諛⑹뿉�꽌 留먭뎄 嫄댁쟾�븯寃� �삩�씪�씤�쑝濡� 媛숈씠 �뀕�뀕 濡ㅽ븯�떎 20��遺꾨뱾 �엳�쓣源뚯슂~?', '蹂댁꽍�끂�옉', '遊됱쿇�룞', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�떊�엯 �씤�꽩 PT 諛쒗몴�뿰�뒿�쓣 �븯怨� �떢���뜲 留덈븙�븳 �옄由ш� �뾾�뼱�꽌�슂�뀪�뀪 �샊�떆 �씪�슂�씪�뿉 �떆媛� �릺�떆嫄곕굹 �떖�떖�븯�떊遺� 而ㅽ뵾 �븳�옍 �뱶�떆硫댁꽌 �뵾�뱶諛� �빐二쇱떎 �닔 �엳�굹�슂? 而ㅽ뵾�뒗 �젣媛� �룧寃뚯슂 �뀕�뀕', '2bbb', '遊됱쿇�룞', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '媛숈씠 �뼚�뱾�궗�엺?', '湲몃깷�씠', '遊됱쿇�룞', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '9�떆 �븘移� 源뚯튂�궛 / �굺�꽦��怨듭썝�뿉�꽌 �궛梨� 醫뗭븘�븯�뒗 �궗�엺 �엳�뼱�슂?', '�땲肄쒕씪�뒪', '遊됱쿇�룞', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '媛숈씠�빐�슂', '�궡�씪 �븘移� 7�떆易� �룄由쇱쿇 吏㏐쾶 嫄룰퀬 �븯猷� �떆�옉�븯�떎 遺� �엳�굹�슂?', '�닔諛뺤�ъ뒪', '遊됱쿇�룞', SYSDATE, NULL, NULL);
+-- BOARD에 들어갈 내용
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '우리동네질문', '남자도 네일아트샵 가서 하시는 분 있나요? <br> 그동안 회사에서~', '용감해', '청룡동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '동네소식', '이불 폐기 다들 어떻게 하시나용ㅠ', '닝닝', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '일상', '걸어서 산책 대 노들섬 드라이브!', '치치', '행운동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '취미생활', '스카이림 멀티플레이 모드로 잘하는 사람 따라다니면서 플레이 하고 싶어요', '접니다', '행운동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '고양이', '쑥고개성당 뒷골목에 맨날 같이 다니던 두마리 고양이 중 혹시 작은 아이 보신 분 있으신가요? <br> 큰 아이는 그러저럭 있는 것 같은데...', '해적', '봉천동', SYSDATE, NULL, NULL);
 
 
 --회원정보 테이블
@@ -114,3 +114,5 @@ increment by 1;
 create sequence seq_daangn_lid
 start with 1
 increment by 1;
+
+commit;
