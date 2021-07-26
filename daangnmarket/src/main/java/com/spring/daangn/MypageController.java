@@ -1,6 +1,7 @@
 package com.spring.daangn;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.MypageService;
 import com.spring.vo.MemberVO;
+import com.spring.vo.ProductVO;
 import com.spring.vo.SessionVO;
 
 @Controller
@@ -38,6 +40,7 @@ public class MypageController {
 		String phone = member.get("phone");
 		
 		System.out.println(id + phone);
+		mav.setViewName("mypage/mypage");
 		
 		return mav;
 	}
@@ -64,12 +67,15 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView();
 		
 		MemberVO vo = mypageService.getMember(id);
+		ArrayList<ProductVO> pvo = mypageService.getProduct(id);
 		
 		mav.setViewName("/mypage/mypage");
 		mav.addObject("vo",vo);
+		mav.addObject("pvo",pvo);
 		
 		return mav;
 	}
+	
 	
 	@RequestMapping(value="/profileImageChange.do" , method = RequestMethod.POST)
 	public ModelAndView profileImageChange(MultipartHttpServletRequest request,HttpSession session) throws Exception{

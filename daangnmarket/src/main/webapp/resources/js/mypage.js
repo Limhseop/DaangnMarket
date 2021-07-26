@@ -109,6 +109,7 @@ $(document).ready(function(){
 	});
 	
 	
+	
 	// 상품,상점문의,찜,상점후기 테두리 변경
 	$("#li_1").click(function(){
 		$("#li_1").css("border","1px solid #333");
