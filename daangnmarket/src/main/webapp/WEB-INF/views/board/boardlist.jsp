@@ -57,6 +57,12 @@ div.bottom {
 	display: block;
 	width: 100%;
 }
+/* div.bottom a {
+	font-color: #212529;
+}
+div.bottom a:hover {
+	 text-decoration: none;
+} */
 </style>
 </head>
 <body>
@@ -98,7 +104,7 @@ div.bottom {
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<td>${vo.category }</td>
-						<td><a href="board_post.do?no=${vo.no }">${vo.content }</a></td>
+						<td><a href="board_post.do?no=${vo.no }" style="color:orange;text-decoration:none;">${vo.content }</a></td>
 						<td>${vo.id }</td>
 						<td>${vo.town }</td>
 						<td>${vo.wdate }</td>
