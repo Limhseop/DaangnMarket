@@ -23,8 +23,10 @@ public class Commons {
 			ProductService productService = (ProductService) obj;
 			dbCount = productService.execTotalCount();
 		}else if(name.equals("board")) {
-			BoardService boardService = (BoardService)obj;
-			dbCount = boardService.execTotalCount();
+			/*
+			 * BoardService boardService = (BoardService)obj; dbCount =
+			 * boardService.execTotalCount();
+			 */
 		}
 		
 		//�� ������ �� ���

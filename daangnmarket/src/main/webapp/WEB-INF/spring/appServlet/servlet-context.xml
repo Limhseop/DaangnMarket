@@ -36,6 +36,7 @@
 	<beans:bean id="noticeService" class="com.spring.service.NoticeServiceImpl"></beans:bean>
 	<beans:bean id="adminService" class="com.spring.service.AdminServiceImpl"></beans:bean>
 	<beans:bean id="chatService" class="com.spring.service.ChatServiceImpl"></beans:bean>
+	<beans:bean id="boardService" class="com.spring.service.BoardServiceImpl"></beans:bean>
 	
 	<!-- 상품 사진 올리기 프로세스 -->
 	<!-- multipartResolver -->
