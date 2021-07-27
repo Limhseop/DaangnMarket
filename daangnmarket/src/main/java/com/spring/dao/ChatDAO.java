@@ -18,18 +18,21 @@ public class ChatDAO extends DBConn{
 	
 	private static String namespace = "mapper.chat";
 	
-	public boolean send_chat(ChatVO vo) {	//수정 필요
+	
+	
+	public boolean send_chat(ChatVO vo) {
 		boolean result = false;
-		int checkresult = sqlSession.selectOne(namespace+".send_chat_check", vo);
-		if(checkresult==0) {	//첫 채팅. 새 cid 배정해서 생성해야함
-			int sessionresult = sqlSession.insert(namespace+".send_chat", vo);
-			if(sessionresult!=0) {
-				result = true;
-			}
-		}else {	//이미 채팅이 있는 경우. 생성 X
+		
+		int sessionresult = sqlSession.insert(namespace+".send_chat", vo);
+		if(sessionresult!=0) {
 			result = true;
 		}
+		
 		return result;
+	}
+	
+	public int get_cid(ChatVO vo) {
+		return sqlSession.selectOne(namespace+".get_cid", vo);
 	}
 	
 	public boolean send_chat_check(ChatVO vo) {
@@ -44,7 +47,7 @@ public class ChatDAO extends DBConn{
 		return (ArrayList<ChatVO>)olist;
 	}
 	
-	public ArrayList<ChatVO> load_chatdetail(String cid){
+	public ArrayList<ChatVO> load_chatdetail(int cid){
 		List<ChatVO> olist = sqlSession.selectList(namespace+".load_chatdetail", cid);
 		return (ArrayList<ChatVO>)olist;
 	}

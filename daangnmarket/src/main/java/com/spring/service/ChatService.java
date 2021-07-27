@@ -9,5 +9,6 @@ public interface ChatService {
 	boolean send_chat(ChatVO vo);
 	boolean send_chat_check(ChatVO vo);
 	ArrayList<ChatVO> load_chatlist(String myid);
-	ArrayList<ChatVO> load_chatdetail(String cid);
+	ArrayList<ChatVO> load_chatdetail(int cid);
+	int get_cid(ChatVO vo);
 }

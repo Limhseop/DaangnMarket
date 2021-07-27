@@ -97,6 +97,10 @@ section.chat li.chat_list_li span.chat_list_date{
 } 
 section.chat li.chat_list_li span.chat_list_content{
 	font-size: 15px;
+	display: inline-block;
+	width: 200px;
+	height: 20px;
+	overflow: hidden; 
 }
 section.chat li.chat_list_li img.product_img{
 	height: 50px;
@@ -167,9 +171,11 @@ section.chat div.right_side div.sale_status{
 	margin-top: 2px;
 }
 section.chat div.right_side div.chat_content_div{
-	margin-top: 20px;
+	margin-top: 10px;
 	position: relative;
-	height: 800px;
+	height: 470px; 
+	overflow : auto;
+	margin-bottom: 10px;
 }
 section.chat div.right_side div.date{
 	font-size: 12px;
@@ -178,17 +184,27 @@ section.chat div.right_side div.date{
 	padding: 5px 7px;
 	width: 100px;
 	margin: auto;
+	margin-top:20px;
+	margin-bottom: 20px;
 	text-align: center;
 }
 section.chat div.right_side div.other_chatlog{
 	display: block;
 	position: relative;
 	margin-left: 10px;
+	height: 50px;
+	margin-bottom: 10px;
+}
+section.chat div.right_side div.my_chatlog_bg{
+	display: block;
+	position: static;
+	text-align: right;
+	height: 50px;
 }
 section.chat div.right_side div.my_chatlog{
-	display: block;
-	position: absolute;
-	right: 10px;	
+	display: inline-block;
+	position: relative;
+	margin-right: 10px;	
 }
 section.chat div.right_side span.word{
 	height: 40px;
@@ -217,7 +233,7 @@ section.chat div.right_side div.my_chatlog span.date{
 	font-size: 12px;
 	position: absolute;
 	bottom: 0;
-	left: -50px;
+	left: -60px;
 }
 section.chat div.right_side form.sendmessage_form{
 	position: sticky;

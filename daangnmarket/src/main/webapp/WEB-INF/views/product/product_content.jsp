@@ -96,7 +96,7 @@ $(document).ready(function(){
 			success:function(result){
 				if(result==1){
 					//채팅 폼 열리기
-					window.open("send_chat.do?pid=${pid}&receiver=${id}&sender=${sessionScope.svo.id}","","width = 1300, height = 900, top = 25, left = 25");
+					window.open("make_newchat.do?pid=${pid}&receiver=${id}&sender=${sessionScope.svo.id}","","width = 1300, height = 900, top = 25, left = 25");
 					location.reload();
 				}
 			}

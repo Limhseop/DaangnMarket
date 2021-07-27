@@ -6,37 +6,63 @@
  <mapper namespace="mapper.chat">
  <!-- 채팅 생성 전 확인 -->
  <select id="send_chat_check" parameterType="com.spring.vo.ChatVO" resultType="int">
- 	select count(cid) from daangn_chat where pid=#{pid} and receiver=#{receiver} and sender=#{sender}
+ 	select count(cid) from daangn_chat where pid=#{pid} and seller=#{seller} and buyer=#{buyer}
  </select>
+ 
+ <!-- 채팅번호(cid) 불러오기 -->
+ <select id="get_cid" parameterType="com.spring.vo.ChatVO" resultType="int">
+ 	select cid from daangn_chat where pid=#{pid} and seller=#{seller} and buyer=#{buyer} and lid = (select max(lid) from daangn_chat where pid=#{pid} and seller=#{seller} and buyer=#{buyer} group by cid)
+</select>
  
  <!-- 채팅 생성 -->
  <insert id="send_chat" parameterType="com.spring.vo.ChatVO">
-	 <choose>
-		 <when test="psfile != null">
-		 	insert into daangn_chat values(seq_daangn_lid.nextval, seq_daangn_cid.nextval, #{sender}, #{sender_name}, 
-		 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{ptitle}, #{p_location}, 
-		 	#{psfile}, null, null, null, sysdate)
-		 </when>
-		 <otherwise>
-		 	insert into daangn_chat values(seq_daangn_lid.nextval, seq_daangn_cid.nextval, #{sender}, #{sender_name}, 
-		 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{ptitle}, #{p_location}, 
-		 	null, null, null, null, sysdate)
-		 </otherwise>
-	 </choose>
+ 	<choose>
+ 		<when test="cid == 0">
+	 		<choose>
+				 <when test="psfile != null">
+				 	insert into daangn_chat values(seq_daangn_lid.nextval, seq_daangn_cid.nextval, #{sender}, #{sender_name}, 
+				 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{seller}, #{buyer}, 
+				 	#{ptitle}, #{p_location}, #{psfile}, #{price}, #{saled}, #{log}, null, null, sysdate)
+				 </when>
+				 <otherwise>
+				 	insert into daangn_chat values(seq_daangn_lid.nextval, seq_daangn_cid.nextval, #{sender}, #{sender_name}, 
+				 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{seller}, #{buyer}, 
+				 	#{ptitle}, #{p_location}, null, #{price}, #{saled}, #{log}, null, null, sysdate)
+				 </otherwise>
+			</choose>
+ 		</when>
+ 		<otherwise>
+ 			<choose>
+				 <when test="psfile != null">
+				 	insert into daangn_chat values(seq_daangn_lid.nextval, #{cid}, #{sender}, #{sender_name}, 
+				 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{seller}, #{buyer}, 
+				 	#{ptitle}, #{p_location}, #{psfile}, #{price}, #{saled}, #{log}, null, null, sysdate)
+				 </when>
+				 <otherwise>
+				 	insert into daangn_chat values(seq_daangn_lid.nextval, #{cid}, #{sender}, #{sender_name}, 
+				 	#{sender_image}, #{receiver}, #{receiver_name}, #{receiver_image}, #{pid}, #{seller}, #{buyer}, 
+				 	#{ptitle}, #{p_location}, null, #{price}, #{saled}, #{log}, null, null, sysdate)
+				 </otherwise>
+			 </choose>
+ 		</otherwise>
+ 	</choose>
+	 
  </insert>
  
  <!-- 채팅방 채팅내역, 날짜 -->
  <select id="load_chatlist" parameterType="java.lang.String" resultType="com.spring.vo.ChatVO">
  	select lid, cid, sender, sender_name, sender_image, receiver, receiver_name,
- 	receiver_image, pid, ptitle, p_location, psfile, log, cfile, csfile,
+ 	receiver_image, pid, seller, buyer, ptitle, p_location, psfile, log, cfile, csfile,
  	concat(to_char(cdate,'mondd'),'일') cdate from daangn_chat where (receiver=#{myid} or sender=#{myid}) and lid=(select max(lid) from daangn_chat where receiver=#{myid} or sender=#{myid} group by cid) order by cdate desc
  </select>
  
-<!-- 채팅방 세부내역 -->
-<select id="load_chatdetail" parameterType="map" resultType="com.spring.vo.ChatVO">
+<!-- cid로 채팅방 세부내역 -->
+<select id="load_chatdetail" parameterType="int" resultType="com.spring.vo.ChatVO">
 	select lid, cid, sender, sender_name, sender_image, receiver, receiver_name, receiver_image, pid,
-	ptitle, p_location, psfile, log, csfile, cdate
-	from daangn_chat where cid=#{cid}
+	seller, buyer, ptitle, p_location, psfile, price, saled, log, csfile,
+	concat(concat(concat(concat(concat(to_char(cdate, 'YYYY'),'년 '),to_char(cdate, 'MM')),'월 '),to_char(cdate,'DD')),'일') cday,
+	to_char(cdate, 'AM HH:MI') ctime
+	from daangn_chat where cid=#{cid} order by cdate
 </select>
  
  </mapper>
