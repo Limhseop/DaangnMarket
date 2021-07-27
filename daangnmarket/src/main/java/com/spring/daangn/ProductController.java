@@ -396,7 +396,6 @@ public class ProductController {
 	@RequestMapping(value = "/product_register_proc.do", method = RequestMethod.POST)
 	public ModelAndView product_register_proc(ProductVO vo, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
 		String root_path = "", attach_path = "";
 
 		if (vo.getPfile1().getSize() != 0) {

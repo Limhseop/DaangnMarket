@@ -21,6 +21,7 @@ import com.spring.vo.MemberVO;
 import com.spring.vo.SessionVO;
 
 import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 public class LoginJoinController {
@@ -113,16 +114,16 @@ public class LoginJoinController {
 	    params.put("app_version", "test app 1.2"); // application name and version
 	    JSONObject obj = new JSONObject();
 	    
-	    /*	//휴대폰 인증 잠시 막아뒀습니다!
-	    try {
-	    	obj = (JSONObject) coolsms.send(params);
-	    	result="success";
-	    
-	    } catch (CoolsmsException e) {
-	      System.out.println(e.getMessage());
-	      System.out.println(e.getCode());
-	    }
-	    */
+	    	//휴대폰 인증 오픈 코드
+//	    try {
+//	    	obj = (JSONObject) coolsms.send(params);
+//	    	result="success";
+//	    
+//	    } catch (CoolsmsException e) {
+//	      System.out.println(e.getMessage());
+//	      System.out.println(e.getCode());
+//	    }
+	    //여기까지
 	    
 	    /*휴대폰 인증 막았을 때 오픈하는 코드*/
 		    result="success";
@@ -140,7 +141,7 @@ public class LoginJoinController {
 	@RequestMapping(value="/join_proc.do", method=RequestMethod.POST)
 	public ModelAndView join_proc(MemberVO vo) {
 		vo.setIntroduce("안녕하세요. "+vo.getId()+"입니다.");
-		vo.setImagepath("img_profile_male.png");
+		vo.setImagepath("daangn_profile.jpg");
 		vo.setAdmin("N");
 		String password = passwordEncoder.encode(vo.getPass());
 		vo.setPass(password);
