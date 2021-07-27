@@ -98,11 +98,15 @@
 		SELECT PSFILE FROM PRODUCT_BOARD WHERE PID = #{pid}
 	</select>
 
+	<!-- deleteimg -->
+	<update id = "deleteimg" parameterType = "java.lang.String">
+		UPDATE PRODUCT_BOARD SET PFILE = NULL, PSFILE = NULL WHERE PID = #{pid}
+	</update>
 
 	
 	
 	<!-- updateNofile -->
-	<update id = "pro_updateNofile" parameterType = "com.spring.vo.ProductVO">
+	<update id = "pro_updateNofile" parameterType = "com.spring.vo.ProductVSO">
 		UPDATE PRODUCT_BOARD SET PTITLE =#{ptitle, jdbcType = VARCHAR}, PCONTENT =#{pcontent, jdbcType = VARCHAR}, CATEGORY=#{category, jdbcType = VARCHAR}, PRICE =#{price, jdbcType = NUMERIC}
 		WHERE PID = #{pid, jdbcType = VARCHAR}   	
 	</update>

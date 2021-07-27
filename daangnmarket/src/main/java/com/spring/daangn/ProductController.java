@@ -315,6 +315,19 @@ public class ProductController {
 		return mv;
 
 	}
+	
+	/**
+	 * deleteImage >> 수정시 삭제
+	 */
+	@RequestMapping(value = "/deleteImage.do", method = RequestMethod.GET)
+	public String deleteImage(String pid) {
+		
+		int value = productService.getDeleteImage(pid);
+		
+		return String.valueOf(value);
+	}
+	
+	
 
 	/***
 	 * product_update_proc >>> 상품 수정
