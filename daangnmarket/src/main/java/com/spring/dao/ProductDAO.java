@@ -46,6 +46,10 @@ public class ProductDAO {
 	public int getDislikeResult(String pid) {
 		return sqlSession.update(namespace+".updatedislike", pid);
 	}
+	//update : 사진 null로 update
+	public int getDeleteImage(String pid) {
+		return sqlSession.update(namespace+".deleteimg", pid);
+	}
 	
 	//select: 유저 정보 가져오기
 	public MemberVO getMember(String id) {
