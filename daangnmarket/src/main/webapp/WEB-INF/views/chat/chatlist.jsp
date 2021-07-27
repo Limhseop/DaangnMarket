@@ -8,6 +8,68 @@
 <title>당근채팅</title>
 <link rel="stylesheet" href="http://localhost:9000/daangn/resources/css/commons.css">
 <link rel="stylesheet" href="http://localhost:9000/daangn/resources/css/chat.css">
+<script src="http://localhost:9000/daangn/resources/js/jquery-3.6.0.min.js"></script>
+<script>
+	function load_chat_ajax(cid){
+		$.ajax({
+			url:"load_chat_ajax.do?cid="+cid,
+			success: function(result){
+				var jdata = JSON.parse(result);
+			}
+		})
+	}
+	function submit_func(){
+		if($("#text_message").val().trim()==""){
+			alert("전송할 메시지를 입력해주세요.")
+			$("#text_message").val("");
+			$("#text_message").focus();
+		}else{
+			sendmessage_form.submit();
+		}
+	}
+	
+	$(document).ready(function(){
+		<c:if test="${status eq 'select'}">
+			<c:set var="index" value="-1" />
+			<c:forEach var="i" begin="0" end="${chat_list.size()-1}">
+				<c:if test="${chat_list.get(i).getCid()==vo_setting.getCid()}">
+					<c:set var="index" value="${i}" />
+				</c:if>
+			</c:forEach>
+			<c:if test="${index != -1}">
+			$("#chat_list_li[value='${index}']").css({"background-color":"gray"});
+			</c:if>
+		</c:if>
+		
+		$("#text_message").focus();
+		
+		$("#chat_list_li").click(function(){
+			var index1 = $("#chat_list_li").val();
+			var cid = '<c:out value="${chat_list.get(index1).getCid()}"/>';
+			//cid 받아오는 데까진 성공
+			//load_chat_ajax(cid);
+			location.href="http://localhost:9000/daangn/chat_getlog.do?cid="+cid+"&myid=${myid}";
+		});
+		
+		$("#send_btn").click(function(){
+			submit_func();
+		});
+		
+		$("#text_message").on("keyup", function(key){
+			if(key.keyCode==13){
+				submit_func();
+				$("#text_message").val("");
+			}
+		});
+		
+		$("#chat_content_div").scrollTop(document.getElementById("chat_content_div").scrollHeight);
+		
+		
+	});
+	
+
+
+</script>
 </head>
 <body>
 <section class="all">
@@ -20,16 +82,15 @@
 			<h1>${mvo.getName() }</h1>
 			</div>
 			<div class="second_div">
-				<button type="button" class="unread_message" id="unread_message">안읽은 메시지만 보기</button>
 			</div>
 			<div class="chat_list_div">
 				<ul class="chat_list_ul">
 				
 				<c:forEach var="cvo" items="${chat_list }">
-					<c:if test="cvo.getLog!=null">
+					<c:if test="${ cvo.getLog() != null}">
 						<c:choose>
-						<c:when test="cvo.getSender==${myid }">
-							<li class="chat_list_li">
+						<c:when test="${cvo.getSender() eq myid }">
+							<li class="chat_list_li" id="chat_list_li">
 								<div class="chat_list_li_div">
 									<div class="chat_list_li_top">
 										<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${cvo.getReceiver_image() }" class="img_profile"></span>
@@ -45,25 +106,20 @@
 									</c:otherwise>
 									</c:choose>
 								</div>
-								<img src="http://localhost:9000/daangn/resources/images/${cvo.getPsfile() }" class="product_img">
+								<c:if test="${cvo.getPsfile() != null }">
+									<img src="http://localhost:9000/daangn/resources/images/${cvo.getPsfile() }" class="product_img">
+								</c:if>
 							</li>
 						</c:when>
 						<c:otherwise>
-							<li class="chat_list_li">
+							<li class="chat_list_li" id="chat_list_li">
 								<div class="chat_list_li_div">
 									<div class="chat_list_li_top">
 										<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${cvo.getSender_image() }" class="img_profile"></span>
 										<span class="chat_name">${cvo.getSender_name() }</span>
 										<span class="chat_list_date">${cvo.getP_location() }, ${cvo.getCdate() }</span>
 									</div>
-									<c:choose>
-									<c:when test="${cvo.getLog()}.length()>=10">
-										<span class="chat_list_content">${cvo.getLog() }.substring(0,9)</span>
-									</c:when>
-									<c:otherwise>
 										<span class="chat_list_content">${cvo.getLog() }</span>
-									</c:otherwise>
-									</c:choose>
 								</div>
 								<c:if test="${cvo.getPsfile()!=null }">
 									<img src="http://localhost:9000/daangn/resources/images/${cvo.getPsfile() }" class="product_img">
@@ -77,44 +133,89 @@
 			</div>
 		</div>
 		<div class="right_side">
-			<div class="name_div">
-			<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/daangn_profile.jpg" class="img_profile"></span>
-			<h1>직거래꾼</h1>
-			<span class="chat_temperature">36.5℃</span>
-			</div>
-			<div class="name_div">
-			<img src="http://localhost:9000/daangn/resources/images/daangn_img.png" class="product_img">
-				<div class="chat_item_div">
-					<span class="title">PC게임패드 팝니다</span>
-					<span class="price">15,000원</span>
-				</div>
-				<div class="sale_status">판매중</div>
-			</div>
-			<div class="chat_content_div">
-				<div class="date">2020년 6월 13일</div>
-				<div class="other_chatlog">
-					<span class="profile"><img src="http://localhost:9000/daangn/resources/images/daangn_profile.jpg" class="img_profile"></span>
-					<span class="word">125000원 가능하신가요?</span>
-					<span class="date">오후 6:21</span>
-				</div>
-				<div class="my_chatlog">
-					<span class="word">다른분에게 120000원에 구매하기로 했습니다 ㅠㅠ</span>
-					<span class="date">오후 6:26</span>
-				</div>
-			</div>
-			<form id="sendmessage_form" name="sendmessage_form" class="sendmessage_form">
-				<div class="input_text_div">
-				<div class="buttons_left">
-					<button>그림</button>
-					<button>이모티콘</button>
-				</div>
-				<div class="buttons_right">
-					<span class="text_count">0/1000</span>
-					<button type="button">전송</button>
-				</div>
-				<textarea id="text_message" name="text_message" class="text_message" placeholder="메시지를 입력해주세요"></textarea>
-				</div>
-			</form>
+			<c:choose>
+				<c:when test="${status eq 'load'}">
+					<div class="right_all_div">
+						<img src="http://localhost:9000/daangn/resources/images/chat_bubble.png" class="chat_bubble_img">
+						<span class="announce">채팅할 상대를 선택해주세요.</span>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${myid eq vo_setting.getSender() }">
+							<div class="name_div">
+							<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${vo_setting.getReceiver_image() }" class="img_profile"></span>
+							<h1>${vo_setting.getReceiver_name() }</h1>
+							<span class="chat_temperature">36.5℃</span>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="name_div">
+							<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${vo_setting.getSender_image() }" class="img_profile"></span>
+							<h1>${vo_setting.getSender_name() }</h1>
+							<span class="chat_temperature">36.5℃</span>
+							</div>
+						</c:otherwise>
+					</c:choose>
+						<div class="name_div">
+						<c:if test="${vo_setting.getPsfile() } != null">
+						<img src="http://localhost:9000/daangn/resources/images/${vo_setting.getPsfile() }" class="product_img">
+						</c:if>
+							<div class="chat_item_div">
+								<span class="title">${vo_setting.getPtitle() }</span>
+								<span class="price">${vo_setting.getPrice() }</span>
+							</div>
+							<c:choose>
+								<c:when test="${vo_setting.getSaled() eq 'N' }">
+									<div class="sale_status">판매중</div>
+								</c:when>
+								<c:otherwise>
+									<div class="sale_status">판매완료</div>
+								</c:otherwise>
+							</c:choose>									
+						</div>
+						<div class="chat_content_div" id="chat_content_div">
+							<c:if test="${log_list != null }">
+								<c:set var="date" scope="page" value="0" />
+								<c:forEach var="clog" items="${log_list }">
+									<c:if test="${date ne clog.getCday()}">
+										<div class="date">${clog.getCday() }</div>
+										<c:set var="date" scope="page" value="${clog.getCday()}" />
+									</c:if>
+									<c:choose>
+										<c:when test="${clog.getSender() eq myid }">
+											<div class="my_chatlog_bg">
+												<div class="my_chatlog">
+													<span class="word">${clog.getLog()}</span>
+													<span class="date">${clog.getCtime() }</span>
+												</div>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="other_chatlog">
+											<span class="profile"><img src="http://localhost:9000/daangn/resources/images/${clog.getSender_image() }" class="img_profile"></span>
+											<span class="word">${clog.getLog()}</span>
+											<span class="date">${clog.getCtime() }</span>
+										</div>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</c:if>
+						</div>
+						<form id="sendmessage_form" action="make_newchat.do" method="GET" name="sendmessage_form" class="sendmessage_form">
+						<input type="hidden" value="${vo_setting.getSender() }" name="sender">
+						<input type="hidden" value="${vo_setting.getReceiver() }" name="receiver">
+						<input type="hidden" value="${vo_setting.getPid() }" name="pid">
+							<div class="input_text_div">
+							<div class="buttons_right">
+								<span class="text_count">0/1000</span>
+								<button type="button" id="send_btn">전송</button>
+							</div>
+							<textarea id="text_message" name="log" class="text_message" placeholder="메시지를 입력해주세요"></textarea>
+							</div>
+						</form>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</section>
 </section>

@@ -58,7 +58,7 @@ body{
 	*****/
 	
 	function chatPop(){
-		window.open("chat_main.do?myid=${sessionScope.svo.id}","","width = 1300, height = 900, top = 25, left = 25")
+		window.open("chat_main.do?myid=${sessionScope.svo.id}&price=0&chat_check=0&cid=0","","width = 1300, height = 900, top = 25, left = 25")
 	}
 	
 	

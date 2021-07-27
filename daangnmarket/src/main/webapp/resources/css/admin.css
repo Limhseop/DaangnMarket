@@ -18,9 +18,11 @@
 }
 .noticemanage{
 	float:left;
-	display:none;
+	//display:none;
+	margin-left:50px;
 }
 .qanda{
 	float:left;
-	display:none;
+	//display:none;
+	margin-left:50px;
 }

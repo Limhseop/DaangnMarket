@@ -28,7 +28,11 @@
 <script>
 $(document).ready(function(){
 	
-	var pager = jQuery('#ampaginationsm').pagination({
+	$("#buttons").click(function(){
+		alert("버튼들 클릭됨");
+	});
+	
+	/* var pager = jQuery('#ampaginationsm').pagination({
 	
 	    maxSize: 7,	    		// max page size
 	    totals: ${dbCount},	// total pages	
@@ -47,7 +51,7 @@ $(document).ready(function(){
 	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
            $(location).attr('href', "http://localhost:9000/mycgv/board_list.do?rpage="+e.page);         
-    });
+    }); */
 	
 	});
 </script>

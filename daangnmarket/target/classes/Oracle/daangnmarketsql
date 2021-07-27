@@ -1,37 +1,21 @@
-DROP TABLE DAANGN_BOARD;
-DROP TABLE daangn_member;
+-- 테이블 삭제
+drop table question CASCADE CONSTRAINTS;
+drop table daangn_notice CASCADE CONSTRAINTS;
+DROP TABLE DAANGN_BOARD CASCADE CONSTRAINTS;
+drop table daangn_chat CASCADE CONSTRAINTS;
+drop table product_like CASCADE CONSTRAINTS;
+drop table product_board CASCADE CONSTRAINTS;
+DROP TABLE daangn_member CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence daangn_notice_seq;
 DROP SEQUENCE BOARD_NO_SEQ;
-
--- 동네생활 게시판
-CREATE TABLE DAANGN_BOARD(
-  NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 게시글 번호
-  CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 카테고리
-  CONTENT VARCHAR2(2000) CONSTRAINT NN_BOARD_CONTENT NOT NULL, -- 내용
-  ID VARCHAR2(100) CONSTRAINT NN_BOARD_ID NOT NULL, -- ID
-  TOWN VARCHAR2(30) CONSTRAINT NN_BOARD_TOWN NOT NULL,  -- 동네
-  WDATE DATE CONSTRAINT NN_BOARD_DATE NOT NULL, -- 작성일자
-  IMG VARCHAR2(100), -- 사용자가 보게 될 파일명
-  SIMG  VARCHAR2(100)  -- 실제 파일명
-);
-
--- 게시물 번호 시퀀스 생성
-CREATE SEQUENCE BOARD_NO_SEQ
-START WITH 1 -- 1부터 시작
-INCREMENT BY 1 -- 1씩 증가
-CACHE 2; -- 메모리에 미리 올려 놓을 인덱스 개수. 비정상 종료되면 LAST_NUMBER가 2씩 증가
-
--- 게시판 확인
-SELECT * FROM DAANGN_BOARD;
-
--- BOARD에 들어갈 내용
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '우리동네질문', '남자도 네일아트샵 가서 하시는 분 있나요? <br> 그동안 회사에서~', '용감해', '청룡동', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '동네소식', '이불 폐기 다들 어떻게 하시나용ㅠ', '닝닝', '봉천동', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '일상', '걸어서 산책 대 노들섬 드라이브!', '치치', '행운동', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '취미생활', '스카이림 멀티플레이 모드로 잘하는 사람 따라다니면서 플레이 하고 싶어요', '접니다', '행운동', SYSDATE, NULL, NULL);
-INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '고양이', '쑥고개성당 뒷골목에 맨날 같이 다니던 두마리 고양이 중 혹시 작은 아이 보신 분 있으신가요? <br> 큰 아이는 그러저럭 있는 것 같은데...', '해적', '봉천동', SYSDATE, NULL, NULL);
+drop sequence SEQ_PRODUCT_PID;
+drop sequence seq_daangn_cid;
+drop sequence seq_daangn_lid;
 
 
---회원정보 테이블
+--회원정보 테이블 생성
 create table daangn_member(
   ID varchar2(100),
   PASS varchar2(300),
@@ -62,6 +46,35 @@ MODIFY PASS CONSTRAINT MEMBER_PASS_NN NOT NULL;
 INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
 VALUES('admin', '1234', '관리자', 'Y');
 
+
+--일반 계정 데이터 추가
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('abc123', '1234567', 'abc', '01022222222', '노원구 상계동', '안녕하세요. abc123입니다.', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('eofm2', '5674578', '나나', '01058222322', '해운대구 재송동', '당근마켓 좋아요~', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('woifam', '568442', '뽀', '01069542842', '마포구 망원동', '쿨거래 원합니다', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('eirj392', '1234567', 'eirj392', '01054161644', '종로구 사직동', '안녕하세요. eirj392입니다.', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('doglove', '1234567', '강지사랑', '01022323212', '북구 만덕동', '강아지 용품 판매합니다.', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('a23123', '1234567', '김연지', '01087589144', '노원구 하계동', '안녕하세요^^', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('886541', '1234567', '도로명', '01053248245', '광진구 자양동', '안녕하세요.', sysdate, 0,0,'daangn_profile.jpg','N');
+
+
+-- 1대1 문의 테이블
+create table question(
+  qtitle varchar2(500),
+  qcontent varchar2(2000),
+  qanswer varchar2(2000),
+  qid varchar2(200),
+  qcheck varchar2(5)
+);
+
+
+
 --상품 등록 게시판
 CREATE TABLE PRODUCT_BOARD(
   PID VARCHAR2(100) CONSTRAINT PK_PID PRIMARY KEY,
@@ -71,8 +84,8 @@ CREATE TABLE PRODUCT_BOARD(
   PRICE NUMBER(30),
   PCHOICE VARCHAR2(1),
   PDATE DATE DEFAULT SYSDATE NOT NULL,
-  LOCATION VARCHAR2(500) NOT NULL,
-  ID VARCHAR2(20) NOT NULL,
+  LOCATION VARCHAR2(600) NOT NULL,
+  ID VARCHAR2(100) NOT NULL,
   CHAT NUMBER(30) DEFAULT 0,
   FAVORITE NUMBER(30) DEFAULT 0,
   PHIT NUMBER(30) DEFAULT 0,
@@ -82,10 +95,61 @@ CREATE TABLE PRODUCT_BOARD(
   PSFILE VARCHAR2(4000)
 );
 
---product 시퀀스
+--즐겨찾기 테이블
+CREATE TABLE PRODUCT_LIKE(
+  PID VARCHAR2(100) CONSTRAINT FK_PID REFERENCES PRODUCT_BOARD(PID),
+  ID VARCHAR2(100)
+);
+
+desc product_board;
+
+-- 상품 시퀀스 생성
 CREATE SEQUENCE SEQ_PRODUCT_PID 
 START WITH 1
 INCREMENT BY 1;
+
+-- 공지사항 테이블 생성
+create table daangn_notice(
+  bno number(10),
+  title varchar2(2000),
+  content varchar2(2000),
+  ndate date
+);
+
+-- 공지사항 시퀀스 생성
+CREATE SEQUENCE DAANGN_NOTICE_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+-- 동네생활 게시판
+CREATE TABLE DAANGN_BOARD(
+  NO NUMBER(10) CONSTRAINT PK_BOARD_NO PRIMARY KEY, -- 게시글 번호
+  CATEGORY VARCHAR2(30) CONSTRAINT NN_BOARD_CATEGORY NOT NULL,  -- 카테고리
+  CONTENT VARCHAR2(2000) CONSTRAINT NN_BOARD_CONTENT NOT NULL, -- 내용
+  ID VARCHAR2(100) CONSTRAINT NN_BOARD_ID NOT NULL, -- ID
+  TOWN VARCHAR2(30) CONSTRAINT NN_BOARD_TOWN NOT NULL,  -- 동네
+  WDATE DATE CONSTRAINT NN_BOARD_DATE NOT NULL, -- 작성일자
+  IMG VARCHAR2(100), -- 사용자가 보게 될 파일명
+  SIMG  VARCHAR2(100)  -- 실제 파일명
+);
+
+-- 게시물 번호 시퀀스 생성
+CREATE SEQUENCE BOARD_NO_SEQ
+START WITH 1 -- 1부터 시작
+INCREMENT BY 1 -- 1씩 증가
+CACHE 2; -- 메모리에 미리 올려 놓을 인덱스 개수. 비정상 종료되면 LAST_NUMBER가 2씩 증가
+
+-- 게시판 확인
+SELECT * FROM DAANGN_BOARD;
+
+-- BOARD에 들어갈 내용
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '우리동네질문', '남자도 네일아트샵 가서 하시는 분 있나요? <br> 그동안 회사에서~', '용감해', '청룡동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '동네소식', '이불 폐기 다들 어떻게 하시나용ㅠ', '닝닝', '봉천동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '일상', '걸어서 산책 대 노들섬 드라이브!', '치치', '행운동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '취미생활', '스카이림 멀티플레이 모드로 잘하는 사람 따라다니면서 플레이 하고 싶어요', '접니다', '행운동', SYSDATE, NULL, NULL);
+INSERT INTO DAANGN_BOARD VALUES(BOARD_NO_SEQ.NEXTVAL, '고양이', '쑥고개성당 뒷골목에 맨날 같이 다니던 두마리 고양이 중 혹시 작은 아이 보신 분 있으신가요? <br> 큰 아이는 그러저럭 있는 것 같은데...', '해적', '봉천동', SYSDATE, NULL, NULL);
+
+
 
 --채팅
 create table daangn_chat(
@@ -98,9 +162,13 @@ create table daangn_chat(
    receiver_name varchar2(50),
    receiver_image varchar2(100),
    PID VARCHAR2(100) not null references PRODUCT_BOARD(pid) on delete cascade,
+   seller varchar2(100) not null references daangn_member(id) on delete cascade,
+   buyer varchar2(100) not null references daangn_member(id) on delete cascade,
    ptitle varchar2(500),
    p_location varchar2(500),
    psfile varchar2(1000),
+   PRICE NUMBER(30),
+   SALED VARCHAR2(1) DEFAULT 'N',
    log varchar2(1000),
    cfile varchar2(500),
    csfile varchar2(500),

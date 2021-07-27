@@ -1,14 +1,51 @@
 package com.spring.vo;
 
 public class ChatVO {
-	int cid, lid;
+	int cid, lid, price;
 	String pid, sender, sender_name, sender_image, 
 	receiver, receiver_name, receiver_image,
 	ptitle, p_location, psfile, log, cfile,
-	csfile, cdate;
+	csfile, cdate, seller, buyer, saled,
+	cday, ctime;
 	
 	
 	
+	public String getCday() {
+		return cday;
+	}
+	public void setCday(String cday) {
+		this.cday = cday;
+	}
+	public String getCtime() {
+		return ctime;
+	}
+	public void setCtime(String ctime) {
+		this.ctime = ctime;
+	}
+	public String getSaled() {
+		return saled;
+	}
+	public void setSaled(String saled) {
+		this.saled = saled;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getSeller() {
+		return seller;
+	}
+	public void setSeller(String seller) {
+		this.seller = seller;
+	}
+	public String getBuyer() {
+		return buyer;
+	}
+	public void setBuyer(String buyer) {
+		this.buyer = buyer;
+	}
 	public String getSender_name() {
 		return sender_name;
 	}
