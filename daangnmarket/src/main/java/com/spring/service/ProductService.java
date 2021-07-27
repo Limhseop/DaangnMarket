@@ -13,6 +13,7 @@ public interface ProductService {
 	boolean getDeleteResult(String pid);
 	boolean getUpdateResultNofile(ProductVO vo);
 	boolean getUpdateResult(ProductVO vo);
+	boolean getlikeResult(String pid, String uid);
 	void getUpdateHit(String pid);
 	ProductVO getContent(String pid);
 	ArrayList<ProductVO> getList(int start, int end);
@@ -34,7 +35,6 @@ public interface ProductService {
 	int getSaleResult(String pid);
 	int getChatCount(String pid);
 	int getSelectDelete(String[] stArray);
-	ArrayList<ProductVO> getLikeList(String pid);
 	
 	void Updatelike(String pid, String uid);
 	void Updatedislike(String pid, String uid);

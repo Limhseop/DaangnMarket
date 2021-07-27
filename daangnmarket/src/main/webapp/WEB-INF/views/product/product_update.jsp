@@ -17,7 +17,23 @@
 	        $('#input_file').click();
 	    });
 	});
+	$(function () {
+	    $('#pic_count').click(function (e) {
+	        e.preventDefault();
+	        $('#input_file').click();
+	    });
+	});
 	$(document).ready(function(){
+		
+		$("#img_section").click(function(){
+			$("#input_file").val("");
+			$("#img_section").attr("src","http://localhost:9000/daangn/pro_img/no_image.png");
+			
+			/* ajax이용해서 psfile 삭제하기 */
+			
+			
+		});
+		
 		
 		$("button[name=pricebutton]").click(function(){
 			var id = $(this).attr("id");
@@ -57,6 +73,7 @@
 				return false; 
 			}else{
 				product_form.submit();
+				/* picture_form.submit(); */
 			}
 			
 		});
@@ -120,27 +137,39 @@
 							</c:otherwise>
 						</c:choose>	
 					</li>
-					<li>
+					<li class = "location_li">
+						<span> ${location} ▽ </span>
+						<input type = "hidden" id = "location" name = "location" value = "${location}">
+					</li>
+				</ul>
+			<!-- </form>	
+			<form name = "picture_form" action = "#" method = "get">	 -->
+				<ul>
+					<li class = "picture_li">
 						<div class = "pic_icon">
 							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" id = "upload_img">
-							<span class = "pic_count">0/3</span>
+							<span class = "pic_count" id = "pic_count">사진 등록</span>
 							<!-- 사진업로드 -->
 							<input type = "file" id="input_file" name = "pfile1" style = "display:none;">
 						</div>
 					</li>
-					<li>	
+					<li class = "picture_li2">	
 						<!-- 사진 업로드 시 사진 미리보기가 보이도록 -->
 						<span>사진 미리보기</span>
 						<div class = "preview">
-							<!-- <img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" width = "100px" height = "100px">
-							<button type = "button">X</button> -->
+							<!-- DB에서 사진을 불러와서 미리보기 보여주기 -->
+							<c:choose>
+								<c:when test = "${vo.psfile ne null}">
+									<img src = "http://localhost:9000/daangn/pro_upload/${vo.psfile }" id = "img_section" width = "450px" height = "450px">
+									<!-- <button type = "button">X</button> -->
+								</c:when>
+								<c:otherwise>
+									<img src = "http://localhost:9000/daangn/pro_img/no_image.png" id = "img_section" width = "450px" height = "450px">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</li>
-					<li>
-						<span> ${location} ▽ </span>
-						<input type = "hidden" id = "location" name = "location" value = "${location}">
-					</li>
-					<li>
+					<li class = "btn_submit">
 						<a href = "http://localhost:9000/daangn/product.do"><button type = "button" class = "btn_cancle">닫기</button></a>
 						<button type = "button" class = "btn_confrim" id = "confrim">완료</button>
 					</li>
@@ -152,4 +181,20 @@
 	<!-- footer -->
 	<jsp:include page = "../footer.jsp"></jsp:include>
 </body>
+<script>
+const reader = new FileReader();
+
+reader.onload = (readerEvent) => {
+    document.querySelector("#img_section").setAttribute("src", readerEvent.target.result);
+    //파일을 읽는 이벤트가 발생하면 img_section의 src 속성을 readerEvent의 결과물로 대체함
+};
+
+document.querySelector("#input_file").addEventListener("change", (changeEvent) => {
+//input_file 에 이벤트리스너를 장착
+
+const imgFile = changeEvent.target.files[0];
+reader.readAsDataURL(imgFile);
+//업로드한 이미지의 URL을 reader에 등록 
+})
+</script>
 </html>

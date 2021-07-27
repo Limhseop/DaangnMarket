@@ -109,6 +109,25 @@ public class ProductDAO {
 		return result;
 	}
 	
+	//select : 좋아요 했는지 확인하기
+	public boolean getlikeResult(String pid, String uid) {
+		boolean result = false;
+		
+		//System.out.println(pid);
+		//System.out.println(uid);
+		
+		Map<String, Object> param = new HashMap();
+		param.put("pid", pid);
+		param.put("uid", uid);
+		
+		int value = sqlSession.selectOne(namespace+".pro_like", param);
+		if(value != 0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
 	//update: 판매상태 바꾸기
 	public int getSaleResult(String pid) {
 		return sqlSession.update(namespace+".updateSale", pid);

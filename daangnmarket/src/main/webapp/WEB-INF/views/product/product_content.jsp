@@ -28,33 +28,33 @@ $(document).on('click', '#btn_price',function(){
 
 });
 
-
-
 $(document).ready(function(){
+	
 	
 	/* 즐겨찾기 버튼 */
 	$("img[name=heart_button]").click(function(){
 		var id = $(this).attr("id");
 		if(id == "heart_button"){	
 			$.ajax({
-				url:"likeUpdateProcess.do?pid="+$("#pid").val()+"$uid="+$("#loginUser").val(),
+				url:"likeUpdateProcess.do?pid="+$("#pid").val()+"&uid="+$("#loginUser").val(),
 				success:function(result){
 					if(result==1){
 						$("#heart_button").attr("src","http://localhost:9000/daangn/pro_img/hearticon_click.PNG");
 						$("#heart_button").attr("id","heart_button_onclick");
-						//location.reload();
+						location.reload();
+						/* location.herf = "http://localhost:9000/daangn/product_content.do$pid="+$("#pid").val()"&rno="+$("#rno").val(); */
 					}
 				}
 			});
 			
 		}else if(id == "heart_button_onclick"){
 			$.ajax({
-				url:"likeCancleProcess.do?pid="+$("#pid").val()+"$uid="+$("#loginUser").val(),
+				url:"likeCancleProcess.do?pid="+$("#pid").val()+"&uid="+$("#loginUser").val(),
 				success:function(result){
 					if(result==1){
-						$("#heart_button_onclick").attr("id","heart_button");
 						$("#heart_button_onclick").attr("src","http://localhost:9000/daangn/pro_img/hearticon.PNG");
-						//location.reload();
+						$("#heart_button_onclick").attr("id","heart_button");
+						location.reload();
 					}
 				}
 			});
@@ -62,6 +62,7 @@ $(document).ready(function(){
 		}	
 	
 	});
+	
 	
 	/* 판매완료 버튼 */
 	$("#btn_sale").click(function(){
@@ -122,6 +123,7 @@ $(document).ready(function(){
 		<div class = "carousel">
 		<div id="demo" class="carousel slide" data-ride="carousel">
 		<input type = "hidden" value = "${pid }" id = "pid">
+		<input type = "hidden" value = "${rno }" id = "rno">
 	
 		  <!-- Indicators -->
 		  <ul class="carousel-indicators">
@@ -144,12 +146,12 @@ $(document).ready(function(){
 			    </div>
 		    </c:otherwise>
 		   </c:choose> 
-		    <div class="carousel-item">
+		    <!-- <div class="carousel-item">
 		      <img src="http://localhost:9000/daangn/pro_img/noimage.png" alt="Chicago" width="450" height="500">
 		    </div>
 		    <div class="carousel-item">
 		      <img src="http://localhost:9000/daangn/pro_img/noimage.png" alt="New York" width="450" height="500">
-		    </div>
+		    </div> -->
 		  </div>
 		  
 		  <!-- Left and right controls -->
@@ -213,11 +215,16 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
+			<!-- 하트 버튼 -->
 			<div class = "content_button">
-			
-				<!-- 하트 버튼 -->
-				<img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button">
-				
+				<c:choose>
+					<c:when test = "${like != true}">
+						<img src="http://localhost:9000/daangn/pro_img/hearticon.PNG" name = "heart_button" id="heart_button">
+					</c:when>
+					<c:otherwise>
+						<img src="http://localhost:9000/daangn/pro_img/hearticon_click.PNG" name = "heart_button" id="heart_button_onclick">
+					</c:otherwise>
+				</c:choose>
 				<!-- session체크에 좋아함 정보를 넣어서 해당 회원이 마음에 들어한 게시글이면 표시 -->	
 				<!-- 팔렸으면 버튼 disabled -->
 				<c:choose>
@@ -291,7 +298,7 @@ $(document).ready(function(){
 								<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
 							</c:otherwise>
 						</c:choose>
-						<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
+						<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}&uid=${sessionScope.svo.id}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
 						<li>${plist.location}</li><!-- 주소 -->
 						<li>${plist.price}원</li><!-- 가격 -->
 						<c:choose>
@@ -314,7 +321,7 @@ $(document).ready(function(){
 								<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
 							</c:otherwise>
 						</c:choose>
-						<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
+						<li><a href = "product_content.do?pid=${plist.pid}&rno=${plist.rno}&uid=${sessionScope.svo.id}"><span class = "prod_t">${plist.ptitle}</span></a></li><!-- 이름 -->
 						<li>${plist.location}</li><!-- 주소 -->
 						<li>${plist.price}원</li><!-- 가격 -->
 						<c:choose>

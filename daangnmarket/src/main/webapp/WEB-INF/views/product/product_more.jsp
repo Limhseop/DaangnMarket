@@ -42,7 +42,7 @@
 										<li><img src = "http://localhost:9000/daangn/pro_img/noimage.png" class = "item"></li><!-- 사진 -->
 									</c:otherwise>
 								</c:choose>
-									<li><a href = "product_content.do?pid=${userlist.pid}&rno=${userlist.rno}"><span class = "prod_t">${userlist.ptitle}</span></a></li><!-- 이름 -->
+									<li><a href = "product_content.do?pid=${userlist.pid}&rno=${userlist.rno}&uid=${sessionScope.svo.id}"><span class = "prod_t">${userlist.ptitle}</span></a></li><!-- 이름 -->
 									<li>${userlist.location}</li><!-- 주소 -->
 									<li>${userlist.price}원</li><!-- 가격 -->
 									<li><img src = "http://localhost:9000/daangn/pro_img/hearticon.PNG"><span>${userlist.favorite}</span></li>

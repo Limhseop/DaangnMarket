@@ -2,94 +2,91 @@ package com.spring.daangn;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.spring.dao.ProductDAO;
 import com.spring.service.ProductService;
 import com.spring.vo.MemberVO;
 import com.spring.vo.ProductVO;
+import com.spring.vo.SessionVO;
 
 @Controller
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-
-	@Autowired
-	private ProductDAO productDAO;
 	
+
 	/***
 	 * notice/notice_select_delete_proc.do -----> 관리자 > 공지사항 리스트 선택삭제 처리
 	 */
 	@RequestMapping(value = "/adminproduct_select_delete_proc.do", method = RequestMethod.GET)
-	public ModelAndView adminproduct_select_delete_proc(String chkList){
+	public ModelAndView adminproduct_select_delete_proc(String chkList) {
 		ModelAndView mv = new ModelAndView();
-		
-		StringTokenizer st = new StringTokenizer(chkList,",");
-		//String 객체 안에 있는 , 를 기준으로 잘라주는 객체!
+
+		StringTokenizer st = new StringTokenizer(chkList, ",");
+		// String 객체 안에 있는 , 를 기준으로 잘라주는 객체!
 		String[] stArray = new String[st.countTokens()];
-		
-		for(int i=0; i<stArray.length; i++) {
+
+		for (int i = 0; i < stArray.length; i++) {
 			stArray[i] = st.nextToken();
-			//String 으로 리턴해줌
+			// String 으로 리턴해줌
 		}
-		
+
 		int result = productService.getSelectDelete(stArray);
-		
-		if(result != 0) {
+
+		if (result != 0) {
 			mv.setViewName("redirect:/adminProduct.do");
 		}
-		
+
 		return mv;
 	}
-	
-	
+
 	/**
 	 * product_search_proc.do >> 검색
 	 */
 	@RequestMapping(value = "/adminproduct_search_proc.do", method = RequestMethod.POST)
 	public ModelAndView adminproduct_search_proc(String category, String search) {
 		ModelAndView mv = new ModelAndView();
-		
-		ArrayList<ProductVO> list = productDAO.getList(category, search);
+
+		ArrayList<ProductVO> list = productService.getList(category, search);
 		ArrayList<ProductVO> totalList = productService.getList();
 		mv.addObject("list", list);
 		mv.addObject("search", search);
 		mv.addObject("totalList", totalList);
 		mv.setViewName("product/adminProduct_search");
-		
+
 		return mv;
 	}
-	
+
 	/**
 	 * adminProduct.do
 	 */
 	@RequestMapping(value = "/adminProduct.do", method = RequestMethod.GET)
 	public ModelAndView adminProduct() {
 		ModelAndView mv = new ModelAndView();
-		
+
 		ArrayList<ProductVO> list = productService.getList();
-		
+
 		mv.addObject("list", list);
 		mv.setViewName("product/adminProduct");
-		
+
 		return mv;
 	}
-	
-	
+
 	/**
 	 * UpdateSale.do
 	 */
@@ -98,8 +95,9 @@ public class ProductController {
 	public String chatCountUpdate(String pid) {
 		int value = productService.getChatCount(pid);
 		return String.valueOf(value);
-		
+
 	}
+
 	/**
 	 * UpdateSale.do
 	 */
@@ -108,8 +106,9 @@ public class ProductController {
 	public String UpdateSale(String pid) {
 		int value = productService.getSaleResult(pid);
 		return String.valueOf(value);
-		
+
 	}
+
 	/**
 	 * ReportUpdate.do
 	 */
@@ -118,37 +117,63 @@ public class ProductController {
 	public String ReportUpdate(String pid) {
 		int value = productService.getReportResult(pid);
 		return String.valueOf(value);
-		
+
 	}
-	
+
 	/**
 	 * likeUpdateProces.do
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/likeUpdateProcess.do", method = RequestMethod.GET)
 	public String likeUpdateProcess(String pid, String uid) {
-		int value = productService.getLikeResult(pid);
 		
-		productService.Updatelike(pid, uid);
+		int value = productService.getLikeResult(pid);
+		productService.Updatelike(pid,uid);
 		
 		return String.valueOf(value);
-		
+
 	}
-	
+
 	/**
 	 * dislikeUpdateProces.do
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/likeCancleProcess.do", method = RequestMethod.GET)
 	public String likeCancleProcess(String pid, String uid) {
+
 		int value = productService.getDislikeResult(pid);
+		productService.Updatedislike(pid, uid);
+
+		return String.valueOf(value);
+
+	}
+	/**
+	 * likeUpdateProces.do
+	 */
+	/*@ResponseBody
+	@RequestMapping(value = "/likeUpdateProcess.do", method = RequestMethod.GET)
+	public String likeUpdateProcess(String pid, String uid) {
 		
+		int value = productService.getLikeResult(pid);
+		productService.Updatelike(pid,uid);
+		
+		return String.valueOf(value);
+		
+	}*/
+	
+	/**
+	 * dislikeUpdateProces.do
+	 */
+	/*@ResponseBody
+	@RequestMapping(value = "/likeCancleProcess.do", method = RequestMethod.GET)
+	public String likeCancleProcess(String pid, String uid) {
+		
+		int value = productService.getDislikeResult(pid);
 		productService.Updatedislike(pid, uid);
 		
 		return String.valueOf(value);
 		
-	}
-	
+	}*/
 
 	/**
 	 * product_search_proc.do >> 검색
@@ -156,14 +181,14 @@ public class ProductController {
 	@RequestMapping(value = "/product_search_proc.do", method = RequestMethod.POST)
 	public ModelAndView product_search_proc(String category, String search) {
 		ModelAndView mv = new ModelAndView();
-		
-		ArrayList<ProductVO> list = productDAO.getList(category, search);
+
+		ArrayList<ProductVO> list = productService.getList(category, search);
 		ArrayList<ProductVO> totalList = productService.getList();
 		mv.addObject("list", list);
 		mv.addObject("search", search);
 		mv.addObject("totalList", totalList);
 		mv.setViewName("product/product_list_search");
-		
+
 		return mv;
 	}
 
@@ -204,48 +229,50 @@ public class ProductController {
 
 		return mv;
 	}
+
 	/***
 	 * product_more_sale >>> 판매중인 상품
 	 */
 	@RequestMapping(value = "/product_more_sale.do", method = RequestMethod.GET)
 	public ModelAndView product_more_sale(String id, String pid, String rno) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		// id이용해서 name 꺼내오기
 		String name = productService.getUserName(id);
-		
+
 		// 해당 판매자의 리스트 꺼내오기
 		ArrayList<ProductVO> ulist = productService.getMoreList(id);
-		
+
 		mv.setViewName("product/product_more_sale");
 		mv.addObject("ulist", ulist);
 		mv.addObject("name", name);
 		mv.addObject("id", id);
 		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
-		
+
 		return mv;
 	}
+
 	/***
 	 * product_more_saled >>> 판매된 상품
 	 */
 	@RequestMapping(value = "/product_more_saled.do", method = RequestMethod.GET)
 	public ModelAndView product_more_saled(String id, String pid, String rno) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		// id이용해서 name 꺼내오기
 		String name = productService.getUserName(id);
-		
+
 		// 해당 판매자의 리스트 꺼내오기
 		ArrayList<ProductVO> ulist = productService.getMoreList(id);
-		
+
 		mv.setViewName("product/product_more_saled");
 		mv.addObject("ulist", ulist);
 		mv.addObject("name", name);
 		mv.addObject("id", id);
 		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
-		
+
 		return mv;
 	}
 
@@ -275,12 +302,15 @@ public class ProductController {
 
 		ProductVO vo = productService.getContent(pid);
 		String content = vo.getPcontent().replace("<br>", "\r\n");
+		String id = vo.getId();
+		String location = productService.getLocation(id);
 
 		mv.setViewName("product/product_update");
 		mv.addObject("vo", vo);
 		mv.addObject("content", content);
 		mv.addObject("pid", pid);
 		mv.addObject("rno", rno);
+		mv.addObject("location", location);
 
 		return mv;
 
@@ -343,7 +373,6 @@ public class ProductController {
 
 		String root_path = "", attach_path = "";
 
-
 		if (vo.getPfile1().getSize() != 0) {
 			// 1.파일저장 위치
 			root_path = request.getSession().getServletContext().getRealPath("/");
@@ -373,6 +402,8 @@ public class ProductController {
 
 		return mv;
 	}
+	
+	
 
 	/***
 	 * product_register >>> 상품 등록
@@ -437,7 +468,7 @@ public class ProductController {
 	 * product_content >>> 상품 상세내용
 	 */
 	@RequestMapping(value = "/product_content.do", method = RequestMethod.GET)
-	public ModelAndView product_content(String pid, String rno) {
+	public ModelAndView product_content(String pid, String rno, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
 		// 내용 꺼내오기
@@ -457,9 +488,11 @@ public class ProductController {
 		if (vo != null)
 			productService.getUpdateHit(pid);
 		String content = vo.getPcontent().replace("\r\n", "<br>");
-		
-		//좋아요 받은 리스트 가져오기
-		ArrayList<ProductVO> likeList = productService.getLikeList(pid);
+
+		// 좋아요 받은 리스트 가져오기
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		String uid = svo.getId();
+		boolean like = productService.getlikeResult(pid, uid);
 
 		// 날짜 연산 추가하기
 		mv.setViewName("product/product_content");
@@ -471,7 +504,7 @@ public class ProductController {
 		mv.addObject("rno", rno);
 		mv.addObject("name", name);
 		mv.addObject("id", id);
-		mv.addObject("likeList", likeList);
+		mv.addObject("like", like);
 
 		return mv;
 	}
@@ -479,18 +512,18 @@ public class ProductController {
 	/***
 	 * product_list_search >>> 상품 검색 리스트(기본 전체 리스트)
 	 */
-	/*@RequestMapping(value = "/product_search.do", method = RequestMethod.GET)
-	public ModelAndView product_list_search_total() {
-
-		ModelAndView mvo = new ModelAndView();
-
-		ArrayList<ProductVO> list = productService.getList();
-
-		mvo.setViewName("product/product_list_search");
-		mvo.addObject("list", list);
-
-		return mvo;
-	}*/
+	/*
+	 * @RequestMapping(value = "/product_search.do", method = RequestMethod.GET)
+	 * public ModelAndView product_list_search_total() {
+	 * 
+	 * ModelAndView mvo = new ModelAndView();
+	 * 
+	 * ArrayList<ProductVO> list = productService.getList();
+	 * 
+	 * mvo.setViewName("product/product_list_search"); mvo.addObject("list", list);
+	 * 
+	 * return mvo; }
+	 */
 
 	/***
 	 * product_list_search >>> 상품 검색 리스트(검색결과)

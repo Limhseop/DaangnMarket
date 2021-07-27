@@ -24,9 +24,9 @@
 		</choose>
 	</select>
 	
-	<!-- likelist -->
-	<select id = "likelist" parameterType = "java.lang.String" resultType = "com.spring.vo.ProductVO">
-		SELECT ID FROM PRODUCT_LIKE WHERE PID = #{pid}
+	<!-- pro_like -->	
+	<select id = "pro_like" parameterType = "map" resultType = "int">
+		select count(*) from product_like where pid = #{pid} and id = #{uid}
 	</select>
 	
 
@@ -133,7 +133,7 @@
 	
 	<!-- updatedislikeUser -->
 	<delete id = "updatedislikeUser" parameterType = "map">
-		DELETE PRODUCT_LIKE PID = #{pid} AND ID = #{uid}
+		DELETE FROM PRODUCT_LIKE WHERE PID = #{pid} AND ID = #{uid}
 	</delete>
 	
 	
@@ -162,7 +162,7 @@
 					 WHERE PID = #{pid}
 	</update>
 	
-	<!-- updatedislike -->
+	<!-- updatereport -->
 	<update id = "updatereport" parameterType = "java.lang.String">
 		UPDATE PRODUCT_BOARD SET REPORT = REPORT + 1  
 					 WHERE PID = #{pid}
