@@ -99,7 +99,7 @@ $(document).ready(function(){
 							<li><div><a href= "http://localhost:9000/daangn/service_center.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">고객센터</a></div></li>
 							<li><div><a href= "" id="chat" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">채팅</a></div></li>
 							<li><div><a href= "http://localhost:9000/daangn/notice.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">공지사항</a></div></li>
-							<li><div><a href= "http://localhost:9000/daangn/boardlist.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">게시판</a></div></li>
+							<!-- <li><div><a href= "http://localhost:9000/daangn/boardlist.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">게시판</a></div></li> -->
 							<li><div><a href= "http://localhost:9000/daangn/product.do" style="margin-right: 55px; font-size: 20px; text-decoration:none; color: black">상품</a></div></li>
 						</ul>
 					
