@@ -106,7 +106,7 @@
 	
 	
 	<!-- updateNofile -->
-	<update id = "pro_updateNofile" parameterType = "com.spring.vo.ProductVSO">
+	<update id = "pro_updateNofile" parameterType = "com.spring.vo.ProductVO">
 		UPDATE PRODUCT_BOARD SET PTITLE =#{ptitle, jdbcType = VARCHAR}, PCONTENT =#{pcontent, jdbcType = VARCHAR}, CATEGORY=#{category, jdbcType = VARCHAR}, PRICE =#{price, jdbcType = NUMERIC}
 		WHERE PID = #{pid, jdbcType = VARCHAR}   	
 	</update>

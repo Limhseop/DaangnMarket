@@ -320,10 +320,23 @@ public class ProductController {
 	 * deleteImage >> 수정시 삭제
 	 */
 	@RequestMapping(value = "/deleteImage.do", method = RequestMethod.GET)
-	public String deleteImage(String pid) {
+	public String deleteImage(String pid, HttpServletRequest request) {
 		
 		int value = productService.getDeleteImage(pid);
 		
+		String old_psfile = productService.getPsfile(pid);
+		boolean result = productService.getDeleteResult(pid);
+
+		if (result) {
+			String root_path = request.getSession().getServletContext().getRealPath("/");
+			String attach_path = "\\resources\\pro_upload\\";
+
+			File old_file = new File(root_path + attach_path + old_psfile);
+			if (old_file.exists()) {
+				old_file.delete();
+			}
+		}
+
 		return String.valueOf(value);
 	}
 	
