@@ -1,11 +1,11 @@
 -- 테이블 삭제
-drop table question;
-drop table daangn_notice;
-DROP TABLE DAANGN_BOARD;
-drop table daangn_chat;
-drop table product_like;
-drop table product_board;
-DROP TABLE daangn_member;
+drop table question CASCADE CONSTRAINTS;
+drop table daangn_notice CASCADE CONSTRAINTS;
+DROP TABLE DAANGN_BOARD CASCADE CONSTRAINTS;
+drop table daangn_chat CASCADE CONSTRAINTS;
+drop table product_like CASCADE CONSTRAINTS;
+drop table product_board CASCADE CONSTRAINTS;
+DROP TABLE daangn_member CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
 drop sequence daangn_notice_seq;
@@ -46,14 +46,30 @@ MODIFY PASS CONSTRAINT MEMBER_PASS_NN NOT NULL;
 INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
 VALUES('admin', '1234', '관리자', 'Y');
 
+--일반 계정 데이터 추가
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('abc123', '1234567', 'abc', '01022222222', '노원구 상계동', '안녕하세요. abc123입니다.', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('eofm2', '5674578', '나나', '01058222322', '해운대구 재송동', '당근마켓 좋아요~', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('woifam', '568442', '뽀', '01069542842', '마포구 망원동', '쿨거래 원합니다', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('eirj392', '1234567', 'eirj392', '01054161644', '종로구 사직동', '안녕하세요. eirj392입니다.', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('doglove', '1234567', '강지사랑', '01022323212', '북구 만덕동', '강아지 용품 판매합니다.', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('a23123', '1234567', '김연지', '01087589144', '노원구 하계동', '안녕하세요^^', sysdate, 0,0,'daangn_profile.jpg','N');
+insert into daangn_member(id, pass, name, phone, addr, introduce, joindate, sale, purchase,imagepath,admin)
+values('886541', '1234567', '도로명', '01053248245', '광진구 자양동', '안녕하세요.', sysdate, 0,0,'daangn_profile.jpg','N');
+
 
 -- 1대1 문의 테이블
-craete table question(
+create table question(
   qtitle varchar2(500),
   qcontent varchar2(2000),
   qanswer varchar2(2000),
   qid varchar2(200),
-  qcheck varcahr2(5)
+  qcheck varchar2(5)
 );
 
 
@@ -66,8 +82,8 @@ CREATE TABLE PRODUCT_BOARD(
   PRICE NUMBER(30),
   PCHOICE NUMBER(1) DEFAULT 0,
   PDATE DATE DEFAULT SYSDATE NOT NULL,
-  LOCATION VARCHAR2(500) NOT NULL,
-  ID VARCHAR2(20) NOT NULL,
+  LOCATION VARCHAR2(600) NOT NULL,
+  ID VARCHAR2(100) NOT NULL,
   CHAT NUMBER(30) DEFAULT 0,
   FAVORITE NUMBER(30) DEFAULT 0,
   PHIT NUMBER(30) DEFAULT 0,

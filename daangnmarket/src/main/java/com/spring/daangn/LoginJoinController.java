@@ -115,19 +115,19 @@ public class LoginJoinController {
 	    JSONObject obj = new JSONObject();
 	    
 	    	//휴대폰 인증 오픈 코드
-	    try {
-	    	obj = (JSONObject) coolsms.send(params);
-	    	result="success";
-	    
-	    } catch (CoolsmsException e) {
-	      System.out.println(e.getMessage());
-	      System.out.println(e.getCode());
-	    }
+//	    try {
+//	    	obj = (JSONObject) coolsms.send(params);
+//	    	result="success";
+//	    
+//	    } catch (CoolsmsException e) {
+//	      System.out.println(e.getMessage());
+//	      System.out.println(e.getCode());
+//	    }
 	    //여기까지
 	    
 	    /*휴대폰 인증 막았을 때 오픈하는 코드*/
-//		    result="success";
-//		    System.out.println("휴대폰 인증번호 : " + num);
+		    result="success";
+		    System.out.println("휴대폰 인증번호 : " + num);
 	    /* 여기까지*/
 	    
 	    obj.put("result", result);
@@ -141,7 +141,7 @@ public class LoginJoinController {
 	@RequestMapping(value="/join_proc.do", method=RequestMethod.POST)
 	public ModelAndView join_proc(MemberVO vo) {
 		vo.setIntroduce("안녕하세요. "+vo.getId()+"입니다.");
-		vo.setImagepath("img_profile_male.png");
+		vo.setImagepath("daangn_profile.jpg");
 		vo.setAdmin("N");
 		String password = passwordEncoder.encode(vo.getPass());
 		vo.setPass(password);
