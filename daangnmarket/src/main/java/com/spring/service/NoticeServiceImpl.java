@@ -21,5 +21,16 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<NoticeVO> list() throws Exception {
 		return noticeDAO.list();
 	}
-	
+	@Override
+	public NoticeVO getContent(String bno) {
+		return noticeDAO.getContent(bno);
+	}
+	@Override
+	public boolean getUpdateResult(NoticeVO vo) {
+		return noticeDAO.getUpdateResult(vo);
+	}
+	@Override
+	public boolean getDeleteResult(NoticeVO vo) {
+		return noticeDAO.getDeleteResult(vo);
+	}
 }
