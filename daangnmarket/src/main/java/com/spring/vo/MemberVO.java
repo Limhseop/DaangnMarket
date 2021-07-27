@@ -2,10 +2,18 @@ package com.spring.vo;
 
 public class MemberVO {
 	String id,pass,name,email,phone,addr,introduce,imagepath,sex,joindate,
-	addr_post, addr_road, addr_detail, addr_jibun, admin;	//순서대로 우편번호, 도로명주소, 상세주소, 지번주소
+	addr_post, addr_road, addr_detail, addr_jibun, addr_enter, admin;	//순서대로 우편번호, 도로명주소, 상세주소, 지번주소
 	int sale,purchase;
 	
-
+	
+	public String getAddr_enter() {
+		return addr_enter;
+	}
+	public void setAddr_enter(String addr_jibun) {
+		String di = addr_jibun.replace(' ', '%');
+		String[] jibuns = di.split("%");
+		this.addr_enter = jibuns[1]+" "+jibuns[2];
+	}
 	public String getAddr_jibun() {
 		return addr_jibun;
 	}
@@ -75,8 +83,8 @@ public class MemberVO {
 	public String getAddr() {
 		return addr;
 	}
-	public void setAddr(String addr_jibun, String addr_detail) {
-		this.addr = addr_jibun + " " + addr_detail;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 	public String getIntroduce() {
 		return introduce;

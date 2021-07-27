@@ -1,36 +1,42 @@
 package com.spring.commons;
 import java.util.HashMap;
 
+import com.spring.service.BoardService;
 import com.spring.service.ProductService;
 
 public class Commons {
 
-	//ÆäÀÌÂ¡ Ã³¸® ¸Þ¼Òµå - startCount, endCount : HashMap map = commons.getPage(rpage, dao);
+	//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ ï¿½Þ¼Òµï¿½ - startCount, endCount : HashMap map = commons.getPage(rpage, dao);
 	public HashMap getPage(String rpage, Object obj, String name) {
 		
 		HashMap map = new HashMap<String, Integer>();
 
-		//ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ - startCount, endCount ï¿½ï¿½ï¿½Ï±ï¿½
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5;	//ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1;	//¿äÃ»ÆäÀÌÁö	
-		int pageCount = 1;	//ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0;	//DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 5;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½
+		int reqPage = 1;	//ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
+		int pageCount = 1;	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		int dbCount = 0;	//DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
 		
 		if(name.equals("product")) {
 			ProductService productService = (ProductService) obj;
 			dbCount = productService.execTotalCount();
+		}else if(name.equals("board")) {
+			/*
+			 * BoardService boardService = (BoardService)obj; dbCount =
+			 * boardService.execTotalCount();
+			 */
 		}
 		
-		//ÃÑ ÆäÀÌÁö ¼ö °è»ê
+		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 		if(dbCount % pageSize == 0){	
 			pageCount = dbCount/pageSize;
 		}else{							
 			pageCount = dbCount/pageSize+1;
 		}
 		
-		//¿äÃ» ÆäÀÌÁö °è»ê
+		//ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		if(rpage != null){
 			reqPage = Integer.parseInt(rpage);
 			startCount = (reqPage-1) * pageSize+1;
