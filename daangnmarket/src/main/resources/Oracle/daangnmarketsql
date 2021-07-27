@@ -4,10 +4,24 @@ DROP TABLE daangn_member;
 drop table daangn_notice;
 drop table product_board;
 drop table product_like;
+drop table question;
+drop table PRODUCT_BOARD;
+drop table daangn_chat;
 -- 시퀀스 삭제
 drop sequence daangn_notice_seq;
 DROP SEQUENCE BOARD_NO_SEQ;
+drop sequence SEQ_PRODUCT_PID;
+drop sequence seq_daangn_cid;
+drop sequence seq_daangn_lid;
 
+-- 1대1 문의 테이블
+craete table question(
+  qtitle varchar2(500),
+  qcontent varchar2(2000),
+  qanswer varchar2(2000),
+  qid varchar2(200),
+  qcheck varcahr2(5)
+);
 
 --상품 등록 게시판
 CREATE TABLE PRODUCT_BOARD(
@@ -115,31 +129,6 @@ MODIFY PASS CONSTRAINT MEMBER_PASS_NN NOT NULL;
 INSERT INTO DAANGN_MEMBER(ID, PASS, NAME, ADMIN)
 VALUES('admin', '1234', '관리자', 'Y');
 
---product 테이블
-CREATE TABLE PRODUCT_BOARD(
-  PID VARCHAR2(100) CONSTRAINT PK_PID PRIMARY KEY,
-  PTITLE VARCHAR2(500) NOT NULL,
-  PCONTENT VARCHAR2(1000) NOT NULL,
-  CATEGORY VARCHAR2(100) NOT NULL,
-  PRICE NUMBER(30),
-  PCHOICE NUMBER(1) DEFAULT 0,
-  PDATE DATE DEFAULT SYSDATE NOT NULL,
-  LOCATION VARCHAR2(500) NOT NULL,
-  ID VARCHAR2(20) NOT NULL,
-  CHAT NUMBER(30) DEFAULT 0,
-  FAVORITE NUMBER(30) DEFAULT 0,
-  PHIT NUMBER(30) DEFAULT 0,
-  REPORT NUMBER(10) DEFAULT 0,
-  SALED VARCHAR2(1) DEFAULT 'N',
-  PFILE VARCHAR2(1000),
-  PSFILE VARCHAR2(1000)
-);
-
---product 시퀀스
-CREATE SEQUENCE SEQ_PRODUCT_PID 
-START WITH 1
-INCREMENT BY 1;
-
 --채팅
 create table daangn_chat(
   lid number(35) primary key,
@@ -151,9 +140,13 @@ create table daangn_chat(
    receiver_name varchar2(50),
    receiver_image varchar2(100),
    PID VARCHAR2(100) not null references PRODUCT_BOARD(pid) on delete cascade,
+   seller varchar2(100) not null references daangn_member(id) on delete cascade,
+   buyer varchar2(100) not null references daangn_member(id) on delete cascade,
    ptitle varchar2(500),
    p_location varchar2(500),
    psfile varchar2(1000),
+   PRICE NUMBER(30),
+   SALED VARCHAR2(1) DEFAULT 'N',
    log varchar2(1000),
    cfile varchar2(500),
    csfile varchar2(500),
