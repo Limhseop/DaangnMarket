@@ -49,13 +49,11 @@
 	
 	$("#chat_list_ul").find("li").click(function(){
 		var index1 = $(this).index();
-		<c:if test="${chat_list.size()!=0}">
-			var cid= ${chat_list.get(index1).getCid()};
+		<c:if test="${chat_list.size()!=0}"> 
+			var ccid= ${chat_list.get(index1).getCid()};
 			//var cid = <c:out value="${chat_list.get(index1).getCid()}"/>;
 		</c:if>
-			alert(cid);
-			//cid 받아오는 데까진 성공
-			location.href="http://localhost:9000/daangn/chat_getlog.do?cid="+cid+"&myid=${myid}";
+			location.href="http://localhost:9000/daangn/chat_getlog.do?cid="+ccid+"&myid=${myid}";
 		});
 		
 		$("#send_btn").click(function(){
