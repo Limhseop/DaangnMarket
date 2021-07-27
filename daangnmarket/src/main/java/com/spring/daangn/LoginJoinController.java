@@ -21,6 +21,7 @@ import com.spring.vo.MemberVO;
 import com.spring.vo.SessionVO;
 
 import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 public class LoginJoinController {
@@ -113,7 +114,7 @@ public class LoginJoinController {
 	    params.put("app_version", "test app 1.2"); // application name and version
 	    JSONObject obj = new JSONObject();
 	    
-	    /*	//휴대폰 인증 잠시 막아뒀습니다!
+	    	//휴대폰 인증 오픈 코드
 	    try {
 	    	obj = (JSONObject) coolsms.send(params);
 	    	result="success";
@@ -122,11 +123,11 @@ public class LoginJoinController {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
-	    */
+	    //여기까지
 	    
 	    /*휴대폰 인증 막았을 때 오픈하는 코드*/
-		    result="success";
-		    System.out.println("휴대폰 인증번호 : " + num);
+//		    result="success";
+//		    System.out.println("휴대폰 인증번호 : " + num);
 	    /* 여기까지*/
 	    
 	    obj.put("result", result);
