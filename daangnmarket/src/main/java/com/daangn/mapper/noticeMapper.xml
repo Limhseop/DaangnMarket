@@ -5,12 +5,27 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
  <mapper namespace="mapper.notice">
+ 
+ 
  	<!--  공지사항 글 작성  -->
  	<insert id="insert" parameterType="com.spring.vo.NoticeVO">
   	    INSERT INTO DAANGN_NOTICE(BNO, TITLE, CONTENT)
   	    VALUES (DAANGN_NOTICE_SEQ.NEXTVAL, '${title}', '${content}')
  	</insert>
+ 	<!--  공지사항 수정 -->
+ 	<update id="update" parameterType="com.spring.vo.NoticeVO">
+ 		UPDATE DAANGN_NOTICE
+ 		 SET TITLE=#{title},
+ 		   CONTENT=#{content} 
+ 		   WHERE BNO=#{bno}
  	
+ 	</update>
+ 	<!-- 공지사항 삭제 -->
+ 	<delete id="delete" parameterType="com.spring.vo.NoticeVO">
+ 		DELETE
+ 		FROM DAANGN_NOTICE 
+ 		WHERE BNO=#{bno}
+ 	</delete>
  	
  	<!-- 전체리스트 -->
 	<select id="list" resultType="com.spring.vo.NoticeVO" parameterType="com.spring.vo.NoticeVO">
@@ -20,6 +35,11 @@
            NDATE
 		   FROM DAANGN_NOTICE
 		   ORDER BY BNO DESC
+	</select>
+	
+	<!-- 상세정보 -->
+	<select id="content" resultType="com.spring.vo.NoticeVO" parameterType="java.lang.String">
+			select bno, title, content, to_char(ndate,'yyyy-mm-dd') from DAANGN_NOTICE where bno=#{bno}
 	</select>
 	 
  </mapper>
