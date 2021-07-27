@@ -459,7 +459,9 @@ public class ProductController {
 
 		String old_psfile = productService.getPsfile(pid);
 		boolean result = productService.getDeleteResult(pid);
-
+		
+		System.out.println(result);
+		
 		if (result) {
 			// 리스트 페이지로 페이지 이동
 			mv.setViewName("product/product_list");
@@ -505,7 +507,7 @@ public class ProductController {
 		String name = productService.getUserName(id);
 
 		// 전체 리스트 꺼내오기
-		ArrayList<ProductVO> list = productService.getList(1, 6);
+		ArrayList<ProductVO> list = productService.getList(1, 3);
 
 		// 해당 판매자의 리스트 꺼내오기
 		ArrayList<ProductVO> ulist = productService.getList(id);

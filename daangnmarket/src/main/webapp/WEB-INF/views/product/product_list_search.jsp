@@ -71,9 +71,16 @@ $(document).ready(function(){
 			<c:when test = "${!empty list}">
 				<!-- 검색 결과 보여주는 리스트 -->
 				<div class = "content">
-				<div style = "text-align:left; width:90%; margin:auto;">
+				<div style = "text-align:left; width:100%; margin:auto;">
 				<c:forEach var = "plist" items = "${list}">
-					<ul>
+					<c:choose>
+						<c:when test = "${plist.saled eq 'Y' }">
+							<ul class = "sold">
+						</c:when>
+						<c:otherwise>
+							<ul>
+						</c:otherwise>	
+					</c:choose>
 						<c:choose>
 							<c:when test = "${plist.psfile ne null}">
 								<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->
@@ -108,9 +115,16 @@ $(document).ready(function(){
 				</section>
 				<!-- 검색결과가 없을 시 하단에 추천 상품만 뜨도록  -->
 				<div class = "content">
-				<div style = "text-align:left; width:90%; margin:auto;">
+				<div style = "text-align:left; width:100%; margin:auto;">
 				<c:forEach var = "plist" items = "${totalList}">
-					<ul>
+					<c:choose>
+						<c:when test = "${plist.saled eq 'Y' }">
+							<ul class = "sold">
+						</c:when>
+						<c:otherwise>
+							<ul>
+						</c:otherwise>	
+					</c:choose>
 						<c:choose>
 							<c:when test = "${plist.psfile ne null}">
 								<li><img src = "http://localhost:9000/daangn/pro_upload/${plist.psfile}" class = "item"></li><!-- 사진 -->

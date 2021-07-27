@@ -28,7 +28,6 @@
 	$(document).ready(function(){
 		
 		$("#img_section").click(function(){
-			alert($("#pid").val());
 			/* ajax이용해서 psfile 삭제하기 */
 			if($("#psfile").val() != ""){
 				$.ajax({
