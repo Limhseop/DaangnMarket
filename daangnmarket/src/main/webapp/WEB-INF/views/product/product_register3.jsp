@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,28 +12,14 @@
 <script src = "http://localhost:9000/daangn/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script>
-	
 	$(function () {
 	    $('#upload_img').click(function (e) {
 	        e.preventDefault();
 	        $('#input_file').click();
 	    });
 	});
-	
-	$(function () {
-	    $('#pic_count').click(function (e) {
-	        e.preventDefault();
-	        $('#input_file').click();
-	    });
-	});
 
 	$(document).ready(function(){
-		
-		$("#img_section").click(function(){
-			$("#input_file").val("");
-			$("#img_section").attr("src","http://localhost:9000/daangn/pro_img/no_image.png"); 
-		});
-		
 		
 		$("button[name=pricebutton]").click(function(){
 			var id = $(this).attr("id");
@@ -74,7 +60,6 @@
 				return false; 
 			}else{
 				product_form.submit();
-				/* picture_form.submit(); */
 			}
 			
 		});
@@ -129,38 +114,34 @@
 						<button type = "button" class = "btn_cancle" id = "filter" name = "pricebutton">가격제안 받기</button>
 						<input type = "hidden" id = "pchoice" name = "pchoice" value = "N">
 					</li>
-					<li class = "location_li">
-						<span> ${location} ▽ </span>
-						<input type = "hidden" id = "location" name = "location" value = "${location}">
-					</li>
-				</ul>
-			<!-- </form>
-			<form name = "picture_form" action = "#" method = "post" enctype = > -->
-				<ul>
-					<li class = "picture_li">
+					<li>
 						<div class = "pic_icon" id = "picture">
 							<!-- <input type = "file" name = "file1" id = "nfile"> -->
 							<img src = "http://localhost:9000/daangn/pro_img/camera_icon.png" id = "upload_img">
 							<!-- 사진 등록하면 카운트가 올라감 -->
-							<span class = "pic_count">사진 등록</span>
+							<span class = "pic_count">0/3</span>
 							<!-- 사진업로드 -->
 							<input type = "file" id="input_file" name = "pfile1" style = "display:none;">
 						</div>
 					</li>
-					<li class = "picture_li2">	
+					<li>	
 						<!-- 사진 업로드 시 사진 미리보기가 보이도록 -->
 						<span>사진 미리보기</span>
 						<div class = "preview">
-							<img src = "http://localhost:9000/daangn/pro_img/no_image.png" id = "img_section" width = "450px" height = "450px">
-							<!-- <button type = "button">X</button> -->
+							<img src = "http://localhost:9000/daangn/pro_img/pro_img.jpg" width = "100px" height = "100px">
+							<button type = "button">X</button>
 						</div>
 					</li>
-					<li class = "btn_submit">
+					<li>
+						<span> ${location} ▽ </span>
+						<input type = "hidden" id = "location" name = "location" value = "${location}">
+					</li>
+					<li>
 						<a href = "http://localhost:9000/daangn/product.do"><button type = "button" class = "btn_cancle">닫기</button></a>
 						<button type = "button" class = "btn_confrim" id = "confrim">완료</button>
 					</li>
-				</ul>	
-			</form>		
+				</ul>
+			</form>
 		</div>
 	</section>
 	
@@ -168,20 +149,4 @@
 	<jsp:include page = "../footer.jsp"></jsp:include>
 	
 </body>
-<script>
-const reader = new FileReader();
-
-reader.onload = (readerEvent) => {
-    document.querySelector("#img_section").setAttribute("src", readerEvent.target.result);
-    //파일을 읽는 이벤트가 발생하면 img_section의 src 속성을 readerEvent의 결과물로 대체함
-};
-
-document.querySelector("#input_file").addEventListener("change", (changeEvent) => {
-//input_file 에 이벤트리스너를 장착
-
-const imgFile = changeEvent.target.files[0];
-reader.readAsDataURL(imgFile);
-//업로드한 이미지의 URL을 reader에 등록 
-})
-</script>
 </html>

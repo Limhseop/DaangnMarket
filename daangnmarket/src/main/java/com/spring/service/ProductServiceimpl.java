@@ -1,6 +1,5 @@
 package com.spring.service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +93,7 @@ public class ProductServiceimpl implements ProductService{
 	}
 	@Override
 	public int getDislikeResult(String pid) {
-		return productDAO.getLikeResult(pid);
+		return productDAO.getDislikeResult(pid);
 	}
 	@Override
 	public int getReportResult(String pid) {
@@ -113,10 +112,9 @@ public class ProductServiceimpl implements ProductService{
 		return productDAO.getSelectDelete(stArray);
 	}
 	@Override
-	public ArrayList<ProductVO> getLikeList(String pid) {
-		return productDAO.getLikeList(pid);
+	public boolean getlikeResult(String pid, String uid) {
+		return productDAO.getlikeResult(pid, uid);
 	}
-	
 	
 	
 }

@@ -251,6 +251,10 @@ section.content_search2 div.pro_button{
 	font-weight: bold;
 }
 
+
+
+
+
 /***
 	product_register.css
 **/
@@ -272,14 +276,15 @@ section.p_register div.content ul{
 
 section.p_register div.content ul li{
 	border-bottom: 1px solid rgb(233, 236, 239);
-	height: 35px;
-}
+	padding-bottom:10px;
+} 
 
 section.p_register div.content ul li:nth-child(4){
 	height: 200px;
 }
 
-section.p_register div.content ul li:nth-child(2), section.p_register div.content ul li:nth-child(5){
+.pro_title, .r_content{
+	border:1px solid red;
 	height: 45px;
 }
 
@@ -317,21 +322,25 @@ section.p_register div.content ul li:nth-child(5) input{
 	margin-top : 10px;
 }
 
-section.p_register div.content ul li:last-child{
-	border-bottom: 1px solid white;
+/* btn_submit */
+
+.btn_submit{
+	border-bottom: 1px solid white; 
 	text-align:right;
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
-section.p_register div.content ul li:last-child button.btn_confrim{
+.btn_submit button.btn_confrim{
 	margin-right:30px;
 }
 
-section.p_register div.content ul li:nth-child(6){
+/* picture_li */
+.picture_li{
 	height: 110px;
 } 
 
 div.pic_icon{
+	display: block;
 	border:1px solid rgb(233, 236, 239);
 	width: 100px;
 	height: 100px;
@@ -348,27 +357,27 @@ div.pic_icon img{
 }
 div.pic_icon span.pic_count{
 	color:gray;
-	font-size: 13px;
-	font-weight: 100;
+	font-size: 10px;
+	font-weight: 100px;
 	display: block;
-	width: 40px;
+	width: 100px;
 	margin: auto;
 }
 
-section.p_register div.content ul li:nth-child(7){
-	height: 160px;
+/* picture_li2 */
+.picture_li2{
 }
 
-section.p_register div.content ul li:nth-child(7)>span{
+.picture_li2 span{
 	border-bottom: 1px solid rgb(233, 236, 239); 
 	padding-bottom: 10px; 
 }
 
-section.p_register div.content ul li:nth-child(7) img{
+.picture_li2 img{
 	margin: 10px 0 10px 15px;
 }
 
-section.p_register div.content ul li:nth-child(7) button{
+.picture_li2 button{
 	border: 1px solid rgb(255,200,164);
 	border-radius: 50%;
 	width: 30px;
@@ -385,6 +394,12 @@ section.p_register div.content ul li:nth-child(7) button{
 	margin-bottom:0;
 	padding-bottom:0;
 }
+
+div.preview{
+	text-align:center;
+}
+
+
 
 /***
 	product_content.css

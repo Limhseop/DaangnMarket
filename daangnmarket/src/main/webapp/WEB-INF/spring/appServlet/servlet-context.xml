@@ -70,6 +70,10 @@
 			<mapping path="/likeCancleProcess.do" />
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/product_content.do" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
 	
 	</interceptors>
 	
