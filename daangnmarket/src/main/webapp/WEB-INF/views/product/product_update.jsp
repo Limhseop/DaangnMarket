@@ -17,23 +17,27 @@
 	        $('#input_file').click();
 	    });
 	});
+	
 	$(function () {
 	    $('#pic_count').click(function (e) {
 	        e.preventDefault();
 	        $('#input_file').click();
 	    });
 	});
+	
 	$(document).ready(function(){
 		
 		$("#img_section").click(function(){
-			
+			alert($("#pid").val());
 			/* ajax이용해서 psfile 삭제하기 */
-			if(${vo.psfile} != null){
+			if($("#psfile").val() != ""){
 				$.ajax({
 					url:"deleteImage.do?pid="+$("#pid").val(),
 					success:function(result){
+						alert(result);
 						if(result==1){
 							$("#input_file").val("");
+							$("#psfile").val("");
 							$("#img_section").attr("src","http://localhost:9000/daangn/pro_img/no_image.png");
 							$("#picture_li2").load(location.href + "#picture_li2");
 						}
@@ -173,6 +177,7 @@
 						<span>사진 미리보기</span>
 						<div class = "preview">
 							<!-- DB에서 사진을 불러와서 미리보기 보여주기 -->
+							<input type = "hidden" vlaue = "${vo.psfile }" id = "psfile" name = "psfile">
 							<c:choose>
 								<c:when test = "${vo.psfile ne null}">
 									<img src = "http://localhost:9000/daangn/pro_upload/${vo.psfile }" id = "img_section" width = "450px" height = "450px">
