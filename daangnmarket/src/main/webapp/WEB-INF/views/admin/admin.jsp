@@ -132,6 +132,7 @@
          </table>
          <div style="text-align:right;">
          	<button class="btn btn-primary" id="noticewrite" style="display:none;" onclick="location.href='notice_write.do'">글쓰기</button>
+         	
          </div>
 
 			
