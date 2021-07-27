@@ -70,6 +70,7 @@
     font-size: 18px;
 }
 .faq_wrap_inner_2 {
+	margin-right: 46px;
     float: right;
     padding: 10px 10px 10px 30px;
     width: 431px;
@@ -89,11 +90,14 @@
 .faq_wrap_inner_1 ul{
 	margin-left: 30px;
 }
+.des{
+	margin-top: 8px;
+}
 faq_wrap_inner_2 strong {
     color: #222;
     font-size: 18px;
 }
-faq_wrap_inner_2 p {
+faq_wrap_inner_2  p {
 	color: #222;
     font-size: 14px;
     margin-top: 12px;
@@ -133,10 +137,10 @@ faq_wrap_inner_2 p {
     font-weight: bold;
     height: 28px;
     line-height: 28px;
-    margin-top: 25px;
+    margin-top: 15px;
     text-align: center;
     width: 235px;
-    margin-left: 47px;
+    margin-left: 4px;
 }
 .quick_service{
 	list-style: none;

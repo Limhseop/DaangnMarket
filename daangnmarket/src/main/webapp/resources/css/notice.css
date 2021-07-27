@@ -15,6 +15,9 @@
     background-color: #ffffff;
     font-size: 20px;
 }
+#li_1 > a{
+	font-size: 26px;
+}
 .notice_nav :first-child{
     flex: 1 1 0%;
     display: flex;
@@ -109,5 +112,4 @@
 
 #li_1, #li_2, #li_3{
     border : 1px solid #333;
-    
 }

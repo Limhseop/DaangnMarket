@@ -77,8 +77,7 @@ $(document).ready(function(){
                     <nav class="notice_nav">
                         <ul>
                             <li id="li_1"><a>공지사항</a></li>
-                            <li id="li_2"><a>운영정책</a></li>
-                            <li id="li_3"><a>자주묻는 질문</a></li>
+                            
                         </ul>
                     </nav>
                 </div>

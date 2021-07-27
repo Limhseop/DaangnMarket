@@ -41,7 +41,7 @@ public class NoticeController {
 		
 	
 		if(result){				
-			mv.setViewName("redirect:/notice.do");	
+			mv.setViewName("redirect:/admin.do");	
 		}
 		return mv;
 	}
@@ -55,8 +55,30 @@ public class NoticeController {
 		model.addAttribute("list",noticeService.list());
 		
 		return "/notice/notice";
-		
 	}
+	// 관리자 공지사항 화면 
+		@RequestMapping(value = "/admin_notice.do", method = RequestMethod.GET)
+		public String adminnoticelist(Model model, NoticeVO vo) throws Exception{
+			model.addAttribute("list",noticeService.list());
+			
+			return "/admin/admin";
+			
+		}
+	// 관리자 공지사항 수정화면
+		@RequestMapping(value="/admin_noticeupdate.do", method=RequestMethod.GET)
+		public ModelAndView notice_update(String bno) {
+			ModelAndView mv = new ModelAndView();
+			
+			NoticeVO vo = (NoticeVO)noticeService.getContent(bno);	
+			
+			
+			mv.setViewName("admin/admin_update");
+			mv.addObject("vo", vo);
+			mv.addObject("bno", bno);
+			
+			return mv;
+		}
+	
 	
 	/**
 	 *	notice_content.do  ---> 게시판 상세내용 화면
@@ -84,7 +106,7 @@ public class NoticeController {
 				
 		if(result) {
 			
-			mv.setViewName("redirect:/admin_notice.do");	
+			mv.setViewName("redirect:/admin.do");	
 		}
 			
 		return mv;
@@ -97,7 +119,7 @@ public class NoticeController {
 		boolean result = noticeService.getDeleteResult(vo);
 		
 		if(result) {
-			mv.setViewName("redirect:/admin_notice.do");
+			mv.setViewName("redirect:/admin.do");
 			}
 		return mv;
 	}

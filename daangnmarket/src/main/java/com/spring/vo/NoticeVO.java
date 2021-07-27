@@ -4,6 +4,10 @@ import java.sql.Date;
 
 public class NoticeVO {
 	private int bno;
+	private String title;
+	private String content;
+	private Date ndate;
+	
 	public int getBno() {
 		return bno;
 	}
@@ -28,9 +32,6 @@ public class NoticeVO {
 	public void setNdate(Date ndate) {
 		this.ndate = ndate;
 	}
-	private String title;
-	private String content;
-	private Date ndate;
 	
 	
 	
