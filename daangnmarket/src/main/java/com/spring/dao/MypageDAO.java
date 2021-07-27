@@ -1,6 +1,8 @@
 package com.spring.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.vo.MemberVO;
+import com.spring.vo.ProductVO;
 
 @Repository
 public class MypageDAO extends DBConn{
@@ -34,5 +37,13 @@ public class MypageDAO extends DBConn{
 		param.put("introduce",introduce);
 		param.put("name", name);
 		sqlSession.update(namespace+".introupdate",param);
+	}
+	
+	public ArrayList<ProductVO> getProduct(String id) {
+		System.out.println(id);
+		
+		List<ProductVO> list = sqlSession.selectList(namespace+".getproduct",id);
+		
+		return (ArrayList<ProductVO>)list;
 	}
 }

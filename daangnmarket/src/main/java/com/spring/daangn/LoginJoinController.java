@@ -126,7 +126,7 @@ public class LoginJoinController {
 	    
 	    /*휴대폰 인증 막았을 때 오픈하는 코드*/
 		    result="success";
-		    System.out.println(num);
+		    System.out.println("휴대폰 인증번호 : " + num);
 	    /* 여기까지*/
 	    
 	    obj.put("result", result);
@@ -139,7 +139,6 @@ public class LoginJoinController {
 	//회원가입 진행
 	@RequestMapping(value="/join_proc.do", method=RequestMethod.POST)
 	public ModelAndView join_proc(MemberVO vo) {
-		vo.setAddr(vo.getAddr_jibun(), vo.getAddr_detail());
 		vo.setIntroduce("안녕하세요. "+vo.getId()+"입니다.");
 		vo.setImagepath("img_profile_male.png");
 		vo.setAdmin("N");

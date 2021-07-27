@@ -1,16 +1,26 @@
 package com.spring.daangn;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.spring.service.BoardService;
+import com.spring.vo.BoardVO;
 
 @Controller
 public class BoardController {
 
+	@Autowired
+	private BoardService boardService;
+	
 	// boardlist-게시판
 	@RequestMapping(value = "/boardlist.do", method = RequestMethod.GET)
-	public String boardlist() {
-		return "/board/boardlist";
+	public String list(Model model, BoardVO vo) throws Exception{
+		model.addAttribute("list", boardService.list());
+		
+		return "board/boardlist";
 	}
 
 	// board_add-게시글 추가
