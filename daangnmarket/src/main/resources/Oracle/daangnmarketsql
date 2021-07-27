@@ -1,6 +1,21 @@
 DROP TABLE DAANGN_BOARD;
 DROP TABLE daangn_member;
+drop table daangn_notice;
+drop sequence daangn_notice_seq;
 DROP SEQUENCE BOARD_NO_SEQ;
+
+-- 공지사항 테이블 생성
+create table daangn_notice(
+  bno number(10),
+  title varchar2(2000),
+  content varchar2(2000),
+  ndate date
+);
+
+-- 공지사항 시퀀스 생성
+CREATE SEQUENCE DAANGN_NOTICE_SEQ
+START WITH 1
+INCREMENT BY 1;
 
 -- 동네생활 게시판
 CREATE TABLE DAANGN_BOARD(
