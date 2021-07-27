@@ -26,10 +26,25 @@
 	$(document).ready(function(){
 		
 		$("#img_section").click(function(){
-			$("#input_file").val("");
-			$("#img_section").attr("src","http://localhost:9000/daangn/pro_img/no_image.png");
 			
 			/* ajax이용해서 psfile 삭제하기 */
+			if(${vo.psfile} != null){
+				$.ajax({
+					url:"deleteImage.do?pid="+$("#pid").val(),
+					success:function(result){
+						if(result==1){
+							$("#input_file").val("");
+							$("#img_section").attr("src","http://localhost:9000/daangn/pro_img/no_image.png");
+							$("#picture_li2").load(location.href + "#picture_li2");
+						}
+					}
+				});
+				
+			}else{
+				$("#input_file").val("");
+				$("#img_section").attr("src","http://localhost:9000/daangn/pro_img/no_image.png");
+				
+			}
 			
 			
 		});

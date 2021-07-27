@@ -104,6 +104,10 @@ public class ProductServiceimpl implements ProductService{
 		return productDAO.getSaleResult(pid);
 	}
 	@Override
+	public int getDeleteImage(String pid) {
+		return productDAO.getDeleteImage(pid);
+	}
+	@Override
 	public int getChatCount(String pid) {
 		return productDAO.getChatCount(pid);
 	}
