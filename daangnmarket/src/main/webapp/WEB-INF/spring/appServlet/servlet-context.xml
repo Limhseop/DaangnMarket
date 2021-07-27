@@ -74,6 +74,10 @@
 			<mapping path="/product_content.do" />
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/chat*.do" />
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
 	
 	</interceptors>
 	

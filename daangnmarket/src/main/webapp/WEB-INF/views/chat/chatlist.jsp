@@ -30,24 +30,31 @@
 	
 	$(document).ready(function(){
 		<c:if test="${status eq 'select'}">
-			<c:set var="index" value="-1" />
+		<c:set var="index" value="-1" />
+		<c:if test="${chat_list.size()!=0}">
 			<c:forEach var="i" begin="0" end="${chat_list.size()-1}">
 				<c:if test="${chat_list.get(i).getCid()==vo_setting.getCid()}">
 					<c:set var="index" value="${i}" />
 				</c:if>
 			</c:forEach>
-			<c:if test="${index != -1}">
-			$("#chat_list_li[value='${index}']").css({"background-color":"gray"});
-			</c:if>
 		</c:if>
+		<c:if test="${index != -1}">
+		$("#chat_list_ul").find("li[value='${index}']").css({"background-color":"gray"});
 		
-		$("#text_message").focus();
-		
-		$("#chat_list_li").click(function(){
-			var index1 = $("#chat_list_li").val();
-			var cid = '<c:out value="${chat_list.get(index1).getCid()}"/>';
+		</c:if>
+	</c:if>
+	
+	$("#text_message").focus();
+	
+	
+	$("#chat_list_ul").find("li").click(function(){
+		var index1 = $(this).index();
+		<c:if test="${chat_list.size()!=0}">
+			var cid= ${chat_list.get(index1).getCid()};
+			//var cid = <c:out value="${chat_list.get(index1).getCid()}"/>;
+		</c:if>
+			alert(cid);
 			//cid 받아오는 데까진 성공
-			//load_chat_ajax(cid);
 			location.href="http://localhost:9000/daangn/chat_getlog.do?cid="+cid+"&myid=${myid}";
 		});
 		
@@ -84,7 +91,7 @@
 			<div class="second_div">
 			</div>
 			<div class="chat_list_div">
-				<ul class="chat_list_ul">
+				<ul class="chat_list_ul" id="chat_list_ul">
 				
 				<c:forEach var="cvo" items="${chat_list }">
 					<c:if test="${ cvo.getLog() != null}">
@@ -93,21 +100,14 @@
 							<li class="chat_list_li" id="chat_list_li">
 								<div class="chat_list_li_div">
 									<div class="chat_list_li_top">
-										<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${cvo.getReceiver_image() }" class="img_profile"></span>
+										<span class="chat_profile"><img src="http://localhost:9000/daangn/profileimage/${cvo.getReceiver_image() }" class="img_profile"></span>
 										<span class="chat_name">${cvo.getReceiver_name() }</span>
 										<span class="chat_list_date">${cvo.getP_location() }, ${cvo.getCdate() }</span>
 									</div>
-									<c:choose>
-									<c:when test="${cvo.getLog()}.length()>=10">
-										<span class="chat_list_content">${cvo.getLog() }.substring(0,9)</span>
-									</c:when>
-									<c:otherwise>
-										<span class="chat_list_content">${cvo.getLog() }</span>
-									</c:otherwise>
-									</c:choose>
+									<span class="chat_list_content">${cvo.getLog() }</span>
 								</div>
 								<c:if test="${cvo.getPsfile() != null }">
-									<img src="http://localhost:9000/daangn/resources/images/${cvo.getPsfile() }" class="product_img">
+									<img src="http://localhost:9000/daangn/pro_upload/${cvo.getPsfile()}" class="product_img">
 								</c:if>
 							</li>
 						</c:when>
@@ -115,14 +115,14 @@
 							<li class="chat_list_li" id="chat_list_li">
 								<div class="chat_list_li_div">
 									<div class="chat_list_li_top">
-										<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${cvo.getSender_image() }" class="img_profile"></span>
+										<span class="chat_profile"><img src="http://localhost:9000/daangn/profileimage/${cvo.getSender_image() }" class="img_profile"></span>
 										<span class="chat_name">${cvo.getSender_name() }</span>
 										<span class="chat_list_date">${cvo.getP_location() }, ${cvo.getCdate() }</span>
 									</div>
 										<span class="chat_list_content">${cvo.getLog() }</span>
 								</div>
 								<c:if test="${cvo.getPsfile()!=null }">
-									<img src="http://localhost:9000/daangn/resources/images/${cvo.getPsfile() }" class="product_img">
+									<img src="http://localhost:9000/daangn/pro_upload/${cvo.getPsfile()}" class="product_img">
 								</c:if>
 							</li>
 						</c:otherwise>
@@ -144,26 +144,26 @@
 					<c:choose>
 						<c:when test="${myid eq vo_setting.getSender() }">
 							<div class="name_div">
-							<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${vo_setting.getReceiver_image() }" class="img_profile"></span>
+							<span class="chat_profile"><img src="http://localhost:9000/daangn/profileimage/${vo_setting.getReceiver_image() }" class="img_profile"></span>
 							<h1>${vo_setting.getReceiver_name() }</h1>
 							<span class="chat_temperature">36.5℃</span>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="name_div">
-							<span class="chat_profile"><img src="http://localhost:9000/daangn/resources/images/${vo_setting.getSender_image() }" class="img_profile"></span>
+							<span class="chat_profile"><img src="http://localhost:9000/daangn/profileimage/${vo_setting.getSender_image() }" class="img_profile"></span>
 							<h1>${vo_setting.getSender_name() }</h1>
 							<span class="chat_temperature">36.5℃</span>
 							</div>
 						</c:otherwise>
 					</c:choose>
 						<div class="name_div">
-						<c:if test="${vo_setting.getPsfile() } != null">
-						<img src="http://localhost:9000/daangn/resources/images/${vo_setting.getPsfile() }" class="product_img">
+						<c:if test="${vo_setting.getPsfile() != null}">
+						<img src="http://localhost:9000/daangn/pro_upload/${vo_setting.getPsfile()}" class="product_img">
 						</c:if>
 							<div class="chat_item_div">
 								<span class="title">${vo_setting.getPtitle() }</span>
-								<span class="price">${vo_setting.getPrice() }</span>
+								<span class="price">${vo_setting.getPrice() }원</span>
 							</div>
 							<c:choose>
 								<c:when test="${vo_setting.getSaled() eq 'N' }">
@@ -193,7 +193,7 @@
 										</c:when>
 										<c:otherwise>
 											<div class="other_chatlog">
-											<span class="profile"><img src="http://localhost:9000/daangn/resources/images/${clog.getSender_image() }" class="img_profile"></span>
+											<span class="profile"><img src="http://localhost:9000/daangn/profileimage/${clog.getSender_image() }" class="img_profile"></span>
 											<span class="word">${clog.getLog()}</span>
 											<span class="date">${clog.getCtime() }</span>
 										</div>

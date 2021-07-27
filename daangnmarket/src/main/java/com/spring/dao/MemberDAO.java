@@ -25,22 +25,19 @@ public class MemberDAO extends DBConn {
 	
 	//로그인 체크
 	public SessionVO loginCheck(String id, String pass) {
-		if(!id.equals("admin")) {	//일반 계정일 경우
-			String spass = sqlSession.selectOne(namespace+".loginGetPass", id);	//암호화된 비밀번호 비교를 위한 받아오기
-			if(passwordEncoder.matches(pass,spass)) {	//비밀번호 일치할 때
-				Map param = new HashMap<String, String>();
-				param.put("id", id);
-				param.put("pass",spass);
-				return sqlSession.selectOne(namespace+".login", param);
-			}else {	//비밀번호 일치하지 않음
-				return null;
-			}
-		}else {	//관리자 계정일 경우
+		String spass = sqlSession.selectOne(namespace+".loginGetPass", id);	//암호화된 비밀번호 비교를 위한 받아오기
+		if(passwordEncoder.matches(pass,spass)) {	//비밀번호 일치할 때
+			Map param2 = new HashMap<String, String>();
+			param2.put("id", id);
+			param2.put("pass",spass);
+			return sqlSession.selectOne(namespace+".login", param2);
+		}else {	//비밀번호 일치하지 않음. 암호화 적용 말고 확인
 			Map param = new HashMap<String, String>();
 			param.put("id", id);
 			param.put("pass",pass);
 			return sqlSession.selectOne(namespace+".login", param);
 		}
+		
 	}
 	
 	//아이디 중복 체크

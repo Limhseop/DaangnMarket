@@ -76,6 +76,7 @@ section.chat div.chat_list_div li.chat_list_li{
 	height: 80px;
 	list-style: none;
 	padding: 0 10px;
+	cursor: pointer;
 }
 section.chat div.chat_list_div li.chat_list_li div.chat_list_li_div{
 	margin: 20px 5px;
